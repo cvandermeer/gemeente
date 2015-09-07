@@ -1,4 +1,4 @@
-Master branch status: https://magnum.travis-ci.com/cvandermeer/gemeente.svg?token=7X6KP7iXKkpfLuMqronV&branch=master
+Master branch status: [![Build Status](https://magnum.travis-ci.com/cvandermeer/gemeente.svg?token=7X6KP7iXKkpfLuMqronV&branch=master)](https://magnum.travis-ci.com/cvandermeer/gemeente)
 
 # Gemeente
 An application for communities in the Netherlands
