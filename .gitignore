@@ -15,4 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
-coverage/
+
+# Ignore simplecov
+coverage
