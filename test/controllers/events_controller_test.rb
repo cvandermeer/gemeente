@@ -29,6 +29,11 @@ class EventsControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
+  test 'should render new on create fail' do
+    post :create, event: { title: @event.title }
+    assert_template 'new'
+  end
+
   private
 
   def initialize_event
