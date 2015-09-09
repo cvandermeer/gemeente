@@ -3,6 +3,10 @@ class EventsController < ApplicationController
     @events = Event.all
   end
 
+  def new
+    @event = Event.new
+  end
+
   def create
     @event = Event.new(event_params)
     if @event.save
@@ -10,10 +14,6 @@ class EventsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def new
-    @event = Event.new
   end
 
   private

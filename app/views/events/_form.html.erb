@@ -1,0 +1,57 @@
+<%= form_for event do |f| %>
+  <div class='row'>
+    <div class='six columns'>
+      <%= f.label :title, 'Evenement titel' %>
+      <%= f.text_field :title %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='columns'>
+      <%= f.label :description, 'Beschrijving' %>
+      <%= f.text_area :description, class: 'u-full-width' %>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='eight columns'>
+      <%= f.label :street, 'Straat naam' %>
+      <%= f.text_field :street, class: 'u-full-width' %>
+    </div>
+
+    <div class='four columns'>
+      <%= f.label :housenumber, 'Huisnummer' %>
+      <%= f.number_field :housenumber, class: 'u-full-width' %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='eight columns'>
+      <%= f.label :town, 'Plaatsnaam' %>
+      <%= f.text_field :town, class: 'u-full-width' %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='four columns'>
+      <%= f.label :start_date, 'Begin datum' %>
+      <%= f.date_field :start_date, class: 'u-full-width' %>
+    </div>
+    <div class='four columns'>
+      <%= f.label :end_date, 'Eind datum' %>
+      <%= f.date_field :end_date, class: 'u-full-width' %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='four columns'>
+      <%= f.label :start_time, 'Begintijd' %>
+      <%= f.time_field :start_time %>
+    </div>
+    <div class='four columns'>
+      <%= f.label :end_time, 'Eindtijd' %>
+      <%= f.time_field :end_time %>
+    </div>
+  </div>
+
+  <%= f.submit 'Aanmaken', class: 'button-primary' %>
+<% end %>
