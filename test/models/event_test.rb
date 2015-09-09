@@ -71,5 +71,4 @@ class EventTest < ActiveSupport::TestCase
   def initialize_event
     @event = events(:event1)
   end
-
 end
