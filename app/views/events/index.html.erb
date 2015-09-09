@@ -5,7 +5,11 @@
 <ul>
   <% @events.each do |event| %>
     <li class='event'>
-      <%= event.title %>
+      <% map = 'http://nominatim.openstreetmap.org/search.php?q=' + event.latitude.to_s + '%2C+' + event.longitude.to_s %>
+      <a href=<%= map %>>
+        <%= event.title %>
+      </a>
     </li>
   <% end %>
 </ul>
+
