@@ -1,8 +1,10 @@
 <h1>Events</h1>
 
+<%= link_to 'Evenement aanmaken', new_event_path %>
+
 <ul>
   <% @events.each do |event| %>
-    <li>
+    <li class='event'>
       <%= event.title %>
     </li>
   <% end %>
