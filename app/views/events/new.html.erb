@@ -1,0 +1,12 @@
+<%= form_for @event do |f| %>
+  <p><%= f.text_field :title %></p>
+  <p><%= f.text_area :description %></p>
+  <p><%= f.text_field :street %></p>
+  <p><%= f.number_field :housenumber %></p>
+  <p><%= f.text_field :town %></p>
+  <p><%= f.date_field :start_date %></p>
+  <p><%= f.date_field :end_date %></p>
+  <p><%= f.time_field :start_time %></p>
+  <p><%= f.time_field :end_time %></p>
+  <p><%= f.submit 'Aanmaken' %></p>
+<% end %>
