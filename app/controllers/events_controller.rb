@@ -5,6 +5,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    render partial: 'new'
   end
 
   def create

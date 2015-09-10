@@ -1,6 +1,6 @@
 <h1>Events</h1>
 
-<%= link_to 'Evenement aanmaken', new_event_path %>
+<%= link_to 'Evenement aanmaken', new_event_path, class: 'js_modal', remote: true %>
 
 <ul>
   <% @events.each do |event| %>

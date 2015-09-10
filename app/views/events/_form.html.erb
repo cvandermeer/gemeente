@@ -1,4 +1,4 @@
-<%= form_for event do |f| %>
+<%= form_for event, remote: true do |f| %>
   <div class='row'>
     <div class='six columns'>
       <%= f.label :title, 'Evenement titel' %>
@@ -53,5 +53,7 @@
     </div>
   </div>
 
-  <%= f.submit 'Aanmaken', class: 'button-primary' %>
+  <div class='row'>
+    <%= f.submit 'Aanmaken', class: 'button-primary' %>
+  </div>
 <% end %>
