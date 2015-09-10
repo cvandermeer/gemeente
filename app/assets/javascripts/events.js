@@ -9,6 +9,12 @@ ready = function() {
     view.setZoom(17);
   });
 
+  $('.reset_map').on('click', function(){
+    var view = map.getView();
+    view.setCenter(ol.proj.transform([5.7, 52.2], 'EPSG:4326', 'EPSG:3857'));
+    view.setZoom(7);
+  });
+
 }
 
 $(document).ready(ready);
