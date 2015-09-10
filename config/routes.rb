@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  root 'events#index'
-  resources :events, only: [:show, :new, :create]
+  root 'application#redirect_to_events'
+  resources :events, only: [:show, :new, :create, :index]
 end

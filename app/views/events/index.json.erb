@@ -1,0 +1,17 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    <% @events.each do |e| %>
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            <%= e.longitude %>,
+            <%= e.latitude %>
+          ]
+        }
+      }<%= ',' unless e == Event.last %>
+    <% end %>
+  ]
+}
