@@ -1,7 +1,7 @@
 Geocoder.configure(
 
   # geocoding service (see below for supported options):
-  lookup: :nominatim,
+  lookup: :google,
 
   # IP address geocoding service (see below for supported options):
   ip_lookup: :maxmind,
