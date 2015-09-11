@@ -22,6 +22,7 @@
       var lat = <%= event.latitude %>
       var lon = <%= event.longitude %>
       var marker = new google.maps.Marker({
+        animation: google.maps.Animation.DROP,
         position: new google.maps.LatLng(lat,lon),
         title: '<%= event.title.to_s %>'
       });
