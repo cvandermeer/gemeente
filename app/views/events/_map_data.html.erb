@@ -5,7 +5,7 @@
       center: {lat: 52.397, lng: 6.544},
       zoom: 7
     });
-    <% @events.each do |event| %>
+    <% events.each do |event| %>
       var lat = <%= event.latitude %>
       var lon = <%= event.longitude %>
       var marker = new google.maps.Marker({
