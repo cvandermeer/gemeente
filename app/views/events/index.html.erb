@@ -5,7 +5,7 @@
 <ul class='events'>
   <% @events.each do |event| %>
     <li class='event' data-lat=<%= event.latitude %> data-lon=<%= event.longitude %>>
-      <%= event.title %> (<%= event.adress %>)
+      <%= event.title %> (<%= event.address %>)
     </li>
   <% end %>
 </ul>

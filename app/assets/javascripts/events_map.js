@@ -35,7 +35,7 @@ function setMarker(el) {
   var marker = new google.maps.Marker({
     animation: google.maps.Animation.DROP,
     position: new google.maps.LatLng(lat,lon),
-    title: '<%= event.title.to_s %>'
+    title: el.title
   });
   marker.setMap(map);
 }

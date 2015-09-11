@@ -1,9 +1,9 @@
 class Event < ActiveRecord::Base
   ### GEOCODER ###
-  geocoded_by :adress
+  geocoded_by :address
   after_validation :geocode
 
-  def adress
+  def address
     [street, housenumber, town].compact.join(', ')
   end
 

@@ -17,6 +17,18 @@ class EventsController < ApplicationController
     end
   end
 
+  def edit
+
+  end
+
+  def update
+    if @event.update(event_params)
+      render json: @event
+    else
+      render partial: 'new', event: @event
+    end
+  end
+
   private
 
   def event_params
