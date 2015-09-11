@@ -1,4 +1,14 @@
 class Event < ActiveRecord::Base
+  ### GEOCODER ###
+  geocoded_by :adress
+  after_validation :geocode
+
+  def adress
+    [street, housenumber, town].compact.join(', ')
+  end
+
+  ### VALIDATIONS ###
+
   validates :title, presence: true
   validates :description, presence: true
   validates :street, presence: true
