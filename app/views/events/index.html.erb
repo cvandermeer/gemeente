@@ -6,7 +6,7 @@
   <% @events.each do |event| %>
     <a href='#'>
       <li class='event' data-lat=<%= event.latitude %> data-lon=<%= event.longitude %>>
-        <%= event.title %>
+        <%= event.title %> (<%= event.adress %>)
       </li>
     </a>
   <% end %>
@@ -14,38 +14,4 @@
 
 <div id='map'></div>
 <a href='#' class='reset-map'>Reset Map</a>
-<script>
-  var map;
-  function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 52.397, lng: 6.544},
-      zoom: 7
-    });
-    <% @events.each do |event| %>
-      var lat = <%= event.latitude %>
-      var lon = <%= event.longitude %>
-      var marker = new google.maps.Marker({
-        animation: google.maps.Animation.DROP,
-        position: new google.maps.LatLng(lat,lon),
-        title: '<%= event.title.to_s %>'
-      });
-      marker.setMap(map);
-    <% end %>
-    
-  }
-
-  $('.event').on('click', function(){
-    var lat = parseFloat($(this).attr('data-lat'))
-    var lon = parseFloat($(this).attr('data-lon'))
-    map.setCenter({lat: lat, lng: lon})
-    map.setZoom(17)
-  });
-
-  $('.reset-map').on('click', function(){
-    map.setCenter({lat: 52.397, lng: 6.544})
-    map.setZoom(7)
-  });
-
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-CJuuFP6eSLUX1g3Osuy9HRfYtMQ6SWA&callback=initMap"
-    async defer></script>
+<%= render 'map_data' %>
