@@ -59,6 +59,7 @@ function bindAjax() {
 			removeModal()
 
 			if($('.new_event').length > 0) {
+				// Function location /events_maps.js
 				setEvent(data)
 			}
 
@@ -66,12 +67,6 @@ function bindAjax() {
 		
 		}
 	});
-}
-
-
-function setEvent(data) {
-	var content = '<li>' + data.title + '</li>'
-	$('.events').append(content)
 }
 
 $(document).ready(ready);

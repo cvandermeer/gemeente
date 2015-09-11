@@ -5,16 +5,13 @@
       center: {lat: 52.397, lng: 6.544},
       zoom: 7
     });
-    <% events.each do |event| %>
-      var lat = <%= event.latitude %>
-      var lon = <%= event.longitude %>
-      var marker = new google.maps.Marker({
-        animation: google.maps.Animation.DROP,
-        position: new google.maps.LatLng(lat,lon),
-        title: '<%= event.title.to_s %>'
-      });
-      marker.setMap(map);
+    // Function location assets/javascripts/events_maps.js
+    <% @events.each do |event| %>
+      var el = <%= raw event.to_json %>
+      setMarker(el)
     <% end %>
-  }
+
+  }  
 </script>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-CJuuFP6eSLUX1g3Osuy9HRfYtMQ6SWA&callback=initMap" async defer></script>
