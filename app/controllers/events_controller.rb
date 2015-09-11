@@ -3,17 +3,18 @@ class EventsController < ApplicationController
     @events = Event.all
   end
 
+  def new
+    @event = Event.new
+    render partial: 'new', event: @event
+  end
+
   def create
     @event = Event.new(event_params)
     if @event.save
-      redirect_to root_path
+      render json: @event
     else
-      render :new
+      render partial: 'new', event: @event
     end
-  end
-
-  def new
-    @event = Event.new
   end
 
   private
