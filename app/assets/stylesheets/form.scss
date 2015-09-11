@@ -1,0 +1,17 @@
+
+input[type="submit"] {
+	margin-top: 30px;
+}
+
+/* Form errors */
+.field_with_errors {
+	textarea,
+	input {
+		border: 1px solid #a94442;
+		box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+		&:focus {
+			box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #ce8483;
+			border: 1px solid #a94442;
+		}
+	}
+}

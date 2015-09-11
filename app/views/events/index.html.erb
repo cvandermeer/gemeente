@@ -1,14 +1,20 @@
 <h1>Events</h1>
 
-<%= link_to 'Evenement aanmaken', new_event_path %>
+<%= link_to 'Evenement aanmaken', new_event_path, class: 'js_modal', remote: true %>
 
-<ul>
+<ul class='events'>
   <% @events.each do |event| %>
+<<<<<<< HEAD
     <a href='#'>
       <li class='event' data-lat=<%= event.latitude %> data-lon=<%= event.longitude %>>
         <%= event.title %> (<%= event.adress %>)
       </li>
     </a>
+=======
+    <li>
+      <%= event.title %>
+    </li>
+>>>>>>> development
   <% end %>
 </ul>
 
