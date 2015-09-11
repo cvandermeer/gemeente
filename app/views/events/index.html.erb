@@ -4,17 +4,11 @@
 
 <ul class='events'>
   <% @events.each do |event| %>
-<<<<<<< HEAD
     <a href='#'>
       <li class='event' data-lat=<%= event.latitude %> data-lon=<%= event.longitude %>>
         <%= event.title %> (<%= event.adress %>)
       </li>
     </a>
-=======
-    <li>
-      <%= event.title %>
-    </li>
->>>>>>> development
   <% end %>
 </ul>
 
