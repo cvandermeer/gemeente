@@ -4,13 +4,16 @@
 
 <ul>
   <% @events.each do |event| %>
-    <li class='event'>
-      <%= event.title %>
-    </li>
+    <a href='#'>
+      <li class='event' data-lat=<%= event.latitude %> data-lon=<%= event.longitude %>>
+        <%= event.title %>
+      </li>
+    </a>
   <% end %>
 </ul>
 
 <div id='map'></div>
+<a href='#' class='reset-map'>Reset Map</a>
 <script>
   var map;
   function initMap() {
@@ -30,6 +33,19 @@
     <% end %>
     
   }
+
+  $('.event').on('click', function(){
+    var lat = parseFloat($(this).attr('data-lat'))
+    var lon = parseFloat($(this).attr('data-lon'))
+    map.setCenter({lat: lat, lng: lon})
+    map.setZoom(17)
+  });
+
+  $('.reset-map').on('click', function(){
+    map.setCenter({lat: 52.397, lng: 6.544})
+    map.setZoom(7)
+  });
+
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-CJuuFP6eSLUX1g3Osuy9HRfYtMQ6SWA&callback=initMap"
     async defer></script>
