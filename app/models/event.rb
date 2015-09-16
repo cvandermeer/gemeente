@@ -8,7 +8,6 @@ class Event < ActiveRecord::Base
   end
 
   ### VALIDATIONS ###
-
   validates :title, presence: true
   validates :description, presence: true
   validates :street, presence: true
