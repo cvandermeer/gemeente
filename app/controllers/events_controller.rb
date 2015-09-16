@@ -1,11 +1,14 @@
 class EventsController < ApplicationController
+  
+  before_action :set_event, only: [:edit, :update]
+
   def index
     @events = Event.all
   end
 
   def new
     @event = Event.new
-    render partial: 'new', event: @event
+    render partial: 'new'
   end
 
   def create
@@ -13,19 +16,19 @@ class EventsController < ApplicationController
     if @event.save
       render json: @event
     else
-      render partial: 'new', event: @event
+      render partial: 'new'
     end
   end
 
   def edit
-
+    render partial: 'edit'
   end
 
   def update
     if @event.update(event_params)
       render json: @event
     else
-      render partial: 'new', event: @event
+      render partial: 'edit'
     end
   end
 
@@ -35,5 +38,9 @@ class EventsController < ApplicationController
     params.require(:event).permit(:title, :description, :street, :housenumber, :town,
                                   :start_date, :end_date, :start_time, :end_time, :latitude,
                                   :longitude)
+  end
+
+  def set_event
+    @event = Event.find(params[:id])
   end
 end

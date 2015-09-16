@@ -4,9 +4,7 @@
 
 <ul class='events'>
   <% @events.each do |event| %>
-    <li class='event' data-lat=<%= event.latitude %> data-lon=<%= event.longitude %>>
-      <%= event.title %> (<%= event.address %>)
-    </li>
+     <%= render 'event', event: event %>
   <% end %>
 </ul>
 

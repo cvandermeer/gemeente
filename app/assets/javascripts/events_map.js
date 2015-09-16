@@ -1,4 +1,5 @@
 var ready;
+
 ready = function() {
 
   $('.event').on('click', function(){
@@ -19,13 +20,30 @@ function eventClicked(el) {
   map.setZoom(17)
 }
 
-function setEvent(data) {
-  var text = data.title + ' (' + data.street + ', ' + data.housenumber + ', ' + data.town + ')'
-  var content = '<li class="event" data-lat="' + data.latitude + '" data-lon= "' + data.longitude + '">' + text + '</li>'
-  $('.events').append(content)
+function setEvent(boolean, data) {
+  var address = ' (' + data.street + ', ' + data.housenumber + ', ' + data.town + ') ' 
+  var editLink = '<a class="button js_modal" data-remote="true" href="/events/' + data.id + '/edit">Edit</a>'
+  var content = '<a class="event" data-lat="' + data.latitude + '" data-lon= "' + data.longitude + '">' + data.title + '</a>' + address + editLink
+  var liContent = '<li data-event-id="' + data.id + '">' + content + '</li>'
+  if(boolean) {
+    $('.events').find("[data-event-id='" + data.id + "']").html('').append(content)
+  } else {
+    $('.events').append(liContent)
+  }
+
+  // Binding al events to the event, maby there is a better way
   $('.event').bind('click', function(){
     eventClicked(this)
   });
+  $('.js_modal').bind('click', function() {
+    // Function located in modal_core.js
+    initModal()
+  });
+  $('.js_modal').bind('ajax:success', function(e, data, status) {
+    // Function located in modal_core.js
+    modalOnAjax(data)
+  });
+
   setMarker(data)
 }
 
