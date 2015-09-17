@@ -8,7 +8,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    render partial: 'form'
+    render partial: 'form', locals: { event: @event }
   end
 
   def create
