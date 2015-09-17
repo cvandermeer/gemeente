@@ -6,14 +6,12 @@
       zoom: 7
     });
     // Function location assets/javascripts/events_maps.js
-    <% @events.each do |event| %>
+    <% events.each do |event| %>
       var el = <%= raw event.to_json %>
       setMarker(el)
     <% end %>
-
   }
 </script>
-
 
 <% if Rails.env.production? %>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-CJuuFP6eSLUX1g3Osuy9HRfYtMQ6SWA&callback=initMap" async defer></script>
