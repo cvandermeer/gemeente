@@ -7,7 +7,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    render partial: 'new'
+    render 'new'
   end
 
   def create
@@ -15,12 +15,12 @@ class EventsController < ApplicationController
     if @event.save
       render json: @event
     else
-      render partial: 'new'
+      render 'new'
     end
   end
 
   def edit
-    render partial: 'edit'
+    render 'edit'
   end
 
   def update
