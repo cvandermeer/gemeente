@@ -5,9 +5,9 @@
       center: {lat: 52.397, lng: 6.544},
       zoom: 7
     });
-    <% events.each do |event| %>
-      var el = <%== event.to_json %>
-      setMarker(el)
-    <% end %>
+
+    // Function can be found in events_map.js
+    getMarkers()
+  
   }
 </script>

@@ -16,7 +16,7 @@ class EventsController < ApplicationController
     if @event.save
       render @event
     else
-      render partial: 'form'
+      render partial: 'form', locals: { event: @event }
     end
   end
 
@@ -26,9 +26,9 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(event_params)
-      render json: @event
+      render @event
     else
-      render partial: 'form'
+      render partial: 'form', locals: { event: @event }
     end
   end
 
