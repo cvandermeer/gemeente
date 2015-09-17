@@ -14,14 +14,14 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
-      render json: @event
+      render @event
     else
       render partial: 'form'
     end
   end
 
   def edit
-    render partial: 'form'
+    render partial: 'form', locals: { event: @event }
   end
 
   def update

@@ -1,0 +1,8 @@
+<li data-event-id="<%= event.id %>">
+  <%= link_to event.title, '#', data: { lat: event.latitude, lon: event.longitude, remote: true }, class: 'event' %> (<%= event.address %>)
+  <%= link_to 'Edit', edit_event_path(event.id), class: 'button js_modal', remote: true  %>
+  <script type="text/javascript">
+    var el = <%== event.to_json %>
+    setMarker(el)
+  </script>
+</li>

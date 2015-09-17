@@ -32,7 +32,10 @@ function modalOnAjax(data) {
 	if ($('.modal').find('form').length == 0) {
 		$('.modal-content').append(data)
 	}
-	bindAjax();
+	$('.new_event').on('ajax:success', function(e, data, status, xhr){
+    $('.events').append(xhr.responseText);
+    removeModal();
+  });
 	setTimeout(function() {
 		$('.modal').addClass('active')
 	}, 100);
@@ -41,26 +44,6 @@ function modalOnAjax(data) {
 function removeModal() {
 	$('.modal-content').html('')
 	$('.modal-background, .modal').removeClass('active')
-}
-
-function bindAjax() {
-	$('.modal form').on('ajax:success', function(e, data, status) {
-		if ($.type(data) == 'string') {
-			$('.modal-content').html(data)
-			bindAjax();
-		} else {
-			
-			if($('.new_event').length > 0) {
-				// Function located in events_maps.js
-				setEvent(false, data)
-			}
-			if($('.edit_event').length > 0) {
-				// Function located in events_maps.js
-				setEvent(true, data)
-			}
-			removeModal()			
-		}
-	});
 }
 
 $(document).ready(ready);

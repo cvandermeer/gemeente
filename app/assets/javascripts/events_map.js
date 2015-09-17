@@ -11,6 +11,10 @@ ready = function() {
     map.setZoom(7)
   });
 
+  $('.new_event').on('ajax:success', function(e, data, status, xhr){
+    alert('yes');
+    $('.events').append(xhr.responseText);
+  });
 }
 
 function eventClicked(el) {
@@ -18,33 +22,6 @@ function eventClicked(el) {
   var lon = parseFloat($(el).attr('data-lon'))
   map.setCenter({lat: lat, lng: lon})
   map.setZoom(17)
-}
-
-function setEvent(boolean, data) {
-  var address = ' (' + data.street + ', ' + data.housenumber + ', ' + data.town + ') ' 
-  var editLink = '<a class="button js_modal" data-remote="true" href="/events/' + data.id + '/edit">Edit</a>'
-  var content = '<a class="event" data-lat="' + data.latitude + '" data-lon= "' + data.longitude + '">' + data.title + '</a>' + address + editLink
-  var liContent = '<li data-event-id="' + data.id + '">' + content + '</li>'
-  if(boolean) {
-    $('.events').find("[data-event-id='" + data.id + "']").html('').append(content)
-  } else {
-    $('.events').append(liContent)
-  }
-
-  // Binding al events to the event, maby there is a better way
-  $('.event').bind('click', function(){
-    eventClicked(this)
-  });
-  $('.js_modal').bind('click', function() {
-    // Function located in modal_core.js
-    initModal()
-  });
-  $('.js_modal').bind('ajax:success', function(e, data, status) {
-    // Function located in modal_core.js
-    modalOnAjax(data)
-  });
-
-  setMarker(data)
 }
 
 function setMarker(el) {
