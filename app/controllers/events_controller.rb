@@ -3,11 +3,12 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+    @event = Event.new
   end
 
   def new
     @event = Event.new
-    render 'new'
+    render partial: 'form'
   end
 
   def create
@@ -15,19 +16,19 @@ class EventsController < ApplicationController
     if @event.save
       render json: @event
     else
-      render 'new'
+      render partial: 'form'
     end
   end
 
   def edit
-    render 'edit'
+    render partial: 'form'
   end
 
   def update
     if @event.update(event_params)
       render json: @event
     else
-      render partial: 'edit'
+      render partial: 'form'
     end
   end
 
