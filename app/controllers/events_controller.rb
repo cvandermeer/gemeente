@@ -1,9 +1,8 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:edit, :update]
+  before_action :set_event, except: [:index, :new, :create]
 
   def index
     @events = Event.all
-    @event = Event.new
   end
 
   def new
@@ -30,6 +29,14 @@ class EventsController < ApplicationController
     else
       render partial: 'form', locals: { event: @event }
     end
+  end
+
+  def delete
+    render json: @event
+  end
+
+  def destroy
+    render json: @event if @event.destroy
   end
 
   private
