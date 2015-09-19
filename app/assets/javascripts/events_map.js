@@ -39,11 +39,8 @@ function setMarker(lat, lon, title) {
 function newEventForm() {
   $('.modal form').bind('ajax:success', function(e, data, status){
     if(data.indexOf('form') == -1) {
-      console.log(1)
       $('.events').append(data);
       if ($('.events').find("[data-event-id='" + eventElData.id + "']").length > 1) {
-        console.log(2)
-        console.log($('.events').find("[data-event-id='" + eventElData.id + "']").length)
         $('.events li').last().remove()
         $('.events').find("[data-event-id='" + eventElData.id + "']").before(data).remove()
       }
