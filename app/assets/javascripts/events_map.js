@@ -12,7 +12,6 @@ ready = function() {
     map.setCenter({lat: 52.397, lng: 6.544})
     map.setZoom(7)
   });
-  
 }
 
 function eventClicked(el) {
