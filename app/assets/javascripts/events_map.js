@@ -9,7 +9,7 @@ ready = function() {
   });
 
   $('.reset-map').on('click', function(){
-    map.setCenter({lat: 52.397, lng: 6.544})
+    map.setCenter({lat: 52.397, lng: 5.544})
     map.setZoom(7)
   });
 }
