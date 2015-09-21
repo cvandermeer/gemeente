@@ -1,6 +1,6 @@
 <h1>Events</h1>
 
-<%= link_to 'Evenement aanmaken', new_event_path, class: 'js_modal', remote: true %>
+<%= link_to 'Evenement aanmaken', new_event_path, class: 'js_modal', remote: true if user_signed_in? %>
 
 <ul class='events'>
   <% @events.each do |event| %>
