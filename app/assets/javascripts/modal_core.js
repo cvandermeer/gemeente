@@ -3,7 +3,7 @@ var ready;
 ready = function() {
 
 	$('.js_modal').on('ajax:success', function(e, data, status) {
-		setDataInModal(data)
+		setDataInModal(this, data)
 	});
 
 	$('.modal-close').on('click', function() {
@@ -25,17 +25,39 @@ function initModal() {
   }, 100);
 }
 
-function setDataInModal(data) {
-	// Building the modal
-	$('.modal-content').html(data)
+function setDataInModal(e, data) {
 	initModal()
-
-	// The function can be found in /events_map.js
-	newEventForm()
+	if($(e).attr('data-modal-type') == 'destroy') {
+		initDestroy(e, data)
+	} else {
+		// Building the modal
+		$('.modal-content').html(data)
+		
+		// The function can be found in /events_map.js
+		newEventForm()
+	}
 }
 
 function removeModal() {
 	$('.modal-background, .modal').removeClass('active')
+	$('.modal-content').html('')
+	$('.modal-header h4').remove()
+	//console.log(1)
+}
+
+function initDestroy(e, data) {
+	$('.modal-content').html('')
+	$('.modal-header h4').remove()
+	$('.modal-header').append('<h4>Delete</h4>')
+	var modalText = '<p>Weet je zeker dat je <strong>'+ data.title +'</strong> wilt verwijderen?</p>'
+	var modalDeleteLink = '<a data-method="delete" data-remote="true" class="modal-confirm button" href="/'+$(e).attr("data-modal-element")+'/' + data.id + ' ">Ja</a> <a href="#" class="modal-confirm button">Nee</a>'
+	$('.modal-content').append(modalText + modalDeleteLink)
+	$('.modal-confirm').bind('click', function() {
+		if($(this).attr('data-method') == 'delete') {
+			$('.events').find("[data-event-id='" + data.id + "']").remove()
+		}
+		removeModal()
+	});
 }
 
 

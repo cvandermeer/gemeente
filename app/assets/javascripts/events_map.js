@@ -59,7 +59,7 @@ function bindHandlers() {
     eventClicked(this)
   });
   $('.js_modal').bind('ajax:success', function(e, data, status) {
-    setDataInModal(data)
+    setDataInModal(this ,data)
   });
 }
 
