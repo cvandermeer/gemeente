@@ -1,4 +1,5 @@
 var ready;
+var map;
 
 var eventElData;
 
@@ -12,6 +13,18 @@ ready = function() {
     map.setCenter({lat: 52.397, lng: 5.544})
     map.setZoom(7)
   });
+
+}
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 52.397, lng: 5.544},
+    zoom: 7
+  });
+
+  // Function can be found in events_map.js
+  getMarkers()
+  setGeoLocation()
 }
 
 function eventClicked(el) {
@@ -33,6 +46,22 @@ function setMarker(lat, lon, title) {
     title: title
   });
   marker.setMap(map);
+}
+
+function setGeoLocation() {
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = new google.maps.LatLng(position.coords.latitude,
+                                       position.coords.longitude);
+      var infowindow = new google.maps.InfoWindow({
+        map: map,
+        position: pos,
+        content: 'U bent nu hier!'
+      });
+
+      map.setCenter(pos);
+    });
+  }
 }
 
 function newEventForm() {
