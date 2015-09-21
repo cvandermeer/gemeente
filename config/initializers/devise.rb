@@ -9,6 +9,10 @@ Devise.setup do |config|
   # config.secret_key = 'bbef188e90e3abd27e3f59fde437ae30bc009f3958cc29237a35e92b9a8d29
   # b1e93ae883ad7851b056d758739125634054e0354e4613380ed32ff8952afa46d7'
 
+  config.warden do |manager|
+    manager.failure_app = CustomFailure
+  end
+  
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
