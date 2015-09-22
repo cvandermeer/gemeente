@@ -36,9 +36,7 @@ function setDataInModal(e, data) {
     // The function can be found in /events_map.js
     newEventForm()
   }
-  $('.js_modal').bind('ajax:success', function(e, data, status) {
-    setDataInModal(this, data)
-  });
+  bindHandlers()
 }
 
 function removeModal() {

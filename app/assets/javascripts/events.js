@@ -117,12 +117,13 @@ function newEventForm() {
   $('.modal form').bind('ajax:success', function(e, data, status){
     if(data.indexOf('form') == -1) {
       $('.events').append(data);
-      if ($('.events').find("[data-event-id='" + eventElData.id + "']").length > 1) {
+      var el = $('.events li:last-child .event')
+      if ($('.events').find("[data-event-id='" + el.attr('data-id') + "']").length > 1) {
         $('.events li').last().remove()
-        $('.events').find("[data-event-id='" + eventElData.id + "']").before(data).remove()
+        $('.events').find("[data-event-id='" + el.attr('data-id') + "']").before(data).remove()
       }
       removeModal();
-      setMarker(eventElData.latitude, eventElData.longitude, eventElData.title)
+      setMarker(parseFloat(el.attr('data-lat')), parseFloat(el.attr('data-lon')), el.attr('data-title'))
       bindHandlers()
     } else {
       $('.modal-content').html(data)
