@@ -1,5 +1,6 @@
 <div class='row height-total'>
 	<div class='six columns'>
+    <input id="pac-input" class="controls" type="text" placeholder="Zoek op Gemeente">
 		<ul class='events'>
 		  <% @events.each do |event| %>
 		    <%= render 'event', event: event %>
@@ -8,5 +9,6 @@
 	</div>
 	<div class='six height-total columns'>
 		<div id='map' class='map'></div>
+    <a href='#' class='reset-map'>Reset Map</a>
 	</div>
 </div>
