@@ -1,13 +1,14 @@
-<h1>Events</h1>
+<div class='content-container'>
+	<div>
+    <ul class='events'>
+  	  <% @events.each do |event| %>
+  	    <%= render 'event', event: event %>
+  	  <% end %>
+  	</ul>
+    <a href='#' class='reset-map'>Reset Map</a>
+  </div>
+</div>
 
-<%= link_to 'Evenement aanmaken', new_event_path, class: 'js_modal', remote: true if user_signed_in? %>
-
-<ul class='events'>
-  <% @events.each do |event| %>
-    <%= render 'event', event: event %>
-  <% end %>
-</ul>
-
-<input id="pac-input" class="controls" type="text" placeholder="Zoek op Gemeente">
-<div id='map'></div>
-<a href='#' class='reset-map'>Reset Map</a>
+<div class='map-container'>
+	<div id='map' class='map'></div>
+</div>
