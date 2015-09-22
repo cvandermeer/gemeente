@@ -30,3 +30,9 @@ group :development do
   gem 'spring'
   gem 'launchy'
 end
+
+group :production do
+  gem 'mysql2'
+  gem 'capistrano', '~> 3.2.1'
+  gem 'capistrano-rails', '~> 1.1'
+end
