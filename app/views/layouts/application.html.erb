@@ -3,7 +3,7 @@
   <head>
     <title>Gemeente</title>
     <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     <% if Rails.env.production? %>
@@ -16,16 +16,10 @@
   </head>
   <body>
 
-    <div class='container'>
-      <p class='notice'><%= notice %></p>
-      <p class='alert'><%= alert %></p>
-      <% if user_signed_in? %>
-        <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete', class: 'pull-right' %>
-      <% else %>
-        <%= link_to 'Inloggen', new_user_session_path, remote: true, class: 'login pull-right js_modal' %>
-      <% end %>
-      <%= yield %>
-    </div>
+    <%= render 'shared/menu' %>
+    <%= render 'shared/notice' %>
+
+    <%= yield %>
 
     <%= render 'shared/modal' %>
 

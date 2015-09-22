@@ -1,6 +1,20 @@
+input[type="time"], 
+input[type="date"], 
+input[type="email"], 
+input[type="number"], 
+input[type="search"], 
+input[type="text"], 
+input[type="tel"], 
+input[type="url"], 
+input[type="password"], 
+textarea, 
+select {
+	margin-bottom: 12px;
+}
 
-input[type="submit"] {
-	margin-top: 30px;
+input[type="checkbox"] {
+	float: left;
+	margin: 8px 10px 8px 0;
 }
 
 /* Form errors */

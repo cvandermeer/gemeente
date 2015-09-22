@@ -1,12 +1,12 @@
-<h1>Events</h1>
-
-<%= link_to 'Evenement aanmaken', new_event_path, class: 'js_modal', remote: true if user_signed_in? %>
-
-<ul class='events'>
-  <% @events.each do |event| %>
-    <%= render 'event', event: event %>
-  <% end %>
-</ul>
-
-<div id='map'></div>
-<a href='#' class='reset-map'>Reset Map</a>
+<div class='row height-total'>
+	<div class='six columns'>
+		<ul class='events'>
+		  <% @events.each do |event| %>
+		    <%= render 'event', event: event %>
+		  <% end %>
+		</ul>
+	</div>
+	<div class='six height-total columns'>
+		<div id='map' class='map'></div>
+	</div>
+</div>
