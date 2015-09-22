@@ -1,0 +1,51 @@
+header {
+  z-index: 1;
+  position: relative;
+  height: 60px;
+  background: #fff;
+  div {
+    height: 100%;
+  }
+
+  ul {
+    margin: 0;
+  }
+
+  li {
+    height: 100%;
+    margin: 0;
+    list-style: none;
+    display: inline-block;
+    float: right;
+  }
+
+  a {
+    font-size: 11px;
+    padding: 22px 20px 21px;
+    display: block;
+    color: #999;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: .1rem;
+    text-transform: uppercase;
+  }
+
+  .button {
+    margin: 12px 0 0 0;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 14px;
+    height: 100%;
+    display: inline-block;
+  }
+
+  .search {
+    padding: 11px 0;
+    input {
+      margin-bottom: 0;
+      width: 100%;
+    }
+  }
+}

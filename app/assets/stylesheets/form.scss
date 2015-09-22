@@ -1,0 +1,32 @@
+input[type="time"],
+input[type="date"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  margin-bottom: 12px;
+}
+
+input[type="checkbox"] {
+  float: left;
+  margin: 8px 10px 8px 0;
+}
+
+/* Form errors */
+
+.field_with_errors {
+  textarea,
+  input {
+    border: 1px solid #a94442;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    &:focus {
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #ce8483;
+      border: 1px solid #a94442;
+    }
+  }
+}

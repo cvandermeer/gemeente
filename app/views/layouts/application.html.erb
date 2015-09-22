@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Gemeente</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Gemeente</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <% if Rails.env.production? %>
+      <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC-CJuuFP6eSLUX1g3Osuy9HRfYtMQ6SWA&libraries=places&callback=initMap' async defer></script>
+    <% else %>
+      <script src='https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap' async defer></script>
+    <% end %>
+  </head>
+  <body>
 
-<%= yield %>
+    <%= render 'shared/menu' %>
+    <%= render 'shared/notice' %>
 
-</body>
+    <div class='wrapper'>
+      <%= yield %>
+    </div>
+
+    <%= render 'shared/modal' %>
+
+  </body>
 </html>

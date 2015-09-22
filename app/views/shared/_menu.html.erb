@@ -1,0 +1,38 @@
+<header>
+  <div class='row'>
+    <div class='six columns'>
+      <div class='row'>
+        <div class='three columns'>
+          <h1>
+            <%= link_to 'Logo ' + Application::VERSION, root_path, class: 'logo', data: { no_turbolink:  true } %>
+
+          </h1>
+        </div>
+        <div class='nine columns search'>
+          <input id="pac-input" class="controls" type="text" placeholder="Zoek op Gemeente">
+        </div>
+      </div>
+    </div>
+    <div class='six columns'>
+      <nav>
+        <ul>
+          <% if user_signed_in? %>
+          <li>
+            <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete', class: 'pull-right' %>
+          </li>
+          <li>
+            <%= link_to 'Evenement aanmaken', new_event_path, class: 'js_modal', remote: true %>
+          </li>
+          <% else %>
+          <li>
+            <%= link_to 'Inloggen', new_user_session_path, remote: true, class: 'login button button-primary js_modal' %>
+          </li>
+          <li>
+            <%= link_to "Aanmelden", new_user_registration_path, remote: true, class: 'js_modal' %>
+          </li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
