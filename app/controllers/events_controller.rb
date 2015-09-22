@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: :index
   before_action :set_event, except: [:index, :new, :create]
+  layout false, except: :index
 
   def index
     @events = Event.all
@@ -8,7 +9,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    render partial: 'form', locals: { event: @event }
+    render 'form'
   end
 
   def create
@@ -16,19 +17,19 @@ class EventsController < ApplicationController
     if @event.save
       render @event
     else
-      render partial: 'form', locals: { event: @event }
+      render 'form'
     end
   end
 
   def edit
-    render partial: 'form', locals: { event: @event }
+    render 'form'
   end
 
   def update
     if @event.update(event_params)
       render @event
     else
-      render partial: 'form', locals: { event: @event }
+      render 'form'
     end
   end
 

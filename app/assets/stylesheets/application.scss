@@ -11,16 +11,10 @@
 @import 'menu';
 @import 'notice';
 
-/* Variables
-------------------------------------------------------*/
-$red: #BD2026;
-$green: #ABCB44;
-
-/* Basic styling
-------------------------------------------------------*/
+/* Basic styling */
 
 html, html a, body, body a {
-    -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
 }
 
 body, html {
@@ -41,14 +35,12 @@ body, html {
   max-height: 100%;
   width: 48%;
   overflow: auto;
-  > div {
+  div:first-child {
     padding-top: 60px;
   }
 }
 
-
-/* Clear Floated Elements 
-------------------------------------------------------*/
+/* Clear Floated Elements */
 
 .clear {
   clear: both;

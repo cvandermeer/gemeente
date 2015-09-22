@@ -36,18 +36,13 @@ function setDataInModal(e, data) {
     // The function can be found in /events_map.js
     newEventForm()
   }
-
-  $('.js_modal').bind('ajax:success', function(e, data, status) {
-    setDataInModal(this, data)
-  });
-
+  bindHandlers()
 }
 
 function removeModal() {
   $('.modal-background, .modal').removeClass('active')
   $('.modal-content').html('')
   $('.modal-header h4').remove()
-  //console.log(1)
 }
 
 function initDestroy(e, data) {
@@ -64,7 +59,6 @@ function initDestroy(e, data) {
     removeModal()
   });
 }
-
 
 $(document).ready(ready);
 $(document).on('page:load', ready);

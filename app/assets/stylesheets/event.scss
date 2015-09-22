@@ -1,12 +1,9 @@
-$linkColor: #1EAEDB;
-$linkHover: #0FA0CE; 
-
 .event {
   cursor: pointer;
-  color: $linkColor;
+  color: #1EAEDB;
   text-decoration: underline;
   &:hover {
     text-decoration: none;
-    color: $linkHover;
+    color: #0FA0CE;
   }
 }

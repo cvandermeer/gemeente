@@ -19,13 +19,16 @@
     opacity: 1;
     top: 15%;
   }
+
   form {
     margin-bottom: 0;
   }
+
   .modal-content {
     z-index: 10002;
     position: relative;
   }
+
   .modal-close {
     width: 20px;
     height: 20px;
@@ -37,7 +40,6 @@
     background-size: 20px;
   }
 }
-
 
 .modal-background {
   height: 0%;
