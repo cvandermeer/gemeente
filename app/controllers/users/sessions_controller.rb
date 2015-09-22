@@ -1,3 +1,5 @@
-class Users::SessionsController < Devise::SessionsController
-  layout false
+module Users
+  class SessionsController < Devise::SessionsController
+    layout false
+  end
 end
