@@ -4,7 +4,8 @@
       <div class='row'>
         <div class='three columns'>
           <h1>
-            <%= link_to 'Logo', root_path, class: 'logo', data: { no_turbolink:  true } %>
+            <%= link_to 'Logo ' + Application::VERSION, root_path, class: 'logo', data: { no_turbolink:  true } %>
+
           </h1>
         </div>
         <div class='nine columns search'>
