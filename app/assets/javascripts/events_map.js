@@ -58,8 +58,8 @@ function setGeoLocation() {
         position: pos,
         content: 'U bent nu hier!'
       });
-
       map.setCenter(pos);
+      map.setZoom(12);
     });
   }
 }
