@@ -1,6 +1,6 @@
 lock '3.2.1'
 
-set :application, 'gemeente_production'
+set :application, 'gemeente'
 set :repo_url, 'git@github.com:cvandermeer/gemeente.git'
 set :deploy_to, '/u/apps/gemeente_production'
 set :ssh_options, forward_agent: true
