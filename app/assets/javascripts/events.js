@@ -105,7 +105,7 @@ function setGeoLocation() {
       var infowindow = new google.maps.InfoWindow({
         map: map,
         position: pos,
-        content: 'U bent nu hier!'
+        content: 'U staat hier!'
       });
       map.setCenter(pos);
       map.setZoom(12);
