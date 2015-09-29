@@ -1,0 +1,9 @@
+.report {
+  cursor: pointer;
+  color: #1EAEDB;
+  text-decoration: underline;
+  &:hover {
+    text-decoration: none;
+    color: #0FA0CE;
+  }
+}

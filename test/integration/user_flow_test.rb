@@ -2,29 +2,29 @@ require 'test_helper'
 
 class UserFlowTest < ActionDispatch::IntegrationTest
   include Capybara::DSL
-  setup :initialize_event
+  setup :initialize_report
 
   def teardown
-    @event = nil
+    @report = nil
   end
 
-  # test 'should create an event' do
+  # test 'should create an report' do
   #   visit('/')
   #   click_link 'Evenement aanmaken'
   #   # Dit kan niet worden uitgevoerd omdat wordt aangeroepen met AJAX
-  #   # fill_in('#event_title', with: 'Zevenkamp')
-  #   # fill_in('event_description', with: @event.description)
-  #   # fill_in('event_street', with: @event.street)
-  #   # fill_in('event_housenumber', with: @event.housenumber)
-  #   # fill_in('event_town', with: @event.town)
-  #   # fill_in('event_start_date', with: @event.start_date)
+  #   # fill_in('#report_title', with: 'Zevenkamp')
+  #   # fill_in('report_description', with: @report.description)
+  #   # fill_in('report_street', with: @report.street)
+  #   # fill_in('report_housenumber', with: @report.housenumber)
+  #   # fill_in('report_town', with: @report.town)
+  #   # fill_in('report_start_date', with: @report.start_date)
   #   # click_button 'Aanmaken'
-  #   # assert_selector 'li.event', text: 'Zevenkamp'
+  #   # assert_selector 'li.report', text: 'Zevenkamp'
   # end
 
   private
 
-  def initialize_event
-    @event = events(:event1)
+  def initialize_report
+    @report = reports(:report1)
   end
 end
