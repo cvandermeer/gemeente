@@ -14,29 +14,29 @@ class ReportTest < ActiveSupport::TestCase
 
   test 'should not create report without title' do
     report = Report.new(description: @report.description,
-                        adress: @report.adress,
-                        town: @report.town,
+                        address: @report.address,
+                        town: @report.town)
     assert_not report.save, 'Saved an report without title!'
   end
 
   test 'should not create report without description' do
     report = Report.new(title: @report.title,
-                        adress: @report.adress,
-                        town: @report.town,
+                        address: @report.address,
+                        town: @report.town)
     assert_not report.save, 'Saved an report without description!'
   end
 
-  test 'should not create report without adress' do
+  test 'should not create report without address' do
     report = Report.new(title: @report.title,
                         description: @report.description,
-                        town: @report.town,
-    assert_not report.save, 'Saved an report without adress!'
+                        town: @report.town)
+    assert_not report.save, 'Saved an report without address!'
   end
 
   test 'should not create report without town' do
     report = Report.new(title: @report.title,
                         description: @report.description,
-                        adress: @report.adress,
+                        address: @report.address)
     assert_not report.save, 'Saved an report without town!'
   end
 
