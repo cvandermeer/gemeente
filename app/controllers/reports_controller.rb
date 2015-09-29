@@ -5,15 +5,19 @@ class ReportsController < ApplicationController
 
   def dashboard
     if user_signed_in?
-      if current_user.user?
-        redirect_to reports_path
-      elsif current_user.community?
-        redirect_to community_dashboard_path
-      elsif current_user.admin?
-        redirect_to admin_dashboard_path
-      end
+      handle_signed_in_redirect
     else
       redirect_to reports_path
+    end
+  end
+
+  def handle_signed_in_redirect
+    if current_user.user?
+      redirect_to reports_path
+    elsif current_user.community?
+      redirect_to community_dashboard_path
+    elsif current_user.admin?
+      redirect_to admin_dashboard_path
     end
   end
 
