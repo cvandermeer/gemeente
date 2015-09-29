@@ -14,56 +14,30 @@ class ReportTest < ActiveSupport::TestCase
 
   test 'should not create report without title' do
     report = Report.new(description: @report.description,
-                        street: @report.street,
-                        housenumber: @report.housenumber,
+                        adress: @report.adress,
                         town: @report.town,
-                        start_date: @report.start_date)
     assert_not report.save, 'Saved an report without title!'
   end
 
   test 'should not create report without description' do
     report = Report.new(title: @report.title,
-                        street: @report.street,
-                        housenumber: @report.housenumber,
+                        adress: @report.adress,
                         town: @report.town,
-                        start_date: @report.start_date)
     assert_not report.save, 'Saved an report without description!'
   end
 
-  test 'should not create report without street' do
+  test 'should not create report without adress' do
     report = Report.new(title: @report.title,
                         description: @report.description,
-                        housenumber: @report.housenumber,
                         town: @report.town,
-                        start_date: @report.start_date)
-    assert_not report.save, 'Saved an report without street!'
-  end
-
-  test 'should not create report without housenumber' do
-    report = Report.new(title: @report.title,
-                        description: @report.description,
-                        street: @report.street,
-                        town: @report.town,
-                        start_date: @report.start_date)
-    assert_not report.save, 'Saved an report without housenumber!'
+    assert_not report.save, 'Saved an report without adress!'
   end
 
   test 'should not create report without town' do
     report = Report.new(title: @report.title,
                         description: @report.description,
-                        street: @report.street,
-                        housenumber: @report.housenumber,
-                        start_date: @report.start_date)
+                        adress: @report.adress,
     assert_not report.save, 'Saved an report without town!'
-  end
-
-  test 'should not create report without start_date' do
-    report = Report.new(title: @report.title,
-                        description: @report.description,
-                        street: @report.street,
-                        housenumber: @report.housenumber,
-                        town: @report.town)
-    assert_not report.save, 'Saved an report without start_date!'
   end
 
   private

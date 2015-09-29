@@ -1,17 +1,15 @@
 class Report < ActiveRecord::Base
   ### GEOCODER ###
-  geocoded_by :address
+  geocoded_by :location
   after_validation :geocode
 
-  def address
-    [street, housenumber, town].compact.join(', ')
+  def location
+    [address, town].compact.join(', ')
   end
 
   ### VALIDATIONS ###
   validates :title, presence: true
   validates :description, presence: true
-  validates :street, presence: true
-  validates :housenumber, presence: true
+  validates :address, presence: true
   validates :town, presence: true
-  validates :start_date, presence: true
 end

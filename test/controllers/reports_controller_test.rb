@@ -1,4 +1,4 @@
-require 'test_helper'
+frequire 'test_helper'
 
 class ReportsControllerTest < ActionController::TestCase
   setup :initialize_report
@@ -22,10 +22,8 @@ class ReportsControllerTest < ActionController::TestCase
   #   assert_difference('Report.count') do
   #     post :create, report: { title: @report.title,
   #                             description: @report.description,
-  #                             street: @report.street,
-  #                             housenumber: @report.housenumber,
-  #                             town: @report.town,
-  #                             start_date: @report.start_date }
+  #                             adress: @report.adress,
+  #                             town: @report.town
   #   end
   #   assert_redirected_to root_path
   # end
