@@ -94,6 +94,13 @@ function setMarker(lat, lon, title) {
     position: new google.maps.LatLng(lat,lon),
     title: title
   });
+
+  var infowindow = new google.maps.InfoWindow({
+    content: title
+  });
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
   marker.setMap(map);
 }
 
