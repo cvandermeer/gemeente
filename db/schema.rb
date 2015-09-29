@@ -11,20 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150929085447) do
+ActiveRecord::Schema.define(version: 20150929092855) do
+
+  create_table "communities", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phonenumber"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "report_images", force: :cascade do |t|
+    t.integer "report_id"
+    t.string  "image"
+  end
 
   create_table "reports", force: :cascade do |t|
-    t.string  "title"
-    t.text    "description"
-    t.string  "street"
-    t.integer "housenumber"
-    t.string  "town"
-    t.float   "latitude"
-    t.float   "longitude"
-    t.date    "start_date"
-    t.date    "end_date"
-    t.time    "start_time"
-    t.time    "end_time"
+    t.string   "title"
+    t.text     "description"
+    t.string   "address"
+    t.string   "town"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at"
+    t.datetime "resolved_at"
+    t.string   "email"
+    t.integer  "community_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,6 +52,8 @@ ActiveRecord::Schema.define(version: 20150929085447) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "role_id"
+    t.integer  "community_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
