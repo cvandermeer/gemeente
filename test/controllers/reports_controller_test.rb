@@ -21,11 +21,11 @@ class ReportsControllerTest < ActionController::TestCase
   # test 'should create report' do
   #   assert_difference('Report.count') do
   #     post :create, report: { title: @report.title,
-  #                            description: @report.description,
-  #                            street: @report.street,
-  #                            housenumber: @report.housenumber,
-  #                            town: @report.town,
-  #                            start_date: @report.start_date }
+  #                             description: @report.description,
+  #                             street: @report.street,
+  #                             housenumber: @report.housenumber,
+  #                             town: @report.town,
+  #                             start_date: @report.start_date }
   #   end
   #   assert_redirected_to root_path
   # end

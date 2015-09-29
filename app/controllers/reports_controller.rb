@@ -45,8 +45,8 @@ class ReportsController < ApplicationController
 
   def report_params
     params.require(:report).permit(:title, :description, :street, :housenumber, :town,
-                                  :start_date, :end_date, :start_time, :end_time, :latitude,
-                                  :longitude)
+                                   :start_date, :end_date, :start_time, :end_time, :latitude,
+                                   :longitude)
   end
 
   def set_report
