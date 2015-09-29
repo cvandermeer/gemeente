@@ -1,12 +1,12 @@
 var ready;
 var map;
 
-var eventElData;
+var reportElData;
 
 ready = function() {
 
-  $('.event').on('click', function(){
-    eventClicked(this)
+  $('.report').on('click', function(){
+    reportClicked(this)
   });
 
   $('.reset-map').on('click', function(){
@@ -22,7 +22,7 @@ function initMap() {
     zoom: 7
   });
 
-  // Function can be found in events_map.js
+  // Function can be found in reports_map.js
   getMarkers()
   setGeoLocation()
 
@@ -76,14 +76,14 @@ function initMap() {
   });
 }
 
-function eventClicked(el) {
+function reportClicked(el) {
   map.setCenter({lat: parseFloat($(el).attr('data-lat')), lng: parseFloat($(el).attr('data-lon'))})
   map.setZoom(17)
 }
 
 function getMarkers() {
-  $('.events li').each(function() {
-    var el = $(this).find('.event')
+  $('.reports li').each(function() {
+    var el = $(this).find('.report')
     setMarker(parseFloat($(el).attr('data-lat')), parseFloat($(el).attr('data-lon')), el[0].innerText)
   });
 }
@@ -113,28 +113,28 @@ function setGeoLocation() {
   }
 }
 
-function newEventForm() {
+function newReportForm() {
   $('.modal form').bind('ajax:success', function(e, data, status){
     if(data.indexOf('form') == -1) {
-      $('.events').append(data);
-      var el = $('.events li:last-child .event')
-      if ($('.events').find("[data-event-id='" + el.attr('data-id') + "']").length > 1) {
-        $('.events li').last().remove()
-        $('.events').find("[data-event-id='" + el.attr('data-id') + "']").before(data).remove()
+      $('.reports').append(data);
+      var el = $('.reports li:last-child .report')
+      if ($('.reports').find("[data-report-id='" + el.attr('data-id') + "']").length > 1) {
+        $('.reports li').last().remove()
+        $('.reports').find("[data-report-id='" + el.attr('data-id') + "']").before(data).remove()
       }
       removeModal();
       setMarker(parseFloat(el.attr('data-lat')), parseFloat(el.attr('data-lon')), el.attr('data-title'))
       bindHandlers()
     } else {
       $('.modal-content').html(data)
-      newEventForm()
+      newReportForm()
     }
   });
 }
 
 function bindHandlers() {
-  $('.event').bind('click', function(){
-    eventClicked(this)
+  $('.report').bind('click', function(){
+    reportClicked(this)
   });
   $('.js_modal').bind('ajax:success', function(e, data, status) {
     setDataInModal(this ,data)

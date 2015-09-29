@@ -33,8 +33,8 @@ function setDataInModal(e, data) {
     // Building the modal
     $('.modal-content').html(data)
     
-    // The function can be found in /events_map.js
-    newEventForm()
+    // The function can be found in /reports_map.js
+    newReportForm()
   }
   bindHandlers()
 }
@@ -54,7 +54,7 @@ function initDestroy(e, data) {
   $('.modal-content').append(modalText + modalDeleteLink)
   $('.modal-confirm').bind('click', function() {
     if($(this).attr('data-method') == 'delete') {
-      $('.events').find("[data-event-id='" + data.id + "']").remove()
+      $('.reports').find("[data-report-id='" + data.id + "']").remove()
     }
     removeModal()
   });
