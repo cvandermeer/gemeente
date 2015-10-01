@@ -1,11 +1,10 @@
 <div class='content-container'>
   <div>
-    <h1>Gemeente dashboard</h1>
+    <h1 class='community-data' data-lat='<%= current_user.community.latitude %>' data-lon='<%= current_user.community.longitude %>' >Gemeente dashboard <%= current_user.community.name.capitalize %></h1>
   </div>
 </div>
 
 <div class='map-container'>
   <div id='map' class='map'></div>
   <div id='pano' class='pano'></div>
-  <%= current_user.community.name %>
 </div>
