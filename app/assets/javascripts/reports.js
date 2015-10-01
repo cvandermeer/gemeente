@@ -6,7 +6,7 @@ var reportElData;
 ready = function() {
 
   $('.report').on('click', function(){
-    reportClicked(this)
+    goToReportLocation(this)
   });
 
   $('.reset-map').on('click', function(){
@@ -77,7 +77,7 @@ function initMap() {
   });
 }
 
-function reportClicked(el) {
+function goToReportLocation(el) {
   var clicked_position = {lat: parseFloat($(el).attr('data-lat')), lng: parseFloat($(el).attr('data-lon'))}
   map.setCenter(clicked_position)
   map.setZoom(17)
@@ -148,6 +148,7 @@ function newReportForm() {
       }
       removeModal();
       setMarker(parseFloat(el.attr('data-lat')), parseFloat(el.attr('data-lon')), el.attr('data-title'))
+      goToReportLocation(el)
       bindHandlers()
     } else {
       $('.modal-content').html(data)
@@ -158,7 +159,7 @@ function newReportForm() {
 
 function bindHandlers() {
   $('.report').bind('click', function(){
-    reportClicked(this)
+    goToReportLocation(this)
   });
   $('.js_modal').bind('ajax:success', function(e, data, status) {
     setDataInModal(this ,data)
