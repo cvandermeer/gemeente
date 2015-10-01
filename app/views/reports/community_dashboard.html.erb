@@ -1,8 +1,11 @@
 <div class='content-container'>
   <div>
     <h1>Gemeente dashboard</h1>
-    <p>
-      <%= link_to 'Kaart', reports_path, data: { no_turbolink: true } %>
-    </p>
   </div>
+</div>
+
+<div class='map-container'>
+  <div id='map' class='map'></div>
+  <div id='pano' class='pano'></div>
+  <%= current_user.community.name %>
 </div>
