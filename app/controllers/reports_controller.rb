@@ -1,7 +1,33 @@
 class ReportsController < ApplicationController
-  before_action :authenticate_user!, except: :index
-  before_action :set_report, except: [:index, :new, :create]
-  layout false, except: :index
+  before_action :authenticate_user!, except: [:index, :dashboard]
+  before_action :set_report, only: [:edit, :update, :destroy, :delete]
+  layout false, except: [:index, :community_dashboard, :admin_dashboard]
+
+  def dashboard
+    if user_signed_in?
+      handle_signed_in_redirect
+    else
+      redirect_to reports_path
+    end
+  end
+
+  def handle_signed_in_redirect
+    if current_user.user?
+      redirect_to reports_path
+    elsif current_user.community?
+      redirect_to community_dashboard_path
+    elsif current_user.admin?
+      redirect_to admin_dashboard_path
+    end
+  end
+
+  def community_dashboard
+    @reports = Report.all
+  end
+
+  def admin_dashboard
+    @reports = Report.all
+  end
 
   def index
     @reports = Report.all

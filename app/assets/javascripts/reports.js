@@ -17,8 +17,9 @@ ready = function() {
 }
 
 function initMap() {
+  var holland = {lat: 52.397, lng: 5.544}
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 52.397, lng: 5.544},
+    center: holland,
     zoom: 7
   });
 
@@ -77,8 +78,18 @@ function initMap() {
 }
 
 function reportClicked(el) {
-  map.setCenter({lat: parseFloat($(el).attr('data-lat')), lng: parseFloat($(el).attr('data-lon'))})
+  var clicked_position = {lat: parseFloat($(el).attr('data-lat')), lng: parseFloat($(el).attr('data-lon'))}
+  map.setCenter(clicked_position)
   map.setZoom(17)
+  var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: clicked_position,
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      });
+  map.setStreetView(panorama);
 }
 
 function getMarkers() {
@@ -93,6 +104,13 @@ function setMarker(lat, lon, title) {
     animation: google.maps.Animation.DROP,
     position: new google.maps.LatLng(lat,lon),
     title: title
+  });
+
+  var infowindow = new google.maps.InfoWindow({
+    content: title
+  });
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
   });
   marker.setMap(map);
 }
