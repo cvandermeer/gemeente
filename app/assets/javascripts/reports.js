@@ -81,15 +81,7 @@ function reportClicked(el) {
   var clicked_position = {lat: parseFloat($(el).attr('data-lat')), lng: parseFloat($(el).attr('data-lon'))}
   map.setCenter(clicked_position)
   map.setZoom(17)
-  var panorama = new google.maps.StreetViewPanorama(
-      document.getElementById('pano'), {
-        position: clicked_position,
-        pov: {
-          heading: 34,
-          pitch: 10
-        }
-      });
-  map.setStreetView(panorama);
+  setPanorama(clicked_position)
 }
 
 function getMarkers() {
@@ -127,8 +119,22 @@ function setGeoLocation() {
       });
       map.setCenter(pos);
       map.setZoom(12);
+      setPanorama(pos);
     });
+    
   }
+}
+
+function setPanorama(position) {
+  var panorama = new google.maps.StreetViewPanorama(
+  document.getElementById('pano'), {
+    position: position,
+    pov: {
+      heading: 34,
+      pitch: 10
+    }
+  });
+  map.setStreetView(panorama);
 }
 
 function newReportForm() {
