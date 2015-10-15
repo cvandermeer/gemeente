@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
   ### RELATIONS ###
-  belongs_to :community
+  belongs_to :community, optional: true
 
   ### CONSTANTS ###
   ROLE_USER = 0
