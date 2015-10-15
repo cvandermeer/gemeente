@@ -1,3 +1,4 @@
-User.create(email: 'inwoner@meldingen.nl', password: '123qweasd', role_id: 0)
-User.create(email: 'gemeente@meldingen.nl', password: '123qweasd', role_id: 1)
-User.create(email: 'admin@meldingen.nl', password: '123qweasd', role_id: 2)
+User.create(email: 'inwoner@ikbeninwoner.nl', password: '123qweasd', role_id: 0)
+User.create(email: 'hollands-kroon@ikbeninwoner.nl', password: '123qweasd', role_id: 1, community_id: 1)
+User.create(email: 'admin@ikbeninwoner.nl', password: '123qweasd', role_id: 2)
+Community.create(name: 'hollands kroon')

@@ -13,14 +13,20 @@ ready = function() {
     map.setCenter({lat: 52.397, lng: 5.544})
     map.setZoom(7)
   });
-
 }
 
 function initMap() {
-  var holland = {lat: 52.397, lng: 5.544}
+  var center = {lat: 52.397, lng: 5.544}
+  var zoom = 7
+  if($('.community-data').length){
+    var community_position = {lat: parseFloat($('.community-data').attr('data-lat')), lng: parseFloat($('.community-data').attr('data-lon'))}
+    zoom = 10
+    center = community_position
+  }
+  
   map = new google.maps.Map(document.getElementById('map'), {
-    center: holland,
-    zoom: 7
+    center: center,
+    zoom: zoom
   });
 
   // Function can be found in reports_map.js
