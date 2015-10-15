@@ -1,9 +1,7 @@
 <div class='content-container'>
 	<div>
     <ul class='reports'>
-  	  <% @reports.each do |report| %>
-  	    <%= render 'report', report: report %>
-  	  <% end %>
+  	   <%= render @reports %>
   	</ul>
     <a href='#' class='reset-map'>Reset Map</a>
   </div>
