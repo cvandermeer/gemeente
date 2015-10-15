@@ -11,59 +11,72 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001133004) do
+ActiveRecord::Schema.define(version: 20151015105641) do
 
   create_table "communities", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "phonenumber"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.float    "latitude"
-    t.float    "longitude"
+    t.string   "name",        limit: 255
+    t.string   "email",       limit: 255
+    t.string   "phonenumber", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.float    "latitude",    limit: 24
+    t.float    "longitude",   limit: 24
   end
 
   create_table "report_images", force: :cascade do |t|
-    t.integer "report_id"
-    t.string  "image"
+    t.integer "report_id", limit: 4
+    t.string  "image",     limit: 255
   end
 
-  add_index "report_images", ["report_id"], name: "index_report_images_on_report_id"
+  add_index "report_images", ["report_id"], name: "index_report_images_on_report_id", using: :btree
 
   create_table "reports", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.string   "address"
-    t.string   "town"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.string   "title",        limit: 255
+    t.text     "description",  limit: 65535
+    t.string   "address",      limit: 255
+    t.string   "town",         limit: 255
+    t.float    "latitude",     limit: 24
+    t.float    "longitude",    limit: 24
     t.datetime "created_at"
     t.datetime "resolved_at"
-    t.string   "email"
-    t.integer  "community_id"
+    t.string   "email",        limit: 255
+    t.integer  "community_id", limit: 4
   end
 
-  add_index "reports", ["community_id"], name: "index_reports_on_community_id"
+  add_index "reports", ["community_id"], name: "index_reports_on_community_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.integer  "role_id"
-    t.integer  "community_id"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.integer  "role_id",                limit: 4
+    t.integer  "community_id",           limit: 4
   end
 
-  add_index "users", ["community_id"], name: "index_users_on_community_id"
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["community_id"], name: "index_users_on_community_id", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "zipcodes", force: :cascade do |t|
+    t.string  "zipcode",            limit: 255
+    t.integer "zipcode_ascii",      limit: 4
+    t.integer "first_house_number", limit: 4
+    t.integer "last_house_number",  limit: 4
+    t.string  "street",             limit: 255
+    t.string  "town",               limit: 255
+    t.string  "community_id",       limit: 255
+    t.string  "province",           limit: 255
+    t.string  "latitude",           limit: 255
+    t.string  "longitude",          limit: 255
+  end
 
 end
