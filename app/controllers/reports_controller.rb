@@ -40,6 +40,8 @@ class ReportsController < ApplicationController
 
   def create
     @report = Report.new(report_params)
+    @report.set_zipcode
+    @report.set_community
     if @report.save
       render @report
     else
