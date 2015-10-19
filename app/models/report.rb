@@ -30,22 +30,26 @@ class Report < ActiveRecord::Base
 
   def set_community
     # Getting back the ascii
-    @ascii = Array.new
-    @zipcode_array = zipcode.split(//)
-    @zipcode_array.each_with_index do |z, index|
-      if z.to_i.to_s == z
-        @ascii.push(z)
-      else
-        @ascii.push(z.ord)
-      end
-    end
+    zipcode_ascii
     # Find the community our create
-    @community_name = Zipcode.find_by(zipcode_ascii: @ascii.join()).community
+    @community_name = Zipcode.find_by(zipcode_ascii: @ascii.join).community
     if !Community.find_by(name: @community_name).nil?
       @community = Community.find_by(name: @community_name)
     else
       @community = Community.create(name: @community_name)
     end
     self.community_id = @community.id
+  end
+
+  def zipcode_ascii
+    @ascii = []
+    @zipcode_array = zipcode.split(//)
+    @zipcode_array.each do |z|
+      if z.to_i.to_s == z
+        @ascii.push(z)
+      else
+        @ascii.push(z.ord)
+      end
+    end
   end
 end
