@@ -1,0 +1,8 @@
+<ul>
+  <% @communities.each do |community| %>
+  <li>
+    <%= community.name %>
+    <%= community.reports.count %> melding(en)
+  </li>
+  <% end %>
+</ul>
