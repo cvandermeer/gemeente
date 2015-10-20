@@ -1,0 +1,16 @@
+<div class='row report-show'>
+  <div class='close js_close_report_show'></div>
+  <div class='columns six'>
+    <h2>
+      <%= @report.title %>
+    </h2>
+    <p><%= @report.description %></p>
+  </div>
+  <div class='columns six'>
+    <ul class='address'>
+      <li><%= @report.community.name %></li>
+      <li>Straat: <%= @report.address %></li>
+      <li>Plaats: <%= @report.town %></li>
+    </ul>
+  </div>
+</div>

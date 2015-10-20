@@ -9,10 +9,37 @@ ready = function() {
     goToReportLocation(this)
   });
 
+  $('.report').on('ajax:success', function(e, data, status) {
+    showReport(data, this)
+  });
+
   $('.reset-map').on('click', function(){
     map.setCenter({lat: 52.397, lng: 5.544})
     map.setZoom(7)
   });
+}
+
+function showReport(data, el) {
+  $(el).unbind('ajax:success')
+  $(el).parent().append(data)
+  var set_height = $(el).parent().find('.row').height()
+  $(el).parent().find('.row').css('height', '1px')
+  setTimeout(function() {
+    $(el).parent().find('.row').css('height', set_height + 'px')
+  }, 100)
+  $(el).parent().find('.js_close_report_show').bind('click', function() {
+    closeShowReport(this)
+  })
+}
+
+function closeShowReport(el) {
+  $(el).parent().css('height', '1px')
+  $(el).parent().parent().find('.report').bind('ajax:success', function(e, data, status){
+    showReport(data, this)
+  })
+  setTimeout(function() {
+    $(el).parent().remove()
+  }, 300)
 }
 
 function initMap() {
@@ -23,7 +50,7 @@ function initMap() {
     zoom = 10
     center = community_position
   }
-  
+
   map = new google.maps.Map(document.getElementById('map'), {
     center: center,
     zoom: zoom
@@ -127,7 +154,7 @@ function setGeoLocation() {
       map.setZoom(12);
       setPanorama(pos);
     });
-    
+
   }
 }
 
