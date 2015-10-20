@@ -7,9 +7,9 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     <% if Rails.env.production? %>
-      <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC-CJuuFP6eSLUX1g3Osuy9HRfYtMQ6SWA&libraries=places&callback=initMap' async defer></script>
+      <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC-CJuuFP6eSLUX1g3Osuy9HRfYtMQ6SWA&libraries=places&language=nl&callback=initMap' async defer></script>
     <% else %>
-      <script src='https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap' async defer></script>
+      <script src='https://maps.googleapis.com/maps/api/js?libraries=places&language=nl&callback=initMap' async defer></script>
     <% end %>
   </head>
   <body>

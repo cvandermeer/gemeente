@@ -1,0 +1,45 @@
+<h5>Melding
+<% if action_name == 'new' %>
+  aanmaken
+<% else %>
+  aanpassen
+<% end %>
+</h5>
+
+<%= form_for @report, remote: true do |f| %>
+  <div class='row'>
+    <div class='six columns'>
+      <%= f.label :title, 'Melding titel' %>
+      <%= f.text_field :title %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='columns'>
+      <%= f.label :description, 'Beschrijving' %>
+      <%= f.text_area :description, class: 'u-full-width' %>
+    </div>
+  </div>
+  <div class='row'>
+    <%= f.label :address, 'Straatnaam + Huisnummer' %>
+    <%= f.text_field :address, class: 'u-full-width' %>
+  </div>
+
+  <div class='row'>
+    <div class='eight columns'>
+      <%= f.label :town, 'Plaatsnaam' %>
+      <%= f.text_field :town, class: 'u-full-width' %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='four columns'>
+      <%= f.label :email, 'Email' %>
+      <%= f.email_field :email, class: 'u-full-width' %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <%= f.submit 'Aanmaken', class: 'button-primary' %>
+  </div>
+<% end %>

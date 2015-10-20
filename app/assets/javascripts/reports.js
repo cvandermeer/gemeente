@@ -1,28 +1,35 @@
 var ready;
 var map;
 
-var eventElData;
+var reportElData;
 
 ready = function() {
 
-  $('.event').on('click', function(){
-    eventClicked(this)
+  $('.report').on('click', function(){
+    goToReportLocation(this)
   });
 
   $('.reset-map').on('click', function(){
     map.setCenter({lat: 52.397, lng: 5.544})
     map.setZoom(7)
   });
-
 }
 
 function initMap() {
+  var center = {lat: 52.397, lng: 5.544}
+  var zoom = 7
+  if($('.community-data').length){
+    var community_position = {lat: parseFloat($('.community-data').attr('data-lat')), lng: parseFloat($('.community-data').attr('data-lon'))}
+    zoom = 10
+    center = community_position
+  }
+  
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 52.397, lng: 5.544},
-    zoom: 7
+    center: center,
+    zoom: zoom
   });
 
-  // Function can be found in events_map.js
+  // Function can be found in reports_map.js
   getMarkers()
   setGeoLocation()
 
@@ -76,14 +83,16 @@ function initMap() {
   });
 }
 
-function eventClicked(el) {
-  map.setCenter({lat: parseFloat($(el).attr('data-lat')), lng: parseFloat($(el).attr('data-lon'))})
+function goToReportLocation(el) {
+  var clicked_position = {lat: parseFloat($(el).attr('data-lat')), lng: parseFloat($(el).attr('data-lon'))}
+  map.setCenter(clicked_position)
   map.setZoom(17)
+  setPanorama(clicked_position)
 }
 
 function getMarkers() {
-  $('.events li').each(function() {
-    var el = $(this).find('.event')
+  $('.reports li').each(function() {
+    var el = $(this).find('.report')
     setMarker(parseFloat($(el).attr('data-lat')), parseFloat($(el).attr('data-lon')), el[0].innerText)
   });
 }
@@ -93,6 +102,13 @@ function setMarker(lat, lon, title) {
     animation: google.maps.Animation.DROP,
     position: new google.maps.LatLng(lat,lon),
     title: title
+  });
+
+  var infowindow = new google.maps.InfoWindow({
+    content: title
+  });
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
   });
   marker.setMap(map);
 }
@@ -109,32 +125,47 @@ function setGeoLocation() {
       });
       map.setCenter(pos);
       map.setZoom(12);
+      setPanorama(pos);
     });
+    
   }
 }
 
-function newEventForm() {
+function setPanorama(position) {
+  var panorama = new google.maps.StreetViewPanorama(
+  document.getElementById('pano'), {
+    position: position,
+    pov: {
+      heading: 34,
+      pitch: 10
+    }
+  });
+  map.setStreetView(panorama);
+}
+
+function newReportForm() {
   $('.modal form').bind('ajax:success', function(e, data, status){
     if(data.indexOf('form') == -1) {
-      $('.events').append(data);
-      var el = $('.events li:last-child .event')
-      if ($('.events').find("[data-event-id='" + el.attr('data-id') + "']").length > 1) {
-        $('.events li').last().remove()
-        $('.events').find("[data-event-id='" + el.attr('data-id') + "']").before(data).remove()
+      $('.reports').append(data);
+      var el = $('.reports li:last-child .report')
+      if ($('.reports').find("[data-report-id='" + el.attr('data-id') + "']").length > 1) {
+        $('.reports li').last().remove()
+        $('.reports').find("[data-report-id='" + el.attr('data-id') + "']").before(data).remove()
       }
       removeModal();
       setMarker(parseFloat(el.attr('data-lat')), parseFloat(el.attr('data-lon')), el.attr('data-title'))
+      goToReportLocation(el)
       bindHandlers()
     } else {
       $('.modal-content').html(data)
-      newEventForm()
+      newReportForm()
     }
   });
 }
 
 function bindHandlers() {
-  $('.event').bind('click', function(){
-    eventClicked(this)
+  $('.report').bind('click', function(){
+    goToReportLocation(this)
   });
   $('.js_modal').bind('ajax:success', function(e, data, status) {
     setDataInModal(this ,data)

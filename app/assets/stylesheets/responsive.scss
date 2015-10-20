@@ -1,0 +1,29 @@
+@media only screen and (max-width: 550px) {
+  header {
+    .row {
+      width: 100%;
+      .nine {
+        width: 74%;
+      }
+      .three {
+        width: 22%;
+      }
+    }
+  }
+  .content-container,
+  .map-container {
+    width: 100% !important;
+  }
+  .map-container {
+    height: 60%;
+    min-height: 60%;
+  }
+  .content-container {
+    height: 40%;
+    min-height: 40%;
+  }
+  .wrapper {
+    height: calc(100% - 120px) !important;
+    min-height: calc(100% - 120px) !important;
+  }
+}

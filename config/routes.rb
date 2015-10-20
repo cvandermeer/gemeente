@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
-  root 'events#index'
-  resources :events, except: [:show, :index]
-  get 'events/:id/delete', to: 'events#delete', as: 'delete_event'
+  root 'reports#index'
+  resources :communities, only: :index
+  resources :reports, except: [:show] do
+    get :delete, on: :member
+    get :community_dashboard, on: :collection
+    get :admin_dashboard, on: :collection
+  end
 end

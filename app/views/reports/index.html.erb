@@ -1,9 +1,7 @@
 <div class='content-container'>
 	<div>
-    <ul class='events'>
-  	  <% @events.each do |event| %>
-  	    <%= render 'event', event: event %>
-  	  <% end %>
+    <ul class='reports'>
+  	   <%= render @reports %>
   	</ul>
     <a href='#' class='reset-map'>Reset Map</a>
   </div>
@@ -11,4 +9,5 @@
 
 <div class='map-container'>
 	<div id='map' class='map'></div>
+  <div id='pano' class='pano'></div>
 </div>
