@@ -120,24 +120,46 @@ function goToReportLocation(el) {
 function getMarkers() {
   $('.reports li').each(function() {
     var el = $(this).find('.report')
-    setMarker(parseFloat($(el).attr('data-lat')), parseFloat($(el).attr('data-lon')), el[0].innerText)
+    setMarker(parseFloat($(el).attr('data-lat')), parseFloat($(el).attr('data-lon')), el[0].innerText, $(el).attr('data-id'))
   });
 }
 
-function setMarker(lat, lon, title) {
+function setMarker(lat, lon, title, id) {
   var marker = new google.maps.Marker({
     animation: google.maps.Animation.DROP,
     position: new google.maps.LatLng(lat,lon),
-    title: title
+    title: title,
+    id: id
   });
 
-  var infowindow = new google.maps.InfoWindow({
-    content: title
-  });
-  marker.addListener('click', function() {
-    infowindow.open(map, marker);
-  });
   marker.setMap(map);
+
+  google.maps.event.addListener(marker, 'click', function() {
+    setInfoWindow(this)
+  });
+}
+
+function setInfoWindow(el) {
+  console.log(el.id)
+  $.ajax({
+    type: "GET",
+    dataType: "html",
+    url: "/reports/" + el.id + "/info_window",
+    success: function(data){
+      setInfoVal(data, el)
+    }
+  });
+}
+
+function setInfoVal(data, el) {
+  console.log(data)
+  var content = data
+  var id = $(el)[0].id
+  var infowindow = new google.maps.InfoWindow({
+      id: id,
+      content: content
+  });
+  infowindow.open(map,el);
 }
 
 function setGeoLocation() {

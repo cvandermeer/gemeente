@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :dashboard]
-  before_action :set_report, only: [:show, :edit, :update, :destroy, :delete]
+  before_action :set_report, only: [:show, :info_window, :edit, :update, :destroy, :delete]
   before_action :set_reports, only: []
   layout false, except: [:index, :community_dashboard, :admin_dashboard]
 
@@ -19,6 +19,10 @@ class ReportsController < ApplicationController
 
   def show
     render 'show'
+  end
+
+  def info_window
+    render 'info_window'
   end
 
   def new
