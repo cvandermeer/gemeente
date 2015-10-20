@@ -18,16 +18,15 @@ class Report < ActiveRecord::Base
 
   ### METHODS ###
   def set_community
-    a = address
-    b = address.split
-    if b[b.length - 1].to_i >= 1
-      b.pop
-      a = b.join(' ')
-    end
-    community_name = Zipcode.find_by(street: a, town: town).community unless a.nil?
-    if !Community.where(name: community_name).any?
-      Community.create(name: community_name)
-    end
+    set_street
+    community_name = Zipcode.find_by(street: @street, town: town).community unless @street.nil?
+    Community.create(name: community_name) unless Community.find_by(name: community_name)
     self.community = Community.find_by(name: community_name)
+  end
+
+  def set_street
+    @street = address
+    s = address.split
+    @street = s.reverse.drop(1).reverse.join(' ') if s[s.length - 1].to_i >= 1
   end
 end
