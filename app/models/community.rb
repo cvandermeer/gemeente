@@ -3,4 +3,5 @@ class Community < ActiveRecord::Base
   after_validation :geocode
 
   has_many :users
+  has_many :reports, dependent: :destroy
 end
