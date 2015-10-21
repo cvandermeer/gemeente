@@ -19,7 +19,7 @@ class Report < ActiveRecord::Base
   validates :town, presence: true
 
   ### SCOPES ###
-  scope :unresolved, ->{ where(resolved_at: nil) }
+  scope :unresolved, -> { where(resolved_at: nil) }
 
   ### CALLBACKS ###
   before_create :set_community
