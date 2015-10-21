@@ -1,16 +1,8 @@
 class ReportsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :dashboard]
-  before_action :set_report, only: [:show, :edit, :update, :destroy, :delete]
+  before_action :authenticate_user!, except: [:index]
+  before_action :set_report, only: [:show, :info_window, :edit, :update, :destroy, :delete]
   before_action :set_reports, only: []
-  layout false, except: [:index, :community_dashboard, :admin_dashboard]
-
-  def community_dashboard
-    @reports = Report.where(community: current_user.community)
-  end
-
-  def admin_dashboard
-    @reports = Report.all
-  end
+  layout false, except: [:index]
 
   def index
     # Find by geocode
@@ -19,6 +11,10 @@ class ReportsController < ApplicationController
 
   def show
     render 'show'
+  end
+
+  def info_window
+    render 'info_window'
   end
 
   def new
