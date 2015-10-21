@@ -5,4 +5,8 @@
     remote: true if user_signed_in?%>
 
   <%= link_to 'Delete', delete_report_path(report.id), data: { remote: true, modal_type: 'destroy', modal_element: 'reports' }, class: 'button js_modal' if user_signed_in? %>
+
+  <% if report.resolved_at %>
+    (OPGELOST)
+  <% end %>
 </li>
