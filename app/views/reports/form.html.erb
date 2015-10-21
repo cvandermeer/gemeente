@@ -32,6 +32,15 @@
     </div>
   </div>
 
+  <% if action_name == 'edit' %>
+    <div class='row'>
+      <div class='four columns'>
+        <%= f.label :resolved_at, 'Opgelost op' %>
+        <%= f.date_field :resolved_at, class: 'u-full-width' %>
+      </div>
+    </div>
+  <% end %>
+
   <div class='row'>
     <div class='four columns'>
       <%= f.label :email, 'Email' %>

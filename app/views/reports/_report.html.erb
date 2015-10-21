@@ -1,8 +1,23 @@
 <li data-report-id="<%= report.id %>">
-  <%= link_to report.title, report, data: { id: report.id, title: report.title, lat: report.latitude, lon: report.longitude, remote: true }, class: 'report' %> (<%= report.location %>)
+  <%= link_to report.title, report, data: { id: report.id,
+                                            title: report.title,
+                                            lat: report.latitude,
+                                            lon: report.longitude,
+                                            remote: true },
+                                            class: 'report' %> (<%= report.location %>)
 
-  <%= link_to 'Edit', edit_report_path(report.id), class: 'button js_modal',
-    remote: true if user_signed_in?%>
+  <% if user_signed_in? %>
+    <% if (report.user == current_user) || (current_user.community? && (report.community == current_user.community)) %>
+      <%= link_to 'Edit', edit_report_path(report.id), class: 'button js_modal',
+                                                       remote: true %>
+      <%= link_to 'Delete', delete_report_path(report.id), data: { remote: true,
+                                                                   modal_type: 'destroy',
+                                                                  modal_element: 'reports' },
+                                                                  class: 'button js_modal' %>
+    <% end %>
+  <% end %>
 
-  <%= link_to 'Delete', delete_report_path(report.id), data: { remote: true, modal_type: 'destroy', modal_element: 'reports' }, class: 'button js_modal' if user_signed_in? %>
+  <% if report.resolved_at %>
+    (OPGELOST)
+  <% end %>
 </li>
