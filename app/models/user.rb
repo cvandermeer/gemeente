@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   ### RELATIONS ###
   belongs_to :community
+  has_many :reports
 
   ### CONSTANTS ###
   ROLE_USER = 0

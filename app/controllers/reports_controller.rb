@@ -24,7 +24,9 @@ class ReportsController < ApplicationController
 
   def create
     @report = Report.new(report_params)
-    @report.set_community
+    if current_user
+      @report.user = current_user
+    end
     if @report.save
       render @report
     else
