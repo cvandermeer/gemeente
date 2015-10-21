@@ -20,15 +20,15 @@
           <li>
             <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete', class: 'pull-right' %>
           </li>
-          <li>
-            <%= link_to 'Melding aanmaken', new_report_path, class: 'js_modal', remote: true %>
-          </li>
           <% else %>
           <li>
             <%= link_to 'Inloggen', new_user_session_path, remote: true, class: 'login button button-primary js_modal' %>
           </li>
           <li>
             <%= link_to "Aanmelden", new_user_registration_path, remote: true, class: 'js_modal' %>
+          </li>
+          <li>
+            <%= link_to 'Melding aanmaken', new_report_path, class: 'js_modal', remote: true %>
           </li>
           <% end %>
         </ul>

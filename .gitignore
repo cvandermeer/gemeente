@@ -18,6 +18,3 @@
 
 # Ignore simplecov
 coverage
-
-# Ignore database
-config/database.yml

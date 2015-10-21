@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
-  before_action :set_report, only: [:show, :info_window, :edit, :update, :destroy, :delete]
+  before_action :authenticate_user!, except: [:index, :dashboard, :new, :create]
+  before_action :set_report, only: [:edit, :update, :destroy, :delete]
   before_action :set_reports, only: []
   layout false, except: [:index]
 
@@ -24,7 +24,7 @@ class ReportsController < ApplicationController
 
   def create
     @report = Report.new(report_params)
-    @report.set_community
+    @report.user ||= current_user
     if @report.save
       render @report
     else
