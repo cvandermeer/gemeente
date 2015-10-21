@@ -1,4 +1,9 @@
 class Report < ActiveRecord::Base
+  ### UPLOADER ###
+  mount_uploader :image_one, ImageUploader
+  mount_uploader :image_two, ImageUploader
+  mount_uploader :image_three, ImageUploader
+
   ### GEOCODER ###
   geocoded_by :location
   after_validation :geocode
