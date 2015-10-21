@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :dashboard]
+  before_action :authenticate_user!, except: [:index, :dashboard, :new, :create]
   before_action :set_report, only: [:edit, :update, :destroy, :delete]
   before_action :set_reports, only: []
   layout false, except: [:index, :community_dashboard, :admin_dashboard]
@@ -24,9 +24,7 @@ class ReportsController < ApplicationController
 
   def create
     @report = Report.new(report_params)
-    if current_user
-      @report.user = current_user
-    end
+    @report.user ||= current_user
     if @report.save
       render @report
     else
