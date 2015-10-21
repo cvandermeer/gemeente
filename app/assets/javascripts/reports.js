@@ -108,6 +108,24 @@ function initMap() {
     });
     map.fitBounds(bounds);
   });
+  checkLonLatBounds(map);
+}
+
+function checkLonLatBounds(map){
+  map.addListener('bounds_changed', function(bounds) {
+    var maxlat = map.getBounds().Pa.j
+    var minlat = map.getBounds().Pa.I
+    var minlon = map.getBounds().La.j
+    var maxlon = map.getBounds().La.I
+    $('.report').each(function() {
+      var el = $(this);
+      if($(el).attr('data-lat') < minlat | $(el).attr('data-lat') > maxlat | $(el).attr('data-lon') < minlon | $(el).attr('data-lon') > maxlon){
+        $(el).parent().hide();
+      }else{
+        $(el).parent().show();
+      }
+    });
+  });
 }
 
 function goToReportLocation(el) {
