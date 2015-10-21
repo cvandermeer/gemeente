@@ -42,24 +42,52 @@ function closeShowReport(el) {
   }, 300)
 }
 
+
 function initMap() {
-  var center = {lat: 52.397, lng: 5.544}
-  var zoom = 7
-  if($('.community-data').length){
-    var community_position = {lat: parseFloat($('.community-data').attr('data-lat')), lng: parseFloat($('.community-data').attr('data-lon'))}
-    zoom = 10
-    center = community_position
-  }
-
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: center,
-    zoom: zoom
-  });
-
   // Function can be found in reports_map.js
-  getMarkers()
-  setGeoLocation()
+  navigator.geolocation.getCurrentPosition(function(position) {
+    var pos = new google.maps.LatLng(position.coords.latitude,
+                                     position.coords.longitude);
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 12,
+      center: pos
+    });
 
+    var infowindow = new google.maps.InfoWindow({
+      map: map,
+      position: pos,
+      content: 'U staat hier!'
+    });
+
+    setPanorama(pos);
+
+    getMarkers()
+    setSearchBar(map)
+    checkLonLatBounds(map);
+
+  }, function (error) {
+    if (error.code == error.PERMISSION_DENIED) {
+      center = {lat: 52.397, lng: 5.544}
+      zoom = 7
+
+      if($('.community-data').length){
+        var community_position = {lat: parseFloat($('.community-data').attr('data-lat')), lng: parseFloat($('.community-data').attr('data-lon'))}
+        zoom = 10
+        center = community_position
+      }
+    }
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: center,
+      zoom: zoom
+    });
+
+    getMarkers()
+    setSearchBar(map)
+    checkLonLatBounds(map);
+  });
+}
+
+function setSearchBar(map) {
   // Search bar with autocomplete
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
@@ -110,6 +138,23 @@ function initMap() {
   });
 }
 
+function checkLonLatBounds(map){
+  map.addListener('bounds_changed', function(bounds) {
+    var maxlat = map.getBounds().Pa.j
+    var minlat = map.getBounds().Pa.I
+    var minlon = map.getBounds().La.j
+    var maxlon = map.getBounds().La.I
+    $('.report').each(function() {
+      var el = $(this);
+      if($(el).attr('data-lat') < minlat | $(el).attr('data-lat') > maxlat | $(el).attr('data-lon') < minlon | $(el).attr('data-lon') > maxlon){
+        $(el).parent().hide();
+      }else{
+        $(el).parent().show();
+      }
+    });
+  });
+}
+
 function goToReportLocation(el) {
   var clicked_position = {lat: parseFloat($(el).attr('data-lat')), lng: parseFloat($(el).attr('data-lon'))}
   map.setCenter(clicked_position)
@@ -140,7 +185,6 @@ function setMarker(lat, lon, title, id) {
 }
 
 function setInfoWindow(el) {
-  console.log(el.id)
   $.ajax({
     type: "GET",
     dataType: "html",
@@ -152,7 +196,6 @@ function setInfoWindow(el) {
 }
 
 function setInfoVal(data, el) {
-  console.log(data)
   var content = data
   var id = $(el)[0].id
   var infowindow = new google.maps.InfoWindow({
