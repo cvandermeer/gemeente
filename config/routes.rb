@@ -5,7 +5,5 @@ Rails.application.routes.draw do
   resources :reports do
     get :info_window, on: :member
     get :delete, on: :member
-    get :community_dashboard, on: :collection
-    get :admin_dashboard, on: :collection
   end
 end
