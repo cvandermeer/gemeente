@@ -185,7 +185,6 @@ function setMarker(lat, lon, title, id) {
 }
 
 function setInfoWindow(el) {
-  console.log(el.id)
   $.ajax({
     type: "GET",
     dataType: "html",
@@ -197,7 +196,6 @@ function setInfoWindow(el) {
 }
 
 function setInfoVal(data, el) {
-  console.log(data)
   var content = data
   var id = $(el)[0].id
   var infowindow = new google.maps.InfoWindow({
