@@ -3,6 +3,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @reports = current_user.reports
+    if current_user.community?
+      @reports = current_user.community.reports
+    else
+      @reports = current_user.reports
+    end
   end
 end

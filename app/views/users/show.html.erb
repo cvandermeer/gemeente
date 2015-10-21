@@ -1,8 +1,14 @@
 <div class='content-container'>
 	<div>
-    <h3>Gebruiker <%= @user.email %></h3>
+    <h3>Gebruiker <%= @user.email %> <%= '(Gemeente beheerder)' if current_user.community %></h3>
+    <p>
+      <% if current_user.community? %>
+        Meldingen van mijn gemeente
+      <% else %>
+        Mijn meldingen:
+      <% end %>
+    </p>
 
-    <p>Mijn meldingen:</p>
     <ul class='reports'>
   	   <%= render @reports %>
   	</ul>
