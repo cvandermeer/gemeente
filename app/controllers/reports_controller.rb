@@ -1,7 +1,6 @@
 class ReportsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :dashboard, :new, :create]
-  before_action :set_report, only: [:edit, :update, :destroy, :delete]
-  before_action :set_reports, only: []
+  before_action :authenticate_user!, except: [:index, :show, :info_window, :new, :create]
+  before_action :set_report, except: [:index, :new, :create]
   layout false, except: [:index]
 
   def index
