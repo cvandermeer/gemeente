@@ -1,0 +1,16 @@
+<div class='content-container'>
+	<div>
+    <h3>Gebruiker <%= @user.email %></h3>
+
+    <p>Mijn meldingen:</p>
+    <ul class='reports'>
+  	   <%= render @reports %>
+  	</ul>
+    <a href='#' class='reset-map'>Reset Map</a>
+  </div>
+</div>
+
+<div class='map-container'>
+	<div id='map' class='map'></div>
+  <div id='pano' class='pano'></div>
+</div>
