@@ -9,10 +9,37 @@ ready = function() {
     goToReportLocation(this)
   });
 
+  $('.report').on('ajax:success', function(e, data, status) {
+    showReport(data, this)
+  });
+
   $('.reset-map').on('click', function(){
     map.setCenter({lat: 52.397, lng: 5.544})
     map.setZoom(7)
   });
+}
+
+function showReport(data, el) {
+  $(el).unbind('ajax:success')
+  $(el).parent().append(data)
+  var set_height = $(el).parent().find('.row').height()
+  $(el).parent().find('.row').css('height', '1px')
+  setTimeout(function() {
+    $(el).parent().find('.row').css('height', set_height + 'px')
+  }, 100)
+  $(el).parent().find('.js_close_report_show').bind('click', function() {
+    closeShowReport(this)
+  })
+}
+
+function closeShowReport(el) {
+  $(el).parent().css('height', '1px')
+  $(el).parent().parent().find('.report').bind('ajax:success', function(e, data, status){
+    showReport(data, this)
+  })
+  setTimeout(function() {
+    $(el).parent().remove()
+  }, 300)
 }
 
 function initMap() {
@@ -23,7 +50,7 @@ function initMap() {
     zoom = 10
     center = community_position
   }
-  
+
   map = new google.maps.Map(document.getElementById('map'), {
     center: center,
     zoom: zoom
@@ -93,24 +120,46 @@ function goToReportLocation(el) {
 function getMarkers() {
   $('.reports li').each(function() {
     var el = $(this).find('.report')
-    setMarker(parseFloat($(el).attr('data-lat')), parseFloat($(el).attr('data-lon')), el[0].innerText)
+    setMarker(parseFloat($(el).attr('data-lat')), parseFloat($(el).attr('data-lon')), el[0].innerText, $(el).attr('data-id'))
   });
 }
 
-function setMarker(lat, lon, title) {
+function setMarker(lat, lon, title, id) {
   var marker = new google.maps.Marker({
     animation: google.maps.Animation.DROP,
     position: new google.maps.LatLng(lat,lon),
-    title: title
+    title: title,
+    id: id
   });
 
-  var infowindow = new google.maps.InfoWindow({
-    content: title
-  });
-  marker.addListener('click', function() {
-    infowindow.open(map, marker);
-  });
   marker.setMap(map);
+
+  google.maps.event.addListener(marker, 'click', function() {
+    setInfoWindow(this)
+  });
+}
+
+function setInfoWindow(el) {
+  console.log(el.id)
+  $.ajax({
+    type: "GET",
+    dataType: "html",
+    url: "/reports/" + el.id + "/info_window",
+    success: function(data){
+      setInfoVal(data, el)
+    }
+  });
+}
+
+function setInfoVal(data, el) {
+  console.log(data)
+  var content = data
+  var id = $(el)[0].id
+  var infowindow = new google.maps.InfoWindow({
+      id: id,
+      content: content
+  });
+  infowindow.open(map,el);
 }
 
 function setGeoLocation() {
@@ -127,7 +176,7 @@ function setGeoLocation() {
       map.setZoom(12);
       setPanorama(pos);
     });
-    
+
   }
 }
 

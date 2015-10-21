@@ -1,5 +1,5 @@
 <li data-report-id="<%= report.id %>">
-  <%= link_to report.title, '#', data: { id: report.id, title: report.title, lat: report.latitude, lon: report.longitude, remote: true }, class: 'report' %> (<%= report.location %>)
+  <%= link_to report.title, report, data: { id: report.id, title: report.title, lat: report.latitude, lon: report.longitude, remote: true }, class: 'report' %> (<%= report.location %>)
 
   <%= link_to 'Edit', edit_report_path(report.id), class: 'button js_modal',
     remote: true if user_signed_in?%>

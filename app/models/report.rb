@@ -9,6 +9,7 @@ class Report < ActiveRecord::Base
 
   ### RELATIONS ###
   belongs_to :community
+  delegate :name, to: :community, prefix: true
 
   ### VALIDATIONS ###
   validates :title, presence: true
