@@ -9,6 +9,8 @@ class Report < ActiveRecord::Base
 
   ### RELATIONS ###
   belongs_to :community
+  delegate :name, to: :community, prefix: true
+  belongs_to :user
 
   ### VALIDATIONS ###
   validates :title, presence: true
@@ -16,7 +18,12 @@ class Report < ActiveRecord::Base
   validates :address, presence: true
   validates :town, presence: true
 
-  ### METHODS ###
+  ### SCOPES ###
+  scope :unresolved, -> { where(resolved_at: nil) }
+
+  ### CALLBACKS ###
+  before_create :set_community
+
   def set_community
     set_street
     community_name = Zipcode.find_by(street: @street, town: town).community unless @street.nil?

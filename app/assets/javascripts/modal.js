@@ -4,6 +4,7 @@ ready = function() {
 
   $('.js_modal').on('ajax:success', function(e, data, status) {
     setDataInModal(this, data)
+    $('input.datepicker').pickadate();
   });
 
   $('.modal-close').on('click', function() {
@@ -32,7 +33,7 @@ function setDataInModal(e, data) {
   } else {
     // Building the modal
     $('.modal-content').html(data)
-    
+
     // The function can be found in /reports_map.js
     newReportForm()
   }
