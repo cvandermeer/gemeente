@@ -140,10 +140,10 @@ function setSearchBar(map) {
 
 function checkLonLatBounds(map){
   map.addListener('bounds_changed', function(bounds) {
-    var maxlat = map.getBounds().Pa.j
-    var minlat = map.getBounds().Pa.I
-    var minlon = map.getBounds().La.j
-    var maxlon = map.getBounds().La.I
+    var maxlat = map.getBounds().getNorthEast().lat();
+    var minlat = map.getBounds().getSouthWest().lat();
+    var minlon = map.getBounds().getSouthWest().lng();
+    var maxlon = map.getBounds().getNorthEast().lng();
     $('.report').each(function() {
       var el = $(this);
       if($(el).attr('data-lat') < minlat | $(el).attr('data-lat') > maxlat | $(el).attr('data-lon') < minlon | $(el).attr('data-lon') > maxlon){
@@ -238,14 +238,17 @@ function setPanorama(position) {
 function newReportForm() {
   $('.modal form').bind('ajax:success', function(e, data, status){
     if(data.indexOf('form') == -1) {
+      data = data.replace(/\\n/g, '').replace(/\\/g, '').substring(1)
+      data = data.substring(0, data.length - 2);
       $('.reports').append(data);
+
       var el = $('.reports li:last-child .report')
-      if ($('.reports').find("[data-report-id='" + el.attr('data-id') + "']").length > 1) {
+      if ($('.reports').find("[data-id='" + el.attr('data-id') + "']").length > 1) {
         $('.reports li').last().remove()
-        $('.reports').find("[data-report-id='" + el.attr('data-id') + "']").before(data).remove()
+        $('.reports').find("[data-id='" + el.attr('data-id') + "']").parent().before(data).remove()
       }
       removeModal();
-      setMarker(parseFloat(el.attr('data-lat')), parseFloat(el.attr('data-lon')), el.attr('data-title'))
+      setMarker(parseFloat(el.attr('data-lat')), parseFloat(el.attr('data-lon')), el.attr('data-title'), $(el).attr('data-id'))
       goToReportLocation(el)
       bindHandlers()
     } else {
@@ -258,6 +261,9 @@ function newReportForm() {
 function bindHandlers() {
   $('.report').bind('click', function(){
     goToReportLocation(this)
+  });
+  $('.report').bind('ajax:success', function(e, data, status) {
+    showReport(data, this)
   });
   $('.js_modal').bind('ajax:success', function(e, data, status) {
     setDataInModal(this ,data)
