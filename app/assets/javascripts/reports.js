@@ -19,6 +19,17 @@ ready = function() {
   });
 }
 
+function communityReports(){
+  $('.community-reports').on('ajax:success', function(e, data, status){
+    var clat = $(this).parent().attr('data-lat');
+    var clon = $(this).parent().attr('data-lon');
+    map.setCenter({lat: parseFloat(clat), lng: parseFloat(clon)});
+    map.setZoom(10);
+    $('.content-container').html(data);
+    removeModal()
+  });
+}
+
 function showReport(data, el) {
   $(el).unbind('ajax:success')
   $(el).parent().append(data)
@@ -84,17 +95,7 @@ function initMap() {
     getMarkers()
     setSearchBar(map)
     checkLonLatBounds(map);
-    checkCommunity()
   });
-}
-
-function checkCommunity(){
-  if($('.community-map').length){
-    var clat = $('.community-map').attr('data-lat');
-    var clon = $('.community-map').attr('data-lon');
-    map.setCenter({lat: parseFloat(clat), lng: parseFloat(clon)});
-    map.setZoom(10);
-  };
 }
 
 function setSearchBar(map) {

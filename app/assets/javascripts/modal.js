@@ -32,9 +32,10 @@ function setDataInModal(e, data) {
   } else {
     // Building the modal
     $('.modal-content').html(data)
-    
+
     // The function can be found in /reports_map.js
     newReportForm()
+    communityReports()
   }
   bindHandlers()
 }
