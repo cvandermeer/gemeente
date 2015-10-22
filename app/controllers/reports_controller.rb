@@ -28,7 +28,7 @@ class ReportsController < ApplicationController
     @report.user ||= current_user
     if @report.save
       respond_to do |format|
-         format.js
+        format.js
       end
     else
       render 'form'
@@ -42,7 +42,7 @@ class ReportsController < ApplicationController
   def update
     if @report.update(report_params)
       respond_to do |format|
-         format.js
+        format.js
       end
     else
       render 'form'
@@ -74,6 +74,7 @@ class ReportsController < ApplicationController
   end
 
   def report_params
-    params.require(:report).permit(:title, :description, :address, :email, :town, :latitude, :longitude, :resolved_at, :image_one, :image_two, :image_three)
+    params.require(:report).permit(:title, :description, :address, :email, :town, :latitude,
+                                   :longitude, :resolved_at, :image_one, :image_two, :image_three)
   end
 end

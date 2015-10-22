@@ -1,16 +1,16 @@
 <div class='row'>
   <div class='columns four'>
-    <% if @report.image_one.present? %>
+    <% if @report.image_one? %>
       <%= image_tag @report.image_one_url(:image_cropped), class: 'u-max-full-width' %>
     <% end %>
   </div>
   <div class='columns four'>
-    <% if @report.image_two.present? %>
+    <% if @report.image_two? %>
       <%= image_tag @report.image_two_url(:image_cropped), class: 'u-max-full-width' %>
     <% end %>
   </div>
   <div class='columns four'>
-    <% if @report.image_three.present? %>
+    <% if @report.image_three? %>
       <%= image_tag @report.image_three_url(:image_cropped), class: 'u-max-full-width' %>
     <% end %>
   </div>
