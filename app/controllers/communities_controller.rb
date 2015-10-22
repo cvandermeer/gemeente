@@ -1,5 +1,5 @@
 class CommunitiesController < ApplicationController
-  before_action :authenticate_user!, :authenticate_admin!
+  before_action :authenticate_user!
 
   def index
     @communities = Community.all
