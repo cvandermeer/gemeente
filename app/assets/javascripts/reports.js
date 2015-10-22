@@ -5,14 +5,6 @@ var reportElData;
 
 ready = function() {
 
-  $('.report').on('click', function(){
-    goToReportLocation(this)
-  });
-
-  $('.report').on('ajax:success', function(e, data, status) {
-    showReport(data, this)
-  });
-
   $('.reset-map').on('click', function(){
     map.setCenter({lat: 52.397, lng: 5.544})
     map.setZoom(7)
@@ -29,30 +21,6 @@ function communityReports(){
     removeModal()
   });
 }
-
-function showReport(data, el) {
-  $(el).unbind('ajax:success')
-  $(el).parent().append(data)
-  var set_height = $(el).parent().find('.row').height()
-  $(el).parent().find('.row').css('height', '1px')
-  setTimeout(function() {
-    $(el).parent().find('.row').css('height', set_height + 'px')
-  }, 100)
-  $(el).parent().find('.js_close_report_show').bind('click', function() {
-    closeShowReport(this)
-  })
-}
-
-function closeShowReport(el) {
-  $(el).parent().css('height', '1px')
-  $(el).parent().parent().find('.report').bind('ajax:success', function(e, data, status){
-    showReport(data, this)
-  })
-  setTimeout(function() {
-    $(el).parent().remove()
-  }, 300)
-}
-
 
 function initMap() {
   // Function can be found in reports_map.js
@@ -249,14 +217,17 @@ function setPanorama(position) {
 function newReportForm() {
   $('.modal form').bind('ajax:success', function(e, data, status){
     if(data.indexOf('form') == -1) {
+      data = data.replace(/\\n/g, '').replace(/\\/g, '').substring(1)
+      data = data.substring(0, data.length - 2);
       $('.reports').append(data);
+
       var el = $('.reports li:last-child .report')
-      if ($('.reports').find("[data-report-id='" + el.attr('data-id') + "']").length > 1) {
+      if ($('.reports').find("[data-id='" + el.attr('data-id') + "']").length > 1) {
         $('.reports li').last().remove()
-        $('.reports').find("[data-report-id='" + el.attr('data-id') + "']").before(data).remove()
+        $('.reports').find("[data-id='" + el.attr('data-id') + "']").parent().before(data).remove()
       }
       removeModal();
-      setMarker(parseFloat(el.attr('data-lat')), parseFloat(el.attr('data-lon')), el.attr('data-title'))
+      setMarker(parseFloat(el.attr('data-lat')), parseFloat(el.attr('data-lon')), el.attr('data-title'), $(el).attr('data-id'))
       goToReportLocation(el)
       bindHandlers()
     } else {
@@ -269,6 +240,9 @@ function newReportForm() {
 function bindHandlers() {
   $('.report').bind('click', function(){
     goToReportLocation(this)
+  });
+  $('.report').bind('ajax:success', function(e, data, status) {
+    showReport(data, this)
   });
   $('.js_modal').bind('ajax:success', function(e, data, status) {
     setDataInModal(this ,data)

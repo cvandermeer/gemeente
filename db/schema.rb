@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021084541) do
+ActiveRecord::Schema.define(version: 20151021135635) do
 
   create_table "communities", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -22,13 +22,6 @@ ActiveRecord::Schema.define(version: 20151021084541) do
     t.float    "latitude",    limit: 24
     t.float    "longitude",   limit: 24
   end
-
-  create_table "report_images", force: :cascade do |t|
-    t.integer "report_id", limit: 4
-    t.string  "image",     limit: 255
-  end
-
-  add_index "report_images", ["report_id"], name: "index_report_images_on_report_id", using: :btree
 
   create_table "reports", force: :cascade do |t|
     t.string   "title",        limit: 255
@@ -42,6 +35,9 @@ ActiveRecord::Schema.define(version: 20151021084541) do
     t.string   "email",        limit: 255
     t.integer  "community_id", limit: 4
     t.integer  "user_id",      limit: 4
+    t.string   "image_one",    limit: 255
+    t.string   "image_two",    limit: 255
+    t.string   "image_three",  limit: 255
   end
 
   add_index "reports", ["community_id"], name: "index_reports_on_community_id", using: :btree

@@ -3,7 +3,7 @@ class ReportsController < ApplicationController
   before_action :set_report, except: [:index, :new, :create]
   before_action :authenticate_owner, only: [:edit, :update, :destroy]
   before_action :authenticate_community_owner, only: [:edit, :update, :destroy]
-  layout false, except: [:index]
+  layout false, except: [:index, :show]
 
   def index
     # Find by geocode
@@ -27,7 +27,9 @@ class ReportsController < ApplicationController
     @report = Report.new(report_params)
     @report.user ||= current_user
     if @report.save
-      render @report
+      respond_to do |format|
+        format.js
+      end
     else
       render 'form'
     end
@@ -39,7 +41,9 @@ class ReportsController < ApplicationController
 
   def update
     if @report.update(report_params)
-      render @report
+      respond_to do |format|
+        format.js
+      end
     else
       render 'form'
     end
@@ -70,6 +74,7 @@ class ReportsController < ApplicationController
   end
 
   def report_params
-    params.require(:report).permit(:title, :description, :address, :email, :town, :latitude, :longitude, :resolved_at)
+    params.require(:report).permit(:title, :description, :address, :email, :town, :latitude,
+                                   :longitude, :resolved_at, :image_one, :image_two, :image_three)
   end
 end

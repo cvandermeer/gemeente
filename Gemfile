@@ -10,6 +10,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'geocoder'
 gem 'bourbon'
 gem 'devise'
+gem 'carrierwave'
+gem 'rmagick'
+gem 'remotipart', '~> 1.2'
 
 group :development, :test do
   gem 'byebug'
