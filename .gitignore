@@ -19,4 +19,4 @@
 # Ignore simplecov
 coverage
 
-/public/uploads/tmp
+/public/uploads
