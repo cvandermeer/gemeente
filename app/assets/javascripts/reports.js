@@ -11,6 +11,17 @@ ready = function() {
   });
 }
 
+function communityReports(){
+  $('.community-reports').on('ajax:success', function(e, data, status){
+    var clat = $(this).parent().attr('data-lat');
+    var clon = $(this).parent().attr('data-lon');
+    map.setCenter({lat: parseFloat(clat), lng: parseFloat(clon)});
+    map.setZoom(10);
+    $('.content-container').html(data);
+    removeModal()
+  });
+}
+
 function initMap() {
   // Function can be found in reports_map.js
   navigator.geolocation.getCurrentPosition(function(position) {

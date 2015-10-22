@@ -32,6 +32,9 @@
           </li>
           <% end %>
           <li>
+            <%= link_to 'Gemeentes', communities_path, class: 'js_modal', remote: true %>
+          </li>
+          <li>
             <%= link_to 'Melding aanmaken', new_report_path, class: 'js_modal', remote: true %>
           </li>
         </ul>
