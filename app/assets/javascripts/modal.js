@@ -36,6 +36,7 @@ function setDataInModal(e, data) {
 
     // The function can be found in /reports_map.js
     newReportForm()
+    communityReports()
   }
   bindHandlers()
 }

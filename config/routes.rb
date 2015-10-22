@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
   ### COMMUNITIES ###
-  resources :communities, only: :index
+  resources :communities, only: [:index, :show]
 
   ### REPORTS ###
   resources :reports do
