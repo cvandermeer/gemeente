@@ -1,8 +1,12 @@
-<ul>
-  <% @communities.each do |community| %>
-  <li>
-    <%= community.name %>
-    <%= community.reports.count %> melding(en)
-  </li>
-  <% end %>
-</ul>
+<div class='content-container'>
+	<div>
+    <ul>
+      <% @communities.each do |community| %>
+      <li>
+        <%= link_to community.name, community %>
+        <%= community.reports.count %> melding(en)
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class='content-container'>
+	<div>
+    <h3><%= @community.name %></h3>
+    <ul class='reports'>
+  	   <%= render @reports %>
+  	</ul>
+    <a href='#' class='reset-map'>Reset Map</a>
+  </div>
+</div>
+
+<div class='map-container community-map' data-lon='<%= @community.longitude %>' data-lat='<%= @community.latitude %>'>
+	<div id='map' class='map' ></div>
+  <div id='pano' class='pano'></div>
+</div>

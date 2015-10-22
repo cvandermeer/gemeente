@@ -84,7 +84,17 @@ function initMap() {
     getMarkers()
     setSearchBar(map)
     checkLonLatBounds(map);
+    checkCommunity()
   });
+}
+
+function checkCommunity(){
+  if($('.community-map').length){
+    var clat = $('.community-map').attr('data-lat');
+    var clon = $('.community-map').attr('data-lon');
+    map.setCenter({lat: parseFloat(clat), lng: parseFloat(clon)});
+    map.setZoom(10);
+  };
 }
 
 function setSearchBar(map) {
