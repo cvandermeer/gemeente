@@ -140,10 +140,10 @@ function setSearchBar(map) {
 
 function checkLonLatBounds(map){
   map.addListener('bounds_changed', function(bounds) {
-    var maxlat = map.getBounds().Pa.j
-    var minlat = map.getBounds().Pa.I
-    var minlon = map.getBounds().La.j
-    var maxlon = map.getBounds().La.I
+    var maxlat = map.getBounds().getNorthEast().lat();
+    var minlat = map.getBounds().getSouthWest().lat();
+    var minlon = map.getBounds().getSouthWest().lng();
+    var maxlon = map.getBounds().getNorthEast().lng();
     $('.report').each(function() {
       var el = $(this);
       if($(el).attr('data-lat') < minlat | $(el).attr('data-lat') > maxlat | $(el).attr('data-lon') < minlon | $(el).attr('data-lon') > maxlon){
