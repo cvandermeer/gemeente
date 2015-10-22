@@ -2,9 +2,9 @@
   <%= link_to report.title, report, data: { id: report.id,
                                             title: report.title,
                                             lat: report.latitude,
-                                            lon: report.longitude,
-                                            remote: true },
-                                            class: 'report' %> (<%= report.location %>)
+                                            lon: report.longitude },
+                                            class: 'report',
+                                            target: '_blank' %> (<%= report.location %>)
 
   <% if user_signed_in? %>
     <% if (report.user == current_user) || (current_user.community? && (report.community == current_user.community)) %>

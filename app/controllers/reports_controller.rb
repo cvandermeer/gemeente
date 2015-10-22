@@ -3,7 +3,7 @@ class ReportsController < ApplicationController
   before_action :set_report, except: [:index, :new, :create]
   before_action :authenticate_owner, only: [:edit, :update, :destroy]
   before_action :authenticate_community_owner, only: [:edit, :update, :destroy]
-  layout false, except: [:index]
+  layout false, except: [:index, :show]
 
   def index
     # Find by geocode
