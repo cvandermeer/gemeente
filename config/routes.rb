@@ -13,4 +13,7 @@ Rails.application.routes.draw do
     get :info_window, on: :member
     get :delete, on: :member
   end
+
+  ### ZIPCODES ###
+  get 'search_streets', to: 'zipcodes#search_streets', as: 'search_streets'
 end
