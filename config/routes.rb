@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   root 'reports#index'
 
@@ -12,5 +14,10 @@ Rails.application.routes.draw do
   resources :reports do
     get :info_window, on: :member
     get :delete, on: :member
+  end
+
+  ### SIDEKIQ ####
+  authenticate :user do
+    mount Sidekiq::Web => '/sidekiq'
   end
 end
