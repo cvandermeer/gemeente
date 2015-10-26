@@ -5,13 +5,6 @@
   	</ul>
     <a href='#' class='reset-map'>Reset Map</a>
   </div>
-
-  <%= form_tag( search_streets_path, method: 'get', remote: true, class: 'js_search_streets' ) do %>
-  	<%= text_field_tag :search, nil, autocomplete: "off" %>
-  <% end %>
-
-
-  <p>blabla</p>
 </div>
 
 <div class='map-container'>
