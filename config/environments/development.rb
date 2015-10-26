@@ -47,9 +47,9 @@ Rails.application.configure do
     address: 'smtp.mandrillapp.com',
     port: 25,
     enable_starttls_auto: true,
-    user_name: "cvandermeer@live.nl",
-    password: "RKDot8ZmZD9LV1-itPy7ng",
+    user_name: 'cvandermeer@live.nl',
+    password: 'RKDot8ZmZD9LV1-itPy7ng',
     authentication: 'login',
-    domain: 'ikbeninwoner.nl',
+    domain: 'ikbeninwoner.nl'
   }
 end

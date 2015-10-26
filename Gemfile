@@ -11,7 +11,7 @@ gem 'geocoder'
 gem 'bourbon'
 gem 'devise'
 gem 'sidekiq'
-gem 'sinatra', :require => nil
+gem 'sinatra', require: nil
 
 group :development, :test do
   gem 'byebug'
