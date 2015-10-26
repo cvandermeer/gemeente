@@ -34,7 +34,7 @@ function setDataInModal(e, data) {
     // Building the modal
     $('.modal-content').html(data)
 
-    // The function can be found in /reports_map.js
+    // The function can be found in /reports.js
     newReportForm()
     communityReports()
   }

@@ -1,12 +1,30 @@
-<div class='row report-show'>
-  <div class='close js_close_report_show'></div>
+<div class='row'>
+  <div class='columns four'>
+    <% if @report.image_one? %>
+      <%= image_tag @report.image_one_url(:image_cropped), class: 'u-max-full-width' %>
+    <% end %>
+  </div>
+  <div class='columns four'>
+    <% if @report.image_two? %>
+      <%= image_tag @report.image_two_url(:image_cropped), class: 'u-max-full-width' %>
+    <% end %>
+  </div>
+  <div class='columns four'>
+    <% if @report.image_three? %>
+      <%= image_tag @report.image_three_url(:image_cropped), class: 'u-max-full-width' %>
+    <% end %>
+  </div>
+</div>
+
+<div class='row'>
   <div class='columns six'>
     <h2>
       <%= @report.title %>
     </h2>
+
     <p><%= @report.description %></p>
   </div>
-  <div class='columns six'>
+  <div class='columns five'>
     <ul class='address'>
       <li><%= @report.community_name %></li>
       <li>Straat: <%= @report.address %></li>

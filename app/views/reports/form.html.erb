@@ -6,7 +6,8 @@
 <% end %>
 </h5>
 
-<%= form_for @report, remote: true do |f| %>
+<%= form_for @report, html: { multipart: true, type: :html }, remote: true do |f| %>
+
   <div class='row'>
     <div class='six columns'>
       <%= f.label :title, 'Melding titel' %>
@@ -46,6 +47,14 @@
       <%= f.label :email, 'Email' %>
       <%= f.email_field :email, class: 'u-full-width' %>
     </div>
+  </div>
+
+  <div class='row'>
+    <%= f.label :image_one, 'Afbeeldingen toevoegen' %>
+    <%= f.file_field :image_one %>
+    <%= f.file_field :image_two %>
+    <%= f.file_field :image_three %>
+    <br><br>
   </div>
 
   <div class='row'>
