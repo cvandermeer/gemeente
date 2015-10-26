@@ -1,10 +1,23 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
   root 'reports#index'
-  resources :communities, only: :index
-  resources :reports, except: [:show] do
+
+  ### USERS ###
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
+  resources :users, only: [:show]
+
+  ### COMMUNITIES ###
+  resources :communities, only: [:index, :show]
+
+  ### REPORTS ###
+  resources :reports do
+    get :info_window, on: :member
     get :delete, on: :member
-    get :community_dashboard, on: :collection
-    get :admin_dashboard, on: :collection
+  end
+
+  ### SIDEKIQ ####
+  authenticate :user do
+    mount Sidekiq::Web => '/sidekiq'
   end
 end

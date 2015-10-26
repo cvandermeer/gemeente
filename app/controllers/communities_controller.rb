@@ -1,8 +1,13 @@
 class CommunitiesController < ApplicationController
   before_action :authenticate_user!
-  before_action :authenticate_admin!
+  layout false
 
   def index
     @communities = Community.all
+  end
+
+  def show
+    @community = Community.find(params[:id])
+    @reports = @community.reports.unresolved
   end
 end

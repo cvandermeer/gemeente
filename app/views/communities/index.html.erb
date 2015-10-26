@@ -1,8 +1,12 @@
-<ul>
-  <% @communities.each do |community| %>
-  <li>
-    <%= community.name %>
-    <%= community.reports.count %> melding(en)
-  </li>
-  <% end %>
-</ul>
+<div class='content-container'>
+	<div>
+    <ul class='reports'>
+      <% @communities.each do |community| %>
+      <li data-lon='<%= community.longitude %>' data-lat='<%= community.latitude %>'>
+        <%= link_to community.name, community, remote: true, class: 'community-reports' %>
+        <%= community.reports.count %> melding(en)
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
