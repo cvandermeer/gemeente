@@ -18,7 +18,7 @@ function triggerStreetSearch() {
         timer = setTimeout(function() {
           $('.js_search_streets input[name="search"]').val($('.js_street_input').val())
           $('.js_search_streets').submit()
-        }, 300);
+        }, 500);
       }
     } else if ($('.street_list').length > 0) {
       navigatingTroughStreetList(el, code)
