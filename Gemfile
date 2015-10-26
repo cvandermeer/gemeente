@@ -16,7 +16,6 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'remotipart', '~> 1.2'
 
-
 group :development, :test do
   gem 'byebug'
   gem 'rubocop', require: false
