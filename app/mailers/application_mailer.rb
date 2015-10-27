@@ -1,4 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: proc.new { ['cvandemeer@live.nl', 'bart-hoekstra@live.nl'] }
+  default to: proc.new { ['cvandermeer@live.nl', 'bart-hoekstra@live.nl'] },
+  from: 'info@ikbeninwoner.nl'
   layout 'mailer'
 end
