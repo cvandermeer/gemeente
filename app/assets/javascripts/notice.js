@@ -2,10 +2,10 @@ var ready;
 
 ready = function() {
 
-  if( $('.notice').length ) {
-    $('.notice').addClass('active');
+  if( $('.notice, .alert').length ) {
+    $('.notice, .alert').addClass('active');
     setTimeout(function() {
-      $('.notice').removeClass('active');
+      $('.notice, .alert').removeClass('active');
     }, 5000);
   }
 }
