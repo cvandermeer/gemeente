@@ -63,6 +63,8 @@ function triggerTownSearch() {
 
 /**
   * @desc sets the data for the search list on ajax success
+  * @param string name - for street our town
+  * @param element el - the input field $(this)
   * @return the data json in a list under the input field
 */
 
@@ -86,7 +88,10 @@ function ajaxStreetOurTownSearch(name, el) {
 
 /**
   * @desc sets the position in the search list on keyup our keydown
-  * @return a new position in the search list
+  * @param element el - the input field $(this)
+  * @param integer code - number of the key pressed
+  * @param string name - for street our town
+  * @return a new position in the search list and sets the value for the input field
 */
 
 function navigatingTroughStreetList(el, code, name) {
@@ -107,6 +112,13 @@ function navigatingTroughStreetList(el, code, name) {
   $('.'+name+'_list li:nth-child('+ list_position +')').addClass('focus').siblings().removeClass('focus')
 }
 
+/**
+  * @desc sets the value in the input form onclick in the list
+  * @param element el - the input field $(this)
+  * @param string name - for street our town
+  * @return removes the list and sets the focus on the input
+*/
+
 function streetInListIsClicked(el, name) {
   $('.'+name+'_list li').on('click', function(e) {
     el.val($(this).text())
@@ -114,6 +126,11 @@ function streetInListIsClicked(el, name) {
     $('.'+name+'_list').remove()
   });
 }
+
+/**
+  * @desc prevents the form from submitting on enter
+  * @return false if the key pressed is enter
+*/
 
 function preventStreetSearchFromSubmitting() {
   $('.new_report, .edit_report').on('keyup keypress', function(e) {
@@ -124,6 +141,12 @@ function preventStreetSearchFromSubmitting() {
     }
   });
 }
+
+/**
+  * @desc removes the list on enter
+  * @param string name - for street our town
+  * @param integer code - number of the key pressed
+*/
 
 function removeSearchListOnEnter(name, code) {
   if (code == 13 && $('.'+name+'_list').length > 0) {
