@@ -8,11 +8,7 @@ class Report < ActiveRecord::Base
   geocoded_by :location
   after_validation :geocode
 
-  def location
-    [address, town].compact.join(', ')
-  end
-
-  ### RELATIONS ###
+  ### ASSOCIATIONS ###
   belongs_to :community
   delegate :name, to: :community, prefix: true
   belongs_to :user
@@ -40,5 +36,10 @@ class Report < ActiveRecord::Base
     @street = address
     s = address.split
     @street = s.reverse.drop(1).reverse.join(' ') if s[s.length - 1].to_i >= 1
+  end
+
+  ### INSTANCE METHODS ###
+  def location
+    [address, town].compact.join(', ')
   end
 end

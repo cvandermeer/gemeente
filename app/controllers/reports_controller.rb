@@ -6,7 +6,6 @@ class ReportsController < ApplicationController
   layout false, except: [:index, :show]
 
   def index
-    # Find by geocode
     @reports = Report.unresolved
   end
 

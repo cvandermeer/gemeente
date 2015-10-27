@@ -5,7 +5,6 @@
         <div class='three columns'>
           <h1>
             <%= link_to 'Logo ' + Application::VERSION, root_path, class: 'logo', data: { no_turbolink:  true } %>
-
           </h1>
         </div>
         <div class='nine columns search'>
@@ -21,7 +20,7 @@
             <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete', class: 'pull-right' %>
           </li>
           <li>
-            <%= link_to 'Profiel', user_path(current_user) %>
+            <%= link_to 'Profiel', user_path(current_user), data: { no_turbolink:  true } %>
           </li>
           <% else %>
           <li>

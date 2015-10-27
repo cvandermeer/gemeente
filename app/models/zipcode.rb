@@ -1,5 +1,5 @@
 class Zipcode < ActiveRecord::Base
-  ### Methods ###
+  ### METHODS ###
   def self.search_streets(search)
     streets = where('street like ?', "#{search}").map(&:street).uniq
     if streets.length < 5
