@@ -31,13 +31,15 @@ body, html {
   height: calc(100% - 60px);
   min-height: calc(100% - 60px);
   position: relative;
+  background: #f4f4f2;
 }
 
 .content-container {
   float: left;
   max-height: 100%;
-  width: 48%;
-  overflow: auto;
+  width: 28%;
+  overflow: scroll;
+  height: 2030px;
 }
 
 /* Clear Floated Elements */
