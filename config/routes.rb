@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   root 'reports#index'
 
@@ -17,4 +19,9 @@ Rails.application.routes.draw do
   ### ZIPCODES ###
   get 'search_streets', to: 'zipcodes#search_streets', as: 'search_streets'
   get 'search_towns', to: 'zipcodes#search_towns', as: 'search_towns'
+
+  ### SIDEKIQ ####
+  authenticate :user do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end

@@ -10,9 +10,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'geocoder'
 gem 'bourbon'
 gem 'devise'
+gem 'sidekiq'
+gem 'sinatra', require: nil
 gem 'carrierwave'
 gem 'rmagick'
 gem 'remotipart', '~> 1.2'
+gem 'figaro'
 
 group :development, :test do
   gem 'byebug'

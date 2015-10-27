@@ -76,4 +76,15 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.delivery_method = :smtp
+  # SMTP settings for mandrill
+  ActionMailer::Base.smtp_settings = {
+    port: 587,
+    address: 'smtp.mandrillapp.com',
+    domain: 'ikbeninwoner.nl',
+    user_name: 'cvandermeer@live.nl',
+    password: 'RKDot8ZmZD9LV1-itPy7ng',
+    authentication: :login
+  }
 end
