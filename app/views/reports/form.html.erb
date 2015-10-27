@@ -21,17 +21,6 @@
       <%= f.text_area :description, class: 'u-full-width' %>
     </div>
   </div>
-  <div class='row'>
-    <%= f.label :address, 'Straatnaam + Huisnummer' %>
-    <%= f.text_field :address, class: 'u-full-width' %>
-  </div>
-
-  <div class='row'>
-    <div class='eight columns'>
-      <%= f.label :town, 'Plaatsnaam' %>
-      <%= f.text_field :town, class: 'u-full-width' %>
-    </div>
-  </div>
 
   <% if action_name == 'edit' %>
     <div class='row'>
@@ -41,6 +30,22 @@
       </div>
     </div>
   <% end %>
+
+  <div class='row street'>
+    <div class='eight columns '>
+      <%= f.label :address, 'Straat & huis nr' %>
+      <%= f.text_field :address, class: 'u-full-width js_street_input',
+          autocomplete: "off" %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='eight columns'>
+      <%= f.label :town, 'Plaatsnaam' %>
+      <%= f.text_field :town, class: 'u-full-width js_town_input',
+          autocomplete: "off" %>
+    </div>
+  </div>
 
   <div class='row'>
     <div class='four columns'>
@@ -60,4 +65,12 @@
   <div class='row'>
     <%= f.submit 'Aanmaken', class: 'button-primary' %>
   </div>
+<% end %>
+
+<%= form_tag( search_streets_path, method: 'get', remote: true, class: 'js_search_streets' ) do %>
+  <%= hidden_field_tag :search %>
+<% end %>
+
+<%= form_tag( search_towns_path, method: 'get', remote: true, class: 'js_search_towns' ) do %>
+  <%= hidden_field_tag :search %>
 <% end %>

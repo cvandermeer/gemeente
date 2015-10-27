@@ -16,6 +16,10 @@ Rails.application.routes.draw do
     get :delete, on: :member
   end
 
+  ### ZIPCODES ###
+  get 'search_streets', to: 'zipcodes#search_streets', as: 'search_streets'
+  get 'search_towns', to: 'zipcodes#search_towns', as: 'search_towns'
+
   ### SIDEKIQ ####
   authenticate :user do
     mount Sidekiq::Web => '/sidekiq'
