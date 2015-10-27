@@ -1,9 +1,5 @@
-class GeneralMailer < ActionMailer::Base
-  default from: 'ikbeninwoner.nl'
-
+class GeneralMailer < ApplicationMailer
   def new_community_notice
-    recipient = 'cvandermeer@live.nl'
-    subject = 'Nieuwe Gemeente'
-    mail(to: recipient, subject: subject)
+    mail(to: 'cvandermeer@live.nl', subject: 'Nieuwe Gemeente')
   end
 end
