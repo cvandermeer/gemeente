@@ -8,12 +8,11 @@
 
   <% if user_signed_in? %>
     <% if (report.user == current_user) || (current_user.community? && (report.community == current_user.community)) %>
-      <%= link_to 'Edit', edit_report_path(report.id), class: 'button js_modal',
-                                                       remote: true %>
-      <%= link_to 'Delete', delete_report_path(report.id), data: { remote: true,
-                                                                   modal_type: 'destroy',
-                                                                  modal_element: 'reports' },
-                                                                  class: 'button js_modal' %>
+      <%= link_to '<-', edit_report_path(report.id), class: 'icon-edit js_modal', remote: true %>
+      <%= link_to 'X', delete_report_path(report.id), data: { remote: true,
+                                                              modal_type: 'destroy',
+                                                              modal_element: 'reports' },
+                                                              class: 'icon-destroy js_modal' %>
     <% end %>
   <% end %>
 
