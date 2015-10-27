@@ -8,10 +8,18 @@
   }
 }
 
-.reports li{
-  background-color : #fff;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 50px;
-  padding-top: 50px;
+.reports{
+  h3{
+    font-size:25px;
+    font-weight:900;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+  li{
+    background-color : #fff;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+  }
 }
