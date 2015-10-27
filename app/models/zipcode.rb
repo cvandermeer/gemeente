@@ -7,4 +7,8 @@ class Zipcode < ActiveRecord::Base
     end
     streets.uniq[0..4]
   end
+
+  def self.search_towns(search)
+    where('street like ?', "#{search}").map(&:town).uniq[0..4]
+  end
 end

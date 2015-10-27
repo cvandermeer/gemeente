@@ -39,6 +39,7 @@ function setDataInModal(e, data) {
     communityReports()
     // The function can be found in search.js
     triggerStreetSearch()
+    triggerTownSearch()
   }
   bindHandlers()
 }

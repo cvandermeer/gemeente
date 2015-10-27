@@ -34,14 +34,16 @@
   <div class='row street'>
     <div class='eight columns '>
       <%= f.label :address, 'Straat & huis nr' %>
-      <%= f.text_field :address, class: 'u-full-width js_street_input', autocomplete: "off" %>
+      <%= f.text_field :address, class: 'u-full-width js_street_input',
+          autocomplete: "off" %>
     </div>
   </div>
 
   <div class='row'>
     <div class='eight columns'>
       <%= f.label :town, 'Plaatsnaam' %>
-      <%= f.text_field :town, class: 'u-full-width' %>
+      <%= f.text_field :town, class: 'u-full-width js_town_input',
+          autocomplete: "off" %>
     </div>
   </div>
 
@@ -66,5 +68,9 @@
 <% end %>
 
 <%= form_tag( search_streets_path, method: 'get', remote: true, class: 'js_search_streets' ) do %>
-  <%= hidden_field_tag :search, nil, autocomplete: "off" %>
+  <%= hidden_field_tag :search %>
+<% end %>
+
+<%= form_tag( search_towns_path, method: 'get', remote: true, class: 'js_search_towns' ) do %>
+  <%= hidden_field_tag :search %>
 <% end %>

@@ -1,3 +1,4 @@
+.js_search_towns,
 .js_search_streets {
   position: relative;
   input[name="search"] {
@@ -9,6 +10,7 @@
   position: relative;
 }
 
+.town_list,
 .street_list {
   list-style: none;
   width: 200px;
