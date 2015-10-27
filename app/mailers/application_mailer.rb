@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'info@ikbeninwoner.nl'
+  default from: 'cvandermeer@live.nl'
   layout 'mailer'
 end
