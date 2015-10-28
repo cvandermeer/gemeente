@@ -1,5 +1,10 @@
 report1:
-  title: zeskamp
-  description: sport en spel dag met teams
-  address: schoolpad 7
-  town: middenmeer
+  title: Stoeptegels los
+  description: Er zijn een aantal stoeptegels ingezakt en liggen nu los.
+  address: Schoolpad 7
+  town: Middenmeer
+report2:
+  title: Lantaarnpaal kapot
+  description: Het licht van de lantaarnpaal doet het niet meer.
+  address: Polle 11
+  town: Rotsterhaule
