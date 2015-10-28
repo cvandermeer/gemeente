@@ -14,28 +14,27 @@ class ReportTest < ActiveSupport::TestCase
   end
 
   test 'should not create report without title' do
-    report = @report
-    report.title = nil
-    assert_not report.save, 'Saved an report without title!'
+    @new_report.title = nil
+    assert_not @new_report.save, 'Saved an report without title!'
   end
 
   test 'should not create report without description' do
-    report = @report
-    report.description = nil
-    assert_not report.save, 'Saved an report without description!'
+    @new_report.description = nil
+    assert_not @new_report.save, 'Saved an report without description!'
   end
 
   test 'should not create report without address' do
-    report = @report
-    report.address = nil
-    assert_not report.save, 'Saved an report without address!'
+    @new_report.address = nil
+    assert_not @new_report.save, 'Saved an report without address!'
   end
 
   test 'should not create report without town' do
-    report = Report.new(title: @report.title,
-                        description: @report.description,
-                        address: @report.address)
-    assert_not report.save, 'Saved an report without town!'
+    @new_report.town = nil
+    assert_not @new_report.save, 'Saved an report without town!'
+  end
+
+  test 'should create @report' do
+    assert @report.save
   end
 
   ### METHODS ###
@@ -44,18 +43,23 @@ class ReportTest < ActiveSupport::TestCase
     assert_equal report.set_street, 'Schoolpad'
   end
 
-  test 'should retun location of report' do
+  test 'should return location' do
     report = @report
     assert_equal report.location, 'Schoolpad 7, Middenmeer'
+  end
+
+  test 'should set community' do
+    @report.set_community
+    assert_equal @report.community.name, 'Hollands Kroon'
   end
 
   private
 
   def initialize_report
-    report = reports(:report1)
-    @report = Report.new(title: report.title,
-                         description: report.description,
-                         address: report.address,
-                         town: report.town)
+    @report = reports(:report1)
+    @new_report = Report.new(title: @report.title,
+                             description: @report.description,
+                             address: @report.address,
+                             town: @report.town)
   end
 end
