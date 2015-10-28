@@ -68,7 +68,7 @@ class ReportTest < ActiveSupport::TestCase
   end
 
   test 'should whitelist jpg jpeg gif and png' do
-    assert_equal @report.image_one.extension_white_list, ['jpg', 'jpeg', 'gif', 'png']
+    assert_equal @report.image_one.extension_white_list, %w(jpg jpeg gif png)
   end
 
   private
