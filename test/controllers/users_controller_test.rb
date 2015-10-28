@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
   setup :initialize_user
 
   def teardown
@@ -9,7 +8,8 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test 'user authentication error' do
-    assert_raises(Exception) { get :show, id: @user }
+    get :show, id: @user
+    assert_redirected_to root_path
   end
 
   test 'user authentication no error' do
