@@ -67,6 +67,10 @@ class ReportTest < ActiveSupport::TestCase
     assert_equal @report.image_one.store_dir, "uploads/report/image_one/#{@report.id}"
   end
 
+  test 'should whitelist jpg jpeg gif and png' do
+    assert_equal @report.image_one.extension_white_list, ['jpg', 'jpeg', 'gif', 'png']
+  end
+
   private
 
   def initialize_report
