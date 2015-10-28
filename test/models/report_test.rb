@@ -4,7 +4,9 @@ class ReportTest < ActiveSupport::TestCase
   setup :initialize_report
 
   def teardown
+    @new_report = nil
     @report = nil
+    @report2 = nil
   end
 
   ### VALIDATIONS ###
@@ -48,15 +50,25 @@ class ReportTest < ActiveSupport::TestCase
     assert_equal report.location, 'Schoolpad 7, Middenmeer'
   end
 
-  test 'should set community' do
-    @report.set_community
+  test 'should set and create community' do
+    assert_difference('Community.count') do
+      @report.set_community
+    end
     assert_equal @report.community.name, 'Hollands Kroon'
+  end
+
+  test 'should set community if it already exists' do
+    assert_no_difference('Community.count') do
+      @report2.set_community
+    end
   end
 
   private
 
   def initialize_report
     @report = reports(:report1)
+    @report2 = reports(:report2)
+    @community = communities(:community1)
     @new_report = Report.new(title: @report.title,
                              description: @report.description,
                              address: @report.address,
