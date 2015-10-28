@@ -9,7 +9,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test 'user authentication error' do
-    assert_raises(Exception) {get :show, id: @user}
+    assert_raises(Exception) { get :show, id: @user }
   end
 
   test 'user authentication no error' do
