@@ -7,29 +7,27 @@ class ReportTest < ActiveSupport::TestCase
     @report = nil
   end
 
+  ### VALIDATIONS ###
   test 'should not create report without any input' do
     report = Report.new
     assert_not report.save, 'Saved an report without any input!'
   end
 
   test 'should not create report without title' do
-    report = Report.new(description: @report.description,
-                        address: @report.address,
-                        town: @report.town)
+    report = @report
+    report.title = nil
     assert_not report.save, 'Saved an report without title!'
   end
 
   test 'should not create report without description' do
-    report = Report.new(title: @report.title,
-                        address: @report.address,
-                        town: @report.town)
+    report = @report
+    report.description = nil
     assert_not report.save, 'Saved an report without description!'
   end
 
   test 'should not create report without address' do
-    report = Report.new(title: @report.title,
-                        description: @report.description,
-                        town: @report.town)
+    report = @report
+    report.address = nil
     assert_not report.save, 'Saved an report without address!'
   end
 
@@ -40,9 +38,18 @@ class ReportTest < ActiveSupport::TestCase
     assert_not report.save, 'Saved an report without town!'
   end
 
+  # ### INSTANCE METHODS ###
+  # test 'should parse street out of address' do
+  #   report = Report.new(title)
+  # end
+
   private
 
   def initialize_report
-    @report = reports(:report1)
+    report = reports(:report1)
+    @report = Report.new(title: report.title,
+                         description: report.description,
+                         address: report.address,
+                         town: report.town)
   end
 end
