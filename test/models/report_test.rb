@@ -38,10 +38,16 @@ class ReportTest < ActiveSupport::TestCase
     assert_not report.save, 'Saved an report without town!'
   end
 
-  # ### INSTANCE METHODS ###
-  # test 'should parse street out of address' do
-  #   report = Report.new(title)
-  # end
+  ### METHODS ###
+  test 'should parse street out of address' do
+    report = @report
+    assert_equal report.set_street, 'Schoolpad'
+  end
+
+  test 'should retun location of report' do
+    report = @report
+    assert_equal report.location, 'Schoolpad 7, Middenmeer'
+  end
 
   private
 
