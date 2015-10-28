@@ -63,6 +63,10 @@ class ReportTest < ActiveSupport::TestCase
     end
   end
 
+  test 'should return image path' do
+    assert_equal @report.image_one.store_dir, "uploads/report/image_one/#{@report.id}"
+  end
+
   private
 
   def initialize_report
