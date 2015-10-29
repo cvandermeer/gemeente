@@ -5,7 +5,7 @@
     </div>
   <% end %>
 
-  <div class='report-info'>
+  <div class='report-info clearfix'>
     <h3>
       <%= link_to report.title, report, data: { id: report.id, title: report.title,
                                               lat: report.latitude, lon: report.longitude },
@@ -14,7 +14,11 @@
     <span class='date'><%= report.created_at %></span>
     <span class='address'>Locatie: <%= report.location %></span>
     <p>
-      <%= report.description.truncate(80) %>
+      <% if report.image(:thumb) != nil %>
+        <%= report.description.truncate(30, separator: ' ') %>
+      <% else %>
+        <%= report.description.truncate(110, separator: ' ') %>
+      <% end %>
     </p>
     <% if user_signed_in? %>
       <% if (report.user == current_user) || (current_user.community? && (report.community == current_user.community)) %>
@@ -29,5 +33,8 @@
     <% if report.resolved_at %>
       (OPGELOST)
     <% end %>
+
+    <%= link_to 'Bekijken', report, class: 'pull-right button button-primary small' %>
   </div>
+
 </li>

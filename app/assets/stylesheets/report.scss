@@ -10,16 +10,17 @@
 }
 
 .report-image {
-  width: 150px;
-  height: 150px;
   float: left;
+  max-width: 150px;
+  max-height: 150px;
   padding: 0 12px 0 0;
 }
 
 .report-info {
   position: relative;
-  padding: 12px;
-  width: auto;
+  padding: 12px 12px 0;
+  min-height: 100%;
+  height: 100%;
   span {
     display: block;
   }
@@ -30,5 +31,13 @@
   }
   h3 {
     margin-bottom: 0;
+  }
+  p {
+    margin-bottom: 24px;
+  }
+  .button {
+    position: absolute;
+    bottom: 0px;
+    right: 12px;
   }
 }
