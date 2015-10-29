@@ -8,7 +8,7 @@ ready = function() {
   // Resets the map on a specific location to show the Netherlands
   $('.reset-map').on('click', function(){
     map.setCenter({lat: 52.397, lng: 5.544})
-    map.setZoom(7)
+    map.setZoom(8)
   });
 }
 
