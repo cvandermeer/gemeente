@@ -17,6 +17,24 @@ input[type="checkbox"] {
   margin: 8px 10px 8px 0;
 }
 
+input[type="time"],
+input[type="date"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"] {
+  border-radius: 0;
+  &:focus {
+    border-color: $basic-color;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 /* Form errors */
 
 .field_with_errors {

@@ -1,22 +1,33 @@
-<li data-report-id="<%= report.id %>">
-  <%= link_to report.title, report, data: { id: report.id,
-                                            title: report.title,
-                                            lat: report.latitude,
-                                            lon: report.longitude },
-                                            class: 'report',
-                                            target: '_blank' %> (<%= report.location %>)
+<li class='clearfix' data-report-id="<%= report.id %>">
+  <% if report.image(:thumb) != nil %>
+    <div class='report-image'>
+      <%= image_tag report.image(:thumb), class: 'u-max-full-width' %>
+    </div>
+  <% end %>
 
-  <% if user_signed_in? %>
-    <% if (report.user == current_user) || (current_user.community? && (report.community == current_user.community)) %>
-      <%= link_to 'Aanpassen', edit_report_path(report.id), class: 'icon-edit js_modal', remote: true %>
-      <%= link_to 'Verwijderen', delete_report_path(report.id), data: { remote: true,
-                                                              modal_type: 'destroy',
-                                                              modal_element: 'reports' },
-                                                              class: 'icon-destroy js_modal' %>
+  <div class='report-info'>
+    <h3>
+      <%= link_to report.title, report, data: { id: report.id, title: report.title,
+                                              lat: report.latitude, lon: report.longitude },
+                                              class: 'report', target: '_blank' %>
+    </h3>
+    <span class='date'><%= report.created_at %></span>
+    <span class='address'>Locatie: <%= report.location %></span>
+    <p>
+      <%= report.description.truncate(80) %>
+    </p>
+    <% if user_signed_in? %>
+      <% if (report.user == current_user) || (current_user.community? && (report.community == current_user.community)) %>
+        <%= link_to 'Aanpassen', edit_report_path(report.id), class: 'icon-edit js_modal', remote: true %>
+        <%= link_to 'Verwijderen', delete_report_path(report.id), data: { remote: true,
+                                                                modal_type: 'destroy',
+                                                                modal_element: 'reports' },
+                                                                class: 'icon-destroy js_modal' %>
+      <% end %>
     <% end %>
-  <% end %>
 
-  <% if report.resolved_at %>
-    (OPGELOST)
-  <% end %>
+    <% if report.resolved_at %>
+      (OPGELOST)
+    <% end %>
+  </div>
 </li>

@@ -1,25 +1,34 @@
 .report {
   cursor: pointer;
-  color: #1EAEDB;
-  text-decoration: underline;
-  &:hover {
-    text-decoration: none;
-    color: #0FA0CE;
-  }
 }
 
 .reports{
-  h3{
-    font-size:25px;
-    font-weight:900;
-    margin-bottom: 5px;
-    margin-top: 5px;
-  }
   li{
+    list-style: none;
     background-color : #fff;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 50px;
-    padding-top: 50px;
+  }
+}
+
+.report-image {
+  width: 150px;
+  height: 150px;
+  float: left;
+  padding: 0 12px 0 0;
+}
+
+.report-info {
+  position: relative;
+  padding: 12px;
+  width: auto;
+  span {
+    display: block;
+  }
+  .date {
+    font-size: 12px;
+    opacity: 0.5;
+    font-style: italic;
+  }
+  h3 {
+    margin-bottom: 0;
   }
 }

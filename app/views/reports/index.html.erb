@@ -1,8 +1,11 @@
-<div class='content-container'>
-	<div>
-    <input id="pac-input" class="controls" type="text" placeholder="Zoek op Gemeente">
+<div class='content'>
+  <div class='inner search-options'>
+      <h3>Zoeken</h3>
+      <input id="pac-input" class="controls u-full-width" type="text" placeholder="Zoek op Gemeente">
+  </div>
+  <div class='inner'>
+    <h3>Meldingen</h3>
     <ul class='reports'>
-        <h3>Meldingen</h3>
   	   <%= render @reports %>
   	</ul>
   </div>

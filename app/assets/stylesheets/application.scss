@@ -2,6 +2,8 @@
 $basic-color: #ff513f;
 $basic-color-dark: #E94A3A;
 
+$dark-gray: #474747;
+
 $background-color: #f4f4f2;
 $background-color-dark: #424242;
 
@@ -72,14 +74,36 @@ body, html {
   // min-height: calc(100% - 62px);
   height: 100%;
   position: relative;
-  background: #f4f4f2;
+  background: $background-color;
 }
 
-.content-container {
+.content {
   float: left;
   height: 100%;
   width: 30%;
   overflow: scroll;
+  .inner {
+    padding: 12px;
+  }
+}
+
+
+/* Font styling */
+
+h3 {
+  color: $dark-gray;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.1px;
+  margin-bottom: 12px;
+  a {
+    text-decoration: none;
+    color: $dark-gray;
+    &:hover {
+      color: $basic-color;
+    }
+  }
 }
 
 /* Clear Floated Elements */

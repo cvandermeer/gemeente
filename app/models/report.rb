@@ -42,4 +42,14 @@ class Report < ActiveRecord::Base
   def location
     [address, town].compact.join(', ')
   end
+
+  def image(size)
+    if image_one?
+      image_one_url(size)
+    elsif image_two?
+      image_two_url(size)
+    elsif image_three?
+      image_three_url(size)
+    end
+  end
 end
