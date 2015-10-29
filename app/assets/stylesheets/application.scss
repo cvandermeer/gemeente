@@ -1,3 +1,10 @@
+/* Variables */
+$basic-color: #ff513f;
+$basic-color-dark: #E94A3A;
+
+$background-color: #f4f4f2;
+$background-color-dark: #424242;
+
 /* Basic styling */
 @import 'bourbon';
 
@@ -25,21 +32,54 @@ html, html a, body, body a {
 body, html {
   height: 100%;
   min-height: 100%;
+  input[type="submit"].button-primary,
+  .button.button-primary {
+    background: $basic-color;
+    border-color: $basic-color-dark;
+    @include transition(0.3s);
+    &:focus,
+    &:active,
+    &:hover {
+      background: $basic-color-dark;
+      border-color: $basic-color;
+      color: #fff;
+    }
+  }
+  a {
+    @include transition(0.3s);
+    &:focus,
+    &:active,
+    &:hover {
+      color: $basic-color-dark;
+    }
+  }
+}
+
+.outer-wrapper {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  right: 0;
+  @include transition(0.3s);
+  &.show-side-menu {
+    right: 200px;
+  }
 }
 
 .wrapper {
-  height: calc(100% - 60px);
-  min-height: calc(100% - 60px);
+  // height: calc(100% - 62px);
+  // min-height: calc(100% - 62px);
+  height: 100%;
   position: relative;
   background: #f4f4f2;
 }
 
 .content-container {
   float: left;
-  max-height: 100%;
-  width: 28%;
+  height: 100%;
+  width: 30%;
   overflow: scroll;
-  height: 2030px;
 }
 
 /* Clear Floated Elements */

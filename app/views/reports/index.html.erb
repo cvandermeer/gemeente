@@ -1,14 +1,15 @@
 <div class='content-container'>
 	<div>
+    <input id="pac-input" class="controls" type="text" placeholder="Zoek op Gemeente">
     <ul class='reports'>
         <h3>Meldingen</h3>
   	   <%= render @reports %>
   	</ul>
-    <a href='#' class='reset-map'>Reset Map</a>
   </div>
 </div>
 
 <div class='map-container'>
 	<div id='map' class='map'></div>
-  <div id='pano' class='pano'></div>
+  <!--<div id='pano' class='pano'></div>-->
+  <a href='#' class='reset-map'>Reset Map</a>
 </div>

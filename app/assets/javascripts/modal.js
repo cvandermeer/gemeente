@@ -2,15 +2,22 @@ var ready;
 
 ready = function() {
 
+  // Sets the data to modal on ajax success and bind the datepicker
   $('.js_modal').on('ajax:success', function(e, data, status) {
     setDataInModal(this, data)
     $('input.datepicker').pickadate();
   });
 
+  // Onclick close the modal
   $('.modal-close').on('click', function() {
     removeModal()
   });
 }
+
+/**
+  * @desc appends the modalbackground and binds the onclick function
+  * @return adds an active class to the modal and modal-background
+*/
 
 function initModal() {
   var modalBackground = '<div class="modal-background"></div>'
@@ -26,6 +33,12 @@ function initModal() {
   }, 100);
 }
 
+/**
+  * @desc sets the data in modal and initializes the modal
+  * @param element e - stants for this
+  * @param string data - is the data returned by ajax
+*/
+
 function setDataInModal(e, data) {
   initModal()
   if($(e).attr('data-modal-type') == 'destroy') {
@@ -34,21 +47,32 @@ function setDataInModal(e, data) {
     // Building the modal
     $('.modal-content').html(data)
 
-    // The function can be found in reports.js
+    // The functions can be found in reports.js
     newReportForm()
     communityReports()
-    // The function can be found in search.js
+    // The functions can be found in search.js, sets up the list search
     triggerStreetSearch()
     triggerTownSearch()
   }
   bindHandlers()
 }
 
+/**
+  * @desc removes the modal and its content
+*/
+
 function removeModal() {
   $('.modal-background, .modal').removeClass('active')
   $('.modal-content').html('')
   $('.modal-header h4').remove()
 }
+
+/**
+  * @desc sets the data in modal for the destroy function
+  * @param element e - stants for this
+  * @param json data - is the data returned by ajax
+  * @return if modal confirm is delete, remove report from document
+*/
 
 function initDestroy(e, data) {
   $('.modal-content').html('')

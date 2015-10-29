@@ -1,18 +1,12 @@
 .map{
-  height: 50%;
-  min-height: 50%;
+  height: 100%;
+  min-height: 100%;
   width: 100%;
-}
-
-.pano{
-  height: 50%;
-  min-height: 50%;
-  width:100%;
 }
 
 .map-container {
   float: left;
-  height: 2030px;
-  min-height: 100%;
-  width: 72%;
+  height: calc(100% - 62px);
+  min-height: calc(100% - 62px);
+  width: 70%;
 }

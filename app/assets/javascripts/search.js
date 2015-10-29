@@ -1,4 +1,4 @@
-// variable that contains the postion in the search list
+// Variable that contains the postion in the search list
 var list_position = 0;
 
 /**
@@ -7,10 +7,10 @@ var list_position = 0;
 */
 
 function triggerStreetSearch() {
-  // prevents the new and edit report from submitting
+  // Prevents the new and edit report from submitting
   preventStreetSearchFromSubmitting()
 
-  // sets and clears the setTimeout function
+  // Sets and clears the setTimeout function
   var timer;
 
   $('.js_street_input').on('keyup', function(e) {
