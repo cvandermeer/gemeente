@@ -15,6 +15,7 @@ gem 'sinatra', require: nil
 gem 'carrierwave'
 gem 'rmagick'
 gem 'remotipart', '~> 1.2'
+gem "font-awesome-rails"
 
 group :development, :test do
   gem 'byebug'

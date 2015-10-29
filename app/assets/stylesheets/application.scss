@@ -25,6 +25,10 @@ $background-color-dark: #424242;
 @import 'search';
 @import 'responsive';
 
+// Icons
+@import 'font-awesome';
+@import 'icons';
+
 /* Basic styling */
 
 html, html a, body, body a {
@@ -70,9 +74,8 @@ body, html {
 }
 
 .wrapper {
-  // height: calc(100% - 62px);
-  // min-height: calc(100% - 62px);
-  height: 100%;
+  height: calc(100% - 62px);
+  min-height: calc(100% - 62px);
   position: relative;
   background: $background-color;
 }
@@ -80,13 +83,17 @@ body, html {
 .content {
   float: left;
   height: 100%;
-  width: 30%;
+  min-height: 100%;
+  width: 40%;
   overflow: scroll;
   .inner {
     padding: 12px;
   }
 }
 
+.container {
+  max-width: 1200px;
+}
 
 /* Font styling */
 

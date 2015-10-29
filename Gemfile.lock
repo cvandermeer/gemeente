@@ -113,6 +113,8 @@ GEM
     erubis (2.7.0)
     execjs (2.6.0)
     ffi (1.9.10)
+    font-awesome-rails (4.4.0.0)
+      railties (>= 3.2, < 5.0)
     formatador (0.2.5)
     geocoder (1.2.11)
     globalid (0.3.6)
@@ -313,6 +315,7 @@ DEPENDENCIES
   capybara
   carrierwave
   devise
+  font-awesome-rails
   geocoder
   guard
   guard-minitest

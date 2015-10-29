@@ -1,11 +1,8 @@
-.report {
-  cursor: pointer;
-}
-
 .reports{
   li{
     list-style: none;
     background-color : #fff;
+    border-radius: 2px;
   }
 }
 
@@ -14,6 +11,7 @@
   max-width: 150px;
   max-height: 150px;
   padding: 0 12px 0 0;
+  border-radius: 2px;
 }
 
 .report-info {
@@ -39,5 +37,13 @@
     position: absolute;
     bottom: 0px;
     right: 12px;
+  }
+  .fa {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    &.fa-pencil-square-o {
+      right: 52px;
+    }
   }
 }

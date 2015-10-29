@@ -31,9 +31,9 @@
 .container {
   position: relative;
   width: 100%;
-  max-width: 960px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 12px;
   box-sizing: border-box; }
 .column,
 .columns {
@@ -44,14 +44,14 @@
 /* For devices larger than 400px */
 @media (min-width: 400px) {
   .container {
-    width: 85%;
+    width: 100%;
     padding: 0; }
 }
 
 /* For devices larger than 550px */
 @media (min-width: 550px) {
   .container {
-    width: 80%; }
+    width: 100%; }
   .column,
   .columns {
     margin-left: 4%; }
@@ -402,7 +402,6 @@ near the relevant code. For example, if you wanted to change the styles for butt
 on small devices, paste the mobile query code up in the buttons section and style it
 there.
 */
-
 
 /* Larger than mobile */
 @media (min-width: 400px) {}
