@@ -114,9 +114,13 @@ function communityReports(){
     var clat = $(this).parent().attr('data-lat');
     var clon = $(this).parent().attr('data-lon');
     map.setCenter({lat: parseFloat(clat), lng: parseFloat(clon)});
-    map.setZoom(10);
-    $('.content-container').html(data);
+    map.setZoom(13);
+    $('.wrapper .content').html(data);
     removeModal()
+    if ($('.show-side-menu').length) {
+      $('.outer-wrapper, .side-menu').removeClass('show-side-menu');
+      $('.hamburger').removeClass('active');
+    }
   });
 }
 
