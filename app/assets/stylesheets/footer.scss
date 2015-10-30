@@ -1,0 +1,48 @@
+.footer {
+  padding: 48px 24px;
+  .fa {
+    box-shadow: none;
+    background: none;
+    padding: 0;
+    height: 17px;
+    &:before {
+      left: 0;
+      top: 2px;
+    }
+  }
+  li {
+    margin-bottom: 0;
+    list-style: none;
+    a {
+      color: $basic-color;
+    }
+  }
+  .fa-mobile:before {
+    font-size: 20px;
+    left: 2px;
+  }
+  .social {
+    padding-bottom: 12px;
+    .fa {
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      @include transition(0.3s);
+      border: 1px solid $background-color;
+      &:before {
+        left: 7px;
+        top: 7px;
+      }
+      &:hover {
+        border-color: $background-color-dark;
+      }
+    }
+    .fa-facebook {
+      margin-left: 12px;
+      &:before {
+        left: 9px;
+      }
+    }
+  }
+}
