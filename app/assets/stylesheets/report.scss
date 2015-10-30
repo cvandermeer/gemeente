@@ -22,12 +22,8 @@
   span {
     display: block;
   }
-  .date {
-    font-size: 12px;
-    opacity: 0.5;
-    font-style: italic;
-  }
   h3 {
+    text-transform: none;
     margin-bottom: 0;
   }
   p {
@@ -46,4 +42,10 @@
       right: 52px;
     }
   }
+}
+
+.date {
+  font-size: 12px;
+  opacity: 0.5;
+  font-style: italic;
 }

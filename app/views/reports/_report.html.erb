@@ -12,12 +12,12 @@
                                               class: 'report', target: '_blank' %>
     </h3>
     <span class='date'><%= report.created_at %></span>
-    <span class='address'>Locatie: <%= report.location %></span>
+    <span class='address'><%= report.location %></span>
     <p>
       <% if report.image(:thumb) != nil %>
         <%= report.description.truncate(30, separator: ' ') %>
       <% else %>
-        <%= report.description.truncate(110, separator: ' ') %>
+        <%= report.description.truncate(96, separator: ' ') %>
       <% end %>
     </p>
     <% if user_signed_in? %>
