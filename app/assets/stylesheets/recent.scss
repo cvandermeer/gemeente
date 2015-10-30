@@ -1,0 +1,14 @@
+.recent-wrapper {
+  background: $background-color;
+}
+
+.recents {
+  padding: 48px 24px;
+  .recent {
+    li {
+      list-style: none;
+      margin: 24px 0;
+      background: #fff;
+    }
+  }
+}

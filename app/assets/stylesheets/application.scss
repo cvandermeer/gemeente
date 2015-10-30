@@ -24,6 +24,8 @@ $background-color-dark: #424242;
 @import 'notice';
 @import 'search';
 @import 'featured';
+@import 'categorie';
+@import 'recent';
 @import 'responsive';
 
 // Icons
@@ -102,7 +104,7 @@ h3 {
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 0.1px;
-  margin-bottom: 12px;
+  margin-bottom: 24px;
   a {
     text-decoration: none;
     color: $dark-gray;

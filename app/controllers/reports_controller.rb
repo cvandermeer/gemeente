@@ -9,6 +9,7 @@ class ReportsController < ApplicationController
     @reports = Report.unresolved
     # This is to fill up the page
     @featured = Report.where.not(image_one: nil).limit(4)
+    @recents = Report.all.limit(3)
   end
 
   def show
