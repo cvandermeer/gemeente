@@ -4,7 +4,7 @@
       <div class='row'>
         <h3>Recent bekeken</h3>
         <ul class='recent'>
-          <% @recents.each do |recent| %>
+          <% recents.each do |recent| %>
             <%= render 'report', report: recent %>
           <% end %>
         </ul>

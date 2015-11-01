@@ -1,9 +1,9 @@
-<% if @featured.present? %>
+<% if featured.present? %>
   <div class='featured content-wrapper'>
     <div class='container'>
       <h3>Aanbevolen</h3>
       <div class='row'>
-        <% @featured.each do |feature| %>
+        <% featured.each do |feature| %>
           <div class='columns three feature'>
             <%= image_tag feature.image(:feature), class: 'u-max-full-width' %>
             <h3>

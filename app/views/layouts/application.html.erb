@@ -24,8 +24,8 @@
       </div>
 
       <% if action_name == 'index'  %>
-        <%= render 'shared/featured' %>
-        <%= render 'shared/recent' %>
+        <%= render 'shared/featured', featured: @featured %>
+        <%= render 'shared/recent', recents: @recents %>
       <% end %>
       <%= render 'shared/modal' %>
 

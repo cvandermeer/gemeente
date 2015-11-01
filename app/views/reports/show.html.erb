@@ -19,16 +19,16 @@
           </ul>
 
           <ul class='contact'>
-            <% if @report.community.email? %>
+            <% if @report.community_email? %>
               <li>
                 <i class="fa fa-envelope"></i>
-                <%= mail_to @report.community.email %>
+                <%= mail_to @report.community_email %>
               </li>
             <% end %>
-            <% if @report.community.phonenumber? %>
+            <% if @report.community_phonenumber? %>
               <li>
                 <i class="fa fa-mobile"></i>
-                <%= @report.community.phonenumber %>
+                <%= @report.community_phonenumber %>
               </li>
             <% end %>
           </ul>

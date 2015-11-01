@@ -11,6 +11,8 @@ class Report < ActiveRecord::Base
   ### ASSOCIATIONS ###
   belongs_to :community
   delegate :name, to: :community, prefix: true
+  delegate :email, to: :community, prefix: true
+  delegate :phonenumber, to: :community, prefix: true
   belongs_to :user
 
   ### VALIDATIONS ###
