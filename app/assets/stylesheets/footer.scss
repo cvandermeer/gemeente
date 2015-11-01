@@ -1,15 +1,5 @@
 .footer {
   padding: 48px 24px;
-  .fa {
-    box-shadow: none;
-    background: none;
-    padding: 0;
-    height: 17px;
-    &:before {
-      left: 0;
-      top: 2px;
-    }
-  }
   li {
     margin-bottom: 0;
     list-style: none;
@@ -17,13 +7,10 @@
       color: $basic-color;
     }
   }
-  .fa-mobile:before {
-    font-size: 20px;
-    left: 2px;
-  }
   .social {
     padding-bottom: 12px;
     .fa {
+      padding: 0;
       cursor: pointer;
       width: 30px;
       height: 30px;

@@ -8,7 +8,7 @@
   <div class='report-info clearfix'>
     <h3>
       <%= link_to report.title, report, data: { id: report.id, title: report.title,
-                                              lat: report.latitude, lon: report.longitude },
+                                              lat: report.latitude, lon: report.longitude, no_turbolink: true },
                                               class: 'report', target: '_blank' %>
     </h3>
     <span class='date'><%= report.created_at %></span>
@@ -34,7 +34,7 @@
       (OPGELOST)
     <% end %>
 
-    <%= link_to 'Bekijken', report, class: 'pull-right button button-primary small' %>
+    <%= link_to 'Bekijken', report, data: { no_turbolink: true }, class: 'pull-right button button-primary small', target: '_blank' %>
   </div>
 
 </li>

@@ -1,6 +1,14 @@
 .categorie {
   li {
     margin-bottom: 4px;
+    list-style: none;
+    &:before {
+      font-size: 9px;
+      content: "\f111";
+      font-family: FontAwesome;
+      color: $basic-color; /* or whatever color you prefer */
+      margin-right: 4px;
+    }
   }
   a {
     color: $dark-gray;
