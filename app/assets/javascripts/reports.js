@@ -270,9 +270,9 @@ function checkLonLatBounds(map){
     $('.report').each(function() {
       var el = $(this);
       if($(el).attr('data-lat') < minlat | $(el).attr('data-lat') > maxlat | $(el).attr('data-lon') < minlon | $(el).attr('data-lon') > maxlon){
-        $(el).parent().hide();
+        $(el).closest('.report-show').hide();
       }else{
-        $(el).parent().show();
+        $(el).closest('.report-show').show();
       }
     });
   });
