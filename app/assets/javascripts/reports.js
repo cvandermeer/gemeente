@@ -159,11 +159,11 @@ function initMap() {
 
     // Sets street view
     // setPanorama(pos);
-
-    getMarkers()
-    setSearchBar(map)
-    checkLonLatBounds(map);
-
+    if ($('.details-wrapper').length == 0) {
+      getMarkers()
+      setSearchBar(map)
+      checkLonLatBounds(map);
+    }
   }, function (error) {
     if (error.code == error.PERMISSION_DENIED) {
       center = {lat: 52.397, lng: 5.544}
@@ -192,9 +192,11 @@ function initMap() {
       draggable: true
     });
 
-    getMarkers()
-    setSearchBar(map)
-    checkLonLatBounds(map);
+    if ($('.details-wrapper').length == 0) {
+      getMarkers()
+      setSearchBar(map)
+      checkLonLatBounds(map);
+    }
   });
 }
 
