@@ -19,13 +19,13 @@
           </ul>
 
           <ul class='contact'>
-            <% if @report.community_email? %>
+            <% if @report.community_email != nil %>
               <li>
                 <i class="fa fa-envelope"></i>
                 <%= mail_to @report.community_email %>
               </li>
             <% end %>
-            <% if @report.community_phonenumber? %>
+            <% if @report.community_phonenumber != nil %>
               <li>
                 <i class="fa fa-mobile"></i>
                 <%= @report.community_phonenumber %>
