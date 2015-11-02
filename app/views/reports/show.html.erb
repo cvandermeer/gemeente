@@ -1,34 +1,56 @@
-<div class='row'>
-  <div class='columns four'>
-    <% if @report.image_one? %>
-      <%= image_tag @report.image_one_url(:image_cropped), class: 'u-max-full-width' %>
-    <% end %>
-  </div>
-  <div class='columns four'>
-    <% if @report.image_two? %>
-      <%= image_tag @report.image_two_url(:image_cropped), class: 'u-max-full-width' %>
-    <% end %>
-  </div>
-  <div class='columns four'>
-    <% if @report.image_three? %>
-      <%= image_tag @report.image_three_url(:image_cropped), class: 'u-max-full-width' %>
-    <% end %>
-  </div>
-</div>
+<div id='map' class='map map-show'></div>
 
-<div class='row'>
-  <div class='columns six'>
-    <h2>
-      <%= @report.title %>
-    </h2>
+<div class='inner details'>
+  <div class='container'>
+    <div class='row'>
+      <h1>
+        <%= @report.title %>
+      </h1>
+    </div>
 
-    <p><%= @report.description %></p>
-  </div>
-  <div class='columns five'>
-    <ul class='address'>
-      <li><%= @report.community_name %></li>
-      <li>Straat: <%= @report.address %></li>
-      <li>Plaats: <%= @report.town %></li>
-    </ul>
+    <div class='row'>
+      <div class='side-bar-left columns three'>
+        <div class='side-contact'>
+          <h3>Contact</h3>
+          <ul>
+            <li>Gemeente: <%= @report.community_name %></li>
+            <li>Straat: <%= @report.address %></li>
+            <li>Plaats: <%= @report.town %></li>
+          </ul>
+
+          <ul class='contact'>
+            <% if @report.community_email != nil %>
+              <li>
+                <i class="fa fa-envelope"></i>
+                <%= mail_to @report.community_email %>
+              </li>
+            <% end %>
+            <% if @report.community_phonenumber != nil %>
+              <li>
+                <i class="fa fa-mobile"></i>
+                <%= @report.community_phonenumber %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <% if @report.image(:image_big) != nil %>
+      <div class='columns six'>
+          <%= image_tag @report.image(:image_big), class: 'u-max-full-width' %>
+          <h3>Beschrijving</h3>
+          <p><%= @report.description %></p>
+      </div>
+      <% end %>
+      <%= render 'shared/side_bar' %>
+    </div>
+
+    <div class='row'>
+      <div class='columns six'>
+
+      </div>
+      <div class='columns five'>
+
+      </div>
+    </div>
   </div>
 </div>

@@ -1,9 +1,51 @@
-.report {
-  cursor: pointer;
-  color: #1EAEDB;
-  text-decoration: underline;
-  &:hover {
-    text-decoration: none;
-    color: #0FA0CE;
+.reports{
+  li{
+    list-style: none;
+    background-color : #fff;
+    border-radius: 2px;
   }
+}
+
+.report-image {
+  float: left;
+  max-width: 150px;
+  max-height: 150px;
+  padding: 0 12px 0 0;
+  border-radius: 2px;
+}
+
+.report-info {
+  position: relative;
+  padding: 12px 12px 0;
+  min-height: 100%;
+  height: 100%;
+  span {
+    display: block;
+  }
+  h3 {
+    text-transform: none;
+    margin-bottom: 0;
+  }
+  p {
+    margin-bottom: 24px;
+  }
+  .button {
+    position: absolute;
+    bottom: 0px;
+    right: 12px;
+  }
+  .fa {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    &.fa-pencil-square-o {
+      right: 52px;
+    }
+  }
+}
+
+.date {
+  font-size: 12px;
+  opacity: 0.5;
+  font-style: italic;
 }

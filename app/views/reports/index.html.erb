@@ -1,13 +1,18 @@
-<div class='content-container'>
-	<div>
+
+<div class='content'>
+  <div class='inner search-options'>
+      <h3>Zoeken</h3>
+      <input id="pac-input" class="controls u-full-width" type="text" placeholder="Zoek op Gemeente">
+  </div>
+  <div class='inner'>
+    <h3>Resultaten</h3>
     <ul class='reports'>
   	   <%= render @reports %>
   	</ul>
-    <a href='#' class='reset-map'>Reset Map</a>
   </div>
 </div>
 
 <div class='map-container'>
 	<div id='map' class='map'></div>
-  <div id='pano' class='pano'></div>
+  <a href='#' class='reset-map'>Opnieuw laden...</a>
 </div>

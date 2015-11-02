@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
-  ### RELATIONS ###
+  ### ASSOCIATIONS ###
   belongs_to :community
+  delegate :name, to: :community, prefix: true
   has_many :reports
 
   ### CONSTANTS ###

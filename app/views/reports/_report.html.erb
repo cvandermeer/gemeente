@@ -1,23 +1,40 @@
-<li data-report-id="<%= report.id %>">
-  <%= link_to report.title, report, data: { id: report.id,
-                                            title: report.title,
-                                            lat: report.latitude,
-                                            lon: report.longitude },
-                                            class: 'report',
-                                            target: '_blank' %> (<%= report.location %>)
+<li class='clearfix report-show' data-report-id="<%= report.id %>">
+  <% if report.image(:thumb) != nil %>
+    <div class='report-image'>
+      <%= image_tag report.image(:thumb), class: 'u-max-full-width' %>
+    </div>
+  <% end %>
 
-  <% if user_signed_in? %>
-    <% if (report.user == current_user) || (current_user.community? && (report.community == current_user.community)) %>
-      <%= link_to 'Edit', edit_report_path(report.id), class: 'button js_modal',
-                                                       remote: true %>
-      <%= link_to 'Delete', delete_report_path(report.id), data: { remote: true,
-                                                                   modal_type: 'destroy',
-                                                                  modal_element: 'reports' },
-                                                                  class: 'button js_modal' %>
+  <div class='report-info clearfix'>
+    <h3>
+      <%= link_to report.title, report, data: { id: report.id, title: report.title,
+                                              lat: report.latitude, lon: report.longitude, no_turbolink: true },
+                                              class: 'report', target: '_blank' %>
+    </h3>
+    <span class='date'><%= report.created_at %></span>
+    <span class='address'><%= report.location %></span>
+    <p>
+      <% if report.image(:thumb) != nil %>
+        <%= report.description.truncate(30, separator: ' ') %>
+      <% else %>
+        <%= report.description.truncate(96, separator: ' ') %>
+      <% end %>
+    </p>
+    <% if user_signed_in? %>
+      <% if (report.user == current_user) || (current_user.community? && (report.community == current_user.community)) %>
+        <%= link_to 'Aanpassen', edit_report_path(report.id), class: 'fa fa-pencil-square-o js_modal', remote: true %>
+        <%= link_to 'Verwijderen', delete_report_path(report.id), data: { remote: true,
+                                                                modal_type: 'destroy',
+                                                                modal_element: 'reports' },
+                                                                class: 'fa fa-trash-o js_modal' %>
+      <% end %>
     <% end %>
-  <% end %>
 
-  <% if report.resolved_at %>
-    (OPGELOST)
-  <% end %>
+    <% if report.resolved_at %>
+      (OPGELOST)
+    <% end %>
+
+    <%= link_to 'Bekijken', report, data: { no_turbolink: true }, class: 'pull-right button button-primary small', target: '_blank' %>
+  </div>
+
 </li>

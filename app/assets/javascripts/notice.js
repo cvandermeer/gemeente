@@ -2,10 +2,15 @@ var ready;
 
 ready = function() {
 
-  if( $('.notice').length ) {
-    $('.notice').addClass('active');
+  /**
+    * @desc adds active class to notice and alert
+    * @return remove active class after 5 seconds
+  */
+
+  if( $('.notice, .alert').length ) {
+    $('.notice, .alert').addClass('active');
     setTimeout(function() {
-      $('.notice').removeClass('active');
+      $('.notice, .alert').removeClass('active');
     }, 5000);
   }
 }

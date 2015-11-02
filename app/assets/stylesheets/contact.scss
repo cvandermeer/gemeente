@@ -1,0 +1,39 @@
+.side-contact {
+  background: #fff;
+  padding: 24px;
+  li {
+    list-style: none;
+    margin-bottom: 6px;
+  }
+  ul:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+.contact {
+  a {
+    color: $basic-color;
+    &:hover {
+      color: $basic-color-dark;
+    }
+  }
+  .fa {
+    box-shadow: none;
+    background: none;
+    padding: 0;
+    height: 17px;
+    &:before {
+      left: 0;
+      top: 2px;
+    }
+  }
+  .fa-envelope:before {
+    font-size: 14px;
+    top: 5px;
+  }
+  .fa-mobile:before {
+    font-size: 20px;
+    left: 2px;
+  }
+}
