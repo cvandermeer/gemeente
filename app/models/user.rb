@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   ### ASSOCIATIONS ###
   belongs_to :community
+  delegate :name, to: :community, prefix: true
   has_many :reports
 
   ### CONSTANTS ###

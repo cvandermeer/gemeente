@@ -50,11 +50,13 @@ class ReportTest < ActiveSupport::TestCase
     assert_equal report.location, 'Schoolpad 7, Middenmeer'
   end
 
-  test 'should set and create community' do
-    assert_difference('Community.count') do
-      @report.set_community
+  unless ENV['SKIP_REDIS_TESTS']
+    test 'should set and create community' do
+      assert_difference('Community.count') do
+        @report.set_community
+      end
+      assert_equal @report.community.name, 'Hollands Kroon'
     end
-    assert_equal @report.community.name, 'Hollands Kroon'
   end
 
   test 'should set community if it already exists' do

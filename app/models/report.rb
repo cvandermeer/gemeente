@@ -11,6 +11,8 @@ class Report < ActiveRecord::Base
   ### ASSOCIATIONS ###
   belongs_to :community
   delegate :name, to: :community, prefix: true
+  delegate :email, to: :community, prefix: true
+  delegate :phonenumber, to: :community, prefix: true
   belongs_to :user
 
   ### VALIDATIONS ###
@@ -41,5 +43,15 @@ class Report < ActiveRecord::Base
   ### INSTANCE METHODS ###
   def location
     [address, town].compact.join(', ')
+  end
+
+  def image(size)
+    if image_one?
+      image_one_url(size)
+    elsif image_two?
+      image_two_url(size)
+    elsif image_three?
+      image_three_url(size)
+    end
   end
 end

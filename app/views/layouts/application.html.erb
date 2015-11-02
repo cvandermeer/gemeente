@@ -14,14 +14,23 @@
   </head>
   <body>
 
-    <%= render 'shared/menu' %>
-    <%= render 'shared/notice' %>
+    <div class='outer-wrapper'>
+      <%= render 'shared/menu' %>
+      <%= render 'shared/side_menu' %>
+      <%= render 'shared/notice' %>
 
-    <div class='wrapper'>
-      <%= yield %>
+      <div class='wrapper'>
+        <%= yield %>
+      </div>
+
+      <% if action_name == 'index'  %>
+        <%= render 'shared/featured', featured: @featured %>
+        <%= render 'shared/recent', recents: @recents %>
+      <% end %>
+      <%= render 'shared/modal' %>
+
+      <%= render 'shared/footer' %>
     </div>
-
-    <%= render 'shared/modal' %>
 
   </body>
 </html>

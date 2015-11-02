@@ -1,3 +1,12 @@
+/* Variables */
+$basic-color: #ff513f;
+$basic-color-dark: #E94A3A;
+
+$dark-gray: #474747;
+
+$background-color: #f4f4f2;
+$background-color-dark: #424242;
+
 /* Basic styling */
 @import 'bourbon';
 
@@ -14,7 +23,16 @@
 @import 'menu';
 @import 'notice';
 @import 'search';
+@import 'featured';
+@import 'categorie';
+@import 'recent';
+@import 'contact';
+@import 'footer';
 @import 'responsive';
+
+// Icons
+@import 'font-awesome.min.css';
+@import 'icons';
 
 /* Basic styling */
 
@@ -25,23 +43,84 @@ html, html a, body, body a {
 body, html {
   height: 100%;
   min-height: 100%;
+  input[type="submit"].button-primary,
+  .button.button-primary {
+    background: $basic-color;
+    border-color: $basic-color-dark;
+    @include transition(0.3s);
+    &:focus,
+    &:active,
+    &:hover {
+      background: $basic-color-dark;
+      border-color: $basic-color;
+      color: #fff;
+    }
+  }
+  a {
+    @include transition(0.3s);
+    &:focus,
+    &:active,
+    &:hover {
+      color: $basic-color-dark;
+    }
+  }
+}
+
+.outer-wrapper {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  right: 0;
+  @include transition(0.3s);
+  &.show-side-menu {
+    right: 200px;
+  }
 }
 
 .wrapper {
-  height: calc(100% - 60px);
-  min-height: calc(100% - 60px);
+  height: calc(100% - 62px);
+  min-height: calc(100% - 62px);
   position: relative;
+  background: $background-color;
+}
+.content {
+  float: left;
+  height: 100%;
+  min-height: 100%;
+  width: 30%;
+  overflow: scroll;
+  .inner {
+    padding: 24px 24px 0px 24px;
+  }
 }
 
-.content-container {
-  float: left;
-  max-height: 100%;
-  width: 48%;
-  overflow: auto;
+.content-wrapper {
+  padding: 12px 24px;
+}
+
+.inner {
+  padding: 24px;
+}
+
+/* Font styling */
+h3 {
+  color: $dark-gray;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.1px;
+  margin-bottom: 24px;
+  a {
+    text-decoration: none;
+    color: $dark-gray;
+    &:hover {
+      color: $basic-color;
+    }
+  }
 }
 
 /* Clear Floated Elements */
-
 .clear {
   clear: both;
   display: block;
@@ -60,4 +139,25 @@ body, html {
   visibility: hidden;
   width: 0;
   height: 0;
+}
+
+/* float left our right */
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+/* Buttons */
+.button {
+  margin-bottom: 12px;
+  &.small {
+    font-size: 10px;
+    height: 30px;
+    line-height: 28px;
+    padding: 0 12px;
+    letter-spacing: 0.5px;
+  }
 }

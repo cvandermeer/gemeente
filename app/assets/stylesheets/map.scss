@@ -1,20 +1,41 @@
 .map{
-  height: 50%;
-  min-height: 50%;
+  height: 100%;
+  min-height: 100%;
   width: 100%;
+  &.map-show {
+    height: 150px;
+    min-height: 150px;
+  }
 }
 
-.pano{
-  height: 50%;
-  min-height: 50%;
-  width:100%;
+img {
+  min-width: 100%;
 }
 
 .map-container {
   float: left;
   height: 100%;
   min-height: 100%;
-  width: 52%;
+  width: 70%;
+  position: relative;
 }
 
-
+.reset-map {
+  position: absolute;
+  top: 10px;
+  left: 50px;
+  background: #fff;
+  color: #666;
+  border-radius: 2px;
+  font-weight: bold;
+  letter-spacing: 0.4px;
+  font-size: 10px;
+  padding: 5px 8px;
+  text-decoration: none;
+  text-transform: uppercase;
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.05);
+  @include transition(0.3s);
+  &:hover {
+    color: #333;
+  }
+}

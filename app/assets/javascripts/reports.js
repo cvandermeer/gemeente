@@ -1,3 +1,95 @@
+var mapStyles = [ {
+  featureType:'road',
+  elementType:'labels',
+  stylers:[
+    {visibility:'simplified'},
+    {lightness:20}
+  ]}, {
+  featureType:'administrative.land_parcel',
+  elementType:'all',
+  stylers:[
+    {visibility:'off'}
+  ]},{
+  featureType:'landscape.man_made',
+  elementType:'all',
+  stylers:[
+    {visibility:'on'}
+  ]},{
+  featureType:'transit',
+  elementType:'all',
+  stylers:[
+    {saturation:-100},
+    {visibility:'on'},
+    {lightness:10}
+  ]},{
+  featureType:'road.local',
+  elementType:'all',
+  stylers:[
+    {visibility:'on'}
+  ]},{
+  featureType:'road.local',
+  elementType:'all',
+  stylers:[
+    {visibility:'on'}
+  ]},{
+  featureType:'road.highway',
+  elementType:'labels',
+  stylers:[
+    {visibility:'simplified'}
+  ]},{
+  featureType:'poi',
+  elementType:'labels',
+  stylers:[
+    {visibility:'off'}
+  ]},{
+  featureType:'road.arterial',
+  elementType:'labels',
+  stylers:[
+    {visibility:'on'},
+    {lightness:50}
+  ]},{
+  featureType:'water',
+  elementType:'all',
+  stylers:[
+    {hue:'#a1cdfc'},
+    {saturation:30},
+    {lightness:49}
+  ]},{
+  featureType:'road.highway',
+  elementType:'geometry',
+  stylers:[
+    {hue:'#f49935'}
+  ]},{
+  featureType:'road.arterial',
+  elementType:'geometry',
+  stylers:[
+    {hue:'#fad959'}
+  ]}, {
+  featureType:'road.highway',
+  elementType:'all',
+  stylers:[
+    {hue:'#dddbd7'},
+    {saturation:-92},
+    {lightness:60},
+    {visibility:'on'}
+  ]}, {
+  featureType:'landscape.natural',
+  elementType:'all',
+  stylers:[
+    {hue:'#c8c6c3'},
+    {saturation:-51},
+    {lightness:-5},
+    {visibility:'on'}
+  ]}, {
+  featureType:'poi',
+  elementType:'all',
+  stylers:[
+    {hue:'#d9d5cd'},
+    {saturation:-70},
+    {lightness:20},
+    {visibility:'on'}
+  ]}
+];
 var ready;
 var map;
 
@@ -8,7 +100,7 @@ ready = function() {
   // Resets the map on a specific location to show the Netherlands
   $('.reset-map').on('click', function(){
     map.setCenter({lat: 52.397, lng: 5.544})
-    map.setZoom(7)
+    map.setZoom(8)
   });
 }
 
@@ -22,9 +114,13 @@ function communityReports(){
     var clat = $(this).parent().attr('data-lat');
     var clon = $(this).parent().attr('data-lon');
     map.setCenter({lat: parseFloat(clat), lng: parseFloat(clon)});
-    map.setZoom(10);
-    $('.content-container').html(data);
+    map.setZoom(13);
+    $('.wrapper .content').html(data);
     removeModal()
+    if ($('.show-side-menu').length) {
+      $('.outer-wrapper, .side-menu').removeClass('show-side-menu');
+      $('.hamburger').removeClass('active');
+    }
   });
 }
 
@@ -40,7 +136,19 @@ function initMap() {
                                      position.coords.longitude);
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 12,
-      center: pos
+      center: pos,
+      styles: mapStyles,
+      disableDefaultUI: true,
+      streetViewControl: true,
+      streetViewControlOptions: {
+        position: google.maps.ControlPosition.LEFT_TOP
+      },
+      scrollwheel: false,
+      zoomControl: true,
+      zoomControlOptions: {
+         position: google.maps.ControlPosition.LEFT_TOP
+      },
+      draggable: true
     });
 
     var infowindow = new google.maps.InfoWindow({
@@ -50,16 +158,16 @@ function initMap() {
     });
 
     // Sets street view
-    setPanorama(pos);
-
-    getMarkers()
-    setSearchBar(map)
-    checkLonLatBounds(map);
-
+    // setPanorama(pos);
+    if ($('.details-wrapper').length == 0) {
+      getMarkers()
+      setSearchBar(map)
+      checkLonLatBounds(map);
+    }
   }, function (error) {
     if (error.code == error.PERMISSION_DENIED) {
       center = {lat: 52.397, lng: 5.544}
-      zoom = 7
+      zoom = 8
 
       if($('.community-data').length){
         var community_position = {lat: parseFloat($('.community-data').attr('data-lat')), lng: parseFloat($('.community-data').attr('data-lon'))}
@@ -69,12 +177,26 @@ function initMap() {
     }
     map = new google.maps.Map(document.getElementById('map'), {
       center: center,
-      zoom: zoom
+      zoom: zoom,
+      styles: mapStyles,
+      disableDefaultUI: true,
+      streetViewControl: true,
+      streetViewControlOptions: {
+        position: google.maps.ControlPosition.LEFT_TOP
+      },
+      scrollwheel: false,
+      zoomControl: true,
+      zoomControlOptions: {
+         position: google.maps.ControlPosition.LEFT_TOP
+      },
+      draggable: true
     });
 
-    getMarkers()
-    setSearchBar(map)
-    checkLonLatBounds(map);
+    if ($('.details-wrapper').length == 0) {
+      getMarkers()
+      setSearchBar(map)
+      checkLonLatBounds(map);
+    }
   });
 }
 
@@ -150,9 +272,9 @@ function checkLonLatBounds(map){
     $('.report').each(function() {
       var el = $(this);
       if($(el).attr('data-lat') < minlat | $(el).attr('data-lat') > maxlat | $(el).attr('data-lon') < minlon | $(el).attr('data-lon') > maxlon){
-        $(el).parent().hide();
+        $(el).closest('.report-show').hide();
       }else{
-        $(el).parent().show();
+        $(el).closest('.report-show').show();
       }
     });
   });
@@ -168,7 +290,7 @@ function goToReportLocation(el) {
   var clicked_position = {lat: parseFloat($(el).attr('data-lat')), lng: parseFloat($(el).attr('data-lon'))}
   map.setCenter(clicked_position)
   map.setZoom(17)
-  setPanorama(clicked_position)
+  // setPanorama(clicked_position)
 }
 
 /**
