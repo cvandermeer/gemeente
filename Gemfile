@@ -10,6 +10,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'geocoder'
 gem 'devise'
 gem 'bourbon'
+gem 'font-awesome-rails'
 gem 'sidekiq'
 gem 'sinatra', require: nil
 gem 'carrierwave'
