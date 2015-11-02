@@ -27,7 +27,6 @@ $background-color-dark: #424242;
 @import 'categorie';
 @import 'recent';
 @import 'contact';
-@import 'details';
 @import 'footer';
 @import 'responsive';
 
@@ -98,6 +97,10 @@ body, html {
 
 .content-wrapper {
   padding: 12px 24px;
+}
+
+.inner {
+  padding: 24px;
 }
 
 /* Font styling */
