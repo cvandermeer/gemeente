@@ -34,6 +34,7 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'launchy'
+  gem 'capistrano-sidekiq'
 end
 
 group :production do
