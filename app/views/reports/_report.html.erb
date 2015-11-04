@@ -1,11 +1,12 @@
 <li class='clearfix report-show' data-report-id="<%= report.id %>">
+  <%= link_to '', report, data: { no_turbolink: true }, class: 'goto-report', target: '_blank'  %>
   <% if report.image(:thumb) != nil %>
     <div class='report-image'>
       <%= image_tag report.image(:thumb), class: 'u-max-full-width' %>
     </div>
   <% end %>
-
   <div class='report-info clearfix'>
+
     <h3>
       <%= link_to report.title, report, data: { id: report.id, title: report.title,
                                               lat: report.latitude, lon: report.longitude, no_turbolink: true },
@@ -34,7 +35,5 @@
       (OPGELOST)
     <% end %>
 
-    <%= link_to 'Bekijken', report, data: { no_turbolink: true }, class: 'pull-right button button-primary small', target: '_blank' %>
   </div>
-
 </li>
