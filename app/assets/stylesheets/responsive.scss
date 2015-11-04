@@ -1,17 +1,49 @@
-@media only screen and (max-width: 550px) {
+.show-on-mobile {
+  display: none !important;
+}
+
+.hide-on-mobile {
+  display: block !important;
+}
+
+@media only screen and (max-width: 660px) {
+  .show-on-mobile {
+    display: block !important;
+  }
+  header {
+    .columns {
+      &.three {
+        width: 40%;
+      }
+      &.nine {
+        width: 60%;
+      }
+    }
+  }
+
+  .button {
+    padding: 0 12px;
+    font-size: 10px;
+  }
+
+  .hide-on-mobile {
+    display: none !important;
+  }
+
   .map-container {
     width: 100% !important;
   }
   .map-container {
-    height: 60%;
-    min-height: 60%;
+    height: 50%;
+    min-height: 50%;
   }
   .content {
-    height: 40%;
-    min-height: 40%;
+    width: 100% !important;
+    height: 50% !important;
+    min-height: 50% !important;
   }
   .wrapper {
-    height: calc(100% - 120px) !important;
-    min-height: calc(100% - 120px) !important;
+    height: calc(100% - 62px) !important;
+    min-height: calc(100% - 62px) !important;
   }
 }
