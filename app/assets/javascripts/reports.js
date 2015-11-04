@@ -138,7 +138,9 @@ function initMap() {
       zoom: 12,
       center: pos,
       styles: mapStyles,
-      disableDefaultUI: true,
+      mapTypeControlOptions: {
+         position: google.maps.ControlPosition.RIGHT_TOP
+      },
       streetViewControl: true,
       streetViewControlOptions: {
         position: google.maps.ControlPosition.LEFT_TOP
@@ -179,7 +181,12 @@ function initMap() {
       center: center,
       zoom: zoom,
       styles: mapStyles,
-      disableDefaultUI: true,
+      mapTypeControlOptions: {
+         position: google.maps.ControlPosition.RIGHT_TOP
+      },
+      zoomControlOptions: {
+          position: google.maps.ControlPosition.RIGHT_TOP
+      },
       streetViewControl: true,
       streetViewControlOptions: {
         position: google.maps.ControlPosition.LEFT_TOP
