@@ -25,7 +25,7 @@
             <i class="fa fa-phone"></i> (0513) 12 34 56
           </li>
           <li>
-            <i class="fa fa-globe"></i> <%= link_to 'www.ikbeninwoner.nl', root_path %>
+            <i class="fa fa-globe"></i> <%= link_to 'www.ikbeninwoner.nl', root_path, data: { no_turbolink: true }%>
           </li>
         </ul>
       </div>
@@ -35,7 +35,7 @@
           <i class="fa fa-twitter"></i>
           <i class="fa fa-facebook"></i>
         </div>
-        <%= link_to 'Contact', root_path, class: 'button' %>
+        <%= link_to 'Contact', root_path, data: { no_turbolink: true }, class: 'button' %>
       </div>
     </div>
   </div>
