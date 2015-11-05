@@ -1,1 +1,2 @@
-server '188.166.104.51', user: 'deploy', roles: %w(web app db), port: 2752
+set :stage, :production
+server '37.139.13.37', port: 2752, user: 'deploy', roles: %w(web app)

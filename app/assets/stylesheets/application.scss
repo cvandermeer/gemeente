@@ -88,8 +88,8 @@ body, html {
   float: left;
   height: 100%;
   min-height: 100%;
-  width: 30%;
-  overflow: scroll;
+  //width: 30%;
+  overflow-y: scroll;
   .inner {
     padding: 24px 24px 0px 24px;
   }

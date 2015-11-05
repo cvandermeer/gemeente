@@ -27,7 +27,7 @@
     margin-bottom: 0;
   }
   p {
-    margin-bottom: 24px;
+    margin-bottom: 12px;
   }
   .button {
     position: absolute;
@@ -38,6 +38,7 @@
     position: absolute;
     top: 12px;
     right: 12px;
+    z-index: 2;
     &.fa-pencil-square-o {
       right: 52px;
     }
@@ -48,4 +49,20 @@
   font-size: 12px;
   opacity: 0.5;
   font-style: italic;
+}
+
+.report-show {
+  position: relative;
+  .goto-report {
+    position: absolute;
+    z-index: 1;
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+  &:hover {
+    h3 a {
+      color: $basic-color;
+    }
+  }
 }
