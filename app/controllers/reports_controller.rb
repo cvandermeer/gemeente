@@ -1,9 +1,9 @@
 class ReportsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :info_window, :new, :create]
-  before_action :set_report, except: [:index, :new, :create]
+  before_action :authenticate_user!, except: [:index, :show, :set_markers, :info_window, :new, :create]
+  before_action :set_report, except: [:index, :new, :create, :set_markers]
   before_action :authenticate_owner, only: [:edit, :update, :destroy]
   before_action :authenticate_community_owner, only: [:edit, :update, :destroy]
-  layout false, except: [:index, :show]
+  layout false, except: [:index, :show, :set_markers]
 
   def index
     @reports = Report.unresolved
@@ -14,6 +14,10 @@ class ReportsController < ApplicationController
 
   def show
     render 'show'
+  end
+
+  def set_markers
+    redirect_to root_path
   end
 
   def info_window

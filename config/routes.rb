@@ -2,6 +2,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   root 'reports#index'
+  get 'set_markers', to: 'reports#set_markers'
 
   ### USERS ###
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
     get :info_window, on: :member
     get :delete, on: :member
   end
+
 
   ### ZIPCODES ###
   get 'search_streets', to: 'zipcodes#search_streets', as: 'search_streets'
