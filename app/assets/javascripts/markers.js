@@ -15,10 +15,10 @@ function getJsonDataForReports(map) {
     $.ajax({
       type: 'GET',
       dataType: 'json',
-      url: "/set_makers",
-      //data: {'lat': map.getCenter().lat(), 'lng': map.getCenter().lng(), 'km': km},
+      url: "/reports/markers",
+      data: {'lat': map.getCenter().lat(), 'lng': map.getCenter().lng(), 'km': km},
       success: function(data){
-
+        console.log(data)
       }
     });
 

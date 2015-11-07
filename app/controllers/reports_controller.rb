@@ -1,9 +1,9 @@
 class ReportsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :set_markers, :info_window, :new, :create]
-  before_action :set_report, except: [:index, :new, :create, :set_markers]
+  before_action :authenticate_user!, except: [:index, :show, :markers, :info_window, :new, :create]
+  before_action :set_report, except: [:index, :new, :create, :markers]
   before_action :authenticate_owner, only: [:edit, :update, :destroy]
   before_action :authenticate_community_owner, only: [:edit, :update, :destroy]
-  layout false, except: [:index, :show, :set_markers]
+  layout false, except: [:index, :show]
 
   def index
     @reports = Report.unresolved
@@ -16,8 +16,8 @@ class ReportsController < ApplicationController
     render 'show'
   end
 
-  def set_markers
-    redirect_to root_path
+  def markers
+    render json: Report.near([params[:lat], params[:lng]], params[:km], units: :km)
   end
 
   def info_window
