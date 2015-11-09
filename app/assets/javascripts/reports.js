@@ -204,6 +204,13 @@ function initMap() {
       setSearchBar(map)
       checkLonLatBounds(map);
     }
+
+    // Sets map for show
+    if ($('.map-show').length){
+      var report_show_position = {lat: parseFloat($('.map-show').attr('data-lat')), lng: parseFloat($('.map-show').attr('data-lon'))}
+      map.setCenter(report_show_position)
+      setMarker(report_show_position)
+    }
   });
 }
 
