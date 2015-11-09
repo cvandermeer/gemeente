@@ -168,7 +168,7 @@ function initMap() {
     }
   }, function (error) {
     if (error.code == error.PERMISSION_DENIED) {
-      center = {lat: 52.397, lng: 5.544}
+      center = {lat: 52.197, lng: 5.544}
       zoom = 8
 
       if($('.community-data').length){
