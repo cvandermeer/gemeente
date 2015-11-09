@@ -210,6 +210,7 @@ function initMap() {
       var report_show_position = {lat: parseFloat($('.map-show').attr('data-lat')), lng: parseFloat($('.map-show').attr('data-lon'))}
       map.setCenter(report_show_position)
       setMarker(report_show_position)
+      setPanorama(report_show_position)
     }
   });
 }
@@ -392,12 +393,9 @@ function setPanorama(position) {
       pitch: 10
     }
   });
-  map.setStreetView(panorama);
 }
-
-/**
-  * @desc sets the data in the modal
-  * @return the new/edit report in the document
+/**map.setStreetViewdata in the modal
+* @return the new/edit report in the document
 */
 
 function newReportForm() {
