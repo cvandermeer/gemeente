@@ -391,7 +391,10 @@ function setPanorama(position) {
     pov: {
       heading: 34,
       pitch: 10
-    }
+    },
+    linksControl: false,
+    panControl: false,
+    enableCloseButton: false
   });
 }
 /**map.setStreetViewdata in the modal
