@@ -51,6 +51,8 @@ img {
   border-radius: 4px;
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+  @include transition(0.3s);
   &:after {
     content: '';
     position: absolute;
@@ -58,16 +60,18 @@ img {
 	  border-right: 19px solid transparent;
 	  border-top: 10px solid #fff;
     top: 33px;
+    @include transition(0.3s);
   }
   .icon {
+    background: #fff;
     width: 24px;
     height: 24px;
     border-radius: 100%;
     z-index: 1;
     position: absolute;
-    left: 5px;
-    top: 5px;
-    border: 2px solid $basic-color;
+    left: 3px;
+    top: 3px;
+    border: 4px solid $basic-color;
     &:before {
       font-family: FontAwesome;
       color: $dark-gray;
@@ -78,6 +82,13 @@ img {
       text-align: center;
       content: "\f12a";
 
+    }
+  }
+  &:hover {
+    background: $basic-color;
+    margin-top: -12px;
+    &:after {
+      border-top: 12px solid $basic-color;
     }
   }
 }
