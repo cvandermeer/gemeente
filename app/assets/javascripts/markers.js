@@ -37,6 +37,7 @@ function setMarkers(data) {
     markerContent.innerHTML =
                     '<div class="marker">' +
                         '<div class="icon">' +
+                          'Blabla' +
                         '</div>' +
                     '</div>';
 
@@ -51,10 +52,6 @@ function setMarkers(data) {
     newMarkers.push(marker);
 
   }
-
-  console.log(newMarkers)
-
-  console.log(data)
 
 }
 
