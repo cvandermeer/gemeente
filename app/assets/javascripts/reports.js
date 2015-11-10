@@ -207,11 +207,34 @@ function initMap() {
 
     // Sets map for show
     if ($('.map-show').length){
-      var report_show_position = {lat: parseFloat($('.map-show').attr('data-lat')), lng: parseFloat($('.map-show').attr('data-lon'))}
+      var lat = parseFloat($('.map-show').attr('data-lat'))
+      var lng = parseFloat($('.map-show').attr('data-lon'))
+      var report_show_position = {lat: lat, lng: lng}
       map.setCenter(report_show_position)
       map.setZoom(18)
-      setMarker(report_show_position)
-      setPanorama(report_show_position)
+
+      var marker = new google.maps.Marker({
+        animation: google.maps.Animation.DROP,
+        position: report_show_position,
+        map: map
+      });
+
+      var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: report_show_position,
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      });
+
+      map.setStreetView(panorama);
+
+      var marker = new google.maps.Marker({
+        animation: google.maps.Animation.DROP,
+        position: report_show_position,
+        map: panorama
+      });
     }
   });
 }
@@ -306,7 +329,6 @@ function goToReportLocation(el) {
   var clicked_position = {lat: parseFloat($(el).attr('data-lat')), lng: parseFloat($(el).attr('data-lon'))}
   map.setCenter(clicked_position)
   map.setZoom(17)
-  // setPanorama(clicked_position)
 }
 
 /**
