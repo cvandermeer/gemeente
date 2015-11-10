@@ -37,7 +37,6 @@ function setMarkers(data) {
     markerContent.innerHTML =
                     '<div class="marker">' +
                         '<div class="icon">' +
-                          'Blabla' +
                         '</div>' +
                     '</div>';
 
