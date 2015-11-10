@@ -209,6 +209,7 @@ function initMap() {
     if ($('.map-show').length){
       var report_show_position = {lat: parseFloat($('.map-show').attr('data-lat')), lng: parseFloat($('.map-show').attr('data-lon'))}
       map.setCenter(report_show_position)
+      map.setZoom(18)
       setMarker(report_show_position)
       setPanorama(report_show_position)
     }
