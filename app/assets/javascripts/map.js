@@ -145,8 +145,6 @@ function initMap() {
     });
   });
 
-
-
   // markers.js
   getJsonDataForReports(map)
 

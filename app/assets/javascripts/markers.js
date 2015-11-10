@@ -3,7 +3,11 @@
   * @return json data of reports, with the map bounds
 */
 
+var newMarkers = [];
+var timer;
+
 function getJsonDataForReports(map) {
+
   map.addListener('bounds_changed', function() {
     var minlat = map.getBounds().getSouthWest().lat();
     var maxlat = map.getBounds().getNorthEast().lat();
@@ -11,26 +15,29 @@ function getJsonDataForReports(map) {
     var maxlng = map.getBounds().getNorthEast().lng();
     var km = getDistanceFromLatLonInKm(minlat, minlng, maxlat, maxlng)
 
-    //console.log(google.maps, 'test')
+    clearMarkers()
 
-    $.ajax({
-      type: 'GET',
-      dataType: 'json',
-      url: "/reports/markers",
-      data: {'lat': map.getCenter().lat(), 'lng': map.getCenter().lng(), 'km': km},
-      success: function(data){
-        setMarkers(data)
-      }
-    });
-
+    clearInterval(timer)
+    timer = setTimeout(function() {
+      $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: "/reports/markers",
+        data: {'lat': map.getCenter().lat(), 'lng': map.getCenter().lng(), 'km': km},
+        success: function(data){
+          setMarkers(data)
+        }
+      });
+    }, 300);
   });
 }
 
 function setMarkers(data) {
   // Needed to require the richmarker file after loading the maps
-
   initRichMarker()
-  var newMarkers = [];
+  var markerClicked = 0;
+  var activeMarker = false;
+  var lastClicked = false;
 
   for (var i = 0; i < data.length; i++) {
     var markerContent = document.createElement('DIV');
@@ -45,14 +52,46 @@ function setMarkers(data) {
                   map: map,
                   draggable: false,
                   content: markerContent,
-                  flat: true
+                  flat: true,
+                  id: data[i].id
                 });
 
     newMarkers.push(marker);
 
-  }
 
+    // Show infobox after click ------------------------------------------------------------------------------------
+
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+      return function() {
+        google.maps.event.addListener(map, 'click', function(event) {
+            lastClicked = newMarkers[i];
+        });
+        activeMarker = newMarkers[i];
+        if( activeMarker != lastClicked ){
+          for (var h = 0; h < newMarkers.length; h++) {
+              newMarkers[h].content.className = ' ';
+          }
+          newMarkers[i].content.className = 'marker-active';
+          markerClicked = 1;
+        } else {
+          newMarkers[i].content.className = ' ';
+        }
+      }
+    })(marker, i));
+  }
 }
+
+function clearMarkers() {
+  setMapOnAll(null);
+  newMarkers = []
+}
+
+function setMapOnAll(map) {
+  for (var i = 0; i < newMarkers.length; i++) {
+    newMarkers[i].setMap(map);
+  }
+}
+
 
 /**
   * @desc calculates the distances
