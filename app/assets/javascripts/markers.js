@@ -58,9 +58,7 @@ function setMarkers(data) {
 
     newMarkers.push(marker);
 
-
-    // Show infobox after click ------------------------------------------------------------------------------------
-
+    // adding click event to marker, show if active
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
       return function() {
         google.maps.event.addListener(map, 'click', function(event) {
