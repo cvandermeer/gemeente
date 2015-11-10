@@ -166,9 +166,41 @@ function initMap() {
       setSearchBar(map)
       checkLonLatBounds(map);
     }
+
+    // Sets map for show
+    if ($('.map-show').length){
+      var lat = parseFloat($('.map-show').attr('data-lat'))
+      var lng = parseFloat($('.map-show').attr('data-lon'))
+      var report_show_position = {lat: lat, lng: lng}
+      map.setCenter(report_show_position)
+      map.setZoom(18)
+
+      var marker = new google.maps.Marker({
+        animation: google.maps.Animation.DROP,
+        position: report_show_position,
+        map: map
+      });
+
+      var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: report_show_position,
+        pov: {
+          heading: 140,
+          pitch: 10
+        }
+      });
+
+      map.setStreetView(panorama);
+
+      var marker = new google.maps.Marker({
+        animation: google.maps.Animation.DROP,
+        position: report_show_position,
+        map: panorama
+      });
+    }
   }, function (error) {
     if (error.code == error.PERMISSION_DENIED) {
-      center = {lat: 52.197, lng: 5.544}
+      center = {lat: 52.397, lng: 5.544}
       zoom = 8
 
       if($('.community-data').length){
@@ -223,7 +255,7 @@ function initMap() {
       document.getElementById('pano'), {
         position: report_show_position,
         pov: {
-          heading: 34,
+          heading: 140,
           pitch: 10
         }
       });
