@@ -204,6 +204,38 @@ function initMap() {
       setSearchBar(map)
       checkLonLatBounds(map);
     }
+
+    // Sets map for show
+    if ($('.map-show').length){
+      var lat = parseFloat($('.map-show').attr('data-lat'))
+      var lng = parseFloat($('.map-show').attr('data-lon'))
+      var report_show_position = {lat: lat, lng: lng}
+      map.setCenter(report_show_position)
+      map.setZoom(18)
+
+      var marker = new google.maps.Marker({
+        animation: google.maps.Animation.DROP,
+        position: report_show_position,
+        map: map
+      });
+
+      var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: report_show_position,
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      });
+
+      map.setStreetView(panorama);
+
+      var marker = new google.maps.Marker({
+        animation: google.maps.Animation.DROP,
+        position: report_show_position,
+        map: panorama
+      });
+    }
   });
 }
 
@@ -297,7 +329,6 @@ function goToReportLocation(el) {
   var clicked_position = {lat: parseFloat($(el).attr('data-lat')), lng: parseFloat($(el).attr('data-lon'))}
   map.setCenter(clicked_position)
   map.setZoom(17)
-  // setPanorama(clicked_position)
 }
 
 /**
@@ -383,14 +414,14 @@ function setPanorama(position) {
     pov: {
       heading: 34,
       pitch: 10
-    }
+    },
+    linksControl: false,
+    panControl: false,
+    enableCloseButton: false
   });
-  map.setStreetView(panorama);
 }
-
-/**
-  * @desc sets the data in the modal
-  * @return the new/edit report in the document
+/**map.setStreetViewdata in the modal
+* @return the new/edit report in the document
 */
 
 function newReportForm() {
