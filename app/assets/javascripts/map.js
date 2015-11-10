@@ -96,6 +96,8 @@ var map;
 var pos;
 var zoom;
 
+//var google;
+
 ready = function() {
   resetMap();
 }
