@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :markers, :info_window, :new, :create]
+  before_action :authenticate_user!, except: [:index, :show, :markers, :report_index, :info_window, :new, :create]
   before_action :set_report, except: [:index, :new, :create, :markers]
   before_action :authenticate_owner, only: [:edit, :update, :destroy]
   before_action :authenticate_community_owner, only: [:edit, :update, :destroy]
@@ -19,6 +19,10 @@ class ReportsController < ApplicationController
   def markers
     @reports = Report.near([params[:lat], params[:lng]], params[:km], units: :km)
     render json: @reports
+  end
+
+  def report_index
+    render partial: 'report', locals: {report: @report}
   end
 
   def info_window

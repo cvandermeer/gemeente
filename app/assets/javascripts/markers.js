@@ -5,6 +5,7 @@
 
 var newMarkers = [];
 var timer;
+var km;
 
 function getJsonDataForReports(map) {
 
@@ -13,12 +14,13 @@ function getJsonDataForReports(map) {
     var maxlat = map.getBounds().getNorthEast().lat();
     var minlng = map.getBounds().getSouthWest().lng();
     var maxlng = map.getBounds().getNorthEast().lng();
-    var km = getDistanceFromLatLonInKm(minlat, minlng, maxlat, maxlng)
-
+    km = getDistanceFromLatLonInKm(minlat, minlng, maxlat, maxlng)
+    console.log(km)
     clearMarkers()
 
     clearInterval(timer)
     timer = setTimeout(function() {
+
       $.ajax({
         type: 'GET',
         dataType: 'json',
@@ -28,7 +30,7 @@ function getJsonDataForReports(map) {
           setMarkers(data)
 
           // report.js
-          setReports(data)
+          getReportIndex(data)
         }
       });
     }, 300);
@@ -65,17 +67,15 @@ function setMarkers(data) {
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
       return function() {
         google.maps.event.addListener(map, 'click', function(event) {
-            lastClicked = newMarkers[i];
+          lastClicked = newMarkers[i];
         });
         activeMarker = newMarkers[i];
         if( activeMarker != lastClicked ){
           for (var h = 0; h < newMarkers.length; h++) {
-              newMarkers[h].content.className = ' ';
+            newMarkers[h].content.className = ' ';
           }
           newMarkers[i].content.className = 'marker-active';
           markerClicked = 1;
-        } else {
-          newMarkers[i].content.className = ' ';
         }
       }
     })(marker, i));
@@ -111,7 +111,7 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
     ;
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
   var d = R * c; // Distance in km
-  return d;
+  return d/2;
 }
 
 function deg2rad(deg) {
