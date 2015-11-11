@@ -12,8 +12,9 @@ Rails.application.routes.draw do
 
   ### REPORTS ###
   resources :reports do
-    get :info_window, on: :member
+    get :report_index, on: :member
     get :delete, on: :member
+    get :markers, on: :collection
   end
 
   ### ZIPCODES ###

@@ -89,5 +89,15 @@ function initDestroy(e, data) {
   });
 }
 
+/**
+  * @desc binds the ajax success function
+*/
+
+function bindHandlers() {
+  $('.js_modal').bind('ajax:success', function(e, data, status) {
+    setDataInModal(this ,data)
+  });
+}
+
 $(document).ready(ready);
 $(document).on('page:load', ready);
