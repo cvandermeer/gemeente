@@ -3,5 +3,6 @@
 //= require jquery.remotipart
 //= require picker
 //= require picker.date
+//= require richmarker
 //= require turbolinks
 //= require_tree .
