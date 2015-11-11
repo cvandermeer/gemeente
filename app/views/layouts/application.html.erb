@@ -19,7 +19,7 @@
       <%= render 'shared/side_menu' %>
       <%= render 'shared/notice' %>
 
-      <div class='wrapper'>
+      <div class='<%= "index-" if controller_name == "reports" && action_name == "index" %>wrapper'>
         <%= yield %>
       </div>
 
