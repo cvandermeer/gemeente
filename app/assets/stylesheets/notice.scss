@@ -28,7 +28,7 @@ $green: #3c763d;
   }
 }
 
-.alert{
+.alert, .fail{
   background: $red;
   border: 0px solid $red;
   box-shadow: 0 0 0px rgba(189,32,38,.8);

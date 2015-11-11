@@ -1,0 +1,10 @@
+<div class='inner'>
+  <div class='container'>
+    <h2>Gebruikers</h2>
+    <ul>
+      <% @users.each do |user| %>
+        <li><%= user.email %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
