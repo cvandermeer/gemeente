@@ -10,16 +10,15 @@ var km;
 function getJsonDataForReports(map) {
 
   map.addListener('bounds_changed', function() {
-    var minlat = map.getBounds().getSouthWest().lat();
-    var maxlat = map.getBounds().getNorthEast().lat();
-    var minlng = map.getBounds().getSouthWest().lng();
-    var maxlng = map.getBounds().getNorthEast().lng();
-    km = getDistanceFromLatLonInKm(minlat, minlng, maxlat, maxlng)
-    console.log(km)
-    clearMarkers()
-
     clearInterval(timer)
     timer = setTimeout(function() {
+      var minlat = map.getBounds().getSouthWest().lat();
+      var maxlat = map.getBounds().getNorthEast().lat();
+      var minlng = map.getBounds().getSouthWest().lng();
+      var maxlng = map.getBounds().getNorthEast().lng();
+      km = getDistanceFromLatLonInKm(minlat, minlng, maxlat, maxlng)
+
+      clearMarkers()
 
       $.ajax({
         type: 'GET',
