@@ -6,7 +6,7 @@ class ReportsController < ApplicationController
   layout false, except: [:index, :show]
 
   def index
-    @reports = Report.unresolved
+    # @reports = Report.unresolved
     # This is to fill up the page
     @featured = Report.where.not(image_one: nil).limit(4)
     @recents = Report.all.limit(3)
@@ -17,7 +17,8 @@ class ReportsController < ApplicationController
   end
 
   def markers
-    render json: Report.near([params[:lat], params[:lng]], params[:km], units: :km)
+    @reports = Report.near([params[:lat], params[:lng]], params[:km], units: :km)
+    render json: @reports
   end
 
   def info_window

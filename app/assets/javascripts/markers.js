@@ -26,6 +26,9 @@ function getJsonDataForReports(map) {
         data: {'lat': map.getCenter().lat(), 'lng': map.getCenter().lng(), 'km': km},
         success: function(data){
           setMarkers(data)
+
+          // report.js
+          setReports(data)
         }
       });
     }, 300);
