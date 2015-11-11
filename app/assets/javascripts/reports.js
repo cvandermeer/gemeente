@@ -162,9 +162,11 @@ function initMap() {
     // Sets street view
     // setPanorama(pos);
     if ($('.details-wrapper').length == 0) {
-      getMarkers()
-      setSearchBar(map)
+      getMarkers();
       checkLonLatBounds(map);
+      if ($('.pac-input').length){
+        setSearchBar(map);
+      }
     }
 
     // Sets map for show
@@ -232,9 +234,11 @@ function initMap() {
     });
 
     if ($('.details-wrapper').length == 0) {
-      getMarkers()
-      setSearchBar(map)
+      getMarkers();
       checkLonLatBounds(map);
+      if ($('.pac-input').length){
+        setSearchBar(map);
+      }
     }
 
     // Sets map for show
