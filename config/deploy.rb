@@ -3,8 +3,6 @@ set :repo_url, 'git@github.com:cvandermeer/gemeente.git'
 set :deploy_to, '/home/deploy/gemeente'
 set :linked_files, %w(config/database.yml)
 set :linked_dirs, %w(bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system)
-set :pty, false
-set :sidekiq_options_per_process, ['--queue default', '--queue mailers']
 
 namespace :deploy do
   desc 'Restart application'

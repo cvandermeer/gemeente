@@ -10,15 +10,15 @@ var km;
 function getJsonDataForReports(map) {
 
   map.addListener('bounds_changed', function() {
-    clearInterval(timer)
+    clearInterval(timer);
     timer = setTimeout(function() {
       var minlat = map.getBounds().getSouthWest().lat();
       var maxlat = map.getBounds().getNorthEast().lat();
       var minlng = map.getBounds().getSouthWest().lng();
       var maxlng = map.getBounds().getNorthEast().lng();
-      km = getDistanceFromLatLonInKm(minlat, minlng, maxlat, maxlng)
+      km = getDistanceFromLatLonInKm(minlat, minlng, maxlat, maxlng);
 
-      clearMarkers()
+      clearMarkers();
 
       $.ajax({
         type: 'GET',
@@ -26,19 +26,19 @@ function getJsonDataForReports(map) {
         url: "/reports/markers",
         data: {'lat': map.getCenter().lat(), 'lng': map.getCenter().lng(), 'km': km},
         success: function(data){
-          setMarkers(data)
+          setMarkers(data);
 
           // report.js
-          getReportIndex(data)
+          getReportIndex(data);
         }
       });
-    }, 300);
+    }, 100);
   });
 }
 
 function setMarkers(data) {
   // Needed to require the richmarker file after loading the maps
-  initRichMarker()
+  initRichMarker();
   var markerClicked = 0;
   var activeMarker = false;
   var lastClicked = false;
@@ -63,33 +63,37 @@ function setMarkers(data) {
     newMarkers.push(marker);
 
     // adding click event to marker, show if active
-    google.maps.event.addListener(marker, 'click', (function(marker, i) {
-      return function() {
-        google.maps.event.addListener(map, 'click', function(event) {
-          lastClicked = newMarkers[i];
-        });
-        activeMarker = newMarkers[i];
-        if( activeMarker != lastClicked ){
-          for (var h = 0; h < newMarkers.length; h++) {
-            newMarkers[h].content.className = ' ';
-          }
-          newMarkers[i].content.className = 'marker-active';
-          markerClicked = 1;
-        }
-      }
-    })(marker, i));
+    addClickEventToMarker(marker, i);
   }
 }
 
 function clearMarkers() {
   setMapOnAll(null);
-  newMarkers = []
+  newMarkers = [];
 }
 
 function setMapOnAll(map) {
   for (var i = 0; i < newMarkers.length; i++) {
     newMarkers[i].setMap(map);
   }
+}
+
+function addClickEventToMarker(marker, i) {
+  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+    return function() {
+      google.maps.event.addListener(map, 'click', function(event) {
+        lastClicked = newMarkers[i];
+      });
+      activeMarker = newMarkers[i];
+      if( activeMarker != lastClicked ){
+        for (var h = 0; h < newMarkers.length; h++) {
+          newMarkers[h].content.className = ' ';
+        }
+        newMarkers[i].content.className = 'marker-active';
+        markerClicked = 1;
+      }
+    };
+  })(marker, i));
 }
 
 
@@ -114,5 +118,5 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
 }
 
 function deg2rad(deg) {
-  return deg * (Math.PI/180)
+  return deg * (Math.PI/180);
 }

@@ -100,7 +100,7 @@ var zoom;
 
 ready = function() {
   resetMap();
-}
+};
 
 /**
   * @desc initializes the google maps javascript api
@@ -112,8 +112,8 @@ function initMap() {
   zoom = 8;
 
   if($('.community-data').length){
-    pos = {lat: parseFloat($('.community-data').attr('data-lat')), lng: parseFloat($('.community-data').attr('data-lon'))}
-    zoom = 10
+    pos = {lat: parseFloat($('.community-data').attr('data-lat')), lng: parseFloat($('.community-data').attr('data-lon'))};
+    zoom = 10;
   }
 
   map = new google.maps.Map(document.getElementById('map'), {
@@ -135,10 +135,10 @@ function initMap() {
 
   if ($('#pac-input').length) {
     navigator.geolocation.getCurrentPosition(function(geo) {
-      pos = {lat: geo.coords.latitude, lng: geo.coords.longitude}
-      zoom = 12
-      map.setCenter(pos)
-      map.setZoom(zoom)
+      pos = {lat: geo.coords.latitude, lng: geo.coords.longitude};
+      zoom = 12;
+      map.setCenter(pos);
+      map.setZoom(zoom);
       var infowindow = new google.maps.InfoWindow({
         map: map,
         position: pos,
@@ -146,11 +146,42 @@ function initMap() {
       });
     });
 
-    setSearchBar(map)
+    setSearchBar(map);
+  }
+
+  if ($('.map-show').length){
+    var lat = parseFloat($('.map-show').attr('data-lat'));
+    var lng = parseFloat($('.map-show').attr('data-lon'));
+    var report_show_position = {lat: lat, lng: lng};
+    map.setCenter(report_show_position);
+    map.setZoom(18);
+
+    var marker = new google.maps.Marker({
+      animation: google.maps.Animation.DROP,
+      position: report_show_position,
+      map: map
+    });
+
+    var panorama = new google.maps.StreetViewPanorama(
+    document.getElementById('pano'), {
+      position: report_show_position,
+      pov: {
+        heading: 140,
+        pitch: 10
+      }
+    });
+
+    map.setStreetView(panorama);
+
+    var panoMarker = new google.maps.Marker({
+      animation: google.maps.Animation.DROP,
+      position: report_show_position,
+      map: panorama
+    });
   }
 
   // markers.js
-  getJsonDataForReports(map)
+  getJsonDataForReports(map);
 
 }
 
@@ -161,8 +192,8 @@ function initMap() {
 
 function resetMap() {
   $('.reset-map').on('click', function(){
-    map.setCenter(pos)
-    map.setZoom(zoom)
+    map.setCenter(pos);
+    map.setZoom(zoom);
   });
 }
 
@@ -183,7 +214,7 @@ function setSearchBar(map) {
   var markers = [];
   searchBox.addListener('places_changed', function() {
     var places = searchBox.getPlaces();
-    if (places.length == 0) {
+    if ( places.length === 0 ) {
       return;
     }
 
