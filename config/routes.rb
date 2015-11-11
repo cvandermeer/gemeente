@@ -5,15 +5,16 @@ Rails.application.routes.draw do
 
   ### USERS ###
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
-  resources :users, only: [:show]
+  resources :users, only: [:show, :index]
 
   ### COMMUNITIES ###
   resources :communities, only: [:index, :show]
 
   ### REPORTS ###
   resources :reports do
-    get :info_window, on: :member
+    get :report_index, on: :member
     get :delete, on: :member
+    get :markers, on: :collection
   end
 
   ### ZIPCODES ###
