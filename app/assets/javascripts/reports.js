@@ -28,41 +28,8 @@ function bindReportHandlers() {
 }
 
 /**
-  * @desc gets the data for the info window through ajax
-  * @param element el - stants for this
-  * @return if ajax success return the data in a info window
-*/
-
-function setInfoWindow(el) {
-  $.ajax({
-    type: "GET",
-    dataType: "html",
-    url: "/reports/" + el.id + "/info_window",
-    success: function(data){
-      setInfoVal(data, el);
-    }
-  });
-}
-
-/**
-  * @desc sets the data for the info window
-  * @param string data - contains the show of reports/info_window
-  * @param element el - stants for this
-  * @return opens the infor window
-*/
-
-function setInfoVal(data, el) {
-  var content = data;
-  var id = $(el)[0].id;
-  var infowindow = new google.maps.InfoWindow({
-      id: id,
-      content: content
-  });
-  infowindow.open(map,el);
-}
-
-/**map.setStreetViewdata in the modal
-* @return the new/edit report in the document
+  * @desc map.setStreetViewdata in the modal
+  * @return the new/edit report in the document
 */
 
 function newReportForm() {

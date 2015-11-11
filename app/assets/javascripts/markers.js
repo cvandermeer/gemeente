@@ -51,9 +51,6 @@ function getJsonDataForReports(map) {
 }
 
 function setMarkerShow(data) {
-  // Needed to require the richmarker file after loading the maps
-  initRichMarker();
-
   var markerContent = document.createElement('DIV');
   markerContent.innerHTML =
                   '<div class="marker">' +
@@ -76,8 +73,6 @@ var activeMarker = false;
 var lastClicked = false;
 
 function setMarkers(data) {
-  // Needed to require the richmarker file after loading the maps
-  initRichMarker();
 
   for (var i = 0; i < data.length; i++) {
     var markerContent = document.createElement('DIV');
@@ -126,6 +121,9 @@ function addClickEventToMarker(marker, i) {
           newMarkers[h].content.className = ' ';
         }
         newMarkers[i].content.className = 'marker-active';
+
+        // info_window.js
+        fetchInfoWindow(newMarkers[i]);
         markerClicked = 1;
       }
     };
