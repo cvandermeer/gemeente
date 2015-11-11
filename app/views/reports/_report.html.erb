@@ -22,9 +22,9 @@
       <% end %>
     </p>
     <% if user_signed_in? %>
-      <% if (report.user == current_user) ||
-        (current_user.community? && (report.community == current_user.community)) ||
-         current_user.admin? %>
+      <% if current_user == report.user ||
+            current_user.community? && report.community == current_user.community ||
+            current_user.admin? %>
         <%= link_to 'Aanpassen', edit_report_path(report.id), class: 'fa fa-pencil-square-o js_modal', remote: true %>
         <%= link_to 'Verwijderen', delete_report_path(report.id), data: { remote: true,
                                                                 modal_type: 'destroy',
