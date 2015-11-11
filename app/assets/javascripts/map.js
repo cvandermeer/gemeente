@@ -156,19 +156,9 @@ function initMap() {
     map.setCenter(report_show_position);
     map.setZoom(18);
 
-    var marker = new google.maps.Marker({
-      animation: google.maps.Animation.DROP,
-      position: report_show_position,
-      map: map
-    });
-
     var panorama = new google.maps.StreetViewPanorama(
     document.getElementById('pano'), {
-      position: report_show_position,
-      pov: {
-        heading: 140,
-        pitch: 10
-      }
+      position: report_show_position
     });
 
     map.setStreetView(panorama);

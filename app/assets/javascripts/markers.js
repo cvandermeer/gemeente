@@ -47,7 +47,7 @@ function setMarkers(data) {
     var markerContent = document.createElement('DIV');
     markerContent.innerHTML =
                     '<div class="marker">' +
-                        '<div class="icon">' +
+                        '<div class="marker-icon">' +
                         '</div>' +
                     '</div>';
 
