@@ -160,16 +160,12 @@ function initMap() {
     });
 
     // Sets street view
-    // setPanorama(pos);
-    if ($('.details-wrapper').length == 0) {
-      getMarkers();
-      checkLonLatBounds(map);
-      if ($('.pac-input').length){
-        setSearchBar(map);
-      }
+    getMarkers();
+    checkLonLatBounds(map);
+    if ($('#pac-input').length){
+      setSearchBar(map);
     }
-
-    // Sets map for show
+        // Sets map for show
     if ($('.map-show').length){
       var lat = parseFloat($('.map-show').attr('data-lat'))
       var lng = parseFloat($('.map-show').attr('data-lon'))
@@ -233,12 +229,10 @@ function initMap() {
       draggable: true
     });
 
-    if ($('.details-wrapper').length == 0) {
-      getMarkers();
-      checkLonLatBounds(map);
-      if ($('.pac-input').length){
-        setSearchBar(map);
-      }
+    getMarkers();
+    checkLonLatBounds(map);
+    if ($('#pac-input').length){
+      setSearchBar(map);
     }
 
     // Sets map for show
