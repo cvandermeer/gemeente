@@ -35,9 +35,41 @@ function getJsonDataForReports(map) {
       }, 100);
     });
   } else {
-    
+    // Gives back one marker for show
+    var url = window.location.pathname;
+    var id = url.substring(url.lastIndexOf('/') + 1);
+    $.ajax({
+      type: 'GET',
+      dataType: 'json',
+      url: "/reports/markers",
+      data: { 'id': id },
+      success: function(data){
+        setMarkerShow(data);
+      }
+    });
   }
 }
+
+function setMarkerShow(data) {
+  // Needed to require the richmarker file after loading the maps
+  initRichMarker();
+
+  var markerContent = document.createElement('DIV');
+  markerContent.innerHTML =
+                  '<div class="marker">' +
+                      '<div class="marker-icon">' +
+                      '</div>' +
+                  '</div>';
+
+  var marker = new RichMarker({
+                position: new google.maps.LatLng( data.latitude, data.longitude ),
+                map: map,
+                draggable: false,
+                content: markerContent,
+                flat: true
+              });
+}
+
 
 var markerClicked = 0;
 var activeMarker = false;
