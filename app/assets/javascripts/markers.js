@@ -8,40 +8,44 @@ var timer;
 var km;
 
 function getJsonDataForReports(map) {
+  if( $('.map-show').length === 0 ) {
+    map.addListener('bounds_changed', function() {
+      clearInterval(timer);
+      timer = setTimeout(function() {
+        var minlat = map.getBounds().getSouthWest().lat();
+        var maxlat = map.getBounds().getNorthEast().lat();
+        var minlng = map.getBounds().getSouthWest().lng();
+        var maxlng = map.getBounds().getNorthEast().lng();
+        km = getDistanceFromLatLonInKm(minlat, minlng, maxlat, maxlng);
 
-  map.addListener('bounds_changed', function() {
-    clearInterval(timer);
-    timer = setTimeout(function() {
-      var minlat = map.getBounds().getSouthWest().lat();
-      var maxlat = map.getBounds().getNorthEast().lat();
-      var minlng = map.getBounds().getSouthWest().lng();
-      var maxlng = map.getBounds().getNorthEast().lng();
-      km = getDistanceFromLatLonInKm(minlat, minlng, maxlat, maxlng);
+        clearMarkers();
 
-      clearMarkers();
+        $.ajax({
+          type: 'GET',
+          dataType: 'json',
+          url: "/reports/markers",
+          data: {'lat': map.getCenter().lat(), 'lng': map.getCenter().lng(), 'km': km},
+          success: function(data){
+            setMarkers(data);
 
-      $.ajax({
-        type: 'GET',
-        dataType: 'json',
-        url: "/reports/markers",
-        data: {'lat': map.getCenter().lat(), 'lng': map.getCenter().lng(), 'km': km},
-        success: function(data){
-          setMarkers(data);
-
-          // report.js
-          getReportIndex(data);
-        }
-      });
-    }, 100);
-  });
+            // report.js
+            getReportIndex(data);
+          }
+        });
+      }, 100);
+    });
+  } else {
+    
+  }
 }
+
+var markerClicked = 0;
+var activeMarker = false;
+var lastClicked = false;
 
 function setMarkers(data) {
   // Needed to require the richmarker file after loading the maps
   initRichMarker();
-  var markerClicked = 0;
-  var activeMarker = false;
-  var lastClicked = false;
 
   for (var i = 0; i < data.length; i++) {
     var markerContent = document.createElement('DIV');

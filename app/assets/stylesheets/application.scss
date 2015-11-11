@@ -79,11 +79,17 @@ body, html {
 }
 
 .wrapper {
-  height: calc(100% - 62px);
-  min-height: calc(100% - 62px);
   position: relative;
   background: $background-color;
 }
+
+.index-wrapper {
+  height: calc(100% - 62px);
+  min-height: calc(100% - 62px);
+  position: relative;
+}
+
+
 .content {
   float: left;
   height: 100%;
