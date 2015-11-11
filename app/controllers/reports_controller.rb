@@ -22,7 +22,7 @@ class ReportsController < ApplicationController
   end
 
   def report_index
-    render partial: 'report', locals: {report: @report}
+    render partial: 'report', locals: { report: @report }
   end
 
   def info_window

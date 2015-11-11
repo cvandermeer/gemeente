@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   ### REPORTS ###
   resources :reports do
     get :report_index, on: :member
-    get :info_window, on: :member
     get :delete, on: :member
     get :markers, on: :collection
   end
