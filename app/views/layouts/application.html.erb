@@ -23,7 +23,7 @@
         <%= yield %>
       </div>
 
-      <% if action_name == 'index'  %>
+      <% if action_name == 'index' && controller_name == 'reports'  %>
         <%= render 'shared/featured', featured: @featured %>
         <%= render 'shared/recent', recents: @recents %>
       <% end %>

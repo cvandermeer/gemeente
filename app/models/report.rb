@@ -45,6 +45,10 @@ class Report < ActiveRecord::Base
     [address, town].compact.join(', ')
   end
 
+  def editable_by?(user)
+    user == self.user || user.community? && community == user.community || user.admin?
+  end
+
   def image(size)
     if image_one?
       image_one_url(size)
