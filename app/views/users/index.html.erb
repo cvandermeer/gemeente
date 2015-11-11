@@ -3,7 +3,7 @@
     <h2>Gebruikers</h2>
     <ul>
       <% @users.each do |user| %>
-        <li><%= user.email %></li>
+        <li><%= link_to user.email, user %></li>
       <% end %>
     </ul>
   </div>

@@ -19,7 +19,7 @@
     <li>
       <%= link_to 'Gemeentes', communities_path, class: 'js_modal', remote: true %>
     </li>
-    <% if current_user.admin? %>
+    <% if current_user && current_user.admin? %>
       <li>
         <%= link_to 'Gebruikers', users_path %>
       </li>
