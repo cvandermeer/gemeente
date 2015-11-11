@@ -43,8 +43,6 @@ function newReportForm() {
         $('.reports').find("[data-report-id='" + el.attr('data-report-id') + "']").before(data).remove()
       }
       removeModal();
-      //setMarker(parseFloat(el.attr('data-lat')), parseFloat(el.attr('data-lon')), el.attr('data-title'), $(el).attr('data-id'))
-      //goToReportLocation(el)
       bindReportHandlers()
     } else {
       $('.modal-content').html(data)
