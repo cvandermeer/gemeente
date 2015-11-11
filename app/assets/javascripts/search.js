@@ -8,31 +8,31 @@ var list_position = 0;
 
 function triggerStreetSearch() {
   // Prevents the new and edit report from submitting
-  preventStreetSearchFromSubmitting()
+  preventStreetSearchFromSubmitting();
 
   // Sets and clears the setTimeout function
   var timer;
 
   $('.js_street_input').on('keyup', function(e) {
     var code = e.keyCode || e.which;
-    removeSearchListOnEnter('street', code)
+    removeSearchListOnEnter('street', code);
 
     if (0 > $.inArray( e.which, [37, 38, 39, 40, 13])) {
       list_position = 0;
       if ($(this).val().length > 2) {
-        clearInterval(timer)
+        clearInterval(timer);
         timer = setTimeout(function() {
-          $('.js_search_streets input[name="search"]').val($('.js_street_input').val())
-          $('.js_search_streets').submit()
+          $('.js_search_streets input[name="search"]').val($('.js_street_input').val());
+          $('.js_search_streets').submit();
         }, 500);
 
       }
     } else if ($('.street_list').length > 0) {
-      navigatingTroughStreetList($(this), code, 'street')
+      navigatingTroughStreetList($(this), code, 'street');
     }
   });
 
-  ajaxStreetOurTownSearch('street', $('.js_street_input'))
+  ajaxStreetOurTownSearch('street', $('.js_street_input'));
 }
 
 /**
@@ -42,17 +42,17 @@ function triggerStreetSearch() {
 function triggerTownSearch() {
   $('.js_town_input').on('keyup', function(e) {
     var code = e.keyCode || e.which;
-    removeSearchListOnEnter('town', code)
+    removeSearchListOnEnter('town', code);
 
     if (0 > $.inArray( e.which, [37, 38, 39, 40, 13])) {
-      list_position = 0
+      list_position = 0;
     } else if ($('.town_list').length > 0) {
-      navigatingTroughStreetList($(this), code, 'town')
+      navigatingTroughStreetList($(this), code, 'town');
     }
   });
 
   $('.js_town_input').on('focus', function() {
-    if ($('.town_list').length == 0) {
+    if ($('.town_list').length === 0) {
       $('.js_search_towns input[name="search"]').val($('.js_street_input').val())
       $('.js_search_towns').submit()
       list_position = 0
