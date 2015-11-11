@@ -46,7 +46,7 @@ class Report < ActiveRecord::Base
   end
 
   def editable_by?(user)
-    user == self.user || user.community? && self.community == user.community || user.admin?
+    user == self.user || user.community? && community == user.community || user.admin?
   end
 
   def image(size)
