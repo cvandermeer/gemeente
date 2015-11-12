@@ -8,9 +8,8 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
-    if verify_recaptcha(model: @message, :message => "Oh! It's error with reCAPTCHA!") && @message.save
-      render nothing: true
-    end
+    render nothing: true if verify_recaptcha(model: @message,
+                                             message: "Oh! It's error with reCAPTCHA!") && @message.save
   end
 
   def show
