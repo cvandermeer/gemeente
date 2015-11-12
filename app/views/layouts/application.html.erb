@@ -15,21 +15,21 @@
   <body>
 
     <div class='outer-wrapper'>
-      <%= render 'shared/menu' %>
-      <%= render 'shared/side_menu' %>
-      <%= render 'shared/notice' %>
+      <%= render 'layouts/menu' %>
+      <%= render 'layouts/side_menu' %>
+      <%= render 'layouts/notice' %>
 
       <div class='<%= "index-" if controller_name == "reports" && action_name == "index" %>wrapper'>
         <%= yield %>
       </div>
 
       <% if action_name == 'index' && controller_name == 'reports'  %>
-        <%= render 'shared/featured', featured: @featured %>
-        <%= render 'shared/recent', recents: @recents %>
+        <%= render 'layouts/featured', featured: @featured %>
+        <%= render 'layouts/recent', recents: @recents %>
       <% end %>
       <%= render 'shared/modal' %>
 
-      <%= render 'shared/footer' %>
+      <%= render 'layouts/footer' %>
     </div>
 
   </body>

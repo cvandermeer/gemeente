@@ -33,7 +33,7 @@ function bindReportHandlers() {
 */
 
 function newReportForm() {
-  $('.modal form.new_report, .modal form.edit_report').bind('ajax:success', function(e, data, status){
+  $('.modal form.new_report, .modal form.edit_report').on('ajax:success', function(e, data, status){
     if(data.indexOf('form') == -1) {
       data = data.replace(/\\n/g, '').replace(/\\/g, '').substring(1);
       data = data.substring(0, data.length - 2);
