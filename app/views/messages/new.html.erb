@@ -1,0 +1,10 @@
+<div class='content-container'>
+	<div>
+    <%= form_for @message, remote: true do |f| %>
+      <%= f.text_field :name %>
+      <%= f.email_field :email %>
+      <%= f.text_area :body %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>
