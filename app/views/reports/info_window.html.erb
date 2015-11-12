@@ -1,11 +1,24 @@
-<div class="info-box">
-  <h4><%= @report.title %></h4>
-  <p>
-    <%= @report.description %>
-    <ul>
-      <li><%= @report.community_name %></li>
-      <li>Straat: <%= @report.address %></li>
-      <li>Plaats: <%= @report.town %></li>
-    </ul>
-  </p>
+<div class='info-box'>
+  <div class='close'></div>
+  <div class='info'>
+    <h4><%= @report.title %></h4>
+    <p>
+      <%= @report.description.truncate(30, separator: ' ') %>
+      <ul>
+        <li><%= @report.community_name %></li>
+        <li>Straat: <%= @report.address %></li>
+        <li>Plaats: <%= @report.town %></li>
+      </ul>
+    </p>
+  </div>
+  <div class='info-footer'>
+    <div class="marker">
+        <div class="marker-icon">
+        </div>
+    </div>
+    <div class='info-link'>
+      <%= link_to '', @report, data: { no_turbolink: true }, target: '_blank', class: 'info-arrow' %>
+      <%= link_to @report.title, @report, data: { no_turbolink: true }, target: '_blank', class: 'link' %>
+    </div>
+  </div>
 </div>

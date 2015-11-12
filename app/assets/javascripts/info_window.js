@@ -14,7 +14,7 @@ function handleInfoWindowData(data, el) {
       content: data,
       disableAutoPan: false,
       pixelOffset: new google.maps.Size(-18, -42),
-      zIndex: null,
+      zIndex: 999,
       alignBottom: true,
       boxClass: "infobox",
       enableEventPropagation: true,
@@ -22,7 +22,17 @@ function handleInfoWindowData(data, el) {
       closeBoxURL: "assets/img/close.png",
       infoBoxClearance: new google.maps.Size(1, 1)
   };
-  $('.info-box').remove();
+  $('.infobox').remove();
   el.infobox = new InfoBox(infoboxOptions);
   el.infobox.open(map, el);
+  bindInfoBoxHandlers(map, el);
+}
+
+function bindInfoBoxHandlers(map, el) {
+  setTimeout(function() {
+    $(document).find('.close').on('click', function() {
+      el.infobox.close(map, el);
+      el.content.className = ' ';
+    });
+  }, 300);
 }

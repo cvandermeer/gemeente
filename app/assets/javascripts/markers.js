@@ -51,22 +51,22 @@ function getJsonDataForReports(map) {
 }
 
 function setMarkerShow(data) {
-  var markerContent = document.createElement('DIV');
-  markerContent.innerHTML =
+  var markerContent =
                   '<div class="marker">' +
                       '<div class="marker-icon">' +
                       '</div>' +
                   '</div>';
 
-  var marker = new RichMarker({
-                position: new google.maps.LatLng( data.latitude, data.longitude ),
-                map: map,
-                draggable: false,
-                content: markerContent,
-                flat: true
-              });
-}
+  var markerOptions = {
+    position: new google.maps.LatLng( data.latitude, data.longitude ),
+    map: map,
+    draggable: false,
+    content: markerContent,
+    flat: true
+  };
 
+  var marker = new RichMarker(markerOptions);
+}
 
 var markerClicked = 0;
 var activeMarker = false;

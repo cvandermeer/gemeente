@@ -1,0 +1,96 @@
+.info-box {
+  width: 250px;
+  background: #fff;
+  margin-left: -1px;
+  margin-bottom: -22px;
+  border-radius: 2px;
+  border-bottom-left-radius: 0;
+  .info {
+    padding: 12px;
+  }
+  .close {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: $dark-gray;
+    border-top-right-radius: 2px;
+    &:before {
+      font-family: FontAwesome;
+      color: #fff;
+      cursor: pointer;
+      font-size: 18px;
+      width: 100%;
+      display: block;
+      margin-top: 1px;
+      text-align: center;
+      content: "\f00d";
+    }
+  }
+}
+
+.info-footer {
+  width: 100%;
+  height: 60px;
+  background: $basic-color;
+  border-bottom-right-radius: 2px;
+  position: relative;
+  .info-link {
+    width: calc(100% - 38px);
+    float: right;
+    height: 100%;
+    a.link {
+      display: block;
+      width: calc(100% - 38px);
+      padding: 19px 0;
+      color: #fff;
+      font-size: 14px;
+      text-indent: 24px;
+      text-decoration: none;
+      position: relative;
+    }
+    .info-arrow {
+      position: absolute;
+      height: 100%;
+      background: #fff;
+      top: 0;
+      right: 0;
+      text-decoration: none;
+      width: 38px;
+      @include transition(0.3s);
+      &:before {
+        font-family: FontAwesome;
+        color: $basic-color;
+        cursor: pointer;
+        font-size: 24px;
+        width: 100%;
+        display: block;
+        margin-top: 10px;
+        text-align: center;
+        content: "\f105";
+        @include transition(0.3s);
+      }
+    }
+    &:hover {
+      .info-arrow {
+        background: $basic-color;
+        &:before {
+          color: #fff;
+        }
+      }
+    }
+  }
+  .marker {
+    position: absolute;
+    top: 46px;
+    box-shadow: none;
+    background: $basic-color;
+    &:after {
+      border-top: 10px solid $basic-color;
+    }
+    &:hover {
+      margin-top: -10px;
+    }
+  }
+}
