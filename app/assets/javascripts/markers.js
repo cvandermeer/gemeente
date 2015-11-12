@@ -51,33 +51,28 @@ function getJsonDataForReports(map) {
 }
 
 function setMarkerShow(data) {
-  // Needed to require the richmarker file after loading the maps
-  initRichMarker();
-
-  var markerContent = document.createElement('DIV');
-  markerContent.innerHTML =
+  var markerContent =
                   '<div class="marker">' +
                       '<div class="marker-icon">' +
                       '</div>' +
                   '</div>';
 
-  var marker = new RichMarker({
-                position: new google.maps.LatLng( data.latitude, data.longitude ),
-                map: map,
-                draggable: false,
-                content: markerContent,
-                flat: true
-              });
-}
+  var markerOptions = {
+    position: new google.maps.LatLng( data.latitude, data.longitude ),
+    map: map,
+    draggable: false,
+    content: markerContent,
+    flat: true
+  };
 
+  var marker = new RichMarker(markerOptions);
+}
 
 var markerClicked = 0;
 var activeMarker = false;
 var lastClicked = false;
 
 function setMarkers(data) {
-  // Needed to require the richmarker file after loading the maps
-  initRichMarker();
 
   for (var i = 0; i < data.length; i++) {
     var markerContent = document.createElement('DIV');
@@ -126,6 +121,9 @@ function addClickEventToMarker(marker, i) {
           newMarkers[h].content.className = ' ';
         }
         newMarkers[i].content.className = 'marker-active';
+
+        // info_window.js
+        fetchInfoWindow(newMarkers[i]);
         markerClicked = 1;
       }
     };

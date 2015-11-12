@@ -170,6 +170,10 @@ function initMap() {
     });
   }
 
+  // Needed to require the richmarker and infobox file after loading the maps
+  initRichMarker();
+  initInfoBox();
+
   // markers.js
   getJsonDataForReports(map);
 
