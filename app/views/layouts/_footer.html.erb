@@ -35,7 +35,7 @@
           <i class="fa fa-twitter"></i>
           <i class="fa fa-facebook"></i>
         </div>
-        <%= link_to 'Contact', root_path, data: { no_turbolink: true }, class: 'button' %>
+        <%= link_to 'Contact', new_message_path, remote: true, data: { no_turbolink: true }, class: 'button js_modal' %>
       </div>
     </div>
   </div>
