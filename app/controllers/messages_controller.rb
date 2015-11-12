@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
-  layout false
+  layout false, except: [:index]
+  before_action :authenticate_admin!, only: [:index]
 
   def new
     @message = Message.new
@@ -10,6 +11,14 @@ class MessagesController < ApplicationController
     if verify_recaptcha(model: @message, :message => "Oh! It's error with reCAPTCHA!") && @message.save
       render nothing: true
     end
+  end
+
+  def show
+    @message = Message.find(params[:id])
+  end
+
+  def index
+    @messages = Message.all
   end
 
   private
