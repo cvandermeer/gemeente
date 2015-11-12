@@ -51,8 +51,7 @@ function setDataInModal(e, data) {
     newReportForm()
     communityReports()
     // The functions can be found in search.js, sets up the list search
-    triggerStreetSearch()
-    triggerTownSearch()
+    triggerSearch()
   }
   bindHandlers()
 }
