@@ -4,5 +4,6 @@
 //= require picker
 //= require picker.date
 //= require richmarker
+//= require infobox
 //= require turbolinks
 //= require_tree .

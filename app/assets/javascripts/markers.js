@@ -8,40 +8,71 @@ var timer;
 var km;
 
 function getJsonDataForReports(map) {
+  if( $('.map-show').length === 0 ) {
+    map.addListener('bounds_changed', function() {
+      clearInterval(timer);
+      timer = setTimeout(function() {
+        var minlat = map.getBounds().getSouthWest().lat();
+        var maxlat = map.getBounds().getNorthEast().lat();
+        var minlng = map.getBounds().getSouthWest().lng();
+        var maxlng = map.getBounds().getNorthEast().lng();
+        km = getDistanceFromLatLonInKm(minlat, minlng, maxlat, maxlng);
 
-  map.addListener('bounds_changed', function() {
-    clearInterval(timer);
-    timer = setTimeout(function() {
-      var minlat = map.getBounds().getSouthWest().lat();
-      var maxlat = map.getBounds().getNorthEast().lat();
-      var minlng = map.getBounds().getSouthWest().lng();
-      var maxlng = map.getBounds().getNorthEast().lng();
-      km = getDistanceFromLatLonInKm(minlat, minlng, maxlat, maxlng);
+        clearMarkers();
 
-      clearMarkers();
+        $.ajax({
+          type: 'GET',
+          dataType: 'json',
+          url: "/reports/markers",
+          data: {'lat': map.getCenter().lat(), 'lng': map.getCenter().lng(), 'km': km},
+          success: function(data){
+            setMarkers(data);
 
-      $.ajax({
-        type: 'GET',
-        dataType: 'json',
-        url: "/reports/markers",
-        data: {'lat': map.getCenter().lat(), 'lng': map.getCenter().lng(), 'km': km},
-        success: function(data){
-          setMarkers(data);
-
-          // report.js
-          getReportIndex(data);
-        }
-      });
-    }, 100);
-  });
+            // report.js
+            getReportIndex(data);
+          }
+        });
+      }, 100);
+    });
+  } else {
+    // Gives back one marker for show
+    var url = window.location.pathname;
+    var id = url.substring(url.lastIndexOf('/') + 1);
+    $.ajax({
+      type: 'GET',
+      dataType: 'json',
+      url: "/reports/markers",
+      data: { 'id': id },
+      success: function(data){
+        setMarkerShow(data);
+      }
+    });
+  }
 }
 
+function setMarkerShow(data) {
+  var markerContent =
+                  '<div class="marker">' +
+                      '<div class="marker-icon">' +
+                      '</div>' +
+                  '</div>';
+
+  var markerOptions = {
+    position: new google.maps.LatLng( data.latitude, data.longitude ),
+    map: map,
+    draggable: false,
+    content: markerContent,
+    flat: true
+  };
+
+  var marker = new RichMarker(markerOptions);
+}
+
+var markerClicked = 0;
+var activeMarker = false;
+var lastClicked = false;
+
 function setMarkers(data) {
-  // Needed to require the richmarker file after loading the maps
-  initRichMarker();
-  var markerClicked = 0;
-  var activeMarker = false;
-  var lastClicked = false;
 
   for (var i = 0; i < data.length; i++) {
     var markerContent = document.createElement('DIV');
@@ -90,6 +121,9 @@ function addClickEventToMarker(marker, i) {
           newMarkers[h].content.className = ' ';
         }
         newMarkers[i].content.className = 'marker-active';
+
+        // info_window.js
+        fetchInfoWindow(newMarkers[i]);
         markerClicked = 1;
       }
     };

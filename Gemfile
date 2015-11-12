@@ -16,6 +16,7 @@ gem 'sinatra', require: nil
 gem 'carrierwave'
 gem 'rmagick'
 gem 'remotipart', '~> 1.2'
+gem 'recaptcha', require: 'recaptcha/rails'
 
 group :development, :test do
   gem 'byebug'
