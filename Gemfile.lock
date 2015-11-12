@@ -235,6 +235,7 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     rdoc (4.2.0)
+    recaptcha (0.4.0)
     redis (3.2.1)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
@@ -339,6 +340,7 @@ DEPENDENCIES
   mysql2 (~> 0.3.18)
   rails (= 4.2.4)
   rails_best_practices
+  recaptcha
   remotipart (~> 1.2)
   rmagick
   rubocop
