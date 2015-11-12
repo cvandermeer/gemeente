@@ -12,6 +12,6 @@ class Community < ActiveRecord::Base
   after_create :send_new_community_notice
 
   def send_new_community_notice
-    GeneralMailer.new_community(self).deliver_later
+    GeneralMailer.new_community_notice.deliver_later
   end
 end

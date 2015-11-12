@@ -17,11 +17,8 @@ class ReportsController < ApplicationController
   end
 
   def markers
-    if params[:id]
-      render json: Report.find(params[:id])
-    else
-      render json: Report.near([params[:lat], params[:lng]], params[:km], units: :km)
-    end
+    @reports = Report.near([params[:lat], params[:lng]], params[:km], units: :km)
+    render json: @reports
   end
 
   def report_index

@@ -8,76 +8,40 @@ var timer;
 var km;
 
 function getJsonDataForReports(map) {
-  if( $('.map-show').length === 0 ) {
-    map.addListener('bounds_changed', function() {
-      clearInterval(timer);
-      timer = setTimeout(function() {
-        var minlat = map.getBounds().getSouthWest().lat();
-        var maxlat = map.getBounds().getNorthEast().lat();
-        var minlng = map.getBounds().getSouthWest().lng();
-        var maxlng = map.getBounds().getNorthEast().lng();
-        km = getDistanceFromLatLonInKm(minlat, minlng, maxlat, maxlng);
 
-        clearMarkers();
+  map.addListener('bounds_changed', function() {
+    clearInterval(timer);
+    timer = setTimeout(function() {
+      var minlat = map.getBounds().getSouthWest().lat();
+      var maxlat = map.getBounds().getNorthEast().lat();
+      var minlng = map.getBounds().getSouthWest().lng();
+      var maxlng = map.getBounds().getNorthEast().lng();
+      km = getDistanceFromLatLonInKm(minlat, minlng, maxlat, maxlng);
 
-        $.ajax({
-          type: 'GET',
-          dataType: 'json',
-          url: "/reports/markers",
-          data: {'lat': map.getCenter().lat(), 'lng': map.getCenter().lng(), 'km': km},
-          success: function(data){
-            setMarkers(data);
+      clearMarkers();
 
-            // report.js
-            getReportIndex(data);
-          }
-        });
-      }, 100);
-    });
-  } else {
-    // Gives back one marker for show
-    var url = window.location.pathname;
-    var id = url.substring(url.lastIndexOf('/') + 1);
-    $.ajax({
-      type: 'GET',
-      dataType: 'json',
-      url: "/reports/markers",
-      data: { 'id': id },
-      success: function(data){
-        setMarkerShow(data);
-      }
-    });
-  }
+      $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: "/reports/markers",
+        data: {'lat': map.getCenter().lat(), 'lng': map.getCenter().lng(), 'km': km},
+        success: function(data){
+          setMarkers(data);
+
+          // report.js
+          getReportIndex(data);
+        }
+      });
+    }, 100);
+  });
 }
-
-function setMarkerShow(data) {
-  // Needed to require the richmarker file after loading the maps
-  initRichMarker();
-
-  var markerContent = document.createElement('DIV');
-  markerContent.innerHTML =
-                  '<div class="marker">' +
-                      '<div class="marker-icon">' +
-                      '</div>' +
-                  '</div>';
-
-  var marker = new RichMarker({
-                position: new google.maps.LatLng( data.latitude, data.longitude ),
-                map: map,
-                draggable: false,
-                content: markerContent,
-                flat: true
-              });
-}
-
-
-var markerClicked = 0;
-var activeMarker = false;
-var lastClicked = false;
 
 function setMarkers(data) {
   // Needed to require the richmarker file after loading the maps
   initRichMarker();
+  var markerClicked = 0;
+  var activeMarker = false;
+  var lastClicked = false;
 
   for (var i = 0; i < data.length; i++) {
     var markerContent = document.createElement('DIV');

@@ -4,15 +4,15 @@ ready = function() {
 
   // Sets the data to modal on ajax success and bind the datepicker
   $('.js_modal').on('ajax:success', function(e, data, status) {
-    setDataInModal(this, data);
+    setDataInModal(this, data)
     $('input.datepicker').pickadate();
   });
 
   // Onclick close the modal
   $('.modal-close').on('click', function() {
-    removeModal();
+    removeModal()
   });
-};
+}
 
 /**
   * @desc appends the modalbackground and binds the onclick function
@@ -20,13 +20,13 @@ ready = function() {
 */
 
 function initModal() {
-  var modalBackground = '<div class="modal-background"></div>';
-  if($('.modal-background').length === 0) {
-     $('body').append(modalBackground);
+  var modalBackground = '<div class="modal-background"></div>'
+  if($('.modal-background').length == 0) {
+     $('body').append(modalBackground)
   }
   setTimeout(function() {
-    $('.modal').addClass('active');
-    $('.modal-background').addClass('active');
+    $('.modal').addClass('active')
+    $('.modal-background').addClass('active')
     $('.modal-background').bind('click', function() {
       removeModal();
     });
@@ -40,25 +40,21 @@ function initModal() {
 */
 
 function setDataInModal(e, data) {
-  initModal();
+  initModal()
   if($(e).attr('data-modal-type') == 'destroy') {
-    initDestroy(e, data);
+    initDestroy(e, data)
   } else {
     // Building the modal
-    $('.modal-content').html(data);
+    $('.modal-content').html(data)
 
-    // These functions can be found in reports.js
-    newReportForm();
-    communityReports();
-
-    // These functions can be found in messages.js
-    newMessage();
-
-    // These functions can be found in search.js, sets up the list search
-    triggerStreetSearch();
-    triggerTownSearch();
+    // The functions can be found in reports.js
+    newReportForm()
+    communityReports()
+    // The functions can be found in search.js, sets up the list search
+    triggerStreetSearch()
+    triggerTownSearch()
   }
-  bindHandlers();
+  bindHandlers()
 }
 
 /**
@@ -66,9 +62,9 @@ function setDataInModal(e, data) {
 */
 
 function removeModal() {
-  $('.modal-background, .modal').removeClass('active');
-  $('.modal-content').html('');
-  $('.modal-header h4').remove();
+  $('.modal-background, .modal').removeClass('active')
+  $('.modal-content').html('')
+  $('.modal-header h4').remove()
 }
 
 /**
@@ -79,17 +75,17 @@ function removeModal() {
 */
 
 function initDestroy(e, data) {
-  $('.modal-content').html('');
-  $('.modal-header h4').remove();
-  $('.modal-header').append('<h4>Delete</h4>');
-  var modalText = '<p>Weet je zeker dat je <strong>'+ data.title +'</strong> wilt verwijderen?</p>';
-  var modalDeleteLink = '<a data-method="delete" data-remote="true" class="modal-confirm button" href="/'+$(e).attr("data-modal-element")+'/' + data.id + ' ">Ja</a> <a href="#" class="modal-confirm button">Nee</a>';
-  $('.modal-content').append(modalText + modalDeleteLink);
+  $('.modal-content').html('')
+  $('.modal-header h4').remove()
+  $('.modal-header').append('<h4>Delete</h4>')
+  var modalText = '<p>Weet je zeker dat je <strong>'+ data.title +'</strong> wilt verwijderen?</p>'
+  var modalDeleteLink = '<a data-method="delete" data-remote="true" class="modal-confirm button" href="/'+$(e).attr("data-modal-element")+'/' + data.id + ' ">Ja</a> <a href="#" class="modal-confirm button">Nee</a>'
+  $('.modal-content').append(modalText + modalDeleteLink)
   $('.modal-confirm').bind('click', function() {
     if($(this).attr('data-method') == 'delete') {
-      $('.reports').find("[data-report-id='" + data.id + "']").remove();
+      $('.reports').find("[data-report-id='" + data.id + "']").remove()
     }
-    removeModal();
+    removeModal()
   });
 }
 
@@ -99,7 +95,7 @@ function initDestroy(e, data) {
 
 function bindHandlers() {
   $('.js_modal').bind('ajax:success', function(e, data, status) {
-    setDataInModal(this ,data);
+    setDataInModal(this ,data)
   });
 }
 
