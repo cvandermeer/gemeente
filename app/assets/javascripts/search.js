@@ -13,7 +13,7 @@ function triggerSearch() {
   // Sets and clears the setTimeout function
   var timer;
 
-  $('.js_street_input, .js_town_input').on('keyup', function(e) {
+  $('.js_street_input, .js_town_input').on('keyup focus', function(e) {
     var code = e.keyCode || e.which;
     var name = $(this).attr('data-el-name');
     removeSearchListOnEnter(name, code);
@@ -30,6 +30,8 @@ function triggerSearch() {
       navigatingTroughList($(this), code, name);
     }
   });
+
+  removeSearchListOnFocusLost();
 }
 
 /**
@@ -133,4 +135,12 @@ function removeSearchListOnEnter(name, code) {
   if (code == 13 && $('.'+name+'_list').length > 0) {
     $('.'+name+'_list').remove();
   }
+}
+
+function removeSearchListOnFocusLost() {
+  $('.js_street_input, .js_town_input').on('focusout', function(e) {
+    if( $('.street_list, .town_list').length ) {
+      $('.street_list, .town_list').remove();
+    }
+  });
 }
