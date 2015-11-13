@@ -194,7 +194,6 @@ function processSVData(data, status) {
   }
 }
 
-
 /**
   * @desc resets the map
   * @return on a specific location to show the Netherlands
