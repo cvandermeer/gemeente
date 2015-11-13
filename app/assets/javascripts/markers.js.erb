@@ -72,36 +72,35 @@ var lastClicked = false;
 var markerCluster;
 
 function setMarkers(data) {
-  newMarkers = [];
+  if ( $('.info-box').length === 0 ) {
+    newMarkers = [];
 
-  for (var i = 0; i < data.length; i++) {
-    //var markerContent = document.createElement('DIV');
-    var markerContent =
-                    '<div class="marker">' +
-                        '<div class="marker-icon">' +
-                        '</div>' +
-                    '</div>';
+    for (var i = 0; i < data.length; i++) {
+      //var markerContent = document.createElement('DIV');
+      var markerContent =
+                      '<div class="marker">' +
+                          '<div class="marker-icon">' +
+                          '</div>' +
+                      '</div>';
 
-    var marker = new RichMarker({
-                                  position: new google.maps.LatLng( data[i].latitude, data[i].longitude ),
-                                  map: map,
-                                  draggable: false,
-                                  content: markerContent,
-                                  flat: true,
-                                  id: data[i].id
-                                });
+      var marker = new RichMarker({
+                                    position: new google.maps.LatLng( data[i].latitude, data[i].longitude ),
+                                    map: map,
+                                    draggable: false,
+                                    content: markerContent,
+                                    flat: true,
+                                    id: data[i].id
+                                  });
 
-    newMarkers.push(marker);
+      newMarkers.push(marker);
 
-    // adding click event to marker, show if active
-    addClickEventToMarker(marker, i);
-  }
-  if ( newMarkers.length ) {
-    if ( $('.info-box').length === 0 ) {
+      // adding click event to marker, show if active
+      addClickEventToMarker(marker, i);
+    }
+    if ( newMarkers.length ) {
       if (markerCluster) {
         markerCluster.clearMarkers();
       }
-
       var clusterStyles = [{ url: '<%= asset_path "cluster.png" %>', height: 34, width: 34}];
       markerCluster = new MarkerClusterer(map, newMarkers, { styles: clusterStyles, maxZoom: 19 });
     }
