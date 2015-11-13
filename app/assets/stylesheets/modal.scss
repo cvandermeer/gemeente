@@ -25,19 +25,31 @@
   }
 
   .modal-content {
-    z-index: 10002;
     position: relative;
+  }
+  .modal-header {
+    position: relative;
+    width: 100%;
+    z-index: 2;
   }
 
   .modal-close {
     width: 20px;
     height: 20px;
     position: absolute;
-    right: 10px;
-    top: 10px;
+    padding: 10px;
+    right: -10px;
+    top: -10px;
     cursor: pointer;
-    background: asset-url('close.png');
-    background-size: 20px;
+    &:before {
+      position: absolute;
+      font-family: FontAwesome;
+      content: '\f00d';
+      font-size: 21px;
+      top: 3px;
+      left: 11px;
+      text-align: center;
+    }
   }
 }
 
