@@ -181,7 +181,6 @@ function processSVData(data, status) {
     );
 
     map.setStreetView(panorama);
-    console.log(panorama);
     var panoMarker = new google.maps.Marker({
       animation: google.maps.Animation.DROP,
       position: report_show_position,
@@ -189,7 +188,6 @@ function processSVData(data, status) {
     });
   } else {
     if (radius < 10000) {
-      console.log(1);
       radius =+ 1000;
       sv.getPanorama({location: report_show_position, radius: radius}, processSVData);
     }
