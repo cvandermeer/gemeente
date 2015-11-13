@@ -9,7 +9,7 @@ var km;
 
 function getJsonDataForReports(map) {
   if( $('.map-show').length === 0 ) {
-    map.addListener('bounds_changed', function() {
+    map.addListener('idle', function() {
       clearInterval(timer);
       timer = setTimeout(function() {
         var minlat = map.getBounds().getSouthWest().lat();
@@ -18,7 +18,7 @@ function getJsonDataForReports(map) {
         var maxlng = map.getBounds().getNorthEast().lng();
         km = getDistanceFromLatLonInKm(minlat, minlng, maxlat, maxlng);
 
-        clearMarkers();
+        //clearMarkers();
 
         $.ajax({
           type: 'GET',
@@ -71,12 +71,14 @@ function setMarkerShow(data) {
 var markerClicked = 0;
 var activeMarker = false;
 var lastClicked = false;
+var markerCluster;
 
 function setMarkers(data) {
+  newMarkers = [];
 
   for (var i = 0; i < data.length; i++) {
-    var markerContent = document.createElement('DIV');
-    markerContent.innerHTML =
+    //var markerContent = document.createElement('DIV');
+    var markerContent =
                     '<div class="marker">' +
                         '<div class="marker-icon">' +
                         '</div>' +
@@ -84,7 +86,7 @@ function setMarkers(data) {
 
     var marker = new RichMarker({
                   position: new google.maps.LatLng( data[i].latitude, data[i].longitude ),
-                  map: map,
+                  //map: map,
                   draggable: false,
                   content: markerContent,
                   flat: true,
@@ -96,12 +98,16 @@ function setMarkers(data) {
     // adding click event to marker, show if active
     addClickEventToMarker(marker, i);
   }
+  if ( newMarkers.length ) {
+    if ( $('.info-box').length === 0 ) {
+      if (markerCluster) {
+        markerCluster.clearMarkers();
+      }
+      markerCluster = new MarkerClusterer(map, newMarkers, { maxZoom: 19 });
+    }
+  }
 }
 
-function clearMarkers() {
-  setMapOnAll(null);
-  newMarkers = [];
-}
 
 function setMapOnAll(map) {
   for (var i = 0; i < newMarkers.length; i++) {
