@@ -28,7 +28,7 @@ function bindReportHandlers() {
 }
 
 /**
-  * @desc map.setStreetViewdata in the modal
+  * @desc setting the new report to the left side
   * @return the new/edit report in the document
 */
 
