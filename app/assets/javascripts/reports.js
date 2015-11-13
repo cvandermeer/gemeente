@@ -40,6 +40,7 @@ function newReportForm() {
       data = data.substring(0, data.length - 2);
       $('.reports').append(data);
       var el = $('.reports li:last-child');
+      goToReportLocation(el);
       if ($('.reports').find("[data-report-id='" + el.attr('data-report-id') + "']").length > 1) {
         $('.reports li:last-child').remove();
         $('.reports').find("[data-report-id='" + el.attr('data-report-id') + "']").before(data).remove();
@@ -51,6 +52,19 @@ function newReportForm() {
       newReportForm();
     }
   });
+}
+
+/**
+  * @desc when new report is added go to the location
+  * @param element el - stants for this
+  * @return a new location in de goolge maps api
+*/
+
+function goToReportLocation(el) {
+  var position = {lat: parseFloat($(el).attr('data-lat')), lng: parseFloat($(el).attr('data-lon'))};
+  map.setCenter(position);
+  map.setZoom(15);
+  // setPanorama(clicked_position)
 }
 
 /**
