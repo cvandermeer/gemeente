@@ -1,15 +1,15 @@
-function fetchInfoWindow(el) {
+function fetchInfoWindow(el, i) {
   return $.ajax({
     type: "GET",
     dataType: "html",
     url: "/reports/" + el.id + "/info_window",
     success: function(data){
-      handleInfoWindowData(data, el);
+      handleInfoWindowData(data, el, i);
     }
   });
 }
 
-function handleInfoWindowData(data, el) {
+function handleInfoWindowData(data, el, i) {
   var infoboxOptions = {
       content: data,
       disableAutoPan: false,
@@ -25,13 +25,14 @@ function handleInfoWindowData(data, el) {
   $('.infobox').remove();
   el.infobox = new InfoBox(infoboxOptions);
   el.infobox.open(map, el);
-  bindInfoBoxHandlers(map, el);
+  bindInfoBoxHandlers(map, el, i);
 }
 
-function bindInfoBoxHandlers(map, el) {
+function bindInfoBoxHandlers(map, el, i) {
   setTimeout(function() {
     $(document).find('.close').on('click', function() {
       el.infobox.close(map, el);
+      lastClicked = false;
       el.content.className = ' ';
     });
   }, 300);

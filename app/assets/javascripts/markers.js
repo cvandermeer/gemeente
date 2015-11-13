@@ -116,14 +116,14 @@ function addClickEventToMarker(marker, i) {
         lastClicked = newMarkers[i];
       });
       activeMarker = newMarkers[i];
-      if( activeMarker != lastClicked ){
+      if( activeMarker != lastClicked || markerClicked === 1){
         for (var h = 0; h < newMarkers.length; h++) {
           newMarkers[h].content.className = ' ';
         }
         newMarkers[i].content.className = 'marker-active';
 
         // info_window.js
-        fetchInfoWindow(newMarkers[i]);
+        fetchInfoWindow(marker, i);
         markerClicked = 1;
       }
     };
