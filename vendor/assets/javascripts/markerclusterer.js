@@ -105,7 +105,6 @@ function MarkerClusterer(map, opt_markers, opt_options) {
    */
   this.minClusterSize_ = options['minimumClusterSize'] || 2;
 
-
   /**
    * @type {?number}
    * @private
@@ -1075,6 +1074,7 @@ ClusterIcon.prototype.onAdd = function() {
     var pos = this.getPosFromLatLng_(this.center_);
     this.div_.style.cssText = this.createCss(pos);
     this.div_.innerHTML = this.sums_.text;
+    this.div_.className = 'cluster';
   }
 
   var panes = this.getPanes();

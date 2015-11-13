@@ -18,8 +18,6 @@ function getJsonDataForReports(map) {
         var maxlng = map.getBounds().getNorthEast().lng();
         km = getDistanceFromLatLonInKm(minlat, minlng, maxlat, maxlng);
 
-        //clearMarkers();
-
         $.ajax({
           type: 'GET',
           dataType: 'json',
@@ -85,13 +83,13 @@ function setMarkers(data) {
                     '</div>';
 
     var marker = new RichMarker({
-                  position: new google.maps.LatLng( data[i].latitude, data[i].longitude ),
-                  //map: map,
-                  draggable: false,
-                  content: markerContent,
-                  flat: true,
-                  id: data[i].id
-                });
+                                  position: new google.maps.LatLng( data[i].latitude, data[i].longitude ),
+                                  map: map,
+                                  draggable: false,
+                                  content: markerContent,
+                                  flat: true,
+                                  id: data[i].id
+                                });
 
     newMarkers.push(marker);
 
@@ -103,7 +101,9 @@ function setMarkers(data) {
       if (markerCluster) {
         markerCluster.clearMarkers();
       }
-      markerCluster = new MarkerClusterer(map, newMarkers, { maxZoom: 19 });
+
+      var clusterStyles = [{ url: '<%= asset_path "cluster.png" %>', height: 34, width: 34}];
+      markerCluster = new MarkerClusterer(map, newMarkers, { styles: clusterStyles, maxZoom: 19 });
     }
   }
 }
