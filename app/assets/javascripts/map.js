@@ -131,7 +131,11 @@ function initMap() {
     zoomControlOptions: {
        position: google.maps.ControlPosition.LEFT_TOP
     },
-    draggable: true
+    draggable: true,
+    mapTypeControl: true,
+    mapTypeControlOptions: {
+      position: google.maps.ControlPosition.TOP_RIGHT
+    }
   });
 
   if ($('#pac-input').length) {
