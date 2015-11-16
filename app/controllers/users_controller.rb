@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @reports = @user.reports
-    @community_reports = @user.community.reports
+    @community_reports = @user.community.reports if @user.community?
   end
 
   def index

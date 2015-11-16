@@ -18,7 +18,7 @@ class ReportsController < ApplicationController
     if params[:id]
       render json: Report.find(params[:id])
     else
-      render json: Report.unresolved.near([params[:lat], params[:lng]], params[:km], units: :km)
+      render json: Report.near([params[:lat], params[:lng]], params[:km], units: :km)
     end
   end
 
