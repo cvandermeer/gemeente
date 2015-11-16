@@ -35,7 +35,7 @@
     <div class='eight columns '>
       <%= f.label :address, 'Straat + huisnummer' %>
       <%= f.text_field :address, class: 'u-full-width js_street_input',
-          autocomplete: "off" %>
+          autocomplete: "off", data: { el_name: 'street' }  %>
     </div>
   </div>
 
@@ -43,7 +43,7 @@
     <div class='eight columns'>
       <%= f.label :town, 'Plaatsnaam' %>
       <%= f.text_field :town, class: 'u-full-width js_town_input',
-          autocomplete: "off" %>
+          autocomplete: "off", data: { el_name: 'town' } %>
     </div>
   </div>
 
@@ -65,12 +65,4 @@
   <div class='row'>
     <%= f.submit 'Aanmaken', class: 'button-primary' %>
   </div>
-<% end %>
-
-<%= form_tag( search_streets_path, method: 'get', remote: true, class: 'js_search_streets' ) do %>
-  <%= hidden_field_tag :search %>
-<% end %>
-
-<%= form_tag( search_towns_path, method: 'get', remote: true, class: 'js_search_towns' ) do %>
-  <%= hidden_field_tag :search %>
 <% end %>

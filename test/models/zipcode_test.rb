@@ -6,6 +6,6 @@ class ZipcodeTest < ActiveSupport::TestCase
   end
 
   test 'should get town search results' do
-    assert Zipcode.search_towns('Schoolpad').any?, 'No town search results'
+    assert Zipcode.search_towns('Middenmeer').any?, 'No town search results'
   end
 end

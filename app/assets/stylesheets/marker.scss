@@ -66,3 +66,30 @@
     content: "\f12a";
   }
 }
+
+.cluster {
+  color: #fff !important;
+  font-size: 14px !important;
+  text-indent: 1px;
+  &:before {
+    border-radius: 50%;
+    background-color: $dark-gray;
+    border: 4px solid $basic-color;
+    content: "";
+    height: 29px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 29px;
+    z-index: -1;
+    @include transition(0.3s);
+  }
+  &:hover {
+    &:before {
+      @include transform(scale(1.2));
+    }
+  }
+}

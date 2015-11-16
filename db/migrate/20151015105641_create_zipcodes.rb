@@ -7,7 +7,7 @@ class CreateZipcodes < ActiveRecord::Migration
       t.integer :last_house_number
       t.string :street
       t.string :town
-      t.string :community_id
+      t.string :community
       t.string :province
       t.string :latitude
       t.string :longitude
