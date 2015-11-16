@@ -9,6 +9,10 @@ class Zipcode < ActiveRecord::Base
   end
 
   def self.search_towns(search)
-    where('street like ?', "#{search}").map(&:town).uniq[0..4]
+    towns = where('town like ?', "#{search}").map(&:town).uniq
+    if towns.length < 5
+      towns += where('town like ?', "%#{search}%").map(&:town).uniq
+    end
+    towns.uniq[0..4]
   end
 end

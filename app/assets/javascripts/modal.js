@@ -47,16 +47,16 @@ function setDataInModal(e, data) {
     // Building the modal
     $('.modal-content').html(data);
 
-    // These functions can be found in reports.js
+    // The functions can be found in reports.js
     newReportForm();
     communityReports();
 
     // These functions can be found in messages.js
     newMessage();
 
-    // These functions can be found in search.js, sets up the list search
-    triggerStreetSearch();
-    triggerTownSearch();
+    // The functions can be found in search.js, sets up the list search
+    triggerSearch();
+
   }
   bindHandlers();
 }
