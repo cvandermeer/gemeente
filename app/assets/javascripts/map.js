@@ -106,6 +106,7 @@ ready = function() {
   * @desc initializes the google maps javascript api
   * @return if geolocation is active go to users current position else center of the map
 */
+var report_show_position;
 
 function initMap() {
   pos = {lat: 52.397, lng: 5.544};
@@ -130,7 +131,11 @@ function initMap() {
     zoomControlOptions: {
        position: google.maps.ControlPosition.LEFT_TOP
     },
-    draggable: true
+    draggable: true,
+    mapTypeControl: true,
+    mapTypeControlOptions: {
+      position: google.maps.ControlPosition.TOP_RIGHT
+    }
   });
 
   if ($('#pac-input').length) {
@@ -152,22 +157,12 @@ function initMap() {
   if ($('.map-show').length){
     var lat = parseFloat($('.map-show').attr('data-lat'));
     var lng = parseFloat($('.map-show').attr('data-lon'));
-    var report_show_position = {lat: lat, lng: lng};
+    report_show_position = {lat: lat, lng: lng};
     map.setCenter(report_show_position);
     map.setZoom(18);
 
-    var panorama = new google.maps.StreetViewPanorama(
-    document.getElementById('pano'), {
-      position: report_show_position
-    });
-
-    map.setStreetView(panorama);
-
-    var panoMarker = new google.maps.Marker({
-      animation: google.maps.Animation.DROP,
-      position: report_show_position,
-      map: panorama
-    });
+    var sv = new google.maps.StreetViewService();
+    sv.getPanorama({location: report_show_position, radius: 50}, processSVData);
   }
 
   // Needed to require the richmarker and infobox file after loading the maps
@@ -177,6 +172,30 @@ function initMap() {
   // markers.js
   getJsonDataForReports(map);
 
+}
+
+var radius = 50;
+function processSVData(data, status) {
+  var sv = new google.maps.StreetViewService();
+  if (status === google.maps.StreetViewStatus.OK) {
+    var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: data.location.latLng
+      }
+    );
+
+    map.setStreetView(panorama);
+    var panoMarker = new google.maps.Marker({
+      animation: google.maps.Animation.DROP,
+      position: report_show_position,
+      map: panorama
+    });
+  } else {
+    if (radius < 10000) {
+      radius =+ 1000;
+      sv.getPanorama({location: report_show_position, radius: radius}, processSVData);
+    }
+  }
 }
 
 /**

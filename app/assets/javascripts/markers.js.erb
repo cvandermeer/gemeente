@@ -9,7 +9,7 @@ var km;
 
 function getJsonDataForReports(map) {
   if( $('.map-show').length === 0 ) {
-    map.addListener('bounds_changed', function() {
+    map.addListener('idle', function() {
       clearInterval(timer);
       timer = setTimeout(function() {
         var minlat = map.getBounds().getSouthWest().lat();
@@ -17,8 +17,6 @@ function getJsonDataForReports(map) {
         var minlng = map.getBounds().getSouthWest().lng();
         var maxlng = map.getBounds().getNorthEast().lng();
         km = getDistanceFromLatLonInKm(minlat, minlng, maxlat, maxlng);
-
-        clearMarkers();
 
         $.ajax({
           type: 'GET',
@@ -71,37 +69,44 @@ function setMarkerShow(data) {
 var markerClicked = 0;
 var activeMarker = false;
 var lastClicked = false;
+var markerCluster;
 
 function setMarkers(data) {
+  if ( $('.info-box').length === 0 ) {
+    newMarkers = [];
 
-  for (var i = 0; i < data.length; i++) {
-    var markerContent = document.createElement('DIV');
-    markerContent.innerHTML =
-                    '<div class="marker">' +
-                        '<div class="marker-icon">' +
-                        '</div>' +
-                    '</div>';
+    for (var i = 0; i < data.length; i++) {
+      //var markerContent = document.createElement('DIV');
+      var markerContent =
+                      '<div class="marker">' +
+                          '<div class="marker-icon">' +
+                          '</div>' +
+                      '</div>';
 
-    var marker = new RichMarker({
-                  position: new google.maps.LatLng( data[i].latitude, data[i].longitude ),
-                  map: map,
-                  draggable: false,
-                  content: markerContent,
-                  flat: true,
-                  id: data[i].id
-                });
+      var marker = new RichMarker({
+                                    position: new google.maps.LatLng( data[i].latitude, data[i].longitude ),
+                                    map: map,
+                                    draggable: false,
+                                    content: markerContent,
+                                    flat: true,
+                                    id: data[i].id
+                                  });
 
-    newMarkers.push(marker);
+      newMarkers.push(marker);
 
-    // adding click event to marker, show if active
-    addClickEventToMarker(marker, i);
+      // adding click event to marker, show if active
+      addClickEventToMarker(marker, i);
+    }
+    if ( newMarkers.length ) {
+      if (markerCluster) {
+        markerCluster.clearMarkers();
+      }
+      var clusterStyles = [{ url: '<%= asset_path "cluster.png" %>', height: 34, width: 34}];
+      markerCluster = new MarkerClusterer(map, newMarkers, { styles: clusterStyles, maxZoom: 19 });
+    }
   }
 }
 
-function clearMarkers() {
-  setMapOnAll(null);
-  newMarkers = [];
-}
 
 function setMapOnAll(map) {
   for (var i = 0; i < newMarkers.length; i++) {
@@ -116,14 +121,14 @@ function addClickEventToMarker(marker, i) {
         lastClicked = newMarkers[i];
       });
       activeMarker = newMarkers[i];
-      if( activeMarker != lastClicked ){
+      if( activeMarker != lastClicked || markerClicked === 1){
         for (var h = 0; h < newMarkers.length; h++) {
           newMarkers[h].content.className = ' ';
         }
         newMarkers[i].content.className = 'marker-active';
 
         // info_window.js
-        fetchInfoWindow(newMarkers[i]);
+        fetchInfoWindow(marker, i);
         markerClicked = 1;
       }
     };
