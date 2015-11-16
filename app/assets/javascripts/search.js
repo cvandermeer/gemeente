@@ -145,4 +145,10 @@ function removeSearchListOnTab() {
       $('.street_list, .town_list').remove();
     }
   });
+
+  $('.new_report, .edit_report').on('click', function(e) {
+    if ($('.street_list, .town_list').length > 0) {
+      $('.street_list, .town_list').remove();
+    }
+  });
 }
