@@ -28,18 +28,19 @@ function bindReportHandlers() {
 }
 
 /**
-  * @desc map.setStreetViewdata in the modal
+  * @desc setting the new report to the left side
   * @return the new/edit report in the document
 */
 
 function newReportForm() {
   $('.modal form.new_report, .modal form.edit_report').on('ajax:success', function(e, data, status){
     if(data.indexOf('form') == -1) {
+      //console.log(data);
       data = data.replace(/\\n/g, '').replace(/\\/g, '').substring(1);
       data = data.substring(0, data.length - 2);
       $('.reports').append(data);
-
       var el = $('.reports li:last-child');
+      goToReportLocation(el);
       if ($('.reports').find("[data-report-id='" + el.attr('data-report-id') + "']").length > 1) {
         $('.reports li:last-child').remove();
         $('.reports').find("[data-report-id='" + el.attr('data-report-id') + "']").before(data).remove();
@@ -51,6 +52,19 @@ function newReportForm() {
       newReportForm();
     }
   });
+}
+
+/**
+  * @desc when new report is added go to the location
+  * @param element el - stants for this
+  * @return a new location in de goolge maps api
+*/
+
+function goToReportLocation(el) {
+  var position = {lat: parseFloat($(el).attr('data-lat')), lng: parseFloat($(el).attr('data-lon'))};
+  map.setCenter(position);
+  map.setZoom(15);
+  // setPanorama(clicked_position)
 }
 
 /**

@@ -6,9 +6,7 @@ class ReportsController < ApplicationController
   layout false, except: [:index, :show]
 
   def index
-    # @reports = Report.unresolved
-    # This is to fill up the page
-    @featured = Report.where.not(image_one: nil).limit(4)
+    @featured = Report.all.where.not(image_one: nil).limit(4)
     @recents = Report.all.limit(3)
   end
 

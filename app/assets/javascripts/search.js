@@ -24,12 +24,15 @@ function triggerSearch() {
         clearInterval(timer);
         timer = setTimeout(function() {
           ajaxSearch(name, elVal);
-        }, 200);
+        }, 100);
       }
     } else if ($('.street_list, .town_list').length > 0) {
       navigatingTroughList($(this), code, name);
+      elInListIsClicked($(this), name);
     }
   });
+
+  removeSearchListOnTab();
 }
 
 /**
@@ -114,7 +117,7 @@ function elInListIsClicked(el, name) {
 */
 
 function preventSearchFromSubmitting() {
-  $('.new_report, .edit_report').on('keyup keypress', function(e) {
+  $('.js_town_input, .js_street_input').on('keyup keypress', function(e) {
     var code = e.keyCode || e.which;
     if (code == 13) {
       e.preventDefault();
@@ -130,7 +133,22 @@ function preventSearchFromSubmitting() {
 */
 
 function removeSearchListOnEnter(name, code) {
-  if (code == 13 && $('.'+name+'_list').length > 0) {
+  if (code == 13 && $('.street_list, .town_list').length > 0) {
     $('.'+name+'_list').remove();
   }
+}
+
+function removeSearchListOnTab() {
+  $('.new_report, .edit_report').on('keyup', function(e) {
+    var code = e.keyCode || e.which;
+    if (code == 9 && $('.street_list, .town_list').length > 0) {
+      $('.street_list, .town_list').remove();
+    }
+  });
+
+  $('.new_report, .edit_report').on('click', function(e) {
+    if ($('.street_list, .town_list').length > 0) {
+      $('.street_list, .town_list').remove();
+    }
+  });
 }
