@@ -29,15 +29,16 @@
         </div>
       </div>
       <div class='columns six'>
-        <% if current_user.community? %>
-          <h3>Meldingen van mijn gemeente:</h3>
-        <% else %>
-          <h3>Mijn meldingen:</h3>
-        <% end %>
-
+        <h3>Mijn meldingen:</h3>
         <ul class='reports'>
       	   <%= render @reports %>
       	</ul>
+        <% if current_user.community? %>
+          <h3>Meldingen van mijn gemeente:</h3>
+          <ul class='reports'>
+            <%= render @community_reports %>
+          </ul>
+        <% end %>
       </div>
     </div>
   </div>

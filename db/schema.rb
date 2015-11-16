@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20151112120602) do
     t.integer "last_house_number",  limit: 4
     t.string  "street",             limit: 255
     t.string  "town",               limit: 255
-    t.string  "community",          limit: 255
+    t.string  "community_id",       limit: 255
     t.string  "province",           limit: 255
     t.string  "latitude",           limit: 255
     t.string  "longitude",          limit: 255
