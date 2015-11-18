@@ -2,6 +2,8 @@ class Newsletter < ActiveRecord::Base
   ### ASSOCIATIONS ###
   belongs_to :community
 
+  delegate :name, to: :community, prefix: true
+
   ### VALIDATIONS ###
   validates :title, presence: true
   validates :body, presence: true

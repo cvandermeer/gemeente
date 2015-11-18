@@ -4,7 +4,6 @@
 
     <% @newsletters.each do |newsletter| %>
       <p>
-        <%= newsletter.community.name %> -
         <%= link_to newsletter.title, newsletter %>
         (<%= newsletter.valid_from %> -
         <%= newsletter.valid_until %>)

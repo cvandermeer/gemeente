@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :messages, except: [:edit, :update, :destroy]
 
   ### NEWSLETTERS ###
-  resources :newsletters
+  resources :newsletters, except: [:edit, :update, :destroy]
 
   ### REPORTS ###
   resources :reports do
