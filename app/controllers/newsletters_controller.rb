@@ -5,6 +5,7 @@ class NewslettersController < ApplicationController
   layout false, only: [:new]
 
   def index
+    @communities = Community.all
     @newsletters = Newsletter.all.reverse
   end
 
