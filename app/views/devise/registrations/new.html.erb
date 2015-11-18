@@ -6,13 +6,13 @@
   <%= f.label :email %>
   <%= f.email_field :email, autofocus: true, class: 'u-full-width' %>
 
-  <%= f.label :wachtwoord %>
+  <%= f.label :password, 'Wachtwoord' %>
   <% if @minimum_password_length %>
     <em>(minimaal <%= @minimum_password_length %> karakters)</em>
   <% end %>
   <%= f.password_field :password, autocomplete: 'off', class: 'u-full-width' %>
 
-  <%= f.label :wachtwoord_bevestiging %><br />
+  <%= f.label :password_confirmation, 'Wachtwoord bevestiging' %><br />
   <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'u-full-width' %>
 
   <%= f.submit 'Aanmelden', class: 'button button-primary' %>
