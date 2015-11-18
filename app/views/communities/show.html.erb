@@ -1,6 +1,7 @@
 <div class='inner'>
   <h3><%= @community.name %></h3>
-  <ul class='reports'>
-     <%= render @reports %>
-  </ul>
+
+  <p>
+    <%= link_to "Nieuws van #{@community.name}", news_community_path(@community) %>
+  </p>
 </div>

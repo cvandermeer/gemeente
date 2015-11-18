@@ -6,5 +6,6 @@
 //= require richmarker
 //= require infobox
 //= require markerclusterer
+//= require ckeditor/init
 //= require turbolinks
 //= require_tree .

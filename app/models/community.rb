@@ -7,6 +7,7 @@ class Community < ActiveRecord::Base
   ### ASSOCIATIONS ###
   has_many :users
   has_many :reports
+  has_many :newsletters
 
   ### CALLBACKS ###
   after_create :send_new_community_notice

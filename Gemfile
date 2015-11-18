@@ -17,6 +17,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'remotipart', '~> 1.2'
 gem 'recaptcha', require: 'recaptcha/rails'
+gem 'ckeditor'
 
 group :development, :test do
   gem 'byebug'

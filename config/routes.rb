@@ -4,10 +4,16 @@ Rails.application.routes.draw do
   root 'reports#index'
 
   ### COMMUNITIES ###
-  resources :communities, only: [:index, :show]
+  resources :communities, only: [:index, :show] do
+    get :news, on: :member
+    get :community_list, on: :collection
+  end
 
   ### MESSAGES ###
   resources :messages, except: [:edit, :update, :destroy]
+
+  ### NEWSLETTERS ###
+  resources :newsletters, except: [:edit, :update, :destroy]
 
   ### REPORTS ###
   resources :reports do
