@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   ### MESSAGES ###
   resources :messages, except: [:edit, :update, :destroy]
 
+  ### NEWSLETTERS ###
+  resources :newsletters
+
   ### REPORTS ###
   resources :reports do
     member do

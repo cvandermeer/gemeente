@@ -1,0 +1,29 @@
+<h5>Nieuwsbrief aanmaken</h5>
+
+<%= form_for @newsletter do |f| %>
+  <div class='row'>
+    <div class="columns">
+      <%= f.label :title, 'Nieuwsbrief titel' %>
+      <%= f.text_field :title %>
+    </div>
+  </div>
+  <div class='row'>
+    <div class="columns">
+      <%= f.label :title, 'Text' %>
+      <%= f.text_area :body, class: 'u-full-width' %>
+    </div>
+  </div>
+  <div class='row'>
+    <div class="three columns">
+      <%= f.label :title, 'Geldig vanaf' %>
+      <%= f.text_field :valid_from, class: 'datepicker' %>
+    </div>
+    <div class="three columns">
+      <%= f.label :title, 'Geldig tot' %>
+      <%= f.text_field :valid_until, class: 'datepicker' %>
+    </div>
+  </div>
+  <div class='row'>
+    <%= f.submit 'Aanmaken', class: 'button-primary' %>
+  </div>
+<% end %>
