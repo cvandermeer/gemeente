@@ -7,4 +7,5 @@ class Newsletter < ActiveRecord::Base
   validates :body, presence: true
   validates :valid_from, presence: true
   validates :valid_until, presence: true
+  validates :community, presence: true
 end

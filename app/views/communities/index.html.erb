@@ -3,7 +3,7 @@
     <ul class='reports'>
       <% @communities.each do |community| %>
       <li data-lon='<%= community.longitude %>' data-lat='<%= community.latitude %>'>
-        <%= link_to community.name, community, class: 'community-reports', data: { remote:  true } %>
+        <%= link_to(community.name, '#', class: 'community-reports', data: { remote:  true }) %>
         <%= community.reports.count %> melding(en)
       </li>
       <% end %>
