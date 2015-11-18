@@ -3,7 +3,7 @@ class NewslettersController < ApplicationController
   layout false, only: [:new]
 
   def index
-    @newsletters = Newsletter.all
+    @newsletters = Newsletter.all.reverse
   end
 
   def show
