@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   belongs_to :community
   delegate :name, to: :community, prefix: true
   has_many :reports
+  has_many :newsletters
 
   ### CONSTANTS ###
   ROLE_USER = 0

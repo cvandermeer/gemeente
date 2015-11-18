@@ -20,6 +20,7 @@ class NewslettersController < ApplicationController
   def create
     @newsletter = Newsletter.new(newsletter_params)
     @newsletter.community = current_user.community
+    @newsletter.user = current_user
     redirect_to newsletters_path if @newsletter.save
   end
 
