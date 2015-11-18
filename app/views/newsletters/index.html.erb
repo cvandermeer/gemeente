@@ -1,6 +1,9 @@
 <div class='inner'>
   <div class='container'>
     <h2>Nieuws van gemeentes</h2>
+    <% if current_user && current_user.community? %>
+      <p><%= link_to 'Nieuws aanmaken', new_newsletter_path, class: 'js_modal', remote: true %></p>
+    <% end %>
     <% @communities.each do |community| %>
       <p>
         <%= link_to community.name, news_community_path(community) %>
