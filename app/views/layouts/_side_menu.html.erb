@@ -16,6 +16,9 @@
       <%= link_to "Aanmelden", new_user_registration_path, remote: true, class: 'js_modal' %>
     </li>
     <% end %>
+    <li class='show-on-mobile'>
+      <%= link_to 'Nieuws', newsletters_path %>
+    </li>
     <li>
       <%= link_to 'Gemeentes', community_list_communities_path, class: 'js_modal', remote: true %>
     </li>

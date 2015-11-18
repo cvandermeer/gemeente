@@ -13,10 +13,11 @@
   header {
     .columns {
       &.three {
-        width: 40%;
+        width: 35%;
       }
       &.nine {
-        width: 60%;
+        width: 65%;
+        margin-left: 0;
       }
     }
   }
