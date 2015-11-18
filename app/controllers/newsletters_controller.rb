@@ -1,9 +1,14 @@
 class NewslettersController < ApplicationController
   before_action :set_newsletter, only: [:show]
+  before_action :authenticate_community!, only: [:new, :create]
   layout false, only: [:new]
 
   def index
-    @newsletters = Newsletter.all.reverse
+    if current_user && current_user.community
+      @newsletters = current_user.community.newsletters.reverse
+    else
+      @newsletters = Newsletter.all.reverse
+    end
   end
 
   def show
@@ -16,6 +21,7 @@ class NewslettersController < ApplicationController
 
   def create
     @newsletter = Newsletter.new(newsletter_params)
+    @newsletter.community = current_user.community
     redirect_to newsletters_path if @newsletter.save
   end
 

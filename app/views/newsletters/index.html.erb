@@ -1,7 +1,11 @@
 <div class='inner'>
   <div class='container'>
-    <h2>Nieuws</h2>
-    <p><%= link_to 'Nieuwsbrief aanmaken', new_newsletter_path, class: 'js_modal', remote: true %></p>
+    <% if current_user && current_user.community %>
+      <h2>Nieuws van <%= current_user.community.name %></h2>
+      <p><%= link_to 'Nieuwsbrief aanmaken', new_newsletter_path, class: 'js_modal', remote: true %></p>
+    <% else %>
+      <h2>Nieuws</h2>
+    <% end %>
 
     <% @newsletters.each do |newsletter| %>
       <p>
