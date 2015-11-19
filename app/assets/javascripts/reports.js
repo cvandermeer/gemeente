@@ -49,7 +49,10 @@ function newReportForm() {
       $('.loading').hide();
     } else {
       $('.modal-content').html(data);
+      $('.loading').hide();
+      triggerLoading();
       newReportForm();
+
     }
   });
 }

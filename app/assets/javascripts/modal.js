@@ -110,6 +110,7 @@ function initDestroy(e, data) {
 
 function bindHandlers() {
   $('.js_modal').bind('ajax:success', function(e, data, status) {
+    triggerLoading();
     setDataInModal(this ,data);
   });
 }
