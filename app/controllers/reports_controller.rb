@@ -52,7 +52,6 @@ class ReportsController < ApplicationController
   end
 
   def update
-    sleep 2
     if @report.update(report_params)
       respond_to do |format|
         format.js

@@ -52,7 +52,6 @@ function newReportForm() {
       $('.loading').hide();
       triggerLoading();
       newReportForm();
-
     }
   });
 }
