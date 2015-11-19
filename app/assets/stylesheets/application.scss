@@ -171,3 +171,15 @@ h3 {
     letter-spacing: 0.5px;
   }
 }
+
+/* Loading */
+.loading{
+  max-height: 64px;
+  max-width: 64px;
+  position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -32px 0 0 -32px;
+  z-index: 20000;
+  display: none;
+}
