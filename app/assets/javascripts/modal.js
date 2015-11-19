@@ -5,6 +5,7 @@ ready = function() {
   // Sets the data to modal on ajax success and bind the datepicker
   $('.js_modal').on('ajax:success', function(e, data, status) {
     setDataInModal(this, data);
+
   });
 
   // Onclick close the modal
@@ -12,6 +13,12 @@ ready = function() {
     removeModal();
   });
 };
+
+function triggerLoading(){
+  $('.trigger_loading').on('click', function(){
+    $('.loading').show();
+  });
+}
 
 /**
   * @desc appends the modalbackground and binds the onclick function
@@ -55,6 +62,9 @@ function setDataInModal(e, data) {
 
     // The functions can be found in search.js, sets up the list search
     triggerSearch();
+
+    // Show loading spinner on submit click
+    triggerLoading();
 
     // Datepicker
     $('input.datepicker').pickadate();
