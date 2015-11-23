@@ -1,5 +1,18 @@
 <div class='row'>
-  <div class='columns nine'>
+  <div class='columns four'>
+    <ul>
+      <li>
+        <%= link_to 'Profiel', user_path(current_user) %>
+      </li>
+      <li>
+        <%= link_to 'Profiel bewerken', edit_user_registration_path %>
+      </li>
+      <li>
+        <%= link_to 'Accountinstellingen' %>
+      </li>
+    </ul>
+  </div>
+  <div class='columns eight'>
     <h5>Profiel aanpassen</h5>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
@@ -18,7 +31,16 @@
         <%= f.label :avatar, 'Profiel foto' %>
         <%= f.file_field :avatar %>
       </div>
-
+      <div class='row'>
+        <div class='columns six'>
+          <%= f.label :address, 'Straat + huisnummer' %>
+          <%= f.text_field :address, placeholder: 'Straat + huisnummer' %>
+        </div>
+        <div class='columns six'>
+          <%= f.label :town, 'Plaats' %>
+          <%= f.text_field :town, placeholder: 'Plaatsnaam' %>
+        </div>
+      </div>
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>

@@ -3,10 +3,9 @@ module Users
     layout false, except: [:edit, :update]
 
     def account_update_params
-      params.require(:user).permit(:name, :avatar,
-                                :avatar_cache, :email,
-                                :password, :password_confirmation,
-                                :facebook_image_url)
+      params.require(:user).permit(:name, :avatar, :email,
+                                  :address, :town,
+                                  :password, :password_confirmation)
     end
 
     protected

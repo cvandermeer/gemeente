@@ -21,7 +21,7 @@
 header {
   .icon {
     position: relative;
-    padding-left: 42px;
+    padding-right: 42px;
   }
   .message,
   .reports,
@@ -29,7 +29,7 @@ header {
     &:before {
       font-family: FontAwesome;
       font-size: 16px;
-      left: 12px;
+      right: 12px;
       top: 20px;
       position: absolute;
       font-weight: normal;
@@ -37,6 +37,7 @@ header {
     }
   }
   .reports {
+    padding-right: 38px;
     &:before {
       content: '\f041';
       font-size: 18px;

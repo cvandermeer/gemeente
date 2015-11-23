@@ -1,25 +1,33 @@
+<%= render 'shared/dashboard_menu' %>
+
 <div class='inner'>
   <div class='container'>
     <div class='row'>
       <h2>Gebruiker <%= @user.email %> <%= '(Gemeente beheerder)' if current_user.community %></h2>
     </div>
     <div class='row'>
-      <div class='columns three side-contact'>
+      <div class='columns four side-contact'>
         <div class='contact'>
           <h3>Mijn gegevens</h3>
           <ul>
-            <li>
-              Naam:
-            </li>
+            <% if @user.name? %>
+              <li>
+                Naam: <%= @user.name %>
+              </li>
+            <% end %>
             <li>
               Email: <%= @user.email %>
             </li>
-            <li>
-              Adres:
-            </li>
-            <li>
-              Plaats:
-            </li>
+            <% if @user.address? %>
+              <li>
+                Adres: <%= @user.address %>
+              </li>
+            <% end %>
+            <% if @user.town? %>
+              <li>
+                Plaats: <%= @user.town %>
+              </li>
+            <% end %>
             <% if @user.community? %>
               <li>
                 Gemeente: <%= @user.community_name %>
@@ -28,7 +36,7 @@
           </ul>
         </div>
       </div>
-      <div class='columns six'>
+      <div class='columns eight'>
         <h3>Mijn meldingen:</h3>
         <ul class='reports'>
       	   <%= render @reports %>
