@@ -172,6 +172,18 @@ h3 {
   }
 }
 
+/* Loading */
+.loading{
+  max-height: 64px;
+  max-width: 64px;
+  position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -32px 0 0 -32px;
+  z-index: 20000;
+  display: none;
+
+/*header*/
 header{
   position: fixed;
   top: 0;
