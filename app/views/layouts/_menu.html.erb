@@ -10,24 +10,40 @@
       <nav>
         <ul>
           <li>
-            <div class='hamburger'>
+            <div class='hamburger show-on-mobile'>
               <span></span>
               <span></span>
               <span></span>
             </div>
           </li>
-          <li>
-            <%= link_to 'Melding aanmaken', new_report_path, class: 'js_modal button button-primary', remote: true %>
-          </li>
-          <li class='hide-on-mobile'>
-            <%= link_to 'Nieuws', newsletters_path, class: 'button button-primary' %>
-          </li>
           <% if user_signed_in? %>
-          <li  class='hide-on-mobile'>
-            <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete', class: 'pull-right' %>
+          <li class='hide-on-mobile has-dropdown'>
+            <%= link_to 'Berichten' %>
+            <ul class='dropdown'>
+              <li>
+                <%= link_to 'Bekijk inbox' %>
+              </li>
+              <li>
+                <%= link_to 'Bekijk dashboard' %>
+              </li>
+            </ul>
           </li>
-          <li  class='hide-on-mobile'>
+          <li  class='hide-on-mobile has-dropdown'>
+            <div class='profile-picture'>
+              BH
+            </div>
             <%= link_to 'Profiel', user_path(current_user), data: { no_turbolink: true } %>
+            <ul class='dropdown'>
+              <li>
+                <%= link_to 'Profiel bewerken', root_path %>
+              </li>
+              <li>
+                <%= link_to 'Accountinstellingen', root_path %>
+              </li>
+              <li>
+                <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete', class: 'pull-right' %>
+              </li>
+            </ul>
           </li>
           <% else %>
           <li  class='hide-on-mobile'>
@@ -37,6 +53,23 @@
             <%= link_to "Aanmelden", new_user_registration_path, remote: true, class: 'js_modal' %>
           </li>
           <% end %>
+          <li class='hide-on-mobile has-dropdown'>
+            <li>
+              <%= link_to 'Meldingen', root_path %>
+            </li>
+            <ul class='dropdown'>
+              <li>
+                <%= link_to 'Melding aanmaken', new_report_path, class: 'js_modal', remote: true %>
+              </li>
+              <li>
+                <%= link_to 'Mijn meldingen', root_path %>
+              </li>
+            </ul>
+          </li>
+          <li class='hide-on-mobile'>
+            <%= link_to 'Nieuws', newsletters_path %>
+          </li>
+
         </ul>
       </nav>
     </div>
