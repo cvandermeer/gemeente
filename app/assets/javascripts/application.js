@@ -7,5 +7,6 @@
 //= require infobox
 //= require markerclusterer
 //= require ckeditor/init
+//= require angular.min
 //= require turbolinks
 //= require_tree .

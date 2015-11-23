@@ -32,7 +32,6 @@ class ReportsController < ApplicationController
 
   def new
     @report = Report.new
-    render 'form'
   end
 
   def create
@@ -48,7 +47,6 @@ class ReportsController < ApplicationController
   end
 
   def edit
-    render 'form'
   end
 
   def update

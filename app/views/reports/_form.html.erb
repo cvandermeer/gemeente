@@ -1,11 +1,3 @@
-<h5>Melding
-<% if action_name == 'new' %>
-  aanmaken
-<% else %>
-  aanpassen
-<% end %>
-</h5>
-
 <%= form_for @report, html: { multipart: true, type: :html }, remote: true do |f| %>
 
   <div class='row'>
