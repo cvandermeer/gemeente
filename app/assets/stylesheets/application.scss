@@ -24,6 +24,7 @@ $background-color-dark: #424242;
 @import 'marker';
 @import 'report';
 @import 'menu';
+@import 'dropdown';
 @import 'notice';
 @import 'search';
 @import 'featured';
@@ -82,6 +83,7 @@ body, html {
 }
 
 .wrapper {
+  padding-top: 62px;
   position: relative;
   background: $background-color;
 }

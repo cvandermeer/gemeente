@@ -1,0 +1,32 @@
+.dropdown {
+  width: 200px;
+  height: auto;
+  background: #fff;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  display: none;
+  li {
+    float: left;
+    width: 100%;
+    @include transition(0.3s);
+    a {
+     text-indent: 0;
+    }
+    &:hover {
+      background-color: #f7f7f7;
+      a {
+        text-indent: 12px;
+      }
+    }
+  }
+}
+
+.has-dropdown {
+  position: relative;
+  &:hover {
+    .dropdown {
+      display: block;
+    }
+  }
+}

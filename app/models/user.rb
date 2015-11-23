@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
+  ### UPLOADER ###
+  mount_uploader :avatar, AvatarUploader
+
   ### ASSOCIATIONS ###
   belongs_to :community
   delegate :name, to: :community, prefix: true
@@ -17,4 +20,13 @@ class User < ActiveRecord::Base
     community: ROLE_COMMUNITY,
     admin: ROLE_ADMIN
   }
+
+  ### METHODS  ###
+  def get_user_initials
+    initials || email[0,2]
+  end
+
+  def initials
+    name.split(' ', 4).map(&:first).join('')
+  end
 end
