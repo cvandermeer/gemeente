@@ -39,7 +39,7 @@
             </ul>
           </li>
           <li class='hide-on-mobile has-dropdown'>
-            <%= link_to 'Berichten' %>
+            <%= link_to 'Berichten', root_path, class: 'message icon' %>
             <ul class='dropdown'>
               <li>
                 <%= link_to 'Bekijk inbox' %>
@@ -58,7 +58,7 @@
           </li>
           <% end %>
           <li class='hide-on-mobile has-dropdown'>
-            <%= link_to 'Meldingen', root_path %>
+            <%= link_to 'Meldingen', root_path, class: 'reports icon' %>
             <ul class='dropdown'>
               <li>
                 <%= link_to 'Melding aanmaken', new_report_path, class: 'js_modal', remote: true %>
@@ -69,7 +69,7 @@
             </ul>
           </li>
           <li class='hide-on-mobile'>
-            <%= link_to 'Nieuws', newsletters_path %>
+            <%= link_to 'Nieuws', newsletters_path, class: 'news icon' %>
           </li>
         </ul>
       </nav>
