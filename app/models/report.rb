@@ -26,6 +26,7 @@ class Report < ActiveRecord::Base
 
   ### CALLBACKS ###
   before_create :set_community
+  after_create :create_notification
 
   def set_community
     set_street
@@ -38,6 +39,12 @@ class Report < ActiveRecord::Base
     @street = address
     s = address.split
     @street = s.reverse.drop(1).reverse.join(' ') if s[s.length - 1].to_i >= 1
+  end
+
+  def create_notification
+    if self.user
+      Notification.create(title: 'Melding aangemaakt!', user: user, category_id: Notification::CATEGORY_REPORT)
+    end
   end
 
   ### INSTANCE METHODS ###
