@@ -62,9 +62,8 @@ body, html {
 }
 
 /* Framework */
-
+.index-outer-wrapper,
 .outer-wrapper {
-  height: 100%;
   width: 100%;
   overflow-x: hidden;
   position: relative;
@@ -81,7 +80,12 @@ body, html {
   background: $background-color;
 }
 
+.index-outer-wrapper {
+  height: 100%;
+}
+
 .index-wrapper {
+  padding-top: 62px;
   height: calc(100% - 62px);
   min-height: calc(100% - 62px);
   background: $background-color;
@@ -165,8 +169,4 @@ header{
   position: fixed;
   top: 0;
   width: 100%;
-}
-
-.index-wrapper{
-  padding-top: 62px;
 }

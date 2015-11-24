@@ -27,7 +27,7 @@
             <h5>Meldingen mijn gemeente:</h5>
           </div>
           <div class='panel-body'>
-            <% if  @user.community && @user.community.reports.any? %>
+            <% if  @user.community && @community_reports.any? %>
               <ul class='reports'>
                 <%= render @community_reports %>
               </ul>
@@ -39,6 +39,21 @@
               <% end %>
             <% end %>
           </div>
+        </div>
+        <div class='panel'>
+          <div class='panel-header'>
+            <h5>Notificaties</h5>
+          </div>
+          <div class='panel-body'>
+            <% if @user.notifications.any? %>
+            <ul>
+              <% @user.notifications.limit(5).reverse.each do |notification| %>
+                <li><%= notification.title %> - <%= notification.created_at %></li>
+              <% end %>
+            </ul>
+            <% else %>
+              Er zijn geen nieuwe berichten!
+            <% end %>
           </div>
         </div>
       </div>
