@@ -9,11 +9,14 @@ ready = function() {
 };
 
 function removeNotice(){
-  if( $('.notice, .alert').length ) {
-    $('.notice, .alert').addClass('active');
+  if( $('.notice').length ) {
+    $('.notice').addClass('active');
     setTimeout(function() {
-      $('.notice, .alert').removeClass('active');
-    }, 5000);
+      $('.notice').removeClass('active');
+    }, 15000);
+    $('.notice .close').on('click', function() {
+      $('.notice').removeClass('active');
+    });
   }
 }
 
