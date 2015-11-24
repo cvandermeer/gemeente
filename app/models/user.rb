@@ -22,11 +22,11 @@ class User < ActiveRecord::Base
   }
 
   ### METHODS  ###
-  def get_user_initials
-    initials || email[0,2]
+  def user_initials
+    initials || email[0, 2]
   end
 
   def initials
-    name.split(' ', 4).map(&:first).join('')
+    name.split(' ', 4).map(&:first).join('') if name
   end
 end

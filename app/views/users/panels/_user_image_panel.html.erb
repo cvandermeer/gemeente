@@ -3,7 +3,7 @@
     <% if user.avatar? %>
       <%= image_tag user.avatar_url, class: 'u-max-full-width' %>
     <% else %>
-      <%= current_user.get_user_initials %>
+      <%= current_user.user_initials %>
     <% end %>
   </div>
   <div class='panel-body center'>

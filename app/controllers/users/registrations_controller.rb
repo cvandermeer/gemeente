@@ -4,8 +4,8 @@ module Users
 
     def account_update_params
       params.require(:user).permit(:name, :avatar, :email,
-                                  :address, :town,
-                                  :password, :password_confirmation)
+                                   :address, :town,
+                                   :password, :password_confirmation)
     end
 
     protected
