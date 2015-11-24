@@ -17,27 +17,38 @@ $background-color-dark: #424242;
 @import 'classic';
 @import 'classic.date';
 
-@import 'modal';
-@import 'form';
+/* Map styling */
+@import 'map_info_windows';
+@import 'map_markers';
 @import 'map';
-@import 'info_window';
-@import 'marker';
+
+/* Menu styling */
+@import 'menu_dashboard';
+@import 'menu_header';
+@import 'menu_mobile';
+
+/* Framework styling */
+@import 'fw_font_styling';
+@import 'fw_list_items';
+@import 'fw_panels';
+@import 'fw_modals';
+@import 'fw_forms_buttons';
+
+/* Specific styling */
+@import 'recent';
 @import 'report';
-@import 'menu';
-@import 'dropdown';
-@import 'dashboard_menu';
 @import 'notice';
 @import 'search';
 @import 'featured';
-@import 'categorie';
-@import 'recent';
 @import 'contact';
 @import 'footer';
-@import 'responsive';
 
 // Icons
 @import 'font-awesome';
 @import 'icons';
+
+/* Mobile */
+@import 'responsive';
 
 /* Basic styling */
 
@@ -48,28 +59,9 @@ html, html a, body, body a {
 body, html {
   height: 100%;
   min-height: 100%;
-  input[type="submit"].button-primary,
-  .button.button-primary {
-    background: $basic-color;
-    border-color: $basic-color-dark;
-    @include transition(0.3s);
-    &:focus,
-    &:active,
-    &:hover {
-      background: $basic-color-dark;
-      border-color: $basic-color;
-      color: #fff;
-    }
-  }
-  a {
-    @include transition(0.3s);
-    &:focus,
-    &:active,
-    &:hover {
-      color: $basic-color-dark;
-    }
-  }
 }
+
+/* Framework */
 
 .outer-wrapper {
   height: 100%;
@@ -101,7 +93,6 @@ body, html {
   float: left;
   height: 100%;
   min-height: 100%;
-  //width: 30%;
   overflow-y: scroll;
   .inner {
     padding: 24px 24px 0px 24px;
@@ -114,23 +105,6 @@ body, html {
 
 .inner {
   padding: 24px;
-}
-
-/* Font styling */
-h3 {
-  color: $dark-gray;
-  font-size: 16px;
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: 0.1px;
-  margin-bottom: 24px;
-  a {
-    text-decoration: none;
-    color: $dark-gray;
-    &:hover {
-      color: $basic-color;
-    }
-  }
 }
 
 /* Clear Floated Elements */

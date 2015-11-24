@@ -1,4 +1,4 @@
-.categorie {
+.list-items {
   li {
     margin-bottom: 4px;
     list-style: none;
@@ -13,5 +13,12 @@
   a {
     color: $dark-gray;
     text-decoration: none;
+  }
+  &.links {
+    li {
+      &:before {
+        display: none;
+      }
+    }
   }
 }

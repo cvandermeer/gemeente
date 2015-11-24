@@ -1,3 +1,4 @@
+textarea,
 input[type="time"],
 input[type="date"],
 input[type="email"],
@@ -17,6 +18,7 @@ input[type="checkbox"] {
   margin: 8px 10px 8px 0;
 }
 
+textarea,
 input[type="time"],
 input[type="date"],
 input[type="email"],
@@ -35,8 +37,46 @@ input[type="password"] {
   }
 }
 
-/* Form errors */
 
+.form-wrapper {
+  background: #fff;
+  border: 1px solid #dce0e0;
+  h5 {
+    background: #EDEFED;
+    width: 100%;
+    padding: 12px 0;
+    text-indent: 12px;
+    font-size: 16px;
+  }
+}
+
+/* Buttons */
+body,
+html {
+  input[type="submit"].button-primary,
+  .button.button-primary {
+    background: $basic-color;
+    border-color: $basic-color-dark;
+    @include transition(0.3s);
+    &:focus,
+    &:active,
+    &:hover {
+      background: $basic-color-dark;
+      border-color: $basic-color;
+      color: #fff;
+    }
+  }
+  a {
+    @include transition(0.3s);
+    &:focus,
+    &:active,
+    &:hover {
+      color: $basic-color-dark;
+    }
+  }
+}
+
+/* Form errors */
 .field_with_errors {
   textarea,
   input {

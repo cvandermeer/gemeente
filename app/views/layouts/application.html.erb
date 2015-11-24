@@ -27,8 +27,8 @@
       </div>
 
       <% if action_name == 'index' && controller_name == 'reports'  %>
-        <%= render 'layouts/featured', featured: @featured %>
-        <%= render 'layouts/recent', recents: @recents %>
+        <%= render 'shared/featured', featured: @featured %>
+        <%= render 'shared/recent', recents: @recents %>
       <% end %>
       <%= render 'shared/modal' %>
 
