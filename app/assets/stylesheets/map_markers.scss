@@ -53,6 +53,7 @@
   position: absolute;
   left: 3px;
   top: 3px;
+  font-weight: normal;
   border: 4px solid $basic-color;
   @include transition(0.3s);
   &:before {

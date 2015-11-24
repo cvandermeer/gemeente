@@ -1,22 +1,22 @@
-<div class='side-menu'>
+<div class='side-menu show-on-mobile'>
   <h4>Navigatie</h4>
   <ul>
     <% if user_signed_in? %>
-    <li class='show-on-mobile'>
+    <li>
       <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete', class: 'pull-right' %>
     </li>
-    <li class='show-on-mobile'>
-      <%= link_to 'Profiel', user_path(current_user), data: { no_turbolink: true } %>
+    <li>
+      <%= link_to 'Profiel', profile_path(current_user), data: { no_turbolink: true } %>
     </li>
     <% else %>
-    <li class='show-on-mobile'>
+    <li>
       <%= link_to 'Inloggen', new_user_session_path, remote: true, class: 'js_modal' %>
     </li>
-    <li class='show-on-mobile'>
+    <li>
       <%= link_to "Aanmelden", new_user_registration_path, remote: true, class: 'js_modal' %>
     </li>
     <% end %>
-    <li class='show-on-mobile'>
+    <li>
       <%= link_to 'Nieuws', newsletters_path %>
     </li>
     <li>

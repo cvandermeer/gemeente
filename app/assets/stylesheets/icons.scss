@@ -8,11 +8,48 @@
   color: $dark-gray;
   box-shadow: 1px 2px 3px rgba(0,0,0,0.1);
   border-radius: 2px;
+  font-weight: normal;
   &:before {
     position: absolute;
     top: 6px;
     left: 6px;
     text-indent: 0;
     font-size: 18px;
+  }
+}
+
+header {
+  .icon {
+    position: relative;
+    padding-right: 42px;
+  }
+  .message,
+  .reports,
+  .news {
+    &:before {
+      font-family: FontAwesome;
+      font-size: 16px;
+      right: 12px;
+      top: 20px;
+      position: absolute;
+      font-weight: normal;
+      content: '\f1ea';
+    }
+  }
+  .reports {
+    padding-right: 38px;
+    &:before {
+      content: '\f041';
+      font-size: 18px;
+      top: 18px;
+    }
+  }
+  .message {
+    &:before {
+      content: '\f003';
+      font-size: 17px;
+      top: 18px;
+
+    }
   }
 }

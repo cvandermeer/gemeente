@@ -1,0 +1,17 @@
+<div class='panel'>
+  <div class='panel-header image'>
+    <% if user.avatar? %>
+      <%= image_tag user.avatar_url, class: 'u-max-full-width' %>
+    <% else %>
+      <%= current_user.user_initials %>
+    <% end %>
+  </div>
+  <div class='panel-body center'>
+    <h3><%= user.name || user.email %></h3>
+    <% if action_name == 'edit' %>
+      <%= link_to 'Profiel bekijken', profile_path(user) %>
+    <% else %>
+      <%= link_to 'Profiel bewerken', edit_user_registration_path %>
+    <% end %>
+  </div>
+</div>

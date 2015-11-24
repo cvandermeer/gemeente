@@ -17,7 +17,7 @@
       <%= image_tag('spinner.GIF') %>
     </div>
 
-    <div class='outer-wrapper'>
+    <div class='<%= "index-" if controller_name == "reports" && action_name == "index" %>outer-wrapper'>
       <%= render 'layouts/menu' %>
       <%= render 'layouts/side_menu' %>
       <%= render 'layouts/notice' %>
@@ -27,8 +27,8 @@
       </div>
 
       <% if action_name == 'index' && controller_name == 'reports'  %>
-        <%= render 'layouts/featured', featured: @featured %>
-        <%= render 'layouts/recent', recents: @recents %>
+        <%= render 'shared/featured', featured: @featured %>
+        <%= render 'shared/recent', recents: @recents %>
       <% end %>
       <%= render 'shared/modal' %>
 

@@ -32,7 +32,8 @@ Rails.application.routes.draw do
 
   ### USERS ###
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
-  resources :users, only: [:show, :index]
+  resources :users, only: [:index]
+  get 'profile', to: 'users#profile', as: 'profile'
 
   ### ZIPCODES ###
   get 'search_streets', to: 'zipcodes#search_streets', as: 'search_streets'

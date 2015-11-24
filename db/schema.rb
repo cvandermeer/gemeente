@@ -89,6 +89,10 @@ ActiveRecord::Schema.define(version: 20151124121030) do
     t.datetime "updated_at",                                      null: false
     t.integer  "role_id",                limit: 4
     t.integer  "community_id",           limit: 4
+    t.string   "avatar",                 limit: 255
+    t.string   "name",                   limit: 255
+    t.string   "town",                   limit: 255
+    t.string   "address",                limit: 255
   end
 
   add_index "users", ["community_id"], name: "index_users_on_community_id", using: :btree
