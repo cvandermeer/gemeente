@@ -27,6 +27,14 @@
             <% end %>
           </ul>
         </div>
+        <div class='contact'>
+          <h3>Notificaties</h3>
+          <ul>
+            <% @user.notifications.limit(5).each do |notification| %>
+              <li><%= notification.title %> - <%= notification.created_at %></li>
+            <% end %>
+          </ul>
+        </div>
       </div>
       <div class='columns six'>
         <h3>Mijn meldingen:</h3>

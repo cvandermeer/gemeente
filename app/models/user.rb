@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   delegate :name, to: :community, prefix: true
   has_many :reports
   has_many :newsletters
+  has_many :notifications
 
   ### CONSTANTS ###
   ROLE_USER = 0
