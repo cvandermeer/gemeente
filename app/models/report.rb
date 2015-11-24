@@ -42,9 +42,7 @@ class Report < ActiveRecord::Base
   end
 
   def create_notification
-    if self.user
-      Notification.create(title: 'Melding aangemaakt!', user: user, category_id: Notification::CATEGORY_REPORT)
-    end
+    CreateNotificationJob.perform_later(self.user) if self.user
   end
 
   ### INSTANCE METHODS ###
