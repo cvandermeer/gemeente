@@ -19,9 +19,8 @@ class UsersController < ApplicationController
 
   def generate_user
     @email = params[:user][:email]
-    generated_password = Devise.friendly_token.first(8)
-    user = User.create!(email: @email, password: generated_password)
-    RegistrationMailer.welcome(user, generated_password).deliver
-    redirect_to admin_panel, notice: "Registratiemail verstuurd naar #{@email}"
+    @generated_password = Devise.friendly_token.first(8)
+    user = User.create!(email: @email, password: @generated_password)
+    redirect_to admin_panel_path, notice: "Gebruiker #{@email} aangemaakt met wachtwoord #{@generated_password}"
   end
 end
