@@ -35,10 +35,10 @@ Rails.application.routes.draw do
 
   ### USERS ###
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
-  resources :users, only: [:index, :new] do
-    post :generate_user, on: :collection
-    get :new_admin_user, on: :collection
-  end
+
+  post 'users/generate_user', to: 'users#generate_user'
+  get 'users/new_admin_user', to: 'users#new_admin_user'
+
   get 'profile', to: 'users#profile', as: 'profile'
 
   ### ZIPCODES ###

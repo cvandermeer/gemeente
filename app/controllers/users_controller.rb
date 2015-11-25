@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_admin!, only: [:index, :new, :generate_user]
+  #before_action :authenticate_admin!, only: [:index, :new_admin_user, :generate_user]
   layout false, only: [:new_admin_user]
 
   def index
