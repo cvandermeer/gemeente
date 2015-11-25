@@ -1,0 +1,65 @@
+<div class='inner'>
+  <div class='container'>
+    <div class='row'>
+
+      <div class='six columns'>
+        <div class='panel'>
+          <div class='panel-header'>
+            <h5>Gemeentes</h5>
+          </div>
+          <div class='panel-body'>
+            <table class="u-full-width">
+              <thead>
+                <tr>
+                  <th>Naam</th>
+                  <th>Leden</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @communities.each do |community| %>
+                  <tr>
+                    <td><%= community.name %></td>
+                    <td><%= community.users.count %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class='six columns'>
+        <div class='panel'>
+          <div class='panel-header'>
+            <h5>Gebruikers</h5>
+          </div>
+          <div class='panel-body'>
+            <table class="u-full-width">
+              <thead>
+                <tr>
+                  <th>Email</th>
+                  <th>Gemeente</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @users.each do |user| %>
+                  <tr>
+                    <td><%= user.email %></td>
+                    <td>
+                      <% if user.community %>
+                        <%= user.community.name %>
+                      <% else %>
+                        Nog niet aangesloten
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

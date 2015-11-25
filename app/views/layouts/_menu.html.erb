@@ -31,8 +31,13 @@
                 <%= link_to 'Profiel bewerken', edit_user_registration_path %>
               </li>
               <li>
-                <%= link_to 'Accountinstellingen' %>
+                <%= link_to 'Accountinstellingen', profile_path %>
               </li>
+              <% if current_user.admin? %>
+                <li>
+                  <%= link_to 'Admin Panel', admin_panel_path %>
+                </li>
+              <% end %>
               <li>
                 <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete' %>
               </li>

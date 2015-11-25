@@ -3,6 +3,9 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   root 'reports#index'
 
+  ### ADMIN PANEL ###
+  get 'admin_panel', to: 'static_pages#admin_panel'
+
   ### COMMUNITIES ###
   resources :communities, only: [:index, :show] do
     get :news, on: :member
