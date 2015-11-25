@@ -29,13 +29,15 @@ Rails.application.routes.draw do
   end
 
   ### SIDEKIQ ####
-  authenticate :user do
+  authenticate :user, -> (u) { u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
 
   ### USERS ###
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
-  resources :users, only: [:index]
+  resources :users, only: [:index, :new] do
+    post 'generate_user', on: :collection
+  end
   get 'profile', to: 'users#profile', as: 'profile'
 
   ### ZIPCODES ###
