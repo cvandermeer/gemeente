@@ -36,7 +36,8 @@ Rails.application.routes.draw do
   ### USERS ###
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
   resources :users, only: [:index, :new] do
-    post 'generate_user', on: :collection
+    post :generate_user, on: :collection
+    get :new_admin_user, on: :collection
   end
   get 'profile', to: 'users#profile', as: 'profile'
 
