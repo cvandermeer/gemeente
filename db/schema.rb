@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124121030) do
+ActiveRecord::Schema.define(version: 20151125090229) do
 
   create_table "communities", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -21,6 +21,12 @@ ActiveRecord::Schema.define(version: 20151124121030) do
     t.datetime "updated_at",              null: false
     t.float    "latitude",    limit: 24
     t.float    "longitude",   limit: 24
+  end
+
+  create_table "community_subscriptions", force: :cascade do |t|
+    t.integer  "community_id", limit: 4
+    t.integer  "user_id",      limit: 4
+    t.datetime "created_at"
   end
 
   create_table "messages", force: :cascade do |t|

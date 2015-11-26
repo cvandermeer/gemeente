@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
-  layout false, except: [:index]
-  before_action :authenticate_admin!, only: [:index]
+  layout false, except: :index
+  before_action :authenticate_admin!, only: :index
 
   def new
     @message = Message.new

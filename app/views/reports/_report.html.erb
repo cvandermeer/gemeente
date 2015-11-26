@@ -1,4 +1,4 @@
-<li class='clearfix report-show' data-report-id='<%= report.id %>' data-lat='<%= report.latitude %>' data-lon='<%= report.longitude %>'>
+<li class='clearfix report-show' data-reports-id='<%= report.id %>' data-lat='<%= report.latitude %>' data-lon='<%= report.longitude %>'>
   <%= link_to '', report, data: { no_turbolink: true }, class: 'goto-report', target: '_blank'  %>
   <% if report.image(:thumb) != nil %>
     <div class='report-image'>
