@@ -3,8 +3,12 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   root 'reports#index'
 
-  ### ADMIN PANEL ###
-  get 'admin_panel', to: 'static_pages#admin_panel'
+  ### ADMIN ###
+  namespace :admin do
+    get 'dashboard', to: 'static_pages#dashboard'
+    get 'users', to: 'static_pages#users'
+    get 'communities', to: 'static_pages#communities'
+  end
 
   ### COMMUNITIES ###
   resources :communities, only: [:index, :show] do
