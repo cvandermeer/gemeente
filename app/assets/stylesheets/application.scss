@@ -143,18 +143,6 @@ body, html {
   float: right;
 }
 
-/* Buttons */
-.button {
-  margin-bottom: 12px;
-  &.small {
-    font-size: 10px;
-    height: 30px;
-    line-height: 28px;
-    padding: 0 12px;
-    letter-spacing: 0.5px;
-  }
-}
-
 /* Loading */
 .loading{
   max-height: 64px;
@@ -171,4 +159,8 @@ header{
   position: fixed;
   top: 0;
   width: 100%;
+}
+
+.hidden{
+  display: none;
 }

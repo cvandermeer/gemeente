@@ -92,6 +92,20 @@ form {
   margin-bottom: 0;
 }
 
+.button {
+  margin-bottom: 12px;
+  &.small {
+    font-size: 10px;
+    height: 30px;
+    line-height: 28px;
+    padding: 0 12px;
+    letter-spacing: 0.5px;
+  }
+}
+
+.button-sm{
+  margin-top: -6px;
+}
 .select {
   .field_with_errors {
     float: left;

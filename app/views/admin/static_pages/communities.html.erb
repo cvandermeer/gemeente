@@ -1,0 +1,33 @@
+<%= render 'admin_menu' %>
+<div class='inner'>
+  <div class='container'>
+    <div class='row'>
+      <div class='columns'>
+        <div class='panel'>
+          <div class='panel-header'>
+            <h5>Gemeentes</h5>
+          </div>
+          <div class='panel-body'>
+            <table class="u-full-width">
+              <thead>
+                <tr>
+                  <th>Naam</th>
+                  <th>Leden</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @communities.each do |community| %>
+                  <tr>
+                    <td><%= community.name %></td>
+                    <td><%= community.users.count %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <%= will_paginate @communities %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

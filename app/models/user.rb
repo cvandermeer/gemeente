@@ -24,6 +24,13 @@ class User < ActiveRecord::Base
     admin: ROLE_ADMIN
   }
 
+  ### CALLBACKS ###
+  before_create :initialize_user
+
+  def initialize_user
+    self.role_id = 1 if role_id.nil?
+  end
+
   ### METHODS  ###
   def user_initials
     initials || email[0, 2]

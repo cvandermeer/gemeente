@@ -9,9 +9,9 @@ class CommunitySubscriptionsController < ApplicationController
     @community_subscription = CommunitySubscription.new(community_subscription_params)
     @community_subscription.user = current_user
     if @community_subscription.save
-      redirect_to profile_path, notice: "Uw volgt nu de gemeente: #{@community_subscription.community.name}"
+      redirect_to profile_users_path, notice: "Uw volgt nu de gemeente: #{@community_subscription.community.name}"
     else
-      redirect_to profile_path, notice: 'Kies een gemeente om the volgen!'
+      redirect_to profile_users_path, notice: 'Kies een gemeente om the volgen!'
     end
   end
 
@@ -19,12 +19,13 @@ class CommunitySubscriptionsController < ApplicationController
     title = 'Gemeente niet meer volgen!'
     text = "Weet uw zeker dat u de gemeente: #{@community_subscription.community.name} niet meer wil volgen"
     render partial: 'shared/delete', locals: { title: title, text: text,
-                                               el: @community_subscription, controller_route: 'reports' }
+                                               el: @community_subscription,
+                                               controller_route: 'community_subscriptions' }
   end
 
   def destroy
     @community_subscription.destroy
-    redirect_to profile_path, notice: "U volgt niet langer de gemeente: #{@community_subscription.community.name}"
+    redirect_to profile_users_path, notice: "U volgt niet langer de gemeente: #{@community_subscription.community.name}"
   end
 
   private

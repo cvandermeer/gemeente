@@ -61,6 +61,9 @@ function setDataInModal(e, data) {
     // Show loading spinner on submit click
     triggerLoading();
 
+    // Check select change for user role_id
+    roleIdChange();
+
     // Datepicker
     $('input.datepicker').pickadate();
   }
