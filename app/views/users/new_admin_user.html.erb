@@ -18,7 +18,7 @@
   <div class='row hidden user_community_select'>
     <div class='six columns'>
       <%= f.label :community_id, 'Gemeente' %>
-      hahah
+      <%= f.collection_select(:community_id, Community.all, :id, :name, include_blank: true) %>
     </div>
   </div>
 
