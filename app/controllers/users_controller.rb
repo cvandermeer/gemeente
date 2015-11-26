@@ -9,9 +9,7 @@ class UsersController < ApplicationController
   end
 
   def profile
-    @user = current_user
-    @reports = current_user.reports
-    @community_reports = @user.try(:community_reports)
+    @community_reports = current_user.community.try(:reports)
     @community_subscription = CommunitySubscription.new
     @community_list = Community.all - current_user.communities
   end
