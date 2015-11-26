@@ -6,7 +6,7 @@
     <% if community_list.any? %>
       <%= form_for community_subscription do |f| %>
         <div class='row select'>
-          <%= f.select(:community_id, community_list.map { |c| [c.name, c.id] }, {include_blank: 'Kies een gemeente'}, { class: ''}) %>
+          <%= f.select(:community_id, community_list.map { |c| [c.name, c.id] }, {include_blank: 'Kies een gemeente'}, { class: 'js_init_select'}) %>
           <%= f.submit 'Gemeente toevoegen' %>
         </div>
       <% end %>

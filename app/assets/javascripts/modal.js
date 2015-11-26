@@ -2,6 +2,10 @@ var ready;
 
 ready = function() {
 
+  $('.js_modal').bind('ajax:success', function(e, data, status) {
+    setDataInModal(this ,data);
+  });
+
   // Onclick close the modal
   $('.modal-close').on('click', function() {
     removeModal();
