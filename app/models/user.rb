@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
   def initialize_user
     if self.role_id.nil?
-      self.role_id == 1
+      self.role_id = 1
     end
   end
 
