@@ -20,7 +20,6 @@ class UsersController < ApplicationController
   end
 
   def notifications
->>>>>>> cd439a7b7144b03ab538e07c9721c26489049dc4
   end
 
   def new_admin_user
