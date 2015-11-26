@@ -16,12 +16,8 @@
       <% current_user.community_subscriptions.each do |subscription, id| %>
         <li>
           <%= subscription.community.name %>
-          <%= link_to 'Verwijderen', delete_community_subscription_path(subscription.id), data: { remote: true,
-                                                                  modal_type: 'destroy',
-                                                                  modal_remote: false,
-                                                                  modal_element: 'community_subscriptions',
-                                                                  modal_community: subscription.community.name},
-                                                                  class: 'fa fa-trash-o js_modal' %>
+          <%= link_to 'Verwijderen', delete_community_subscription_path(subscription.id), data: { remote: true },
+                                                                                          class: 'fa fa-trash-o js_modal' %>
         </li>
       <% end %>
     </ul>

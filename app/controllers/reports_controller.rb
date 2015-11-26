@@ -62,7 +62,9 @@ class ReportsController < ApplicationController
   end
 
   def delete
-    render json: @report
+    title = 'Melding verwijderen'
+    text = "Weet uw zeker dat u de melding: <strong>#{@report.title}</strong> wilt verwijderen"
+    render partial: 'shared/delete', locals: { title: title, text: text.html_safe, el: @report }
   end
 
   def destroy

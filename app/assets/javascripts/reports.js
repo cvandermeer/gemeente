@@ -45,7 +45,7 @@ function newReportForm() {
         $('.reports').find("[data-report-id='" + el.attr('data-report-id') + "']").before(data).remove();
       }
       removeModal();
-      bindReportHandlers();
+      //bindReportHandlers();
       $('.loading').hide();
     } else {
       $('.modal-content').html(data);
