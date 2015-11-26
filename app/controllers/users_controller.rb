@@ -7,10 +7,10 @@ class UsersController < ApplicationController
     @community_list = Community.all - current_user.communities
   end
 
-  def user_reports
+  def reports
   end
 
-  def user_notifications
+  def notifications
   end
 
   def index

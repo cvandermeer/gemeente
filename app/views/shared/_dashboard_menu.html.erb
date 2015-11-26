@@ -5,13 +5,13 @@
         <%= link_to 'Dashboard', nil %>
       </li>
       <li>
-        <%= link_to "Berichten ( #{current_user.notifications.count} )", user_notifications_path %>
+        <%= link_to "Berichten ( #{current_user.notifications.count} )", notifications_users_path %>
       </li>
       <li>
-        <%= link_to 'Profiel', profile_path %>
+        <%= link_to 'Profiel', profile_users_path %>
       </li>
       <li>
-        <%= link_to 'Mijn meldingen', user_reports_path %>
+        <%= link_to 'Mijn meldingen', reports_users_path %>
       </li>
       <% if current_user.community? %>
         <li>

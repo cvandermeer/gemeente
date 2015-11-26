@@ -14,7 +14,7 @@
   <div class='panel-body center'>
     <h3><%= user.name || user.email %></h3>
     <% if action_name == 'edit' %>
-      <%= link_to 'Profiel bekijken', profile_path %>
+      <%= link_to 'Profiel bekijken', profile_users_path %>
     <% else %>
       <%= link_to 'Profiel bewerken', edit_user_registration_path %>
     <% end %>

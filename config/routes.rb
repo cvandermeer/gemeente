@@ -37,10 +37,11 @@ Rails.application.routes.draw do
 
   ### USERS ###
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
-  resources :users, only: [:index]
-  get 'user_notifications', to: 'users#user_notifications', as: 'user_notifications'
-  get 'profile', to: 'users#profile', as: 'profile'
-  get 'user_reports', to: 'users#user_reports', as: 'user_reports'
+  resources :users, only: [:index] do
+    get :notifications, on: :collection
+    get :reports, on: :collection
+    get :profile, on: :collection
+  end
 
   ### ZIPCODES ###
   get 'search_streets', to: 'zipcodes#search_streets', as: 'search_streets'
