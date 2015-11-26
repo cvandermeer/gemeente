@@ -3,6 +3,7 @@
 //= require jquery.remotipart
 //= require picker
 //= require picker.date
+//= require select2.min
 //= require richmarker
 //= require infobox
 //= require markerclusterer

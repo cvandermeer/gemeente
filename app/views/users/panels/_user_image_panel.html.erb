@@ -1,9 +1,14 @@
 <div class='panel'>
   <div class='panel-header image'>
     <% if user.avatar? %>
-      <%= image_tag user.avatar_url, class: 'u-max-full-width' %>
+        <%= image_tag user.avatar_url, class: 'u-max-full-width' %>
     <% else %>
-      <%= current_user.user_initials %>
+    <div class='no-image center'>
+      <h3>
+        <%= current_user.user_initials %>
+      </h3>
+      <%= link_to 'Profiel foto toevoegen!', edit_user_registration_path %>
+    </div>
     <% end %>
   </div>
   <div class='panel-body center'>

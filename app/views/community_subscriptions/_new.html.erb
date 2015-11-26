@@ -1,0 +1,29 @@
+<div class='panel'>
+  <div class='panel-header'>
+    <h5>Gemeente volgen</h5>
+  </div>
+  <div class='panel-body'>
+    <% if community_list.any? %>
+      <%= form_for community_subscription do |f| %>
+        <div class='row select'>
+          <%= f.select(:community_id, community_list.map { |c| [c.name, c.id] }, {include_blank: 'Kies een gemeente'}, { class: ''}) %>
+          <%= f.submit 'Gemeente toevoegen' %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <ul>
+      <% current_user.community_subscriptions.each do |subscription, id| %>
+        <li>
+          <%= subscription.community.name %>
+          <%= link_to 'Verwijderen', delete_community_subscription_path(subscription.id), data: { remote: true,
+                                                                  modal_type: 'destroy',
+                                                                  modal_remote: false,
+                                                                  modal_element: 'community_subscriptions',
+                                                                  modal_community: subscription.community.name},
+                                                                  class: 'fa fa-trash-o js_modal' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

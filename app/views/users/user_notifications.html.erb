@@ -1,0 +1,30 @@
+<%= render 'shared/dashboard_menu' %>
+
+<div class='inner'>
+  <div class='container'>
+    <div class='row'>
+      <div class='columns three'>
+        <%= render 'users/panels/user_image_panel', user: current_user %>
+        <%= render 'users/panels/user_info_panel', user: current_user %>
+      </div>
+      <div class='columns nine'>
+        <div class='panel'>
+          <div class='panel-header'>
+            <h5>Notificaties</h5>
+          </div>
+          <div class='panel-body'>
+            <% if current_user.notifications.any? %>
+            <ul>
+              <% current_user.notifications.limit(5).reverse.each do |notification| %>
+                <li><%= notification.title %> - <%= notification.created_at %></li>
+              <% end %>
+            </ul>
+            <% else %>
+              Er zijn geen nieuwe berichten!
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

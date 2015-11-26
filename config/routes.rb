@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     get :community_list, on: :collection
   end
 
+  ### COMMUNITY SUBSCRIPTIONS ###
+  resources :community_subscriptions, only: [:create, :destroy] do
+    get :delete, on: :member
+  end
+
   ### MESSAGES ###
   resources :messages, except: [:edit, :update, :destroy]
 
@@ -33,7 +38,9 @@ Rails.application.routes.draw do
   ### USERS ###
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
   resources :users, only: [:index]
+  get 'user_notifications', to: 'users#user_notifications', as: 'user_notifications'
   get 'profile', to: 'users#profile', as: 'profile'
+  get 'user_reports', to: 'users#user_reports', as: 'user_reports'
 
   ### ZIPCODES ###
   get 'search_streets', to: 'zipcodes#search_streets', as: 'search_streets'

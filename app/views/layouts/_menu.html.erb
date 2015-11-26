@@ -42,7 +42,7 @@
             <%= link_to 'Berichten', root_path, class: 'message icon' %>
             <ul class='dropdown'>
               <li>
-                <%= link_to 'Bekijk inbox' %>
+                <%= link_to "Bekijk inbox ( #{ current_user.notifications.count } )", user_notifications_path %>
               </li>
               <li>
                 <%= link_to 'Bekijk dashboard' %>

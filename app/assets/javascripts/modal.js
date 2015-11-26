@@ -5,7 +5,6 @@ ready = function() {
   // Sets the data to modal on ajax success and bind the datepicker
   $('.js_modal').on('ajax:success', function(e, data, status) {
     setDataInModal(this, data);
-
   });
 
   // Onclick close the modal
@@ -92,12 +91,26 @@ function removeModal() {
 function initDestroy(e, data) {
   $('.modal-content').html('');
   $('.modal-header h4').remove();
-  $('.modal-header').append('<h4>Delete</h4>');
-  var modalText = '<p>Weet je zeker dat je <strong>'+ data.title +'</strong> wilt verwijderen?</p>';
-  var modalDeleteLink = '<a data-method="delete" data-remote="true" class="modal-confirm button" href="/'+$(e).attr("data-modal-element")+'/' + data.id + ' ">Ja</a> <a href="#" class="modal-confirm button">Nee</a>';
+  var modalDeleteLink;
+  var modalText;
+  // sets remote true is data-modal-remote != false
+  if ($(e).attr('data-modal-remote') == 'false') {
+    modalDeleteLink = '<a data-method="delete" class="modal-confirm button" href="/'+$(e).attr("data-modal-element")+'/' + data.id + ' ">Ja</a> <a href="#" class="modal-confirm button">Nee</a>';
+  } else {
+    modalDeleteLink = '<a data-method="delete"  data-remote="true" class="modal-confirm button" href="/'+$(e).attr("data-modal-element")+'/' + data.id + ' ">Ja</a> <a href="#" class="modal-confirm button">Nee</a>';
+  }
+  // sets the right content for in the delete modal
+  if ($(e).attr('data-modal-element') == 'community_subscriptions') {
+    $('.modal-header').append('<h4>Gemeente niet meer volgen</h4>');
+    modalText = '<p>Weet je zeker dat je de gemeente: <strong>'+ $(e).attr('data-modal-community') +'</strong> niet meer wilt volgen?</p>';
+  } else {
+    $('.modal-header').append('<h4>Delete</h4>');
+    modalText = '<p>Weet je zeker dat je <strong>'+ data.title +'</strong> wilt verwijderen?</p>';
+  }
+
   $('.modal-content').append(modalText + modalDeleteLink);
   $('.modal-confirm').bind('click', function() {
-    if($(this).attr('data-method') == 'delete') {
+    if($(e).attr('data-modal-element') == 'reports') {
       $('.reports').find("[data-report-id='" + data.id + "']").remove();
     }
     removeModal();

@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20151125090229) do
     t.float    "longitude",   limit: 24
   end
 
-  create_table "community_subscritions", force: :cascade do |t|
+  create_table "community_subscriptions", force: :cascade do |t|
     t.integer  "community_id", limit: 4
     t.integer  "user_id",      limit: 4
     t.datetime "created_at"
