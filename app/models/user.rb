@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :reports
   has_many :newsletters
   has_many :notifications
+  has_many :community_subscriptions
+  has_many :communities, through: :community_subscriptions
 
   ### CONSTANTS ###
   ROLE_USER = 0

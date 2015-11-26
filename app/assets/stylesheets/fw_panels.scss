@@ -15,6 +15,10 @@
   &.image {
     padding: 0;
     line-height: 0;
+    .no-image {
+      padding: 24px 12px;
+      line-height: normal;
+    }
   }
 }
 

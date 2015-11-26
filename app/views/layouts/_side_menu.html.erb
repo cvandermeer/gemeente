@@ -6,7 +6,7 @@
       <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete', class: 'pull-right' %>
     </li>
     <li>
-      <%= link_to 'Profiel', profile_path(current_user), data: { no_turbolink: true } %>
+      <%= link_to 'Profiel', profile_users_path, data: { no_turbolink: true } %>
     </li>
     <% else %>
     <li>

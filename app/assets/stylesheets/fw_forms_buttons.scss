@@ -104,5 +104,17 @@ form {
 }
 
 .button-sm{
-  margin-top: -6px;   
+  margin-top: -6px;
+}
+.select {
+  .field_with_errors {
+    float: left;
+    margin-right: 0;
+    select {
+      border-color: red;
+    }
+  }
+  select {
+    margin-right: 12px;
+  }
 }

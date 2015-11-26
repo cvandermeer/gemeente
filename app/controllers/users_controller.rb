@@ -12,6 +12,15 @@ class UsersController < ApplicationController
     @user = current_user
     @reports = current_user.reports
     @community_reports = @user.try(:community_reports)
+    @community_subscription = CommunitySubscription.new
+    @community_list = Community.all - current_user.communities
+  end
+
+  def reports
+  end
+
+  def notifications
+>>>>>>> cd439a7b7144b03ab538e07c9721c26489049dc4
   end
 
   def new_admin_user
