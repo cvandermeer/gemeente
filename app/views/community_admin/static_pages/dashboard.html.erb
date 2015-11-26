@@ -17,17 +17,17 @@
                 </tr>
               </thead>
               <tbody>
-                <% @users.each do |user| %>
+                <% @subscribers.each do |subscriber| %>
                   <tr>
-                    <td><%= user.email %></td>
+                    <td><%= subscriber.email %></td>
                     <td>
-                      <%= user.role_id %>
+                      <%= subscriber.role_id %>
                     </td>
                   </tr>
                 <% end %>
               </tbody>
             </table>
-            <%= will_paginate @users %>
+            <%= will_paginate @subscribers %>
           </div>
         </div>
       </div>
