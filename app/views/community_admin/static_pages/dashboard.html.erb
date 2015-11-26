@@ -1,0 +1,37 @@
+<h5>Gemeente dashboard <%= @community.name %></h5>
+
+<div class='inner'>
+  <div class='container'>
+    <div class='row'>
+      <div class='columns'>
+        <div class='panel'>
+          <div class='panel-header'>
+            <h5>Gebruikers aangemeld bij de gemeente <%= @community.name %></h5>
+          </div>
+          <div class='panel-body'>
+            <table class="u-full-width">
+              <thead>
+                <tr>
+                  <th>Email</th>
+                  <th>Rol</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @users.each do |user| %>
+                  <tr>
+                    <td><%= user.email %></td>
+                    <td>
+                      <%= user.role_id %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <%= will_paginate @users %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

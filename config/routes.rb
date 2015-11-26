@@ -10,6 +10,11 @@ Rails.application.routes.draw do
     get 'communities', to: 'static_pages#communities'
   end
 
+  ### COMMUNITY_ADMIN ###
+  namespace :community_admin do
+    get 'dashboard', to: 'static_pages#dashboard'
+  end
+
   ### COMMUNITIES ###
   resources :communities, only: [:index, :show] do
     get :news, on: :member

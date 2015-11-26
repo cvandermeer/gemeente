@@ -38,6 +38,11 @@
                   <%= link_to 'Admin Dashboard', admin_dashboard_path %>
                 </li>
               <% end %>
+              <% if current_user.community? %>
+                <li>
+                  <%= link_to 'Gemeente Dashboard', community_admin_dashboard_path %>
+                </li>
+              <% end %>
               <li>
                 <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete' %>
               </li>
