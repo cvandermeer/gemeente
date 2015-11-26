@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_admin!, only: [:index, :new_admin_user, :generate_user]
   before_action :authenticate_user!
-  before_action :get_user_params, only: :generate_user
+  before_action :set_user_params, only: :generate_user
   layout false, only: [:new_admin_user]
 
   def index
