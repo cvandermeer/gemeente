@@ -19,7 +19,7 @@ class CommunitySubscriptionsController < ApplicationController
     title = 'Gemeente niet meer volgen!'
     text = "Weet uw zeker dat u de gemeente: #{@community_subscription.community.name} niet meer wil volgen"
     render partial: 'shared/delete', locals: { title: title, text: text,
-                                               el: @community_subscription, controller_route: 'community_subscriptions' }
+                                               el: @community_subscription, controller_route: 'community_subscriptions'}
   end
 
   def destroy

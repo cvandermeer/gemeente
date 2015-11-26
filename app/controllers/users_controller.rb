@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
   private
 
-  def get_user_params
+  def set_user_params
     @role_id = params[:user][:role_id]
     @community_id = nil
     @community_id = params[:user][:community_id] if @role_id.to_i == 1
