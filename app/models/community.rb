@@ -9,7 +9,7 @@ class Community < ActiveRecord::Base
   has_many :reports
   has_many :newsletters
   has_many :community_subscriptions
-  has_many :subscribers, through: :community_subscriptions, class_name: 'User'
+  has_many :subscribers, through: :community_subscriptions, source: 'user'
 
   ### CALLBACKS ###
   after_create :send_new_community_notice

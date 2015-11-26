@@ -4,7 +4,7 @@ module CommunityAdmin
 
     def dashboard
       @community = current_user.community
-      @subscribers = @community.users.paginate(page: params[:page], per_page: 20)
+      @subscribers = @community.subscribers.paginate(page: params[:page], per_page: 20)
     end
   end
 end
