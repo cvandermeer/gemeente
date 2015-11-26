@@ -26,9 +26,7 @@ class User < ActiveRecord::Base
   before_create :initialize_user
 
   def initialize_user
-    if self.role_id.nil?
-      self.role_id = 1
-    end
+    self.role_id = 1 if role_id.nil?
   end
 
   ### METHODS  ###
