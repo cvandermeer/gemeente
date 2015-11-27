@@ -3,11 +3,34 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   root 'reports#index'
 
+  ### ADMIN ###
+  namespace :admin do
+    get 'dashboard', to: 'static_pages#dashboard'
+    get 'users', to: 'static_pages#users'
+    get 'communities', to: 'static_pages#communities'
+  end
+
+  ### COMMUNITY_ADMIN ###
+  namespace :community_admin do
+    get 'dashboard', to: 'static_pages#dashboard'
+  end
+
   ### COMMUNITIES ###
-  resources :communities, only: [:index, :show]
+  resources :communities, only: [:index, :show] do
+    get :news, on: :member
+    get :community_list, on: :collection
+  end
+
+  ### COMMUNITY SUBSCRIPTIONS ###
+  resources :community_subscriptions, only: [:create, :destroy] do
+    get :delete, on: :member
+  end
 
   ### MESSAGES ###
   resources :messages, except: [:edit, :update, :destroy]
+
+  ### NEWSLETTERS ###
+  resources :newsletters, except: [:edit, :update, :destroy]
 
   ### REPORTS ###
   resources :reports do
@@ -20,13 +43,21 @@ Rails.application.routes.draw do
   end
 
   ### SIDEKIQ ####
-  authenticate :user do
+  authenticate :user, -> (u) { u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
 
   ### USERS ###
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
-  resources :users, only: [:show, :index]
+
+  resources :users, only: [:index] do
+    get :notifications, on: :collection
+    get :reports, on: :collection
+    get :profile, on: :collection
+  end
+
+  post 'users/generate_user', to: 'users#generate_user'
+  get 'users/new_admin_user', to: 'users#new_admin_user'
 
   ### ZIPCODES ###
   get 'search_streets', to: 'zipcodes#search_streets', as: 'search_streets'

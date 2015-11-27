@@ -35,7 +35,6 @@ function bindReportHandlers() {
 function newReportForm() {
   $('.modal form.new_report, .modal form.edit_report').on('ajax:success', function(e, data, status){
     if(data.indexOf('form') == -1) {
-      //console.log(data);
       data = data.replace(/\\n/g, '').replace(/\\/g, '').substring(1);
       data = data.substring(0, data.length - 2);
       $('.reports').append(data);
@@ -46,9 +45,12 @@ function newReportForm() {
         $('.reports').find("[data-report-id='" + el.attr('data-report-id') + "']").before(data).remove();
       }
       removeModal();
-      bindReportHandlers();
+      //bindReportHandlers();
+      $('.loading').hide();
     } else {
       $('.modal-content').html(data);
+      $('.loading').hide();
+      triggerLoading();
       newReportForm();
     }
   });

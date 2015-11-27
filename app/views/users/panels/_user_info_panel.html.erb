@@ -1,0 +1,32 @@
+<div class='panel'>
+  <div class='panel-header'>
+    <h5>Mijn gegevens</h5>
+  </div>
+  <div class='panel-body'>
+    <ul class='list-items links'>
+      <% if user.name? %>
+        <li>
+          Naam: <%= user.name %>
+        </li>
+      <% end %>
+      <li>
+        Email: <%= user.email %>
+      </li>
+      <% if user.address? %>
+        <li>
+          Adres: <%= user.address %>
+        </li>
+      <% end %>
+      <% if user.town? %>
+        <li>
+          Plaats: <%= user.town %>
+        </li>
+      <% end %>
+      <% if user.community %>
+        <li>
+          Mijn gemeente: <%= user.community_name %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

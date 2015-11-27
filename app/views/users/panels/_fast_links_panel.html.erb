@@ -1,0 +1,17 @@
+<div class='list-items links'>
+<ul>
+  <% if action_name != 'show' %>
+    <li>
+      <%= link_to 'Profiel bekijken', profile_users_path %>
+    </li>
+  <% end %>
+  <% if action_name != 'edit' %>
+    <li>
+      <%= link_to 'Profiel bewerken', edit_user_registration_path %>
+    </li>
+  <% end %>
+  <li>
+    <%= link_to 'Accountinstellingen', nil %>
+  </li>
+</ul>
+</div>

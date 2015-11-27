@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Gemeente</title>
+    <title>IkBenInwoner</title>
     <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -13,8 +13,11 @@
     <% end %>
   </head>
   <body>
+    <div class='loading'>
+      <%= image_tag('spinner.GIF') %>
+    </div>
 
-    <div class='outer-wrapper'>
+    <div class='<%= "index-" if controller_name == "reports" && action_name == "index" %>outer-wrapper'>
       <%= render 'layouts/menu' %>
       <%= render 'layouts/side_menu' %>
       <%= render 'layouts/notice' %>
@@ -24,8 +27,8 @@
       </div>
 
       <% if action_name == 'index' && controller_name == 'reports'  %>
-        <%= render 'layouts/featured', featured: @featured %>
-        <%= render 'layouts/recent', recents: @recents %>
+        <%= render 'shared/featured', featured: @featured %>
+        <%= render 'shared/recent', recents: @recents %>
       <% end %>
       <%= render 'shared/modal' %>
 

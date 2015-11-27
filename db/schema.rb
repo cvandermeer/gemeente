@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151112120602) do
+ActiveRecord::Schema.define(version: 20151125090229) do
 
   create_table "communities", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(version: 20151112120602) do
     t.float    "longitude",   limit: 24
   end
 
+  create_table "community_subscriptions", force: :cascade do |t|
+    t.integer  "community_id", limit: 4
+    t.integer  "user_id",      limit: 4
+    t.datetime "created_at"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.string   "email",      limit: 255
@@ -30,6 +36,29 @@ ActiveRecord::Schema.define(version: 20151112120602) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end
+
+  create_table "newsletters", force: :cascade do |t|
+    t.datetime "valid_from"
+    t.datetime "valid_until"
+    t.string   "title",        limit: 255
+    t.text     "body",         limit: 4294967295
+    t.integer  "community_id", limit: 4
+    t.integer  "user_id",      limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "newsletters", ["community_id"], name: "index_newsletters_on_community_id", using: :btree
+  add_index "newsletters", ["user_id"], name: "index_newsletters_on_user_id", using: :btree
+
+  create_table "notifications", force: :cascade do |t|
+    t.string   "title",       limit: 255
+    t.integer  "user_id",     limit: 4
+    t.integer  "category_id", limit: 4
+    t.datetime "created_at"
+  end
+
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "reports", force: :cascade do |t|
     t.string   "title",        limit: 255
@@ -66,6 +95,10 @@ ActiveRecord::Schema.define(version: 20151112120602) do
     t.datetime "updated_at",                                      null: false
     t.integer  "role_id",                limit: 4
     t.integer  "community_id",           limit: 4
+    t.string   "avatar",                 limit: 255
+    t.string   "name",                   limit: 255
+    t.string   "town",                   limit: 255
+    t.string   "address",                limit: 255
   end
 
   add_index "users", ["community_id"], name: "index_users_on_community_id", using: :btree

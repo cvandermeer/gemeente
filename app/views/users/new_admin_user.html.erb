@@ -1,0 +1,28 @@
+<h5>Gebruiker toevoegen</h5>
+
+<%= form_for @user, url: {action: :generate_user} do |f| %>
+  <div class='row'>
+    <div class='six columns'>
+      <%= f.label :email, 'Email' %>
+      <%= f.text_field :email %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='six columns'>
+      <%= f.label :role_id, 'Rol' %>
+      <%= f.collection_select(:role_id, User.role_ids.to_a, :last, :first) %>
+    </div>
+  </div>
+
+  <div class='row hidden user_community_select'>
+    <div class='six columns'>
+      <%= f.label :community_id, 'Gemeente' %>
+      <%= f.collection_select :community_id, Community.all, :id, :name, {include_blank: 'Kies een Gemeente'}, {class: 'js_init_select'} %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <%= f.submit 'Aanmaken', class: 'button-primary trigger_loading' %>
+  </div>
+<% end %>

@@ -1,0 +1,34 @@
+<%= render 'shared/dashboard_menu' %>
+
+<div class='inner'>
+  <div class='container'>
+    <div class='row'>
+      <div class='columns three'>
+        <%= render 'users/panels/user_image_panel', user: current_user %>
+        <%= render 'users/panels/user_info_panel', user: current_user %>
+      </div>
+      <div class='columns nine'>
+        <%= render 'community_subscriptions/new', community_subscription: @community_subscription,
+                                                  community_list: @community_list %>
+        <div class='panel'>
+          <div class='panel-header'>
+            <h5>Meldingen mijn gemeente:</h5>
+          </div>
+          <div class='panel-body'>
+            <% if  current_user.community && @community_reports.any? %>
+              <ul class='reports'>
+                <%= render @community_reports %>
+              </ul>
+            <% else %>
+              <% if current_user.community %>
+                De gemeente <%= current_user.community_name %> heeft geen meldingen!
+              <% else %>
+                Meld je hierboven aan bij een gemeente
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

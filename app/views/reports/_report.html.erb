@@ -1,4 +1,4 @@
-<li class='clearfix report-show' data-report-id='<%= report.id %>' data-lat='<%= report.latitude %>' data-lon='<%= report.longitude %>'>
+<li class='clearfix report-show' data-reports-id='<%= report.id %>' data-lat='<%= report.latitude %>' data-lon='<%= report.longitude %>'>
   <%= link_to '', report, data: { no_turbolink: true }, class: 'goto-report', target: '_blank'  %>
   <% if report.image(:thumb) != nil %>
     <div class='report-image'>
@@ -22,8 +22,8 @@
     </p>
     <% if user_signed_in? %>
       <% if report.editable_by?(current_user) %>
-        <%= link_to 'Aanpassen', edit_report_path(report.id), class: 'fa fa-pencil-square-o js_modal', remote: true %>
-        <%= link_to 'Verwijderen', delete_report_path(report.id), data: { remote: true,
+        <%= link_to 'Aanpassen', edit_report_path(report), class: 'fa fa-pencil-square-o js_modal', remote: true %>
+        <%= link_to 'Verwijderen', delete_report_path(report), data: { remote: true,
                                                                 modal_type: 'destroy',
                                                                 modal_element: 'reports' },
                                                                 class: 'fa fa-trash-o js_modal' %>

@@ -2,9 +2,8 @@ var ready;
 
 ready = function() {
 
-  // Sets the data to modal on ajax success and bind the datepicker
-  $('.js_modal').on('ajax:success', function(e, data, status) {
-    setDataInModal(this, data);
+  $('.js_modal').bind('ajax:success', function(e, data, status) {
+    setDataInModal(this ,data);
   });
 
   // Onclick close the modal
@@ -12,6 +11,12 @@ ready = function() {
     removeModal();
   });
 };
+
+function triggerLoading(){
+  $('.trigger_loading').on('click', function(){
+    $('.loading').show();
+  });
+}
 
 /**
   * @desc appends the modalbackground and binds the onclick function
@@ -26,9 +31,6 @@ function initModal() {
   setTimeout(function() {
     $('.modal').addClass('active');
     $('.modal-background').addClass('active');
-    $('.modal-background').bind('click', function() {
-      removeModal();
-    });
   }, 100);
 }
 
@@ -56,6 +58,12 @@ function setDataInModal(e, data) {
     // The functions can be found in search.js, sets up the list search
     triggerSearch();
 
+    // Show loading spinner on submit click
+    triggerLoading();
+
+    // Check select change for user role_id
+    roleIdChange();
+
     // Datepicker
     $('input.datepicker').pickadate();
   }
@@ -70,6 +78,7 @@ function removeModal() {
   $('.modal-background, .modal').removeClass('active');
   $('.modal-content').html('');
   $('.modal-header h4').remove();
+
 }
 
 /**
@@ -81,14 +90,10 @@ function removeModal() {
 
 function initDestroy(e, data) {
   $('.modal-content').html('');
-  $('.modal-header h4').remove();
-  $('.modal-header').append('<h4>Delete</h4>');
-  var modalText = '<p>Weet je zeker dat je <strong>'+ data.title +'</strong> wilt verwijderen?</p>';
-  var modalDeleteLink = '<a data-method="delete" data-remote="true" class="modal-confirm button" href="/'+$(e).attr("data-modal-element")+'/' + data.id + ' ">Ja</a> <a href="#" class="modal-confirm button">Nee</a>';
-  $('.modal-content').append(modalText + modalDeleteLink);
-  $('.modal-confirm').bind('click', function() {
-    if($(this).attr('data-method') == 'delete') {
-      $('.reports').find("[data-report-id='" + data.id + "']").remove();
+  $('.modal-content').append(data);
+  $('.modal-confirm').on('click', function() {
+    if($(this).attr('data-controller-name') == 'reports') {
+      $("[data-"+ $(this).attr('data-controller-name') +"-id='" + $(this).attr('data-id') + "']").remove();
     }
     removeModal();
   });
@@ -100,7 +105,12 @@ function initDestroy(e, data) {
 
 function bindHandlers() {
   $('.js_modal').bind('ajax:success', function(e, data, status) {
-    setDataInModal(this ,data);
+    triggerLoading();
+    // setDataInModal(this ,data);
+  });
+
+  $('.modal-background').on('click', function() {
+    removeModal();
   });
 }
 

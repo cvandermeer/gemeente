@@ -15,22 +15,6 @@
     </div>
   </div>
 
-  <div class='row'>
-    <div class='columns'>
-      <%= f.label :description, 'Beschrijving' %>
-      <%= f.text_area :description, class: 'u-full-width' %>
-    </div>
-  </div>
-
-  <% if action_name == 'edit' %>
-    <div class='row'>
-      <div class='four columns'>
-        <%= f.label :resolved_at, 'Opgelost op' %>
-        <%= f.text_field :resolved_at, class: 'u-full-width', class: 'datepicker' %>
-      </div>
-    </div>
-  <% end %>
-
   <div class='row street'>
     <div class='eight columns '>
       <%= f.label :address, 'Straat + huisnummer' %>
@@ -48,6 +32,22 @@
   </div>
 
   <div class='row'>
+    <div class='columns'>
+      <%= f.label :description, 'Beschrijving' %>
+      <%= f.text_area :description, class: 'u-full-width' %>
+    </div>
+  </div>
+
+  <% if action_name == 'edit' %>
+    <div class='row'>
+      <div class='four columns'>
+        <%= f.label :resolved_at, 'Opgelost op' %>
+        <%= f.text_field :resolved_at, class: 'u-full-width', class: 'datepicker' %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class='row'>
     <div class='four columns'>
       <%= f.label :email, 'Email' %>
       <%= f.email_field :email, class: 'u-full-width' %>
@@ -63,6 +63,6 @@
   </div>
 
   <div class='row'>
-    <%= f.submit 'Aanmaken', class: 'button-primary' %>
+    <%= f.submit 'Aanmaken', class: 'button-primary trigger_loading' %>
   </div>
 <% end %>

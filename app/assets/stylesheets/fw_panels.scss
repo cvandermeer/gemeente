@@ -1,0 +1,30 @@
+.panel {
+  border: 1px solid #dce0e0;
+  margin-bottom: 24px;
+  > div {
+    padding: 12px;
+  }
+  .center {
+    text-align: center;
+  }
+}
+
+.panel-header {
+  background: #edefed;
+  border-bottom: 1px solid #dce0e0;
+  &.image {
+    padding: 0;
+    line-height: 0;
+    .no-image {
+      padding: 24px 12px;
+      line-height: normal;
+    }
+  }
+}
+
+.panel-body {
+  background: #fff;
+  ul {
+    margin-bottom: 0;
+  }
+}

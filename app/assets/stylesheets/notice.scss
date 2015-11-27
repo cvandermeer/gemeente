@@ -6,31 +6,44 @@ $green: #3c763d;
 .notice, .alert {
   width: auto;
   position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
+  left: 12px;
+  bottom: 12px;
   height: 0;
-  padding: 0;
+  padding: 0 60px 0 12px;
   margin: 0 auto;
   color: #fff;
   text-align: center;
-  z-index: 1;
-  background: $green;
-  border: 0px solid $green;
+  z-index: 10001;
+  background: #333;
+  opacity: 0;
+  border: 1px solid #333;
   box-shadow: 0 0 0px rgba(171,203,68,.8);
   overflow: hidden;
   @include transition(0.3s);
+  .close {
+    width: 30px;
+    height: 30px;
+    right: 16px;
+    top: 6px;
+    position: absolute;
+    cursor: pointer;
+    &:before {
+      font-size: 23px;
+      content: '\f00d';
+      font-family: FontAwesome;
+    }
+  }
   &.active {
+    padding: 12px 60px 12px 12px;
     height: 24px;
-    padding: 12px 0;
+    opacity: 1;
     border: 1px solid $green;
     box-shadow: 0 0 5px rgba(171,203,68,.8);
   }
 }
 
 .alert, .fail{
-  background: $red;
-  border: 0px solid $red;
+  border: 1px solid $red;
   box-shadow: 0 0 0px rgba(189,32,38,.8);
   &.active {
     border: 1px solid $red;

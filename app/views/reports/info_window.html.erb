@@ -1,9 +1,9 @@
 <div class='info-box'>
   <div class='close'></div>
   <div class='info'>
-    <h4><%= @report.title %></h4>
+    <h4><%= @report.title.truncate(20) %></h4>
     <p>
-      <%= @report.description.truncate(30, separator: ' ') %>
+      <%= @report.description.truncate(100, separator: ' ') %>
       <ul>
         <li><%= @report.community_name %></li>
         <li>Straat: <%= @report.address %></li>
@@ -18,7 +18,7 @@
     </div>
     <div class='info-link'>
       <%= link_to '', @report, data: { no_turbolink: true }, target: '_blank', class: 'info-arrow' %>
-      <%= link_to @report.title, @report, data: { no_turbolink: true }, target: '_blank', class: 'link' %>
+      <%= link_to @report.title.truncate(18), @report, data: { no_turbolink: true }, target: '_blank', class: 'link' %>
     </div>
   </div>
 </div>

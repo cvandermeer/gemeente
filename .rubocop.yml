@@ -6,6 +6,7 @@ AllCops:
     - 'db/**/*'
     - 'test/test_helper.rb'
     - 'Guardfile'
+    - 'config/deploy.rb'
 Documentation:
   Enabled: false
 Metrics/LineLength:

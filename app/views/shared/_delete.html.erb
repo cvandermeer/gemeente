@@ -1,0 +1,13 @@
+<h4><%= title %></h4>
+<p><%= text %></p>
+<% if controller_name == 'community_subscriptions' %>
+  <a data-method="delete" class="modal-confirm button" href="/<%= controller_route %>/<%= el.id %>">Ja</a>
+<% else %>
+  <a data-method="delete" data-remote='true' data-id="<%= el.id %>"
+                          data-controller-name="<%= controller_route %>"
+                          class="modal-confirm button"
+                          href="/<%= controller_route %>/<%= el.id %>">
+    Ja
+  </a>
+<% end %>
+<a href="#" class="modal-confirm button">Nee</a>'

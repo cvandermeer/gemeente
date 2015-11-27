@@ -109,68 +109,70 @@ ready = function() {
 var report_show_position;
 
 function initMap() {
-  pos = {lat: 52.397, lng: 5.544};
-  zoom = 8;
+  if ($('#map').length) {
+    pos = {lat: 52.397, lng: 5.544};
+    zoom = 8;
 
-  if($('.community-data').length){
-    pos = {lat: parseFloat($('.community-data').attr('data-lat')), lng: parseFloat($('.community-data').attr('data-lon'))};
-    zoom = 10;
-  }
+    if($('.community-data').length){
+      pos = {lat: parseFloat($('.community-data').attr('data-lat')), lng: parseFloat($('.community-data').attr('data-lon'))};
+      zoom = 10;
+    }
 
-  map = new google.maps.Map(document.getElementById('map'), {
-    zoom: zoom,
-    center: pos,
-    styles: mapStyles,
-    disableDefaultUI: true,
-    streetViewControl: true,
-    streetViewControlOptions: {
-      position: google.maps.ControlPosition.LEFT_TOP
-    },
-    scrollwheel: false,
-    zoomControl: true,
-    zoomControlOptions: {
-       position: google.maps.ControlPosition.LEFT_TOP
-    },
-    mapTypeControl: true,
-    mapTypeControlOptions: {
-      position: google.maps.ControlPosition.TOP_RIGHT
-    },
-    draggable: true
-  });
-
-  if ($('#pac-input').length) {
-    navigator.geolocation.getCurrentPosition(function(geo) {
-      pos = {lat: geo.coords.latitude, lng: geo.coords.longitude};
-      zoom = 12;
-      map.setCenter(pos);
-      map.setZoom(zoom);
-      var infowindow = new google.maps.InfoWindow({
-        map: map,
-        position: pos,
-        content: 'U staat hier!'
-      });
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: zoom,
+      center: pos,
+      styles: mapStyles,
+      disableDefaultUI: true,
+      streetViewControl: true,
+      streetViewControlOptions: {
+        position: google.maps.ControlPosition.LEFT_TOP
+      },
+      scrollwheel: false,
+      zoomControl: true,
+      zoomControlOptions: {
+         position: google.maps.ControlPosition.LEFT_TOP
+      },
+      mapTypeControl: true,
+      mapTypeControlOptions: {
+        position: google.maps.ControlPosition.TOP_RIGHT
+      },
+      draggable: true
     });
 
-    setSearchBar(map);
+    if ($('#pac-input').length) {
+      navigator.geolocation.getCurrentPosition(function(geo) {
+        pos = {lat: geo.coords.latitude, lng: geo.coords.longitude};
+        zoom = 12;
+        map.setCenter(pos);
+        map.setZoom(zoom);
+        var infowindow = new google.maps.InfoWindow({
+          map: map,
+          position: pos,
+          content: 'U staat hier!'
+        });
+      });
+
+      setSearchBar(map);
+    }
+
+    if ($('.map-show').length){
+      var lat = parseFloat($('.map-show').attr('data-lat'));
+      var lng = parseFloat($('.map-show').attr('data-lon'));
+      report_show_position = {lat: lat, lng: lng};
+      map.setCenter(report_show_position);
+      map.setZoom(18);
+
+      var sv = new google.maps.StreetViewService();
+      sv.getPanorama({location: report_show_position, radius: 50}, processSVData);
+    }
+
+    // Needed to require the richmarker and infobox file after loading the maps
+    initRichMarker();
+    initInfoBox();
+
+    // markers.js
+    getJsonDataForReports(map);
   }
-
-  if ($('.map-show').length){
-    var lat = parseFloat($('.map-show').attr('data-lat'));
-    var lng = parseFloat($('.map-show').attr('data-lon'));
-    report_show_position = {lat: lat, lng: lng};
-    map.setCenter(report_show_position);
-    map.setZoom(18);
-
-    var sv = new google.maps.StreetViewService();
-    sv.getPanorama({location: report_show_position, radius: 50}, processSVData);
-  }
-
-  // Needed to require the richmarker and infobox file after loading the maps
-  initRichMarker();
-  initInfoBox();
-
-  // markers.js
-  getJsonDataForReports(map);
 
 }
 
