@@ -49,7 +49,7 @@
             </ul>
           </li>
           <li class='hide-on-mobile has-dropdown'>
-            <%= link_to 'Berichten', root_path, class: 'message icon' %>
+            <%= link_to 'Berichten', notifications_users_path, class: 'message icon' %>
             <ul class='dropdown'>
               <li>
                 <%= link_to "Bekijk inbox ( #{ current_user.notifications.count } )", notifications_users_path %>
@@ -68,13 +68,13 @@
           </li>
           <% end %>
           <li class='hide-on-mobile has-dropdown'>
-            <%= link_to 'Meldingen', root_path, class: 'reports icon' %>
+            <%= link_to 'Meldingen', root_path, data: { no_turbolink: true }, class: 'reports icon' %>
             <ul class='dropdown'>
               <li>
                 <%= link_to 'Melding aanmaken', new_report_path, class: 'js_modal', remote: true %>
               </li>
               <li>
-                <%= link_to 'Mijn meldingen', root_path %>
+                <%= link_to 'Mijn meldingen', reports_users_path %>
               </li>
             </ul>
           </li>

@@ -40,7 +40,11 @@ class User < ActiveRecord::Base
   end
 
   def clean_up_address
-    @street_name = address
+    @street_name = address unless address.blank?
+    drop_the_house_number unless address.blank?
+  end
+
+  def drop_the_house_number
     s = address.split
     @street_name = s.reverse.drop(1).reverse.join(' ') if s[s.length - 1].to_i >= 1
   end
