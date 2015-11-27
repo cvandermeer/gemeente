@@ -33,21 +33,23 @@ class User < ActiveRecord::Base
   end
 
   def add_community_subscription_to_user_on_address
-    if !self.address.blank? && !self.town.blank?
-      clean_up_address
-      community_name = Zipcode.find_by(street: @street_name, town: self.town).community
-      if Community.find_by(name: community_name) != nil
-        community_id = Community.find_by(name: community_name).id
-        CommunitySubscription.create(community_id: community_id,
-                                     user_id: id) if CommunitySubscription.find_by(community_id: community_id, user_id: id) == nil
-      end
-    end
+    clean_up_address
+    zipcode = Zipcode.find_by(street: @street_name, town: town) if !address.blank? && !town.blank?
+    @community_name = zipcode.community unless zipcode.nil?
+    create_community_subscription unless Community.find_by(name: @community_name).nil?
   end
 
   def clean_up_address
     @street_name = address
     s = address.split
     @street_name = s.reverse.drop(1).reverse.join(' ') if s[s.length - 1].to_i >= 1
+  end
+
+  def create_community_subscription
+    community_id = Community.find_by(name: @community_name).id
+    CommunitySubscription.create(community_id: community_id,
+                                 user_id: id) if CommunitySubscription.find_by(community_id: community_id,
+                                                                               user_id: id).nil?
   end
 
   ### METHODS  ###
