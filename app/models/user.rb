@@ -62,6 +62,6 @@ class User < ActiveRecord::Base
   end
 
   def initials
-    name.split(' ', 4).map(&:first).join('') if name
+    name.split(' ', 4).map(&:first).join('') unless name.blank?
   end
 end
