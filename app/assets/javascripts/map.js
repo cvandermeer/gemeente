@@ -150,6 +150,9 @@ function initMap() {
           position: pos,
           content: 'U staat hier!'
         });
+        setTimeout(function() {
+          infowindow.close();
+        }, 15000);
       });
 
       setSearchBar(map);
