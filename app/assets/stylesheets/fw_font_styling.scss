@@ -1,4 +1,9 @@
 /* Font styling */
+.active {
+  >  a {
+   color: $basic-color;
+  }
+}
 
 a {
   color: $basic-color;
