@@ -1,9 +1,13 @@
 <div class='dashboard-menu-bg'>
   <div class='dashboard-menu'>
     <ul>
-      <li>
-        <%= link_to 'Dashboard', nil %>
-      </li>
+      <% if current_user.admin? %>
+        <%= render 'admin/static_pages/admin_menu' %>
+      <% else %>
+        <li>
+          <%= link_to 'Dashboard', nil %>
+        </li>
+      <% end %>
       <li>
         <%= link_to "Berichten ( #{current_user.notifications.count} )", notifications_users_path %>
       </li>
