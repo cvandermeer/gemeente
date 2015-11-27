@@ -26,9 +26,28 @@ class User < ActiveRecord::Base
 
   ### CALLBACKS ###
   before_create :initialize_user
+  after_update :add_community_subscription_to_user_on_address
 
   def initialize_user
     self.role_id = 1 if role_id.nil?
+  end
+
+  def add_community_subscription_to_user_on_address
+    if !self.address.blank? && !self.town.blank?
+      clean_up_address
+      community_name = Zipcode.find_by(street: @street_name, town: self.town).community
+      if Community.find_by(name: community_name) != nil
+        community_id = Community.find_by(name: community_name).id
+        CommunitySubscription.create(community_id: community_id,
+                                     user_id: id) if CommunitySubscription.find_by(community_id: community_id, user_id: id) == nil
+      end
+    end
+  end
+
+  def clean_up_address
+    @street_name = address
+    s = address.split
+    @street_name = s.reverse.drop(1).reverse.join(' ') if s[s.length - 1].to_i >= 1
   end
 
   ### METHODS  ###
