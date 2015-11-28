@@ -51,7 +51,7 @@
           <li class='hide-on-mobile has-dropdown <%= current_page_class(notifications_users_path) %>'>
             <%= link_to 'Berichten', notifications_users_path, class: 'message icon' %>
             <ul class='dropdown'>
-              <li class:'<%= current_page_class(notifications_users_path) %>'>
+              <li class='<%= current_page_class(notifications_users_path) %>'>
                 <%= link_to "Bekijk inbox ( #{ current_user.notifications.count } )", notifications_users_path %>
               </li>
             </ul>
