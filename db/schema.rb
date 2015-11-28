@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125090229) do
+ActiveRecord::Schema.define(version: 20151128110249) do
 
   create_table "communities", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -117,5 +117,8 @@ ActiveRecord::Schema.define(version: 20151125090229) do
     t.string  "latitude",           limit: 255
     t.string  "longitude",          limit: 255
   end
+
+  add_index "zipcodes", ["street"], name: "index_zipcodes_on_street", using: :btree
+  add_index "zipcodes", ["town"], name: "index_zipcodes_on_town", using: :btree
 
 end
