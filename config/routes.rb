@@ -62,7 +62,6 @@ Rails.application.routes.draw do
   post 'users/generate_community_admin_user', to: 'users#generate_community_admin_user'
   get 'users/new_community_admin_user', to: 'users#new_community_admin_user'
 
-
   ### ZIPCODES ###
   get 'search_streets', to: 'zipcodes#search_streets', as: 'search_streets'
   get 'search_towns', to: 'zipcodes#search_towns', as: 'search_towns'
