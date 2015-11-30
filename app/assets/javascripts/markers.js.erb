@@ -72,21 +72,9 @@ var lastClicked = false;
 var markerCluster;
 
 function setMarkers(data) {
-  var dataClone = JSON.parse(JSON.stringify(data))
-  for (var i = 0; i < data.length; i++) {
-    data[i].count = 0;
-  }
 
-  for (var i = 0; i < data.length; i++) {
-    for (var f = 0; f < data.length; f++) {
-      if (i != f && dataClone[f].latitude == dataClone[i].latitude && dataClone[f].longitude == dataClone[i].longitude) {
-        data[f].count += 1;
-        data[i].count += 1;
-        data[i].longitude += 0.000015 * data[i].count
-        data[i].longitude += 0.000015 * data[i].count
-      }
-    }
-  }
+  data = newPositionForOverlapOnMarkers(data);
+
 
   if ( $('.info-box').length === 0 ) {
     newMarkers = [];
@@ -123,12 +111,22 @@ function setMarkers(data) {
   }
 }
 
-
-function setMapOnAll(map) {
-  console.log(newMarkers)
-  for (var i = 0; i < newMarkers.length; i++) {
-    newMarkers[i].setMap(map);
+function newPositionForOverlapOnMarkers(data) {
+  var dataClone = JSON.parse(JSON.stringify(data))
+  for (var i = 0; i < data.length; i++) {
+    data[i].count = 0;
   }
+
+  for (var i = 0; i < data.length; i++) {
+    for (var f = 0; f < data.length; f++) {
+      if (i != f && dataClone[f].latitude == dataClone[i].latitude && dataClone[f].longitude == dataClone[i].longitude) {
+        data[f].count += 1;
+        data[i].count += 1;
+        data[i].longitude += 0.00003 * data[i].count
+      }
+    }
+  }
+  return data
 }
 
 function addClickEventToMarker(marker, i) {
