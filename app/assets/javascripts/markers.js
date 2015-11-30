@@ -103,16 +103,16 @@ function setMarkers(data) {
       if (markerCluster) {
         markerCluster.clearMarkers();
       }
-      var clusterStyles = [{ url: '<%= asset_path "cluster.png" %>', height: 34, width: 34}];
+      var clusterStyles = [{ url: "cluster.png", height: 34, width: 34}];
       markerCluster = new MarkerClusterer(map, newMarkers, { styles: clusterStyles, maxZoom: 19 });
     }
   }
 }
 
 function newPositionForOverlapOnMarkers(data) {
-  var dataClone = JSON.parse(JSON.stringify(data))
-  for (var i = 0; i < data.length; i++) {
-    data[i].count = 0;
+  var dataClone = JSON.parse(JSON.stringify(data));
+  for (var a = 0; a < data.length; a++) {
+    data[a].count = 0;
   }
 
   for (var i = 0; i < data.length; i++) {
@@ -120,11 +120,11 @@ function newPositionForOverlapOnMarkers(data) {
       if (i != f && dataClone[f].latitude == dataClone[i].latitude && dataClone[f].longitude == dataClone[i].longitude) {
         data[f].count += 1;
         data[i].count += 1;
-        data[i].longitude += 0.00003 * data[i].count
+        data[i].longitude += 0.00003 * data[i].count;
       }
     }
   }
-  return data
+  return data;
 }
 
 function addClickEventToMarker(marker, i) {
