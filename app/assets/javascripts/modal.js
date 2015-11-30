@@ -56,8 +56,9 @@ function setDataInModal(e, data) {
     newMessage();
 
     // The functions can be found in search.js, sets up the list search
-    triggerSearch();
-
+    // triggerSearch();
+    triggerAutocomplete();
+    
     // Show loading spinner on submit click
     triggerLoading();
 

@@ -24,7 +24,7 @@ header {
     padding-right: 42px;
   }
   .message,
-  .reports,
+  .reports-link,
   .news {
     &:before {
       font-family: FontAwesome;
@@ -36,7 +36,7 @@ header {
       content: '\f1ea';
     }
   }
-  .reports {
+  .reports-link {
     padding-right: 38px;
     &:before {
       content: '\f041';
