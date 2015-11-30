@@ -8,6 +8,9 @@ $background-color: #f4f4f2;
 $background-color-dark: #424242;
 
 /* Basic styling */
+@import 'jquery.ui.all';
+@import 'autocomplete';
+
 @import 'bourbon';
 @import 'ckeditor/contents';
 
@@ -18,9 +21,6 @@ $background-color-dark: #424242;
 @import 'classic.date';
 
 @import 'select2.min';
-
-@import 'jquery-ui';
-@import 'autocomplete';
 
 /* Map styling */
 @import 'map_info_windows';
