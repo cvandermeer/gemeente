@@ -72,9 +72,7 @@ var lastClicked = false;
 var markerCluster;
 
 function setMarkers(data) {
-
-  data = newPositionForOverlapOnMarkers(data);
-
+  newPositionForOverlapOnMarkers(data);
 
   if ( $('.info-box').length === 0 ) {
     newMarkers = [];
