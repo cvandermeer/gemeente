@@ -5,7 +5,7 @@
       <%= link_to 'Nieuws', newsletters_path, class: 'news icon' %>
     </li>
     <li>
-      <%= link_to 'Melding doen', new_report_path, class: 'reports icon js_modal', remote: true %>
+      <%= link_to 'Melding doen', new_report_path, class: 'reports-link icon js_modal', remote: true %>
     </li>
     <% if user_signed_in? %>
       <li  class='<%= current_page_class(notifications_users_path) %>'>
