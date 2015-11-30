@@ -1,15 +1,9 @@
-<div class='dashboard-menu-bg'>
-  <div class='dashboard-menu'>
-    <ul>
-      <li>
-        <%= link_to 'Dashboard', admin_dashboard_path %>
-      </li>
-      <li>
-        <%= link_to 'Gebruikers', admin_users_path %>
-      </li>
-      <li>
-        <%= link_to 'Gemeentes', admin_communities_path %>
-      </li>
-    </ul>
-  </div>
-</div>
+<li class='<%= current_page_class(admin_dashboard_path) %>'>
+  <%= link_to 'Dashboard', admin_dashboard_path %>
+</li>
+<li class='<%= current_page_class(admin_users_path) %>'>
+  <%= link_to 'Gebruikers', admin_users_path %>
+</li>
+<li class='<%= current_page_class(admin_communities_path) %>'>
+  <%= link_to 'Gemeentes', admin_communities_path %>
+</li>

@@ -92,6 +92,7 @@ header {
     a {
      text-indent: 0;
     }
+    &.active,
     &:hover {
       background-color: #f7f7f7;
       a {

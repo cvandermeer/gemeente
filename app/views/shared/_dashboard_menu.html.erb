@@ -1,17 +1,17 @@
 <div class='dashboard-menu-bg'>
   <div class='dashboard-menu'>
     <ul>
-      <li>
-        <%= link_to 'Dashboard', nil %>
+      <% if current_user.admin? %>
+        <%= render 'admin/static_pages/admin_menu' %>
+      <% end %>
+      <li class='<%= current_page_class(reports_users_path) %>'>
+        <%= link_to 'Mijn meldingen', reports_users_path %>
       </li>
-      <li>
+      <li class='<%= current_page_class(notifications_users_path) %>'>
         <%= link_to "Berichten ( #{current_user.notifications.count} )", notifications_users_path %>
       </li>
-      <li>
+      <li class='<%= current_page_class(profile_users_path) %>'>
         <%= link_to 'Profiel', profile_users_path %>
-      </li>
-      <li>
-        <%= link_to 'Mijn meldingen', reports_users_path %>
       </li>
       <% if current_user.community? %>
         <li>

@@ -26,9 +26,34 @@ class User < ActiveRecord::Base
 
   ### CALLBACKS ###
   before_create :initialize_user
+  after_update :add_community_subscription_to_user_on_address
 
   def initialize_user
     self.role_id = 1 if role_id.nil?
+  end
+
+  def add_community_subscription_to_user_on_address
+    clean_up_address
+    zipcode = Zipcode.find_by(street: @street_name, town: town) if !address.blank? && !town.blank?
+    @community_name = zipcode.community unless zipcode.nil?
+    create_community_subscription unless Community.find_by(name: @community_name).nil?
+  end
+
+  def clean_up_address
+    @street_name = address unless address.blank?
+    drop_the_house_number unless address.blank?
+  end
+
+  def drop_the_house_number
+    s = address.split
+    @street_name = s.reverse.drop(1).reverse.join(' ') if s[s.length - 1].to_i >= 1
+  end
+
+  def create_community_subscription
+    community_id = Community.find_by(name: @community_name).id
+    CommunitySubscription.create(community_id: community_id,
+                                 user_id: id) if CommunitySubscription.find_by(community_id: community_id,
+                                                                               user_id: id).nil?
   end
 
   ### METHODS  ###
@@ -37,6 +62,6 @@ class User < ActiveRecord::Base
   end
 
   def initials
-    name.split(' ', 4).map(&:first).join('') if name
+    name.split(' ', 4).map(&:first).join('') unless name.blank?
   end
 end
