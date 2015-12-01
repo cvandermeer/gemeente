@@ -35,6 +35,7 @@
     top: 33px;
     @include transition(0.3s);
   }
+  &.active,
   &:hover {
     background: $basic-color;
     margin-top: -12px;

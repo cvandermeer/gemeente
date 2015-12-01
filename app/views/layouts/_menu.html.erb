@@ -65,10 +65,10 @@
           </li>
           <% end %>
           <li class='hide-on-mobile has-dropdown <%= current_page_class(root_path) %>'>
-            <%= link_to 'Meldingen', root_path, class: 'reports icon', data: { no_turbolink: true } %>
+            <%= link_to 'Meldingen', root_path, class: 'reports-link icon', data: { no_turbolink: true } %>
             <ul class='dropdown'>
               <li>
-                <%= link_to 'Melding doen', new_report_path, class: 'reports icon js_modal', remote: true %>
+                <%= link_to 'Melding doen', new_report_path, class: 'reports-link icon js_modal', remote: true %>
               </li>
               <% if user_signed_in? %>
               <li class='<%= current_page_class(reports_users_path) %>'>
