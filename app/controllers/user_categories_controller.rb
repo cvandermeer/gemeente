@@ -1,4 +1,5 @@
 class UserCategoriesController < ApplicationController
+  before_action :authenticate_community!
 
   def create
     @user_category = UserCategory.new(user_category_params)

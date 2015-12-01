@@ -63,7 +63,7 @@ Rails.application.routes.draw do
   get 'users/new_community_admin_user', to: 'users#new_community_admin_user'
 
   ### USER_CATEGORIES ###
-  resources :user_categories
+  resources :user_categories, only: :create
 
   ### ZIPCODES ###
   get 'search_streets', to: 'zipcodes#search_streets', as: 'search_streets'
