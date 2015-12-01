@@ -80,8 +80,8 @@ function setMarkers(data) {
     for (var i = 0; i < data.length; i++) {
       //var markerContent = document.createElement('DIV');
       var markerContent =
-                      '<div class="marker">' +
-                          '<div class="marker-icon '+data[i].category.title+'" data-marker-id="'+data[i].id+'">' +
+                      '<div class="marker" data-marker-id="'+data[i].id+'">' +
+                          '<div class="marker-icon '+data[i].category.title+'">' +
                           '</div>' +
                       '</div>';
 
