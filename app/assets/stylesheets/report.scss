@@ -61,6 +61,7 @@ ul.reports{
     height: 100%;
     width: 100%;
   }
+  &.active,
   &:hover {
     h3 a {
       color: $basic-color;

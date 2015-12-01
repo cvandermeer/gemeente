@@ -72,13 +72,15 @@ var lastClicked = false;
 var markerCluster;
 
 function setMarkers(data) {
+  newPositionForOverlapOnMarkers(data);
+
   if ( $('.info-box').length === 0 ) {
     newMarkers = [];
 
     for (var i = 0; i < data.length; i++) {
       //var markerContent = document.createElement('DIV');
       var markerContent =
-                      '<div class="marker">' +
+                      '<div class="marker" data-marker-id="'+data[i].id+'">' +
                           '<div class="marker-icon">' +
                           '</div>' +
                       '</div>';
@@ -96,22 +98,34 @@ function setMarkers(data) {
 
       // adding click event to marker, show if active
       addClickEventToMarker(marker, i);
+      addMouseOverAndOutToMarker(marker);
     }
     if ( newMarkers.length ) {
       if (markerCluster) {
         markerCluster.clearMarkers();
       }
-      var clusterStyles = [{ url: '<%= asset_path "cluster.png" %>', height: 34, width: 34}];
+      var clusterStyles = [{ url: "cluster.png", height: 34, width: 34}];
       markerCluster = new MarkerClusterer(map, newMarkers, { styles: clusterStyles, maxZoom: 19 });
     }
   }
 }
 
-
-function setMapOnAll(map) {
-  for (var i = 0; i < newMarkers.length; i++) {
-    newMarkers[i].setMap(map);
+function newPositionForOverlapOnMarkers(data) {
+  var dataClone = JSON.parse(JSON.stringify(data));
+  for (var a = 0; a < data.length; a++) {
+    data[a].count = 0;
   }
+
+  for (var i = 0; i < data.length; i++) {
+    for (var f = 0; f < data.length; f++) {
+      if (i != f && dataClone[f].latitude == dataClone[i].latitude && dataClone[f].longitude == dataClone[i].longitude) {
+        data[f].count += 1;
+        data[i].count += 1;
+        data[i].longitude += 0.00003 * data[i].count;
+      }
+    }
+  }
+  return data;
 }
 
 function addClickEventToMarker(marker, i) {
@@ -135,6 +149,14 @@ function addClickEventToMarker(marker, i) {
   })(marker, i));
 }
 
+function addMouseOverAndOutToMarker(marker) {
+  google.maps.event.addListener(marker, 'mouseover', function(e) {
+    $('.reports').find('li[data-reports-id="'+marker.id+'"]').addClass('active');
+  });
+  google.maps.event.addListener(marker, 'mouseout', function(e) {
+    $('.reports').find('li[data-reports-id="'+marker.id+'"]').removeClass('active');
+  });
+}
 
 /**
   * @desc calculates the distances
