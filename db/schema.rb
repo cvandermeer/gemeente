@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 20151201100817) do
     t.string   "image_one",    limit: 255
     t.string   "image_two",    limit: 255
     t.string   "image_three",  limit: 255
-    t.integer  "category",     limit: 4
   end
 
   add_index "reports", ["community_id"], name: "index_reports_on_community_id", using: :btree
