@@ -15,6 +15,7 @@ class Report < ActiveRecord::Base
   delegate :phonenumber, to: :community, prefix: true
   belongs_to :user
   has_one :report_category
+  accepts_nested_attributes_for :report_category
   has_one :category, through: :report_category
 
   ### VALIDATIONS ###
