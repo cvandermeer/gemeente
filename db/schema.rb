@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125090229) do
+ActiveRecord::Schema.define(version: 20151201100817) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title", limit: 255
+  end
 
   create_table "communities", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -60,6 +64,11 @@ ActiveRecord::Schema.define(version: 20151125090229) do
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
+  create_table "report_categories", force: :cascade do |t|
+    t.integer "report_id",   limit: 4
+    t.integer "category_id", limit: 4
+  end
+
   create_table "reports", force: :cascade do |t|
     t.string   "title",        limit: 255
     t.text     "description",  limit: 65535
@@ -79,6 +88,11 @@ ActiveRecord::Schema.define(version: 20151125090229) do
 
   add_index "reports", ["community_id"], name: "index_reports_on_community_id", using: :btree
   add_index "reports", ["user_id"], name: "index_reports_on_user_id", using: :btree
+
+  create_table "user_categories", force: :cascade do |t|
+    t.integer "user_id",     limit: 4
+    t.integer "category_id", limit: 4
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

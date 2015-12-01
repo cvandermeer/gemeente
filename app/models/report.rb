@@ -14,6 +14,8 @@ class Report < ActiveRecord::Base
   delegate :email, to: :community, prefix: true
   delegate :phonenumber, to: :community, prefix: true
   belongs_to :user
+  has_one :report_category
+  has_one :category, through: :report_category
 
   ### VALIDATIONS ###
   validates :title, presence: true

@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :notifications
   has_many :community_subscriptions
   has_many :communities, through: :community_subscriptions
+  has_many :category_contacts
+  has_many :categories, through: :category_contacts
 
   ### CONSTANTS ###
   ROLE_USER = 0
