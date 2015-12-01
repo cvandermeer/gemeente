@@ -3,6 +3,9 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   root 'reports#index'
 
+  ### STATIC PAGES ###
+  get 'landings_page', to: 'static_pages#landings_page'
+
   ### ADMIN ###
   namespace :admin do
     get 'dashboard', to: 'static_pages#dashboard'
