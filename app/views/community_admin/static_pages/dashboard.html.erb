@@ -19,15 +19,27 @@
               <thead>
                 <tr>
                   <th>Email</th>
-                  <th>Rol</th>
+                  <th>Categorieen</th>
+                  <th>Categorie toevoegen</th>
                 </tr>
               </thead>
               <tbody>
                 <% @users.each do |user| %>
                   <tr>
                     <td><%= user.email %></td>
+                    <td><%= user.categories.collect(&:title) %></td>
                     <td>
-                      <%= user.role_id %>
+                      <% category_list = Category.all - user.categories %>
+                      <% if category_list.any? %>
+                        <%= form_for UserCategory.new do |f| %>
+                          <%= f.hidden_field :user_id, value: user.id %>
+                          <%= f.collection_select :category_id, (category_list), :id, :title,
+                                                  {include_blank: 'Kies een Categorie'} %>
+                          <%= f.submit 'Categorie toevoegen' %>
+                        <% end %>
+                      <% else %>
+                        Alle categorieen toegevoegd
+                      <% end %>
                     </td>
                   </tr>
                 <% end %>
