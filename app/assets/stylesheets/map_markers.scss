@@ -64,7 +64,21 @@
     display: block;
     margin-top: -1px;
     text-align: center;
-    content: "\f12a";
+  }
+  &.afval:before {
+    content: '\f1f8'
+  }
+  &.straatverlichting:before {
+    content: '\f0eb'
+  }
+  &.wegdek:before {
+    content: '\f018'
+  }
+  &.groen:before {
+    content: '\f06c'
+  }
+  &.overig:before {
+    content: '\f12a'
   }
 }
 
