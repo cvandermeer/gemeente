@@ -19,11 +19,20 @@ function fetchReport(data) {
 function setReportIndex(data) {
   $('ul.reports').append(data);
   bindReportHandlers();
+  bindHoverToReport();
 }
 
 function bindReportHandlers() {
   $('.js_modal').bind('ajax:success', function(e, data, status) {
     setDataInModal(this ,data);
+  });
+}
+
+function bindHoverToReport() {
+  $('.reports li').hover(function() {
+    $('.marker[data-marker-id="'+$(this).attr('data-reports-id')+'"]').addClass('active');
+  }, function() {
+    $('.marker[data-marker-id="'+$(this).attr('data-reports-id')+'"]').removeClass('active');
   });
 }
 

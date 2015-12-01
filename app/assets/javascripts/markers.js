@@ -80,7 +80,7 @@ function setMarkers(data) {
     for (var i = 0; i < data.length; i++) {
       //var markerContent = document.createElement('DIV');
       var markerContent =
-                      '<div class="marker">' +
+                      '<div class="marker" data-marker-id="'+data[i].id+'">' +
                           '<div class="marker-icon">' +
                           '</div>' +
                       '</div>';
@@ -98,6 +98,7 @@ function setMarkers(data) {
 
       // adding click event to marker, show if active
       addClickEventToMarker(marker, i);
+      addMouseOverAndOutToMarker(marker);
     }
     if ( newMarkers.length ) {
       if (markerCluster) {
@@ -148,6 +149,14 @@ function addClickEventToMarker(marker, i) {
   })(marker, i));
 }
 
+function addMouseOverAndOutToMarker(marker) {
+  google.maps.event.addListener(marker, 'mouseover', function(e) {
+    $('.reports').find('li[data-reports-id="'+marker.id+'"]').addClass('active');
+  });
+  google.maps.event.addListener(marker, 'mouseout', function(e) {
+    $('.reports').find('li[data-reports-id="'+marker.id+'"]').removeClass('active');
+  });
+}
 
 /**
   * @desc calculates the distances
