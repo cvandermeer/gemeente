@@ -42,6 +42,7 @@ class ReportsController < ApplicationController
 
   def new
     @report = Report.new
+    @report_category = ReportCategory.new
     render 'form'
   end
 
@@ -58,6 +59,7 @@ class ReportsController < ApplicationController
   end
 
   def edit
+    @report_category = @report.report_category
     render 'form'
   end
 
