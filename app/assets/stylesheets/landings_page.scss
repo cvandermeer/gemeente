@@ -1,6 +1,8 @@
 .landing-outer-wrapper {
   header {
+    z-index: 3;
     background: none;
+    box-shadow: none;
     a {
       color: #fff;
       &:hover {
@@ -22,7 +24,20 @@
 .landings-page {
   position: relative;
   overflow: hidden;
+  .top {
+    position: relative;
+  }
+  .menu-bg {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 66px;
+    background: #333;
+  }
   .top-image {
+    position: relative;
+    z-index: 2;
     height: 100%;
     width: 100%;
     padding-top: 47%;
@@ -41,6 +56,7 @@
     }
   }
   .top-marker {
+    z-index: 3;
     width: 60px;
     height: 60px;
     background: #fff;
@@ -112,6 +128,7 @@
     }
   }
   .top-add-report {
+    z-index: 3;
     font-size: 16px;
     text-transform: uppercase;
     text-align: center;
