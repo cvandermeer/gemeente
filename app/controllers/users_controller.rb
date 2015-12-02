@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     @generated_password = Devise.friendly_token.first(8)
     User.create!(email: @email, password: @generated_password, role_id: 1, community: community)
     GeneralMailer.generated_user(@email, @generated_password).deliver
-    redirect_to community_admin_users_path,
+    redirect_to community_admin_dashboard_path,
                 notice: "Gebruiker #{@email} aangemaakt met wachtwoord #{@generated_password}"
   end
 

@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :notifications
   has_many :community_subscriptions
   has_many :communities, through: :community_subscriptions
+  has_many :user_categories
+  has_many :categories, through: :user_categories
 
   ### CONSTANTS ###
   ROLE_USER = 0
@@ -29,7 +31,7 @@ class User < ActiveRecord::Base
   after_update :add_community_subscription_to_user_on_address
 
   def initialize_user
-    self.role_id = 1 if role_id.nil?
+    self.role_id = 0 if role_id.nil?
   end
 
   def add_community_subscription_to_user_on_address

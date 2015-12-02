@@ -33,6 +33,15 @@
 
   <div class='row'>
     <div class='columns'>
+      <%= f.fields_for :report_category, ReportCategory.new do |rcf| %>
+        <%= rcf.label :category_id %>
+        <%= rcf.collection_select :category_id, Category.all, :id, :title, {include_blank: 'Kies een Categorie'} %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='columns'>
       <%= f.label :description, 'Beschrijving' %>
       <%= f.text_area :description, class: 'u-full-width' %>
     </div>

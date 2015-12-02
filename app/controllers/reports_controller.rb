@@ -16,9 +16,12 @@ class ReportsController < ApplicationController
 
   def markers
     if params[:id]
-      render json: Report.find(params[:id])
+      render json: Report.find(params[:id]).as_json(only: [:latitude, :longitude, :id],
+                                                    include: :category)
     else
-      render json: Report.near([params[:lat], params[:lng]], params[:km], units: :km)
+      render json: Report.near([params[:lat], params[:lng]],
+                                params[:km], units: :km).as_json(only: [:latitude, :longitude, :id],
+                                                                 include: :category)
     end
   end
 
@@ -90,6 +93,7 @@ class ReportsController < ApplicationController
 
   def report_params
     params.require(:report).permit(:title, :description, :address, :email, :town, :latitude,
-                                   :longitude, :resolved_at, :image_one, :image_two, :image_three)
+                                   :longitude, :resolved_at, :image_one, :image_two, :image_three,
+                                   report_category_attributes: [:category_id])
   end
 end
