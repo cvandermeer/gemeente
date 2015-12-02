@@ -20,7 +20,11 @@
                 <% @reports.todo.each do |report| %>
                   <tr>
                     <td><%= link_to report.title, report, data: { no_turbolink: true } %></td>
-                    <td><%= report.status %></td>
+                    <td>
+                      <%= form_for report do |f| %>
+                        <%= f.collection_select :status, Report.statuses, :first, :first %>
+                      <% end %>
+                    </td>
                   </tr>
                 <% end %>
               </tbody>
@@ -46,7 +50,11 @@
                 <% @reports.doing.each do |report| %>
                   <tr>
                     <td><%= link_to report.title, report, data: { no_turbolink: true } %></td>
-                    <td><%= report.status %></td>
+                    <td>
+                      <%= form_for report do |f| %>
+                        <%= f.collection_select :status, Report.statuses, :first, :first %>
+                      <% end %>
+                    <td>
                   </tr>
                 <% end %>
               </tbody>
@@ -72,7 +80,11 @@
                 <% @reports.done.each do |report| %>
                   <tr>
                     <td><%= link_to report.title, report, data: { no_turbolink: true } %></td>
-                    <td><%= report.status %></td>
+                    <td>
+                      <%= form_for report do |f| %>
+                        <%= f.collection_select :status, Report.statuses, :first, :first %>
+                      <% end %>
+                    </td>
                   </tr>
                 <% end %>
               </tbody>
