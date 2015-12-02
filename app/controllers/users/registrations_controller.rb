@@ -8,6 +8,12 @@ module Users
                                    :password, :password_confirmation)
     end
 
+    def sign_up_params
+      params.require(:user).permit(:name, :email,
+                                   :address, :town,
+                                   :password, :password_confirmation)
+    end
+
     protected
 
     def update_resource(resource, params)

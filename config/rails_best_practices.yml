@@ -6,6 +6,7 @@ OveruseRouteCustomizationsCheck: { customize_count: 4 }
 ReplaceComplexCreationWithFactoryMethodCheck: { attribute_assignment_count: 2 }
 RemoveUnusedMethodsInControllersCheck: { except_methods: [
   'RegistrationsController#account_update_params',
+  'RegistrationsController#sign_up_params',
   'RegistrationsController#update_resource'
   ]
 }
