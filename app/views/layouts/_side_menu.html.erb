@@ -1,30 +1,29 @@
 <div class='side-menu show-on-mobile'>
   <h4>Navigatie</h4>
   <ul>
+    <li class='<%= current_page_class(newsletters_path) %>'>
+      <%= link_to 'Nieuws', newsletters_path, class: 'news icon' %>
+    </li>
+    <li>
+      <%= link_to 'Melding doen', new_report_path, class: 'reports-link icon js_modal', remote: true %>
+    </li>
     <% if user_signed_in? %>
-    <li>
-      <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete', class: 'pull-right' %>
-    </li>
-    <li>
-      <%= link_to 'Profiel', profile_users_path, data: { no_turbolink: true } %>
-    </li>
-    <% else %>
-    <li>
-      <%= link_to 'Inloggen', new_user_session_path, remote: true, class: 'js_modal' %>
-    </li>
-    <li>
-      <%= link_to "Aanmelden", new_user_registration_path, remote: true, class: 'js_modal' %>
-    </li>
-    <% end %>
-    <li>
-      <%= link_to 'Nieuws', newsletters_path %>
-    </li>
-    <li>
-      <%= link_to 'Gemeentes', community_list_communities_path, class: 'js_modal', remote: true %>
-    </li>
-    <% if current_user && current_user.admin? %>
+      <li  class='<%= current_page_class(notifications_users_path) %>'>
+        <%= link_to "Berichten ( #{ current_user.notifications.count } )",
+            notifications_users_path, class: 'message icon' %>
+      </li>
       <li>
-        <%= link_to 'Berichten', messages_path %>
+        <%= link_to 'Profiel', profile_users_path, data: { no_turbolink: true } %>
+      </li>
+      <li>
+        <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete', class: 'pull-right' %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to 'Inloggen', new_user_session_path, remote: true, class: 'js_modal' %>
+      </li>
+      <li>
+        <%= link_to "Aanmelden", new_user_registration_path, remote: true, class: 'js_modal' %>
       </li>
     <% end %>
   </ul>

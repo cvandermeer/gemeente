@@ -19,11 +19,20 @@ function fetchReport(data) {
 function setReportIndex(data) {
   $('ul.reports').append(data);
   bindReportHandlers();
+  bindHoverToReport();
 }
 
 function bindReportHandlers() {
   $('.js_modal').bind('ajax:success', function(e, data, status) {
     setDataInModal(this ,data);
+  });
+}
+
+function bindHoverToReport() {
+  $('.reports li').hover(function() {
+    $('.marker[data-marker-id="'+$(this).attr('data-reports-id')+'"]').addClass('active');
+  }, function() {
+    $('.marker[data-marker-id="'+$(this).attr('data-reports-id')+'"]').removeClass('active');
   });
 }
 
@@ -69,11 +78,6 @@ function goToReportLocation(el) {
   // setPanorama(clicked_position)
 }
 
-/**
-  * @desc shows the reports when user is filterering on community
-  * @return sets the new data to the content container
-*/
-
 function communityReports(){
   $('.community-reports').on('ajax:success', function(e, data, status){
     var clat = $(this).parent().attr('data-lat');
@@ -88,3 +92,9 @@ function communityReports(){
     }
   });
 }
+
+$(function() {
+  $('select#report_status').change(function(){
+    $(this).parent().submit();
+  });
+});

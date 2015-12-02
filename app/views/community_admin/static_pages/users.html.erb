@@ -3,33 +3,31 @@
 <div class='inner'>
   <div class='container'>
     <div class='row'>
-      <div class='columns three'>
-        <%= render 'users/panels/user_image_panel', user: current_user %>
-        <%= render 'users/panels/user_info_panel', user: current_user %>
-      </div>
-      <div class='columns nine'>
+      <div class='columns'>
         <div class='panel'>
           <div class='panel-header'>
-            <h5>Gemeentes</h5>
+            <h5>Gebruikers aangemeld bij de gemeente <%= @community.name %></h5>
           </div>
           <div class='panel-body'>
             <table class="u-full-width">
               <thead>
                 <tr>
-                  <th>Naam</th>
-                  <th>Leden</th>
+                  <th>Email</th>
+                  <th>Rol</th>
                 </tr>
               </thead>
               <tbody>
-                <% @communities.each do |community| %>
+                <% @subscribers.each do |subscriber| %>
                   <tr>
-                    <td><%= community.name %></td>
-                    <td><%= community.users.count %></td>
+                    <td><%= subscriber.email %></td>
+                    <td>
+                      <%= subscriber.role_id %>
+                    </td>
                   </tr>
                 <% end %>
               </tbody>
             </table>
-            <%= will_paginate @communities %>
+            <%= will_paginate @subscribers %>
           </div>
         </div>
       </div>

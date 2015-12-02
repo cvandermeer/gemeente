@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   ### COMMUNITY_ADMIN ###
   namespace :community_admin do
     get 'dashboard', to: 'static_pages#dashboard'
+    get 'reports', to: 'static_pages#reports'
+    get 'users', to: 'static_pages#users'
   end
 
   ### COMMUNITIES ###
@@ -58,6 +60,11 @@ Rails.application.routes.draw do
 
   post 'users/generate_user', to: 'users#generate_user'
   get 'users/new_admin_user', to: 'users#new_admin_user'
+  post 'users/generate_community_admin_user', to: 'users#generate_community_admin_user'
+  get 'users/new_community_admin_user', to: 'users#new_community_admin_user'
+
+  ### USER_CATEGORIES ###
+  resources :user_categories, only: :create
 
   ### ZIPCODES ###
   get 'search_streets', to: 'zipcodes#search_streets', as: 'search_streets'

@@ -1,0 +1,14 @@
+<h5>Gemeente gebruiker toevoegen</h5>
+
+<%= form_for @user, url: {action: :generate_community_admin_user} do |f| %>
+  <div class='row'>
+    <div class='six columns'>
+      <%= f.label :email, 'Email' %>
+      <%= f.text_field :email %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <%= f.submit 'Aanmaken', class: 'button-primary trigger_loading' %>
+  </div>
+<% end %>

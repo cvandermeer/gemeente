@@ -16,10 +16,20 @@ class ReportsController < ApplicationController
 
   def markers
     if params[:id]
-      render json: Report.find(params[:id])
+      all_markers
     else
-      render json: Report.near([params[:lat], params[:lng]], params[:km], units: :km)
+      near_markers
     end
+  end
+
+  def all_markers
+    render json: Report.find(params[:id]).as_json(only: [:latitude, :longitude, :id], include: :category)
+  end
+
+  def near_markers
+    render json: Report.near([params[:lat], params[:lng]],
+                             params[:km], units: :km).as_json(only: [:latitude, :longitude, :id],
+                                                              include: :category)
   end
 
   def report_index
@@ -32,6 +42,7 @@ class ReportsController < ApplicationController
 
   def new
     @report = Report.new
+    @report_category = ReportCategory.new
     render 'form'
   end
 
@@ -48,11 +59,14 @@ class ReportsController < ApplicationController
   end
 
   def edit
+    @report_category = @report.report_category
     render 'form'
   end
 
   def update
-    if @report.update(report_params)
+    if params[:report][:status] && @report.update(report_params)
+      redirect_to community_admin_reports_path, notice: "Status van #{@report.title} aangepast naar #{@report.status}"
+    elsif @report.update(report_params)
       respond_to do |format|
         format.js
       end
@@ -89,7 +103,8 @@ class ReportsController < ApplicationController
   end
 
   def report_params
-    params.require(:report).permit(:title, :description, :address, :email, :town, :latitude,
-                                   :longitude, :resolved_at, :image_one, :image_two, :image_three)
+    params.require(:report).permit(:title, :description, :address, :email, :town, :latitude, :status,
+                                   :longitude, :resolved_at, :image_one, :image_two, :image_three,
+                                   report_category_attributes: [:category_id])
   end
 end

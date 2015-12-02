@@ -17,7 +17,7 @@
             </div>
           </li>
           <% if user_signed_in? %>
-          <li  class='hide-on-mobile has-dropdown profile-link'>
+          <li  class='hide-on-mobile has-dropdown profile-link <%= current_page_class(profile_users_path) %>'>
             <%= link_to 'Profiel', profile_users_path %>
             <div class='profile-picture'>
               <% if current_user.avatar? %>
@@ -27,19 +27,19 @@
               <% end %>
             </div>
             <ul class='dropdown'>
-              <li>
+              <li class='<%= current_page_class(edit_user_registration_path) %>'>
                 <%= link_to 'Profiel bewerken', edit_user_registration_path %>
               </li>
-              <li>
+              <li class='<%= current_page_class(profile_users_path) %>'>
                 <%= link_to 'Accountinstellingen', profile_users_path %>
               </li>
               <% if current_user.admin? %>
-                <li>
+                <li class='<%= current_page_class(admin_dashboard_path) %>'>
                   <%= link_to 'Admin Dashboard', admin_dashboard_path %>
                 </li>
               <% end %>
               <% if current_user.community? %>
-                <li>
+                <li class='<%= current_page_class(community_admin_dashboard_path) %>'>
                   <%= link_to 'Gemeente Dashboard', community_admin_dashboard_path %>
                 </li>
               <% end %>
@@ -48,14 +48,11 @@
               </li>
             </ul>
           </li>
-          <li class='hide-on-mobile has-dropdown'>
-            <%= link_to 'Berichten', root_path, class: 'message icon' %>
+          <li class='hide-on-mobile has-dropdown <%= current_page_class(notifications_users_path) %>'>
+            <%= link_to 'Berichten', notifications_users_path, class: 'message icon' %>
             <ul class='dropdown'>
-              <li>
+              <li class='<%= current_page_class(notifications_users_path) %>'>
                 <%= link_to "Bekijk inbox ( #{ current_user.notifications.count } )", notifications_users_path %>
-              </li>
-              <li>
-                <%= link_to 'Bekijk dashboard' %>
               </li>
             </ul>
           </li>
@@ -67,18 +64,20 @@
             <%= link_to "Aanmelden", new_user_registration_path, remote: true, class: 'js_modal' %>
           </li>
           <% end %>
-          <li class='hide-on-mobile has-dropdown'>
-            <%= link_to 'Meldingen', root_path, class: 'reports icon' %>
+          <li class='hide-on-mobile has-dropdown <%= current_page_class(root_path) %>'>
+            <%= link_to 'Meldingen', root_path, class: 'reports-link icon', data: { no_turbolink: true } %>
             <ul class='dropdown'>
               <li>
-                <%= link_to 'Melding aanmaken', new_report_path, class: 'js_modal', remote: true %>
+                <%= link_to 'Melding doen', new_report_path, class: 'reports-link icon js_modal', remote: true %>
               </li>
-              <li>
-                <%= link_to 'Mijn meldingen', root_path %>
+              <% if user_signed_in? %>
+              <li class='<%= current_page_class(reports_users_path) %>'>
+                <%= link_to 'Mijn meldingen', reports_users_path %>
               </li>
+              <% end %>
             </ul>
           </li>
-          <li class='hide-on-mobile'>
+          <li class='hide-on-mobile <%= current_page_class(newsletters_path) %>'>
             <%= link_to 'Nieuws', newsletters_path, class: 'news icon' %>
           </li>
         </ul>
