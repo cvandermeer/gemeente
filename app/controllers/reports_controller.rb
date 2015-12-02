@@ -16,13 +16,20 @@ class ReportsController < ApplicationController
 
   def markers
     if params[:id]
-      render json: Report.find(params[:id]).as_json(only: [:latitude, :longitude, :id],
-                                                    include: :category)
+      all_markers
     else
-      render json: Report.near([params[:lat], params[:lng]],
-                                params[:km], units: :km).as_json(only: [:latitude, :longitude, :id],
-                                                                 include: :category)
+      near_markers
     end
+  end
+
+  def all_markers
+    render json: Report.find(params[:id]).as_json(only: [:latitude, :longitude, :id], include: :category)
+  end
+
+  def near_markers
+    render json: Report.near([params[:lat], params[:lng]],
+                             params[:km], units: :km).as_json(only: [:latitude, :longitude, :id],
+                                                              include: :category)
   end
 
   def report_index
