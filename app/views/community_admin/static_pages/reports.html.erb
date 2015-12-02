@@ -3,95 +3,37 @@
 <div class='inner'>
   <div class='container'>
     <div class='row'>
-      <div class='columns four'>
-        <div class='panel'>
-          <div class='panel-header'>
-            <h5>Open</h5>
-          </div>
-          <div class='panel-body'>
-            <table class="u-full-width">
-              <thead>
-                <tr>
-                  <th>Melding</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @reports.todo.each do |report| %>
+      <% @reports_stasuses.each do |report_status| %>
+        <div class='columns four'>
+          <div class='panel'>
+            <div class='panel-header'>
+              <h5>Open</h5>
+            </div>
+            <div class='panel-body'>
+              <table class="u-full-width">
+                <thead>
                   <tr>
-                    <td><%= link_to report.title, report, data: { no_turbolink: true } %></td>
-                    <td>
-                      <%= form_for report do |f| %>
-                        <%= f.collection_select :status, Report.statuses, :first, :first %>
-                      <% end %>
-                    </td>
+                    <th>Melding</th>
+                    <th>Status</th>
                   </tr>
-                <% end %>
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  <% report_status.each do |report| %>
+                    <tr>
+                      <td><%= link_to report.title, report, data: { no_turbolink: true } %></td>
+                      <td>
+                        <%= form_for report do |f| %>
+                          <%= f.collection_select :status, Report.statuses, :first, :first %>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class='columns four'>
-        <div class='panel'>
-          <div class='panel-header'>
-            <h5>In behandeling</h5>
-          </div>
-          <div class='panel-body'>
-            <table class="u-full-width">
-              <thead>
-                <tr>
-                  <th>Melding</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @reports.doing.each do |report| %>
-                  <tr>
-                    <td><%= link_to report.title, report, data: { no_turbolink: true } %></td>
-                    <td>
-                      <%= form_for report do |f| %>
-                        <%= f.collection_select :status, Report.statuses, :first, :first %>
-                      <% end %>
-                    <td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <div class='columns four'>
-        <div class='panel'>
-          <div class='panel-header'>
-            <h5>Opgelost</h5>
-          </div>
-          <div class='panel-body'>
-            <table class="u-full-width">
-              <thead>
-                <tr>
-                  <th>Melding</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @reports.done.each do |report| %>
-                  <tr>
-                    <td><%= link_to report.title, report, data: { no_turbolink: true } %></td>
-                    <td>
-                      <%= form_for report do |f| %>
-                        <%= f.collection_select :status, Report.statuses, :first, :first %>
-                      <% end %>
-                    </td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>

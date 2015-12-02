@@ -12,7 +12,7 @@ module CommunityAdmin
     end
 
     def reports
-      @reports = @community.reports
+      @reports_stasuses = [@community.reports.todo, @community.reports.doing, @community.reports.done]
     end
 
     private
