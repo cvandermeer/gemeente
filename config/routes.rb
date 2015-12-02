@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   ### COMMUNITY_ADMIN ###
   namespace :community_admin do
     get 'dashboard', to: 'static_pages#dashboard'
+    get 'reports', to: 'static_pages#reports'
     get 'users', to: 'static_pages#users'
   end
 

@@ -3,11 +3,7 @@
 <div class='inner'>
   <div class='container'>
     <div class='row'>
-      <div class='columns three'>
-        <%= render 'users/panels/user_image_panel', user: current_user %>
-        <%= render 'users/panels/user_info_panel', user: current_user %>
-      </div>
-      <div class='columns nine'>
+      <div class='columns'>
         <div class='panel'>
           <div class='panel-header'>
             <h5>Gebruikers <%= link_to 'Gebruiker toevoegen', users_new_community_admin_user_path, remote: true,

@@ -1,4 +1,15 @@
 class Report < ActiveRecord::Base
+  ### CONSTANTS ###
+  STATUS_TODO = 0
+  STATUS_DOING = 1
+  STATUS_DONE = 2
+
+  enum status: {
+    open: STATUS_TODO,
+    in_behandeling: STATUS_DOING,
+    opgelost: STATUS_DONE
+  }
+
   ### UPLOADER ###
   mount_uploader :image_one, ImageUploader
   mount_uploader :image_two, ImageUploader
@@ -25,10 +36,12 @@ class Report < ActiveRecord::Base
   validates :town, presence: true
 
   ### SCOPES ###
-  # scope :unresolved, -> { where(resolved_at: nil) }
+  scope :todo,  -> { where(status: STATUS_TODO) }
+  scope :doing, -> { where(status: STATUS_DOING) }
+  scope :done,  -> { where(status: STATUS_DONE) }
 
   ### CALLBACKS ###
-  before_create :set_community
+  before_create :set_community, :set_status
   after_create :create_notification
 
   def set_community
@@ -42,6 +55,10 @@ class Report < ActiveRecord::Base
     @street = address
     s = address.split
     @street = s.reverse.drop(1).reverse.join(' ') if s[s.length - 1].to_i >= 1
+  end
+
+  def set_status
+    self.status = STATUS_TODO
   end
 
   def create_notification
