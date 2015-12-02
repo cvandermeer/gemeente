@@ -3,11 +3,11 @@
 <div class='inner'>
   <div class='container'>
     <div class='row'>
-      <% @reports_stasuses.each do |report_status| %>
+      <% @reports_stasuses.each_with_index do |report_status, index| %>
         <div class='columns four'>
           <div class='panel'>
             <div class='panel-header'>
-              <h5>Open</h5>
+              <h5><%= Report.statuses.to_a[index][0] %></h5>
             </div>
             <div class='panel-body'>
               <table class="u-full-width">
