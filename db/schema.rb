@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 20151202100509) do
     t.string   "image_one",    limit: 255
     t.string   "image_two",    limit: 255
     t.string   "image_three",  limit: 255
-    t.integer  "category",     limit: 4
     t.integer  "status",       limit: 4
   end
 
@@ -133,5 +132,8 @@ ActiveRecord::Schema.define(version: 20151202100509) do
     t.string  "latitude",           limit: 255
     t.string  "longitude",          limit: 255
   end
+
+  add_index "zipcodes", ["street"], name: "index_zipcodes_on_street", using: :btree
+  add_index "zipcodes", ["town"], name: "index_zipcodes_on_town", using: :btree
 
 end
