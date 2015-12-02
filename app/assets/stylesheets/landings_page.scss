@@ -49,7 +49,7 @@
     top: -10%;
     margin-top: -50px;
     left: 50%;
-    margin-left: -75px;
+    margin-left: -60px;
     @include transition(0.3s);
     .top-marker-icon {
       z-index: 2;
@@ -109,6 +109,31 @@
     }
     &.active {
       top: 40%;
+    }
+  }
+  .top-add-report {
+    font-size: 16px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 160px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: 0;
+    margin-left: -126px;
+    display: inline-block;
+    padding: 10px;
+    background: $basic-color;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 40px;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+    border-bottom: 4px solid $basic-color-dark;
+    &:hover {
+      color: #fff;
+      border-bottom-width: 0px;
+      margin-top: 4px;
+      background: $basic-color-dark;
     }
   }
 }
