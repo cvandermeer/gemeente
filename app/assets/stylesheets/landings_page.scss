@@ -41,10 +41,10 @@
     }
   }
   .top-marker {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     background: #fff;
-    border-radius: 10px;
+    border-radius: 8px;
     position: absolute;
     top: -10%;
     margin-top: -50px;
@@ -60,21 +60,21 @@
       background: #fff;
       border: 5px solid $basic-color;
       top: 6px;
-      left: 6px;
+      left: 5px;
       &:before {
         font-family: FontAwesome;
-        font-size: 40px;
+        font-size: 24px;
         line-height: 0;
-        top: 30px;
-        right: 15px;
+        top: 20px;
+        right: 10px;
         position: absolute;
         font-weight: normal;
         content: '\f1f8';
       }
     }
     &:after {
-      width: 62px;
-      height: 62px;
+      width: 46px;
+      height: 46px;
       background: #fff;
       z-index: 1;
       content: '';
@@ -83,7 +83,7 @@
       @include transform(rotate(45deg));
       @include transition(0.3s);
       top: 50%;
-      left: 9px;
+      left: 7px;
     }
     &:hover {
       background: $basic-color;
@@ -93,7 +93,7 @@
       }
     }
     &.dropshadow {
-      margin-left: 0;
+      margin-left: -25px;
       background: #000;
       opacity: 0.6;
       @include filter(blur(10px));
