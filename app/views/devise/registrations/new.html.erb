@@ -3,17 +3,26 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <%= f.label :email %>
+  <%= f.label :email, 'Email*' %>
   <%= f.email_field :email, autofocus: true, class: 'u-full-width' %>
 
-  <%= f.label :password, 'Wachtwoord' %>
+  <%= f.label :password, 'Wachtwoord*' %>
   <% if @minimum_password_length %>
     <em>(minimaal <%= @minimum_password_length %> karakters)</em>
   <% end %>
   <%= f.password_field :password, autocomplete: 'off', class: 'u-full-width' %>
 
-  <%= f.label :password_confirmation, 'Wachtwoord bevestiging' %><br />
+  <%= f.label :password_confirmation, 'Wachtwoord bevestiging*' %>
   <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'u-full-width' %>
+
+  <%= f.label :name, 'Naam' %>
+  <%= f.text_field :name %>
+
+  <%= f.label :address, 'Straat + Huisnummer' %>
+  <%= f.text_field :address %>
+
+  <%= f.label :town, 'Woonplaats' %>
+  <%= f.text_field :town %></br>
 
   <%= f.submit 'Aanmelden', class: 'button button-primary' %>
 
