@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151201100817) do
+ActiveRecord::Schema.define(version: 20151202100509) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title", limit: 255
@@ -84,6 +84,8 @@ ActiveRecord::Schema.define(version: 20151201100817) do
     t.string   "image_one",    limit: 255
     t.string   "image_two",    limit: 255
     t.string   "image_three",  limit: 255
+    t.integer  "category",     limit: 4
+    t.integer  "status",       limit: 4
   end
 
   add_index "reports", ["community_id"], name: "index_reports_on_community_id", using: :btree
@@ -131,8 +133,5 @@ ActiveRecord::Schema.define(version: 20151201100817) do
     t.string  "latitude",           limit: 255
     t.string  "longitude",          limit: 255
   end
-
-  add_index "zipcodes", ["street"], name: "index_zipcodes_on_street", using: :btree
-  add_index "zipcodes", ["town"], name: "index_zipcodes_on_town", using: :btree
 
 end
