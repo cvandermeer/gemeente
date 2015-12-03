@@ -1,1 +1,14 @@
 <%= render 'shared/dashboard_menu' %>
+
+<div class='inner'>
+  <div class='container'>
+    <%= form_for Delivery.new do |f| %>
+      <div class='row'>
+        <div class='six columns'>
+          <%= f.label :streets, 'Straten*' %>
+          <%= f.select(:streets, ['test', 'test2', 'test3'], {}, {multiple: true, class: 'js_init_select'}) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

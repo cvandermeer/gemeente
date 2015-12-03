@@ -29,6 +29,9 @@ Rails.application.routes.draw do
     get :delete, on: :member
   end
 
+  ### DELIVERIES ###
+  resources :deliveries, only: :create
+
   ### MESSAGES ###
   resources :messages, except: [:edit, :update, :destroy]
 
