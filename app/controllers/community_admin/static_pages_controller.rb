@@ -15,6 +15,9 @@ module CommunityAdmin
       @reports_stasuses = [@community.reports.todo, @community.reports.doing, @community.reports.done]
     end
 
+    def location_news
+    end
+
     private
 
     def set_community

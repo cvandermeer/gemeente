@@ -5,16 +5,17 @@ Rails.application.routes.draw do
 
   ### ADMIN ###
   namespace :admin do
-    get 'dashboard', to: 'static_pages#dashboard'
-    get 'users', to: 'static_pages#users'
-    get 'communities', to: 'static_pages#communities'
+    get 'dashboard',    to: 'static_pages#dashboard'
+    get 'users',        to: 'static_pages#users'
+    get 'communities',  to: 'static_pages#communities'
   end
 
   ### COMMUNITY_ADMIN ###
   namespace :community_admin do
-    get 'dashboard', to: 'static_pages#dashboard'
-    get 'reports', to: 'static_pages#reports'
-    get 'users', to: 'static_pages#users'
+    get 'dashboard',      to: 'static_pages#dashboard'
+    get 'reports',        to: 'static_pages#reports'
+    get 'users',          to: 'static_pages#users'
+    get 'location_news',  to: 'static_pages#location_news'
   end
 
   ### COMMUNITIES ###
