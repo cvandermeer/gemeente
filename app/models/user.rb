@@ -35,20 +35,9 @@ class User < ActiveRecord::Base
   end
 
   def add_community_subscription_to_user_on_address
-    clean_up_address
-    zipcode = Zipcode.find_by(street: @street_name, town: town) if !address.blank? && !town.blank?
+    zipcode = Zipcode.find_by(street: street, town: town) if !street.blank? && !town.blank?
     @community_name = zipcode.community unless zipcode.nil?
     create_community_subscription unless Community.find_by(name: @community_name).nil?
-  end
-
-  def clean_up_address
-    @street_name = address unless address.blank?
-    drop_the_house_number unless address.blank?
-  end
-
-  def drop_the_house_number
-    s = address.split
-    @street_name = s.reverse.drop(1).reverse.join(' ') if s[s.length - 1].to_i >= 1
   end
 
   def create_community_subscription

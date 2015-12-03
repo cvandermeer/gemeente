@@ -57,8 +57,11 @@
                 <div class='columns three'>
                   <%= f.label :address, 'Straat + huisnummer' %>
                 </div>
-                <div class='columns nine'>
-                  <%= f.text_field :address, placeholder: 'Straat + huisnummer', class: 'u-full-width' %>
+                <div class='columns three'>
+                  <%= f.text_field :street, placeholder: 'Straat', class: 'u-full-width' %>
+                </div>
+                <div class='columns three'>
+                  <%= f.text_field :housenumber, placeholder: 'Huisnummer', class: 'u-full-width' %>
                 </div>
               </div>
               <div class='row'>

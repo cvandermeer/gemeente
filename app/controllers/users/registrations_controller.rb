@@ -4,13 +4,13 @@ module Users
 
     def account_update_params
       params.require(:user).permit(:name, :avatar, :email,
-                                   :address, :town,
+                                   :street, :housenumber, :town,
                                    :password, :password_confirmation)
     end
 
     def sign_up_params
       params.require(:user).permit(:name, :email,
-                                   :address, :town,
+                                   :street, :housenumber, :town,
                                    :password, :password_confirmation)
     end
 
