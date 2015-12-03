@@ -35,7 +35,8 @@ ActiveRecord::Schema.define(version: 20151203102939) do
 
   create_table "deliveries", force: :cascade do |t|
     t.string   "streets",       limit: 255
-    t.string   "newsletter_id", limit: 255
+    t.integer  "newsletter_id", limit: 4
+    t.integer  "community_id",  limit: 4
     t.datetime "created_at"
   end
 

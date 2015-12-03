@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   end
 
   ### DELIVERIES ###
-  resources :deliveries, only: :create
+  resources :deliveries, only: [:new, :create]
 
   ### MESSAGES ###
   resources :messages, except: [:edit, :update, :destroy]

@@ -16,8 +16,7 @@ module CommunityAdmin
     end
 
     def location_news
-      community_name = @community.name
-      @streets = Zipcode.where(community: community_name).map(&:street).uniq
+      @deliveries = @community.deliveries
     end
 
     private

@@ -1,14 +1,27 @@
 <%= render 'shared/dashboard_menu' %>
-
 <div class='inner'>
   <div class='container'>
-    <%= form_for Delivery.new do |f| %>
-      <div class='row'>
-        <div class='six columns'>
-          <%= f.label :streets, 'Straten*' %>
-          <%= f.select(:streets, @streets, {}, {multiple: true, class: 'js_init_select'}) %>
-        </div>
-      </div>
-    <% end %>
+    <%= link_to 'Nieuwe melding versturen', new_delivery_path, remote: true, class: 'js_modal' %>
+
+    <table class='u-full-width'>
+      <thead>
+        <tr>
+          <th>Nieuws</th>
+          <th>Straten</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @deliveries.each do |delivery| %>
+          <tr>
+            <td>
+              <%= delivery.newsletter.title %>
+            </td>
+            <td>
+              <%= delivery.streets %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

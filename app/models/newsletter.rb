@@ -2,6 +2,7 @@ class Newsletter < ActiveRecord::Base
   ### ASSOCIATIONS ###
   belongs_to :community
   belongs_to :user
+  has_many :deliveries
 
   delegate :name, to: :community, prefix: true
 
