@@ -37,6 +37,12 @@
     top: -8px;
     @include transform(rotate(45deg));
   }
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .register-modal {
