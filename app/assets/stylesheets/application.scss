@@ -7,6 +7,8 @@ $dark-gray: #474747;
 $background-color: #f4f4f2;
 $background-color-dark: #424242;
 
+$spacing: 12px;
+
 /* Basic styling */
 @import 'jquery.ui.all';
 @import 'autocomplete';
@@ -90,9 +92,8 @@ body, html {
 }
 
 .index-wrapper {
-  padding-top: 62px;
-  height: calc(100% - 62px);
-  min-height: calc(100% - 62px);
+  height: 100%;
+  min-height: 100%;
   background: $background-color;
   position: relative;
 }
@@ -156,12 +157,6 @@ body, html {
 	margin: -32px 0 0 -32px;
   z-index: 20000;
   display: none;
-}
-/*header*/
-header{
-  position: fixed;
-  top: 0;
-  width: 100%;
 }
 
 .hidden{

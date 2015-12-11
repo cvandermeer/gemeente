@@ -26,13 +26,11 @@
         <%= yield %>
       </div>
 
-      <% if action_name == 'index' && controller_name == 'reports'  %>
-        <%= render 'shared/featured', featured: @featured %>
-        <%= render 'shared/recent', recents: @recents %>
-      <% end %>
       <%= render 'shared/modal' %>
 
+    <% if controller_name != 'reports' && action_name != 'index' %>
       <%= render 'layouts/footer' %>
+    <% end %>
     </div>
 
   </body>
