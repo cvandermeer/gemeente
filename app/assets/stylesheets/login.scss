@@ -1,3 +1,4 @@
+.register-modal,
 .login-modal {
   position: absolute;
   z-index: 1;
@@ -35,5 +36,12 @@
     right: 40px;
     top: -8px;
     @include transform(rotate(45deg));
+  }
+}
+
+.register-modal {
+  width: 290px;
+  &:before {
+    right: 150px;
   }
 }
