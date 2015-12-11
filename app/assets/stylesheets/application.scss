@@ -9,6 +9,8 @@ $background-color-dark: #424242;
 
 $spacing: 12px;
 
+$shadow: 1px 2px 3px rgba(0,0,0,0.2);
+
 /* Basic styling */
 @import 'jquery.ui.all';
 @import 'autocomplete';
@@ -49,6 +51,8 @@ $spacing: 12px;
 @import 'featured';
 @import 'contact';
 @import 'footer';
+
+@import 'login';
 
 // Icons
 @import 'font-awesome';

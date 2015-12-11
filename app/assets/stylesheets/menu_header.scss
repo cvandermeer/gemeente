@@ -1,6 +1,6 @@
 .version {
   color: #7f7f7f;
-  font-size: 12px;
+  font-size: 14px;
   width: 30px;
   height: 18px;
   float: left;
@@ -17,12 +17,13 @@ header {
   position: fixed;
   top: $spacing;
   right: $spacing;
-  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: $shadow;
   ul {
     float: right;
     background: #fff;
     padding: 0;
     margin: 0;
+    border-radius: 2px;
     li {
       height: 100%;
       margin: 0;
@@ -36,11 +37,10 @@ header {
     }
   }
   a {
-    font-size: 12px;
-    padding: 22px 20px 21px;
+    font-size: 14px;
+    padding: $spacing*1.5;
     display: block;
     color: $dark-gray;
-    font-weight: 600;
     text-decoration: none;
     letter-spacing: .1rem;
   }

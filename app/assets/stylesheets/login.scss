@@ -1,0 +1,39 @@
+.login-modal {
+  position: absolute;
+  z-index: 1;
+  box-shadow: $shadow;
+  border-radius: 2px;
+  top: 86px;
+  right: $spacing;
+  background: #fff;
+  width: 250px;
+  opacity: 0;
+  padding: $spacing;
+  @include transition(0.3s);
+  &.active {
+    opacity: 1;
+  }
+  form {
+    border-top: 1px solid #dce0e0;
+    border-bottom: 1px solid #dce0e0;
+    padding: $spacing 0;
+    margin-bottom: $spacing;
+    label {
+      color: $dark-gray;
+    }
+  }
+  input[type="submit"].button-primary {
+    margin-bottom: 0;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    background: #fff;
+    right: 40px;
+    top: -8px;
+    @include transform(rotate(45deg));
+  }
+}

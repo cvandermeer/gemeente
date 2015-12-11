@@ -29,7 +29,8 @@ h3 {
 }
 
 h5 {
-  font-weight: bold;
+  letter-spacing: .1rem;
+  color: $dark-gray;
   font-size: 16px;
-  margin-bottom: 0;
+  margin-bottom: $spacing;
 }
