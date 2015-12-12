@@ -43,7 +43,7 @@ class ReportsController < ApplicationController
   def new
     @report = Report.new
     @report_category = ReportCategory.new
-    render 'form'
+    render 'new'
   end
 
   def create
@@ -54,13 +54,13 @@ class ReportsController < ApplicationController
         format.js
       end
     else
-      render 'form'
+      render 'new'
     end
   end
 
   def edit
     @report_category = @report.report_category
-    render 'form'
+    render 'edit'
   end
 
   def update
@@ -71,7 +71,7 @@ class ReportsController < ApplicationController
         format.js
       end
     else
-      render 'form'
+      render 'edit'
     end
   end
 
