@@ -56,7 +56,9 @@ function initMap() {
       draggable: true
     });
 
-    if ($('#pac-input').length) {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+
       navigator.geolocation.getCurrentPosition(function(geo) {
         pos = {lat: geo.coords.latitude, lng: geo.coords.longitude};
         zoom = 12;
@@ -65,14 +67,12 @@ function initMap() {
         var infowindow = new google.maps.InfoWindow({
           map: map,
           position: pos,
-          content: 'U staat hier!'
+          content: '<div class="ik-sta-hier">Ik sta hier!</div>'
         });
         setTimeout(function() {
           infowindow.close();
         }, 15000);
       });
-
-      setSearchBar(map);
     }
 
     if ($('.map-show').length){
@@ -86,6 +86,7 @@ function initMap() {
       sv.getPanorama({location: report_show_position, radius: 50}, processSVData);
     }
 
+    setSearchBar(map);
     // Needed to require the richmarker and infobox file after loading the maps
     initRichMarker();
     initInfoBox();
@@ -117,6 +118,26 @@ function processSVData(data, status) {
       radius =+ 1000;
       sv.getPanorama({location: report_show_position, radius: radius}, processSVData);
     }
+  }
+}
+
+//Get latitude and longitude;
+function successFunction(position) {
+    var lat = position.coords.latitude;
+    var long = position.coords.longitude;
+
+    localStorage.authorizedGeoLocation = 1;
+}
+
+function errorFunction(){
+    localStorage.authorizedGeoLocation = 0;
+}
+
+function checkauthorizedGeoLocation(){ // you can use this function to know if geoLocation was previously allowed
+  if ( typeof localStorage.authorizedGeoLocation == "undefined" || localStorage.authorizedGeoLocation == "0" ) {
+    return false;
+  } else {
+    return true;
   }
 }
 
