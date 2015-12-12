@@ -8,7 +8,11 @@ ready = function() {
 
 function setReportModalData(data) {
   if ($('.report-modal').length === 0) {
-    console.log(data);
+    $('header').after(data);
+    setTimeout(function() {
+      $('.report-modal').addClass('active');
+      $('.js_report_modal').parent().addClass('active');
+    }, 300);
   }
 }
 
