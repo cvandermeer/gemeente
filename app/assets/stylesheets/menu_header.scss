@@ -30,9 +30,9 @@ header {
       list-style: none;
       display: inline-block;
       float: right;
-      .button-primary {
-        margin-right: 12px;
-        margin-left: 12px;
+      &:hover,
+      &.active {
+        background: $background-color;
       }
     }
   }
@@ -93,7 +93,7 @@ header {
     }
     &.active,
     &:hover {
-      background-color: #f7f7f7;
+      background-color: $background-color;
       a {
         text-indent: 12px;
       }
