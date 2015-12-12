@@ -1,3 +1,12 @@
+var mapStyle = [
+   {
+     featureType: "poi",
+     stylers: [
+      { visibility: "off" }
+     ]
+    }
+];
+
 var ready;
 var map;
 
@@ -29,6 +38,7 @@ function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: zoom,
       center: pos,
+      styles: mapStyle,
       disableDefaultUI: true,
       streetViewControl: true,
       streetViewControlOptions: {
