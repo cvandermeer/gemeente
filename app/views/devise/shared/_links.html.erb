@@ -1,7 +1,7 @@
 <%- if controller_name != 'sessions' %>
-  Ben je al lid? <%= link_to 'Inloggen', new_session_path(resource_name), class: 'js_login_modal', remote: true %>
+  Ben je al lid? <%= link_to 'Inloggen', new_session_path(resource_name), class: 'js_header_modal_link', remote: true %>
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  Geen acount? <%= link_to 'Registreer', new_registration_path(resource_name), remote: true, class: 'js_register_modal' %>
+  Geen acount? <%= link_to 'Registreer', new_registration_path(resource_name), remote: true, class: 'js_header_modal_link' %>
 <% end -%>

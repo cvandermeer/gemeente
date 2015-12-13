@@ -50,16 +50,16 @@
       </li>
       <% else %>
       <li  class='hide-on-mobile'>
-        <%= link_to 'Inloggen', new_user_session_path, remote: true, class: 'js_login_modal' %>
+        <%= link_to 'Inloggen', new_user_session_path, remote: true, class: 'js_header_modal' %>
       </li>
       <li class='hide-on-mobile'>
-        <%= link_to "Registreren", new_user_registration_path, remote: true, class: 'js_register_modal' %>
+        <%= link_to "Registreren", new_user_registration_path, remote: true, class: 'js_header_modal' %>
       </li>
       <% end %>
 
       <% if controller_name == 'reports' && action_name == 'index'  %>
         <li class='hide-on-mobile has-dropdown'>
-          <%= link_to 'Melding doen', new_report_path, class: 'js_report_modal reports-link icon', remote: true %>
+          <%= link_to 'Melding doen', new_report_path, class: 'js_header_modal reports-link icon', remote: true %>
       <% else %>
         <li class='hide-on-mobile has-dropdown <%= current_page_class(root_path) %>'>
           <%= link_to 'Melding doen', root_path, class: 'reports-link icon', data: { no_turbolink: true } %>
