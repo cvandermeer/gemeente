@@ -11,22 +11,25 @@
     <% end %>
 
     <% @newsletters.each do |newsletter| %>
-      <div class='row newsletter-block'>
-        <div class='columns three image-block'>
-          <% if newsletter.community.avatar? %>
-            <%= image_tag newsletter.community.avatar_url %>
-          <% else %>
-            <div class='community_image_name'>
-              <%= newsletter.community_name %>
-            </div>
-          <% end %>
+      <%= link_to newsletter_path(newsletter), class: 'no_link_style' do %>
+        <div class='row newsletter-block'>
+          <div class='columns three image-block'>
+            <% if newsletter.community.avatar? %>
+              <%= image_tag newsletter.community.avatar_url %>
+            <% else %>
+              <div class='community_image_name'>
+                <%= newsletter.community_name %>
+              </div>
+            <% end %>
+          </div>
+          <div class='columns nine'>
+            <h2><%= newsletter.title %></h2>
+            <% if newsletter.body %>
+              <%== newsletter.body %>
+            <% end %>
+          </div>
         </div>
-        <div class='columns nine'>
-          <% if newsletter.body %>
-            <%== newsletter.body %>
-          <% end %>
-        </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
