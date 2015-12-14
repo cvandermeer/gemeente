@@ -62,6 +62,7 @@ class Report < ActiveRecord::Base
   end
 
   def create_notification
+    user = self.user
     CreateNotificationJob.perform_later(user) if user
   end
 

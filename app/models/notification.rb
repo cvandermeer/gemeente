@@ -10,4 +10,13 @@ class Notification < ActiveRecord::Base
     report: CATEGORY_REPORT,
     news: CATEGORY_NEWS
   }
+
+  ### CALLBACKS ###
+  after_create :send_notification_email
+
+  def send_notification_email
+    if self.user.get_mail?
+      GeneralMailer.new_notification(self).deliver_later
+    end
+  end
 end

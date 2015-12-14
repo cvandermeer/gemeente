@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
 
   def initialize_user
     self.role_id = 0 if role_id.nil?
+    self.get_mail = true
   end
 
   def add_community_subscription_to_user_on_address
