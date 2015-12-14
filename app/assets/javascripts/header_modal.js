@@ -14,20 +14,29 @@ function setHeaderModalData(el, data) {
     }
     $('header').after(data);
     setTimeout(function() {
-      $('.header-modal').addClass('active');
+      $('.header-modal, .arrow-up').addClass('active');
       $(el).parent().addClass('active');
     }, 300);
 
     closeHeaderModal();
     bindHeaderModal();
+
+    if ($(el).attr('data-modal-type') == 'report') {
+      triggerAutocomplete();
+
+      // reports.js
+      bindReportFormResponse();
+
+    }
   }
 }
 
 function removeHeaderModal(currentHeaderModal) {
   currentHeaderModal.removeClass('active');
+  currentHeaderModal.parent().find('.arrow-up').removeClass('active');
   $('.js_header_modal').parent().removeClass('active');
   setTimeout(function() {
-    currentHeaderModal.remove();
+    currentHeaderModal.parent().remove();
   }, 300);
 }
 

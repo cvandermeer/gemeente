@@ -1,59 +1,37 @@
 <%= form_for report, html: { multipart: true, type: :html }, remote: true do |f| %>
 
+  <% report.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+  <% end %>
   <div class='row'>
-    <div class='six columns'>
-      <%= f.label :title, 'Melding titel*' %>
-      <%= f.text_field :title %>
-    </div>
-  </div>
-
-  <div class='row street'>
-    <div class='eight columns'>
-      <%= f.label :address, 'Straat + huisnummer*' %>
-      <%= f.text_field :address, class: 'u-full-width js_street_input',
-          autocomplete: "off", data: { el_name: 'street' }  %>
-    </div>
+    <%= f.text_field :address, placeholder: 'Straat + huisnummer *', class: 'u-full-width js_street_input',
+          autocomplete: "off" %>
+    <%= f.text_field :town, placeholder: 'Plaatsnaam *', class: 'u-full-width js_town_input',
+          autocomplete: "off" %>
   </div>
 
   <div class='row'>
-    <div class='eight columns'>
-      <%= f.label :town, 'Plaatsnaam*' %>
-      <%= f.text_field :town, class: 'u-full-width js_town_input',
-          autocomplete: "off", data: { el_name: 'town' } %>
-    </div>
+    <%= f.fields_for :report_category, report_category do |rcf| %>
+      <%= rcf.label :category_id, 'Categorie *' %>
+      <%= rcf.collection_select :category_id, Category.all, :id, :title, {include_blank: 'Kies een Categorie'} %>
+    <% end %>
   </div>
 
   <div class='row'>
-    <div class='columns'>
-      <%= f.fields_for :report_category, @report_category do |rcf| %>
-        <%= rcf.label :category_id, 'Categorie*' %>
-        <%= rcf.collection_select :category_id, Category.all, :id, :title, {include_blank: 'Kies een Categorie'} %>
-      <% end %>
-    </div>
-  </div>
-
-  <div class='row'>
-    <div class='columns'>
-      <%= f.label :description, 'Beschrijving*' %>
-      <%= f.text_area :description, class: 'u-full-width' %>
-    </div>
+    <%= f.text_field :title, placeholder: 'Titel van melding *', class: 'u-full-width' %>
+    <%= f.text_area :description, placeholder: 'Beschrijving melding *',  class: 'text-field u-full-width' %>
   </div>
 
   <% if action_name == 'edit' %>
     <div class='row'>
-      <div class='four columns'>
-        <%= f.label :resolved_at, 'Opgelost op' %>
-        <%= f.text_field :resolved_at, class: 'u-full-width', class: 'datepicker' %>
-      </div>
+      <%= f.label :resolved_at, 'Opgelost op' %>
+      <%= f.text_field :resolved_at, class: 'u-full-width', class: 'datepicker' %>
     </div>
   <% end %>
 
   <% if !user_signed_in? %>
     <div class='row'>
-      <div class='four columns'>
-        <%= f.label :email, 'Email' %>
-        <%= f.email_field :email, class: 'u-full-width' %>
-      </div>
+        <%= f.email_field :email, placeholder: 'Email adres',class: 'u-full-width' %>
     </div>
   <% end %>
 
@@ -66,6 +44,6 @@
   </div>
 
   <div class='row'>
-    <%= f.submit 'Aanmaken', class: 'button-primary trigger_loading' %>
+    <%= f.submit 'Aanmaken', class: 'button-primary trigger_loading u-full-width' %>
   </div>
 <% end %>

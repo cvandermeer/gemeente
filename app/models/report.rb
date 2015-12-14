@@ -31,7 +31,7 @@ class Report < ActiveRecord::Base
 
   ### VALIDATIONS ###
   validates :title, presence: true
-  validates :description, presence: true
+  # validates :description, presence: true
   validates :address, presence: true
   validates :town, presence: true
 

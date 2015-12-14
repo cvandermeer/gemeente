@@ -59,7 +59,7 @@
 
       <% if controller_name == 'reports' && action_name == 'index'  %>
         <li class='hide-on-mobile has-dropdown'>
-          <%= link_to 'Melding doen', new_report_path, class: 'js_header_modal reports-link icon', remote: true %>
+          <%= link_to 'Melding doen', new_report_path, class: 'js_header_modal reports-link icon', data: {modal_type: 'report'}, remote: true %>
       <% else %>
         <li class='hide-on-mobile has-dropdown <%= current_page_class(root_path) %>'>
           <%= link_to 'Melding doen', root_path, class: 'reports-link icon', data: { no_turbolink: true } %>

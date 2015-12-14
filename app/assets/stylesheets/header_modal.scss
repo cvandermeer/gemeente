@@ -10,6 +10,8 @@
   background: #fff;
   width: 100%;
   max-width: 250px;
+  max-height: calc(100% - 160px);
+  overflow: auto;
   opacity: 0;
   padding: $spacing;
   @include transition(0.3s);
@@ -28,22 +30,15 @@
   input[type="submit"].button-primary {
     margin-bottom: 0;
   }
-  &:before {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-radius: 2px;
-    background: #fff;
-    right: 40px;
-    top: -8px;
-    @include transform(rotate(45deg));
-  }
   a {
     text-decoration: none;
     &:hover {
       text-decoration: underline;
     }
+  }
+  .text-field {
+    resize: vertical;
+    max-height: 300px;
   }
 }
 
@@ -56,7 +51,29 @@
 
 .report-modal {
   max-width: 346px;
-  &:before {
+}
+
+.arrow-up {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  z-index: 1;
+  @include transition(0.3s);
+  @include transform(rotate(45deg));
+  opacity: 0;
+  border-radius: 2px;
+  background: #fff;
+  top: 76px;
+  &.arrow-report {
     right: 280px;
+  }
+  &.arrow-register {
+    right: 150px;
+  }
+  &.arrow-login {
+    right: 50px;
+  }
+  &.active {
+    opacity: 1;
   }
 }
