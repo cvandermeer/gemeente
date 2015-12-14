@@ -1,5 +1,7 @@
 class Delivery < ActiveRecord::Base
   serialize :streets
+
+  ### ASSOCIATIONS ###
   belongs_to :community
   belongs_to :newsletter
 

@@ -4,6 +4,11 @@
       <%= @newsletter.valid_from %> - <%= @newsletter.valid_until %>
     </p>
     <h2><%= @newsletter.title %></h2>
+    <% if @newsletter.pdf? %>
+      <p>
+  			<%= link_to @newsletter.pdf.file.original_filename, @newsletter.pdf.url %>
+      </p>
+    <% end %>
     <p>
       <%== @newsletter.body %>
     </p>
