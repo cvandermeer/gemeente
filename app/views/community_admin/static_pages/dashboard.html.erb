@@ -3,46 +3,87 @@
 <div class='inner'>
   <div class='container'>
     <div class='row'>
-      <div class='columns'>
+
+      <div class='columns three'>
+        <div class='panel'>
+          <div class='panel-header image'>
+            <% if @community.avatar? %>
+                <%= image_tag @community.avatar_url, class: 'u-max-full-width' %>
+            <% else %>
+            <div class='no-image center'>
+              <h3>
+                <%= @community.name %>
+              </h3>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class='columns nine'>
         <div class='panel'>
           <div class='panel-header'>
-            <h5>Gebruikers <%= link_to 'Gebruiker toevoegen', users_new_community_admin_user_path, remote: true,
-                                                              class: 'js_modal button button-primary
-                                                                      button-sm pull-right' %></h5>
+            <h5>Gegevens instellingen</h5>
           </div>
           <div class='panel-body'>
-            <table class="u-full-width">
-              <thead>
-                <tr>
-                  <th>Email</th>
-                  <th>Categorieen</th>
-                  <th>Categorie toevoegen</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @users.each do |user| %>
-                  <tr>
-                    <td><%= user.email %></td>
-                    <td><%= user.categories.collect(&:title) %></td>
-                    <td>
-                      <% category_list = Category.all - user.categories %>
-                      <% if category_list.any? %>
-                        <%= form_for UserCategory.new do |f| %>
-                          <%= f.hidden_field :user_id, value: user.id %>
-                          <%= f.collection_select :category_id, (category_list), :id, :title,
-                                                  {include_blank: 'Kies een Categorie'} %>
-                          <%= f.submit 'Categorie toevoegen' %>
-                        <% end %>
-                      <% else %>
-                        Alle categorieen toegevoegd
-                      <% end %>
-                    </td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-            <%= will_paginate @users %>
+            <%= form_for @community do |f| %>
+              <div class='row'>
+                <div class='columns three'>
+                  <%= f.label :avatar, 'Gemeente Logo' %>
+                </div>
+                <div class='columns nine'>
+                  <%= f.file_field :avatar %>
+                </div>
+              </div>
+              <div class='row'>
+                <%= f.submit 'Gemeente aanpassen', class: 'button-primary pull-right' %>
+              </div>
+            <% end %>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='panel'>
+        <div class='panel-header'>
+          <h5>Gebruikers instellingen <%= link_to 'Gebruiker toevoegen', users_new_community_admin_user_path,
+                                                                         remote: true,
+                                                                         class: 'js_modal button button-primary
+                                                                                 button-sm pull-right' %></h5>
+        </div>
+        <div class='panel-body'>
+          <table class="u-full-width">
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Categorieen</th>
+                <th>Categorie toevoegen</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @users.each do |user| %>
+                <tr>
+                  <td><%= user.email %></td>
+                  <td><%= user.categories.collect(&:title) %></td>
+                  <td>
+                    <% category_list = Category.all - user.categories %>
+                    <% if category_list.any? %>
+                      <%= form_for UserCategory.new do |f| %>
+                        <%= f.hidden_field :user_id, value: user.id %>
+                        <%= f.collection_select :category_id, (category_list), :id, :title,
+                                                {include_blank: 'Kies een Categorie'} %>
+                        <%= f.submit 'Categorie toevoegen' %>
+                      <% end %>
+                    <% else %>
+                      Alle categorieen toegevoegd
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= will_paginate @users %>
         </div>
       </div>
     </div>

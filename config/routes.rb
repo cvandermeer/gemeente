@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   ### COMMUNITIES ###
-  resources :communities, only: [:index, :show] do
+  resources :communities, only: [:index, :show, :update] do
     get :news, on: :member
     get :community_list, on: :collection
   end
