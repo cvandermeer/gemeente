@@ -4,8 +4,10 @@ class Notification < ActiveRecord::Base
 
   ### CONSTANTS ###
   CATEGORY_REPORT = 0
+  CATEGORY_NEWS = 1
 
   enum category_id: {
-    report: CATEGORY_REPORT
+    report: CATEGORY_REPORT,
+    news: CATEGORY_NEWS
   }
 end

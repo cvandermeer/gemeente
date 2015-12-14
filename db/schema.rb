@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203115757) do
+ActiveRecord::Schema.define(version: 20151214091459) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title", limit: 255
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20151203115757) do
     t.integer  "newsletter_id", limit: 4
     t.integer  "community_id",  limit: 4
     t.datetime "created_at"
+    t.boolean  "delivered"
+    t.datetime "delivered_at"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -140,8 +142,5 @@ ActiveRecord::Schema.define(version: 20151203115757) do
     t.string  "latitude",           limit: 255
     t.string  "longitude",          limit: 255
   end
-
-  add_index "zipcodes", ["street"], name: "index_zipcodes_on_street", using: :btree
-  add_index "zipcodes", ["town"], name: "index_zipcodes_on_town", using: :btree
 
 end

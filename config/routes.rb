@@ -30,7 +30,9 @@ Rails.application.routes.draw do
   end
 
   ### DELIVERIES ###
-  resources :deliveries, only: [:new, :create]
+  resources :deliveries, only: [:new, :create] do
+    get :deliver, on: :member
+  end
 
   ### MESSAGES ###
   resources :messages, except: [:edit, :update, :destroy]
@@ -49,7 +51,7 @@ Rails.application.routes.draw do
   end
 
   ### SIDEKIQ ####
-  authenticate :user, -> (u) { u.admin? } do
+  authenticate :user, -> (u) { u.community? } do
     mount Sidekiq::Web => '/sidekiq'
   end
 

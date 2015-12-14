@@ -1,5 +1,6 @@
 class DeliveriesController < ApplicationController
   before_action :authenticate_community!
+  before_action :set_delivery, only: :deliver
   layout false, only: :new
 
   def new
@@ -20,7 +21,21 @@ class DeliveriesController < ApplicationController
     end
   end
 
+  def deliver
+    @delivery.delivered = true
+    @delivery.delivered_at = Time.now
+    if @delivery.save
+      DeliverNewsJob.perform_now(@delivery)
+      redirect_to community_admin_location_news_path, notice: 'Nieuws verstuurd'
+    else
+      redirect_to community_admin_location_news_path, alert: 'Er is iets foutgegaan'
+    end
+  end
+
   private
+  def set_delivery
+    @delivery = Delivery.find(params[:id])
+  end
 
   def delivery_params
     params.require(:delivery).permit(:newsletter_id, streets: [])
