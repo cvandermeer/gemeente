@@ -52,7 +52,7 @@ class ReportsController < ApplicationController
       render json: @report
     else
       @report_category = ReportCategory.new
-      render partial: 'form', locals: {report: @report, report_category: @report_category}
+      render partial: 'form', locals: { report: @report, report_category: @report_category }
     end
   end
 
