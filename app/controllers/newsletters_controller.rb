@@ -6,7 +6,7 @@ class NewslettersController < ApplicationController
 
   def index
     @communities = Community.all
-    @newsletters = Newsletter.all.reverse
+    @newsletters = Newsletter.all.paginate(page: params[:page], per_page: 5).order('created_at DESC')
   end
 
   def show

@@ -11,7 +11,7 @@ class CommunitiesController < ApplicationController
   end
 
   def news
-    @newsletters = @community.newsletters.reverse
+    @newsletters = @community.newsletters.paginate(page: params[:page], per_page: 5).order('created_at DESC')
   end
 
   def show
