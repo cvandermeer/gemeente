@@ -27,8 +27,8 @@ var report_show_position;
 
 function initMap() {
   if ($('#map').length) {
-    pos = {lat: 52.397, lng: 5.544};
-    zoom = 9;
+    pos = {lat: lastKownLatitudePosition(), lng: lastKownLongitudePosition()};
+    zoom = lastKownZoomLevel();
 
     if($('.community-data').length){
       pos = {lat: parseFloat($('.community-data').attr('data-lat')), lng: parseFloat($('.community-data').attr('data-lon'))};
@@ -93,6 +93,8 @@ function initMap() {
 
     // markers.js
     getJsonDataForReports(map);
+
+    changeLastKownPositionAndZoomListener(map);
   }
 
 }
@@ -141,6 +143,37 @@ function checkauthorizedGeoLocation(){ // you can use this function to know if g
   }
 }
 
+function lastKownLatitudePosition() {
+  if (typeof localStorage.lastLatitudePositionOnMap == 'undefined') {
+    localStorage.lastLatitudePositionOnMap = 52.397;
+  }
+  return parseFloat(localStorage.lastLatitudePositionOnMap);
+}
+
+function lastKownLongitudePosition() {
+  if (typeof localStorage.lastLongitudePositionOnMap == 'undefined') {
+    localStorage.lastLongitudePositionOnMap = 5.544;
+  }
+  return parseFloat(localStorage.lastLongitudePositionOnMap);
+}
+
+function lastKownZoomLevel() {
+  if (typeof localStorage.lastZoomLevel == 'undefined') {
+    localStorage.lastZoomLevel = 9;
+  }
+  return parseFloat(localStorage.lastZoomLevel);
+}
+
+function changeLastKownPositionAndZoomListener(map) {
+  if( $('.map-show').length === 0 ) {
+    map.addListener('idle', function() {
+      localStorage.lastLatitudePositionOnMap = map.getCenter().lat();
+      localStorage.lastLongitudePositionOnMap = map.getCenter().lng();
+      localStorage.lastZoomLevel = map.getZoom();
+    });
+  }
+}
+
 /**
   * @desc resets the map
   * @return on a specific location to show the Netherlands
@@ -184,6 +217,7 @@ function setSearchBar(map) {
     }
   });
 }
+
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
