@@ -15,8 +15,6 @@ class Notification < ActiveRecord::Base
   after_create :send_notification_email
 
   def send_notification_email
-    if self.user.get_mail?
-      GeneralMailer.new_notification(self).deliver_later
-    end
+    GeneralMailer.new_notification(self).deliver_later if user.get_mail?
   end
 end

@@ -23,7 +23,7 @@ class DeliveriesController < ApplicationController
 
   def deliver
     @delivery.delivered = true
-    @delivery.delivered_at = Time.now
+    @delivery.delivered_at = Time.zone.now
     if @delivery.save
       DeliverNewsJob.perform_now(@delivery)
       redirect_to community_admin_location_news_path, notice: 'Nieuws verstuurd'
@@ -33,6 +33,7 @@ class DeliveriesController < ApplicationController
   end
 
   private
+
   def set_delivery
     @delivery = Delivery.find(params[:id])
   end
