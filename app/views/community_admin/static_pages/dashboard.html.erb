@@ -4,20 +4,14 @@
   <div class='container'>
     <div class='row'>
 
-      <div class='columns three'>
-        <div class='panel'>
-          <div class='panel-header image'>
-            <% if @community.avatar? %>
-                <%= image_tag @community.avatar_url, class: 'u-max-full-width' %>
-            <% else %>
-            <div class='no-image center'>
-              <h3>
-                <%= @community.name %>
-              </h3>
-            </div>
-            <% end %>
+      <div class='columns three image-block'>
+        <% if @community.avatar? %>
+          <%= image_tag @community.avatar_url %>
+        <% else %>
+          <div class='community_image_name'>
+            <%= @community.name %>
           </div>
-        </div>
+        <% end %>
       </div>
 
       <div class='columns nine'>
