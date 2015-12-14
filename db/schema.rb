@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202100509) do
+ActiveRecord::Schema.define(version: 20151214102955) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title", limit: 255
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 20151202100509) do
     t.integer  "community_id", limit: 4
     t.integer  "user_id",      limit: 4
     t.datetime "created_at"
+  end
+
+  create_table "deliveries", force: :cascade do |t|
+    t.string   "streets",       limit: 255
+    t.integer  "newsletter_id", limit: 4
+    t.integer  "community_id",  limit: 4
+    t.datetime "created_at"
+    t.boolean  "delivered"
+    t.datetime "delivered_at"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -113,7 +122,9 @@ ActiveRecord::Schema.define(version: 20151202100509) do
     t.string   "avatar",                 limit: 255
     t.string   "name",                   limit: 255
     t.string   "town",                   limit: 255
-    t.string   "address",                limit: 255
+    t.string   "street",                 limit: 255
+    t.string   "housenumber",            limit: 255
+    t.boolean  "get_mail"
   end
 
   add_index "users", ["community_id"], name: "index_users_on_community_id", using: :btree

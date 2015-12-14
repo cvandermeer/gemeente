@@ -19,6 +19,8 @@ class UsersController < ApplicationController
   end
 
   def notifications
+    @notifications = current_user.notifications.order('created_at DESC').paginate(page: params[:page],
+                                                                                  per_page: 5).order('created_at DESC')
   end
 
   def new_admin_user

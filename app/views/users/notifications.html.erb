@@ -13,11 +13,12 @@
             <h5>Notificaties</h5>
           </div>
           <div class='panel-body'>
-            <% if current_user.notifications.any? %>
+            <% if @notifications %>
             <ul>
-              <% current_user.notifications.limit(5).reverse.each do |notification| %>
+              <% @notifications.each do |notification| %>
                 <li><%= notification.title %> - <%= notification.created_at %></li>
               <% end %>
+              <%= will_paginate @notifications %>
             </ul>
             <% else %>
               Er zijn geen nieuwe berichten!
