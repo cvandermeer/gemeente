@@ -51,7 +51,7 @@ Rails.application.routes.draw do
   end
 
   ### SIDEKIQ ####
-  authenticate :user, -> (u) { u.community? } do
+  authenticate :user, -> (u) { u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
 
