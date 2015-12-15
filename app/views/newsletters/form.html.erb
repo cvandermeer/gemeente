@@ -9,6 +9,12 @@
   </div>
   <div class='row'>
     <div class="columns">
+      <%= f.label :pdf, 'PDF bestand' %>
+      <%= f.file_field :pdf, class: 'u-full-width' %>
+    </div>
+  </div>
+  <div class='row'>
+    <div class="columns">
       <%= f.label :title, 'Text' %>
       <%= f.cktext_area :body, class: 'u-full-width' %>
     </div>

@@ -1,0 +1,25 @@
+<div class='inner'>
+  <div class='container'>
+    <h5>Melding op locatie</h5>
+
+    <%= form_for @delivery do |f| %>
+      <div class='row'>
+        <div class='six columns'>
+          <%= f.label :streets, 'Straten*' %>
+          <%= f.select(:streets, @streets, {include_hidden: false}, {multiple: true, class: 'js_init_select'}) %>
+        </div>
+      </div>
+
+      <div class='row'>
+        <div class='six columns'>
+          <%= f.label :newsletter_id, 'Nieuws*' %>
+          <%= f.collection_select(:newsletter_id, @newsletters, :id, :title) %>
+        </div>
+      </div>
+
+      <div class='row'>
+        <%= f.submit 'Versturen', class: 'button-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

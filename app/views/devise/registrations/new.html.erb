@@ -18,7 +18,12 @@
 
       <%= f.text_field :name, placeholder: 'Voornaam & achternaam', class: 'u-full-width' %>
       <em>Staat en woonplaats zijn optineel</em>
-      <%= f.text_field :address, placeholder: 'Straat & huisnummer', class: 'u-full-width' %>
+      <div class='columns eight'>
+        <%= f.text_field :street, placeholder: 'Straat', class: 'u-full-width' %>
+      </div>
+      <div class='columns four'>
+        <%= f.text_field :housenumber, placeholder: 'Huisnummer', class: 'u-full-width' %>
+      </div>
       <%= f.text_field :town, placeholder: 'Woonplaats', class: 'u-full-width' %>
 
       <%= f.submit 'Registreren', class: 'button button-primary u-full-width' %>

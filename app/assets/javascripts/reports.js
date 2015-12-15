@@ -181,11 +181,13 @@ function communityReports(){
   });
 }
 
-$(function() {
+var ready;
+
+ready = function() {
   $('select#report_status').change(function(){
     $(this).parent().submit();
   });
-});
+};
 
 // Old Functions
 
@@ -227,3 +229,6 @@ function bindHoverToReport() {
     $('.marker[data-marker-id="'+$(this).attr('data-reports-id')+'"]').removeClass('active');
   });
 }*/
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

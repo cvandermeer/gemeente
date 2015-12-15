@@ -4,6 +4,12 @@ class GeneralMailer < ApplicationMailer
     mail(subject: 'Er is een nieuwe gemeente aangemaakt!')
   end
 
+  def new_notification(notification)
+    @recipient = notification.user.email
+    @subject = notification.title
+    mail(subject: @subject, recipient: @recipient)
+  end
+
   def send_message(message)
     @name = message.name
     @email = message.email

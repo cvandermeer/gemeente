@@ -2,7 +2,7 @@ var ready;
 
 ready = function() {
 
-  $('.js_modal').bind('ajax:success', function(e, data, status) {
+  $('.js_modal').on('ajax:success', function(e, data, status) {
     setDataInModal(this ,data);
   });
 
@@ -53,6 +53,13 @@ function setDataInModal(e, data) {
 
     // These functions can be found in messages.js
     newMessage();
+
+    // Check for select2 form fields_for
+    checkSelect2();
+
+    // The functions can be found in search.js, sets up the list search
+    // triggerSearch();
+    triggerAutocomplete();
 
     // Show loading spinner on submit click
     triggerLoading();

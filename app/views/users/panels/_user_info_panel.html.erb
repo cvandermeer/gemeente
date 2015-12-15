@@ -12,9 +12,9 @@
       <li>
         Email: <%= user.email %>
       </li>
-      <% if user.address? %>
+      <% if user.street? %>
         <li>
-          Adres: <%= user.address %>
+          Adres: <%= user.street %> <%= user.housenumber if user.housenumber? %>
         </li>
       <% end %>
       <% if user.town? %>

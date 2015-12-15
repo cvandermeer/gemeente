@@ -1,0 +1,35 @@
+<%= render 'shared/dashboard_menu' %>
+<div class='inner'>
+  <div class='container'>
+    <%= link_to 'Nieuwe melding versturen', new_delivery_path, remote: true, class: 'js_modal' %>
+
+    <table class='u-full-width'>
+      <thead>
+        <tr>
+          <th>Nieuws</th>
+          <th>Straten</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @deliveries.each do |delivery| %>
+          <tr>
+            <td>
+              <%= delivery.newsletter.title %>
+            </td>
+            <td>
+              <%= delivery.streets %>
+            </td>
+            <td>
+              <% if delivery.delivered? %>
+                Verstuurd op <%= delivery.delivered_at %>
+              <% else %>
+                <%= link_to 'Versturen', deliver_delivery_path(delivery) %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
