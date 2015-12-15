@@ -2,6 +2,7 @@ var streetValInput = '';
 var townValInput = '';
 var oldStreetValInput = '';
 var oldTownValInput = '';
+var newMarker;
 
 function bindReportFormResponse() {
   // Binds the functions to the form
@@ -12,6 +13,7 @@ function bindReportFormResponse() {
     if(data !== null && typeof data === 'object') {
       goToReportLocation(data);
       removeHeaderModal($('.header-modal'));
+      removeOldNewMarker();
     } else {
       $('.report-modal form').html(data);
 
@@ -34,28 +36,24 @@ function setNewMarkerOnStreetAndTownGeoLocation() {
   });
 
   $('.js_street_input, .js_town_input').on('focusout', function(){
-    //console.log(streetValInput, oldStreetValInput)
-    console.log(streetValInput != oldStreetValInput || townValInput != oldTownValInput);
-    if(streetValInput != oldStreetValInput || townValInput != oldTownValInput) {
-      if(streetValInput.length >= 3 && townValInput.length >= 3) {
+    if (streetValInput != oldStreetValInput || townValInput != oldTownValInput) {
+      if (streetValInput.length >= 3 && townValInput.length >= 3) {
         var geocoder = new google.maps.Geocoder();
-        var address = streetValInput + townValInput;
-        geocoder.geocode( { 'address': address}, function(results, status) {
+        geocoder.geocode( { 'address': streetValInput + townValInput}, function(results, status) {
 
           if (status == google.maps.GeocoderStatus.OK) {
             var latitude = results[0].geometry.location.lat();
             var longitude = results[0].geometry.location.lng();
+            if ($('.new-marker').length !== 0) {
+              removeOldNewMarker();
+            }
             setNewMarkerOnMap(latitude, longitude);
-            var pos = {lat: latitude, lng: longitude};
-            map.setCenter(pos);
+            map.setCenter({lat: latitude, lng: longitude});
           }
         });
         oldStreetValInput = streetValInput;
-        console.log(oldStreetValInput)
         oldTownValInput = townValInput;
       }
-    } else {
-      console.log('The input values did not changed');
     }
   });
 }
@@ -72,12 +70,16 @@ function setNewMarkerOnMap(latitude, longitude) {
       map: map,
       draggable: true,
       content: markerContent,
-      flat: true
+      flat: true,
+      zIndex: 999
     };
 
-    var marker = new RichMarker(markerOptions);
+    newMarker = new RichMarker(markerOptions);
 }
 
+function removeOldNewMarker() {
+  newMarker.onRemove();
+}
 
 /**
   * @desc when new report is added go to the location
