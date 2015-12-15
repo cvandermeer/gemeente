@@ -93,8 +93,13 @@ function communityReports(){
   });
 }
 
-$(function() {
+var ready;
+
+ready = function() {
   $('select#report_status').change(function(){
     $(this).parent().submit();
   });
-});
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
