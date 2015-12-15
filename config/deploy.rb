@@ -16,3 +16,4 @@ namespace :deploy do
 end
 
 after :deploy, 'deploy:migrate'
+after :deploy, 'sidekiq:restart'

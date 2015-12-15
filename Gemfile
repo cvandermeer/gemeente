@@ -32,6 +32,7 @@ group :development, :test do
   gem 'simplecov', require: false
   gem 'capybara'
   gem 'sqlite3'
+  gem 'capistrano-sidekiq'
 end
 
 group :development do
