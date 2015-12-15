@@ -49,7 +49,7 @@ function setNewMarkerOnStreetAndTownGeoLocation() {
             }
             setNewMarkerOnMap(latitude, longitude);
             setLatitudeAndLongitudeInForm(latitude, longitude);
-            addListenerToNewMarkerOnPositionChange();
+            addListenerToNewMarkerOnPositionChange(geocoder);
             map.setCenter({lat: latitude, lng: longitude});
           }
         });
@@ -88,11 +88,49 @@ function setLatitudeAndLongitudeInForm(lat, lng) {
   $('.js_longitude_input').val(lng);
 }
 
-function addListenerToNewMarkerOnPositionChange() {
+var timer;
+
+function addListenerToNewMarkerOnPositionChange(geocoder) {
   google.maps.event.addListener(newMarker, 'position_changed', function() {
-    setTimeout(function(){
-      setLatitudeAndLongitudeInForm(newMarker.getPosition().lat(), newMarker.getPosition().lng());
-    }, 300);
+    clearInterval(timer);
+    timer = setTimeout(function(){
+
+      var lat = newMarker.getPosition().lat();
+      var lng = newMarker.getPosition().lng();
+      setLatitudeAndLongitudeInForm(lat, lng);
+      setNewStreetAndTownInForm(geocoder, lat, lng);
+    }, 1000);
+  });
+}
+
+function setNewStreetAndTownInForm(geocoder, lat, lng) {
+  var latLng = new google.maps.LatLng(lat, lng);
+  geocoder.geocode({'latLng': latLng}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      var result = results[0];
+
+      var street = "";
+      var street_number = "";
+      var town = "";
+
+      for(var i=0, len=result.address_components.length; i<len; i++) {
+      	var ac = result.address_components[i];
+      	if(ac.types.indexOf("route") >= 0) street = ac.long_name;
+        if(ac.types.indexOf('street_number') >= 0) street_number = ac.long_name;
+      	if(ac.types.indexOf("locality") >= 0) town = ac.long_name;
+      }
+
+      if(town !== '' && street !== '') {
+        var address = '';
+        if(street_number !== '') {
+          address = street  + " " + street_number;
+        } else {
+          address = street;
+        }
+        $('.js_street_input').val(address);
+        $('.js_town_input').val(town);
+      }
+    }
   });
 }
 
