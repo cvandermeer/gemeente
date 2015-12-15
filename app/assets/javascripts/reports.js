@@ -48,6 +48,7 @@ function setNewMarkerOnStreetAndTownGeoLocation() {
               removeOldNewMarker();
             }
             setNewMarkerOnMap(latitude, longitude);
+            setLatitudeAndLongitudeInForm(latitude, longitude);
             map.setCenter({lat: latitude, lng: longitude});
           }
         });
@@ -79,6 +80,11 @@ function setNewMarkerOnMap(latitude, longitude) {
 
 function removeOldNewMarker() {
   newMarker.onRemove();
+}
+
+function setLatitudeAndLongitudeInForm(lat, lng) {
+  $('.js_latitude_input').val(lat);
+  $('.js_longitude_input').val(lng);
 }
 
 /**

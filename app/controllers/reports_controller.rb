@@ -6,8 +6,6 @@ class ReportsController < ApplicationController
   layout false, except: [:index, :show]
 
   def index
-    @featured = Report.all.where.not(image_one: nil).limit(4)
-    @recents = Report.all.limit(3)
   end
 
   def show
@@ -15,15 +13,7 @@ class ReportsController < ApplicationController
   end
 
   def markers
-    if params[:id]
-      all_markers
-    else
-      near_markers
-    end
-  end
-
-  def all_markers
-    render json: Report.find(params[:id]).as_json(only: [:latitude, :longitude, :id], include: :category)
+    near_markers
   end
 
   def near_markers

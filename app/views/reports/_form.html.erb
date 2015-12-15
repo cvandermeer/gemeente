@@ -43,6 +43,9 @@
     <br><br>
   </div>
 
+  <%= f.hidden_field :latitude, class: 'js_latitude_input' %>
+  <%= f.hidden_field :longitude, class: 'js_longitude_input' %>
+
   <div class='row'>
     <%= f.submit 'Aanmaken', class: 'button-primary trigger_loading u-full-width' %>
   </div>
