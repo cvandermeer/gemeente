@@ -13,8 +13,6 @@ var map;
 var pos;
 var zoom;
 
-//var google;
-
 ready = function() {
   resetMap();
 };
@@ -181,8 +179,8 @@ function changeLastKownPositionAndZoomListener(map) {
 
 function resetMap() {
   $('.reset-map').on('click', function(){
-    map.setCenter(pos);
-    map.setZoom(zoom);
+    map.setCenter({lat: 52.397, lng: 5.544});
+    map.setZoom(9);
   });
 }
 

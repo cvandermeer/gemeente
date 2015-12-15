@@ -22,8 +22,6 @@ function setHeaderModalData(el, data) {
     bindHeaderModal();
 
     if ($(el).attr('data-modal-type') == 'report') {
-      triggerAutocomplete();
-
       // reports.js
       bindReportFormResponse();
 
