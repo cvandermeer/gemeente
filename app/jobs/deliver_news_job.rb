@@ -3,10 +3,12 @@ class DeliverNewsJob < ActiveJob::Base
 
   def perform(delivery)
     streets = delivery.streets
+    newsletter_id = delivery.newsletter_id
     User.where(street: streets).each do |user|
       Notification.create(title: 'Je hebt nieuws ontvangen',
-                          user: user,
-                          category_id: Notification::CATEGORY_NEWS)
+                          user_id: user.id,
+                          category_id: Notification::CATEGORY_NEWS,
+                          record_id: newsletter_id)
     end
   end
 end

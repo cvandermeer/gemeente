@@ -25,7 +25,7 @@ class DeliveriesController < ApplicationController
     @delivery.delivered = true
     @delivery.delivered_at = Time.zone.now
     if @delivery.save
-      DeliverNewsJob.perform_now(@delivery)
+      DeliverNewsJob.perform_later(@delivery)
       redirect_to community_admin_location_news_path, notice: 'Nieuws verstuurd'
     else
       redirect_to community_admin_location_news_path, alert: 'Er is iets foutgegaan'
