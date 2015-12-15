@@ -16,7 +16,15 @@
             <% if @notifications %>
             <ul>
               <% @notifications.each do |notification| %>
-                <li><%= notification.title %> - <%= notification.created_at %></li>
+                <% if notification.report? %>
+                  <% record_path = "#{report_path(Report.find(notification.record_id))}" %>
+                <% elsif notification.news? %>
+                  <% record_path = "#{newsletter_path(Newsletter.find(notification.record_id))}" %>
+                <% end %>
+
+                <%= link_to record_path, data: { no_turbolink: true }  do %>
+                  <li><%= notification.title %> - <%= notification.created_at %></li>
+                <% end %>
               <% end %>
               <%= will_paginate @notifications %>
             </ul>
