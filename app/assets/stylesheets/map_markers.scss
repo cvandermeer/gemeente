@@ -45,6 +45,13 @@
   }
 }
 
+.new-marker {
+  cursor: url("https://maps.gstatic.com/mapfiles/openhand_8_8.cur"), default;
+  .marker-icon:before {
+    content: '\f047'
+  }
+}
+
 .marker-icon {
   background: #fff;
   width: 24px;

@@ -42,6 +42,7 @@ body,
 html {
   input[type="submit"].button-primary,
   .button.button-primary {
+    border-radius: 2px;
     background: $basic-color;
     border-color: $basic-color-dark;
     @include transition(0.3s);
@@ -60,6 +61,11 @@ html {
     &:hover {
       color: $basic-color-dark;
     }
+  }
+  label {
+    font-weight: 400;
+    margin-bottom: $spacing;
+    font-size: 14px;
   }
 }
 

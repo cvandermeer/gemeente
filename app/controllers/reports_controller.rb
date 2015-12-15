@@ -6,8 +6,6 @@ class ReportsController < ApplicationController
   layout false, except: [:index, :show]
 
   def index
-    @featured = Report.all.where.not(image_one: nil).limit(4)
-    @recents = Report.all.limit(3)
   end
 
   def show
@@ -16,13 +14,13 @@ class ReportsController < ApplicationController
 
   def markers
     if params[:id]
-      all_markers
+      show_marker
     else
       near_markers
     end
   end
 
-  def all_markers
+  def show_marker
     render json: Report.find(params[:id]).as_json(only: [:latitude, :longitude, :id], include: :category)
   end
 
@@ -43,35 +41,31 @@ class ReportsController < ApplicationController
   def new
     @report = Report.new
     @report_category = ReportCategory.new
-    render 'form'
   end
 
   def create
     @report = Report.new(report_params)
     @report.user ||= current_user
     if @report.save
-      respond_to do |format|
-        format.js
-      end
+      render json: @report
     else
-      render 'form'
+      @report_category = ReportCategory.new
+      render partial: 'form', locals: { report: @report, report_category: @report_category }
     end
   end
 
   def edit
     @report_category = @report.report_category
-    render 'form'
+    render 'edit'
   end
 
   def update
     if params[:report][:status] && @report.update(report_params)
       redirect_to community_admin_reports_path, notice: "Status van #{@report.title} aangepast naar #{@report.status}"
     elsif @report.update(report_params)
-      respond_to do |format|
-        format.js
-      end
+      render json: @report
     else
-      render 'form'
+      render 'edit'
     end
   end
 

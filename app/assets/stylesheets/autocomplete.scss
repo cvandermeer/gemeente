@@ -1,7 +1,23 @@
 .ui-autocomplete {
-  max-height: 200px;
+  z-index: 3;
+  max-height: 220px;
+  background: #fff;
   overflow-y: auto;
   overflow-x: hidden;
+  padding: 0;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  box-shadow: $shadow;
+  .ui-menu-item {
+    margin-bottom: 0;
+    padding: $spacing 0;
+    list-style: none;
+    text-indent: $spacing;
+    &:hover,
+    &.ui-state-focus {
+      background: $background-color;
+    }
+  }
 }
 * html .ui-autocomplete {
   height: 200px;

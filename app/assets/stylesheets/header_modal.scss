@@ -1,0 +1,79 @@
+.report-modal,
+.register-modal,
+.login-modal {
+  position: absolute;
+  z-index: 1;
+  box-shadow: $shadow;
+  border-radius: 2px;
+  top: 86px;
+  right: $spacing;
+  background: #fff;
+  width: 100%;
+  max-width: 250px;
+  max-height: calc(100% - 160px);
+  overflow: auto;
+  opacity: 0;
+  padding: $spacing;
+  @include transition(0.3s);
+  &.active {
+    opacity: 1;
+  }
+  form {
+    border-top: 1px solid #dce0e0;
+    border-bottom: 1px solid #dce0e0;
+    padding: $spacing 0;
+    margin-bottom: $spacing;
+    label {
+      color: $dark-gray;
+    }
+  }
+  input[type="submit"].button-primary {
+    margin-bottom: 0;
+  }
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .text-field {
+    resize: vertical;
+    max-height: 300px;
+  }
+}
+
+.register-modal {
+  max-width: 290px;
+  &:before {
+    right: 150px;
+  }
+}
+
+.report-modal {
+  max-width: 346px;
+}
+
+.arrow-up {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  z-index: 1;
+  @include transition(0.3s);
+  @include transform(rotate(45deg));
+  opacity: 0;
+  border-radius: 2px;
+  background: #fff;
+  top: 76px;
+  &.arrow-report {
+    right: 280px;
+  }
+  &.arrow-register {
+    right: 150px;
+  }
+  &.arrow-login {
+    right: 50px;
+  }
+  &.active {
+    opacity: 1;
+  }
+}

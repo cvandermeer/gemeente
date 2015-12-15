@@ -17,7 +17,7 @@ class Report < ActiveRecord::Base
 
   ### GEOCODER ###
   geocoded_by :location
-  after_validation :geocode
+  # after_validation :geocode
 
   ### ASSOCIATIONS ###
   belongs_to :community

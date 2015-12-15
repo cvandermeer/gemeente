@@ -1,6 +1,6 @@
 .version {
   color: #7f7f7f;
-  font-size: 12px;
+  font-size: 14px;
   width: 30px;
   height: 18px;
   float: left;
@@ -13,35 +13,34 @@
 // Header menu
 
 header {
-  z-index: 1;
-  position: relative;
-  height: 62px;
-  background: #fff;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
-  div {
-    height: 100%;
-  }
+  z-index: 2;
+  position: fixed;
+  top: $spacing;
+  right: $spacing;
+  box-shadow: $shadow;
   ul {
+    float: right;
+    background: #fff;
     padding: 0;
     margin: 0;
+    border-radius: 2px;
     li {
       height: 100%;
       margin: 0;
       list-style: none;
       display: inline-block;
       float: right;
-      .button-primary {
-        margin-right: 12px;
-        margin-left: 12px;
+      &:hover,
+      &.active {
+        background: $background-color;
       }
     }
   }
   a {
-    font-size: 12px;
-    padding: 22px 20px 21px;
+    font-size: 14px;
+    padding: $spacing*1.5;
     display: block;
     color: $dark-gray;
-    font-weight: 600;
     text-decoration: none;
     letter-spacing: .1rem;
   }
@@ -94,7 +93,7 @@ header {
     }
     &.active,
     &:hover {
-      background-color: #f7f7f7;
+      background-color: $background-color;
       a {
         text-indent: 12px;
       }
