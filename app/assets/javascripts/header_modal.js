@@ -24,7 +24,6 @@ function setHeaderModalData(el, data) {
     if ($(el).attr('data-modal-type') == 'report') {
       // reports.js
       bindReportFormResponse();
-
     }
   }
 }
@@ -36,6 +35,7 @@ function removeHeaderModal(currentHeaderModal) {
   setTimeout(function() {
     currentHeaderModal.parent().remove();
   }, 300);
+  map.setOptions({draggableCursor:''});
 }
 
 function closeHeaderModal() {

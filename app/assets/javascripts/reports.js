@@ -8,6 +8,7 @@ function bindReportFormResponse() {
   // Binds the functions to the form
   triggerAutocomplete();
   setNewMarkerOnStreetAndTownGeoLocation();
+  setNewMarkerOnMapClicked();
 
   $('.report-modal form').bind("ajax:success", function(e, data){
     if(data !== null && typeof data === 'object') {
@@ -18,9 +19,7 @@ function bindReportFormResponse() {
       $('.report-modal form').html(data);
 
       triggerAutocomplete();
-
       bindReportFormResponse();
-
       setNewMarkerOnStreetAndTownGeoLocation();
     }
   });
@@ -62,8 +61,8 @@ function setNewMarkerOnStreetAndTownGeoLocation() {
 
 function setNewMarkerOnMap(latitude, longitude) {
   var markerContent =
-                    '<div class="marker">' +
-                        '<div class="marker-icon new-marker">' +
+                    '<div class="marker new-marker">' +
+                        '<div class="marker-icon">' +
                         '</div>' +
                     '</div>';
 
@@ -132,6 +131,10 @@ function setNewStreetAndTownInForm(geocoder, lat, lng) {
       }
     }
   });
+}
+
+function setNewMarkerOnMapClicked() {
+  map.setOptions({draggableCursor:'copy'});
 }
 
 /**
