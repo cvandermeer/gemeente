@@ -14,7 +14,7 @@ function bindReportFormResponse() {
       goToReportLocation(data);
       removeHeaderModal($('.header-modal'));
       removeOldNewMarker();
-    } else {
+    }  else {
       $('.report-modal form').html(data);
 
       triggerAutocomplete();
@@ -49,6 +49,7 @@ function setNewMarkerOnStreetAndTownGeoLocation() {
             }
             setNewMarkerOnMap(latitude, longitude);
             setLatitudeAndLongitudeInForm(latitude, longitude);
+            addListenerToNewMarkerOnPositionChange();
             map.setCenter({lat: latitude, lng: longitude});
           }
         });
@@ -85,6 +86,14 @@ function removeOldNewMarker() {
 function setLatitudeAndLongitudeInForm(lat, lng) {
   $('.js_latitude_input').val(lat);
   $('.js_longitude_input').val(lng);
+}
+
+function addListenerToNewMarkerOnPositionChange() {
+  google.maps.event.addListener(newMarker, 'position_changed', function() {
+    setTimeout(function(){
+      setLatitudeAndLongitudeInForm(newMarker.getPosition().lat(), newMarker.getPosition().lng());
+    }, 300);
+  });
 }
 
 /**
