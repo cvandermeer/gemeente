@@ -1,6 +1,9 @@
 class Community < ActiveRecord::Base
   geocoded_by :name
 
+  ### UPLOADER ###
+  mount_uploader :avatar, AvatarUploader
+
   ### VALIDATIONS ###
   after_validation :geocode
 
