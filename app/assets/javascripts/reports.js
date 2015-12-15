@@ -60,7 +60,7 @@ function setNewMarkerOnStreetAndTownGeoLocation() {
 }
 
 function setNewMarkerOnMap(latitude, longitude) {
-  newMarker = '';
+  //newMarker = '';
   var markerContent =
                     '<div class="marker new-marker">' +
                         '<div class="marker-icon">' +
@@ -85,7 +85,8 @@ function setNewMarkerOnMap(latitude, longitude) {
 
 function removeOldNewMarker() {
   newMarker.onRemove();
-  //google.maps.event.removeListener(clickListenerForNewMarkerHandle);
+  map.setOptions({draggableCursor:''});
+  google.maps.event.removeListener(clickListenerForNewMarkerHandle);
 }
 
 function setLatitudeAndLongitudeInForm(lat, lng) {
@@ -140,8 +141,8 @@ function setNewStreetAndTownInForm(lat, lng) {
 }
 
 function setNewMarkerOnMapClicked() {
-  map.setOptions({draggableCursor:'copy'});
   if($('.new-marker').length === 0) {
+    map.setOptions({draggableCursor:'copy'});
     clickListenerForNewMarkerHandle = map.addListener('click', function(e) {
       if($('.new-marker').length === 0) {
         var lat = e.latLng.lat();
@@ -162,7 +163,7 @@ function setNewMarkerOnMapClicked() {
 function goToReportLocation(data) {
   var position = {lat: data.latitude, lng: data.longitude};
   map.setCenter(position);
-  map.setZoom(15);
+  //map.setZoom(15);
 }
 
 function communityReports(){
