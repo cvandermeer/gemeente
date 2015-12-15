@@ -36,6 +36,10 @@ function removeHeaderModal(currentHeaderModal) {
     currentHeaderModal.parent().remove();
   }, 300);
   map.setOptions({draggableCursor:''});
+  google.maps.event.removeListener(clickListenerForNewMarkerHandle);
+  if($('.new-marker').length !== 0) {
+    removeOldNewMarker();
+  }
 }
 
 function closeHeaderModal() {

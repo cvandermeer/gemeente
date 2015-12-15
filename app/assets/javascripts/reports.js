@@ -3,9 +3,13 @@ var townValInput = '';
 var oldStreetValInput = '';
 var oldTownValInput = '';
 var newMarker;
+var clickListenerForNewMarkerHandle;
+var geocoder;
 
 function bindReportFormResponse() {
   // Binds the functions to the form
+  geocoder = new google.maps.Geocoder();
+
   triggerAutocomplete();
   setNewMarkerOnStreetAndTownGeoLocation();
   setNewMarkerOnMapClicked();
@@ -37,9 +41,7 @@ function setNewMarkerOnStreetAndTownGeoLocation() {
   $('.js_street_input, .js_town_input').on('focusout', function(){
     if (streetValInput != oldStreetValInput || townValInput != oldTownValInput) {
       if (streetValInput.length >= 3 && townValInput.length >= 3) {
-        var geocoder = new google.maps.Geocoder();
         geocoder.geocode( { 'address': streetValInput + townValInput}, function(results, status) {
-
           if (status == google.maps.GeocoderStatus.OK) {
             var latitude = results[0].geometry.location.lat();
             var longitude = results[0].geometry.location.lng();
@@ -47,8 +49,6 @@ function setNewMarkerOnStreetAndTownGeoLocation() {
               removeOldNewMarker();
             }
             setNewMarkerOnMap(latitude, longitude);
-            setLatitudeAndLongitudeInForm(latitude, longitude);
-            addListenerToNewMarkerOnPositionChange(geocoder);
             map.setCenter({lat: latitude, lng: longitude});
           }
         });
@@ -60,6 +60,7 @@ function setNewMarkerOnStreetAndTownGeoLocation() {
 }
 
 function setNewMarkerOnMap(latitude, longitude) {
+  newMarker = '';
   var markerContent =
                     '<div class="marker new-marker">' +
                         '<div class="marker-icon">' +
@@ -76,10 +77,15 @@ function setNewMarkerOnMap(latitude, longitude) {
     };
 
     newMarker = new RichMarker(markerOptions);
+    map.setOptions({draggableCursor:''});
+
+    setLatitudeAndLongitudeInForm(latitude, longitude);
+    addListenerToNewMarkerOnPositionChange();
 }
 
 function removeOldNewMarker() {
   newMarker.onRemove();
+  //google.maps.event.removeListener(clickListenerForNewMarkerHandle);
 }
 
 function setLatitudeAndLongitudeInForm(lat, lng) {
@@ -89,7 +95,7 @@ function setLatitudeAndLongitudeInForm(lat, lng) {
 
 var timer;
 
-function addListenerToNewMarkerOnPositionChange(geocoder) {
+function addListenerToNewMarkerOnPositionChange() {
   google.maps.event.addListener(newMarker, 'position_changed', function() {
     clearInterval(timer);
     timer = setTimeout(function(){
@@ -97,12 +103,12 @@ function addListenerToNewMarkerOnPositionChange(geocoder) {
       var lat = newMarker.getPosition().lat();
       var lng = newMarker.getPosition().lng();
       setLatitudeAndLongitudeInForm(lat, lng);
-      setNewStreetAndTownInForm(geocoder, lat, lng);
+      setNewStreetAndTownInForm(lat, lng);
     }, 1000);
   });
 }
 
-function setNewStreetAndTownInForm(geocoder, lat, lng) {
+function setNewStreetAndTownInForm(lat, lng) {
   var latLng = new google.maps.LatLng(lat, lng);
   geocoder.geocode({'latLng': latLng}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
@@ -135,6 +141,16 @@ function setNewStreetAndTownInForm(geocoder, lat, lng) {
 
 function setNewMarkerOnMapClicked() {
   map.setOptions({draggableCursor:'copy'});
+  if($('.new-marker').length === 0) {
+    clickListenerForNewMarkerHandle = map.addListener('click', function(e) {
+      if($('.new-marker').length === 0) {
+        var lat = e.latLng.lat();
+        var lng = e.latLng.lng();
+        setNewMarkerOnMap(lat, lng);
+        setNewStreetAndTownInForm(lat, lng);
+      }
+    });
+  }
 }
 
 /**
