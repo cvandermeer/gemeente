@@ -12,7 +12,7 @@
         <%= f.password_field :password, autocomplete: 'off', placeholder: 'Wachtwoord', class: 'u-full-width' %>
       </div>
       <% if devise_mapping.rememberable? %>
-        <%= f.check_box :remember_me %>
+        <%= f.check_box :remember_me, class: 'checkbox' %>
         <%= f.label :remember_me, 'Onthoud mij' %>
       <% end %>
 
