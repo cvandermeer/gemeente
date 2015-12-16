@@ -62,7 +62,7 @@ function setNewMarkerOnStreetAndTownGeoLocation() {
 
           } else {
             if($('.location-not-found').length === 0) {
-              $('.js_street_input').before('<div class="location-not-found">Locatie klopt niet! ' +
+              $('.js_street_input').parent().before('<div class="location-not-found">Locatie klopt niet! ' +
               'Klik op de map voor het vinden van de juiste locatie</div>');
             }
           }

@@ -85,7 +85,7 @@ html {
 form {
   margin-bottom: 0;
   .row {
-    margin-bottom: 24px;
+    margin-bottom: $spacing;
     &:last-child {
       margin-bottom: 0;
     }
