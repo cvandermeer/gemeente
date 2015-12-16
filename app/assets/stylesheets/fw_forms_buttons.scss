@@ -124,3 +124,26 @@ form {
     margin-right: 12px;
   }
 }
+
+form {
+  .icon {
+    position: relative;
+    margin-bottom: $spacing;
+    &:before {
+      font-family: FontAwesome;
+      content: '';
+      color: #999;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      right: 9px;
+      top: 9px;
+    }
+    &.email:before {
+      content: '\f1fa';
+    }
+    &.password:before {
+      content: '\f13e';
+    }
+  }
+}
