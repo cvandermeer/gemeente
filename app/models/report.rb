@@ -1,4 +1,6 @@
 class Report < ActiveRecord::Base
+  attr_accessor :community_check_name
+
   ### CONSTANTS ###
   STATUS_TODO = 0
   STATUS_DOING = 1
@@ -45,17 +47,9 @@ class Report < ActiveRecord::Base
   after_create :create_notification
 
   def set_community
-    set_street
-    community_name = Zipcode.find_by(street: @street, town: town).community unless @street.nil?
-    Community.create(name: community_name) unless Community.find_by(name: community_name)
-    self.community = Community.find_by(name: community_name)
+    self.community = Community.find_by(name: community_check_name)
   end
 
-  def set_street
-    @street = address
-    s = address.split
-    @street = s.reverse.drop(1).reverse.join(' ') if s[s.length - 1].to_i >= 1
-  end
 
   def set_status
     self.status = STATUS_TODO

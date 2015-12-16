@@ -50,6 +50,7 @@ function setNewMarkerOnStreetAndTownGeoLocation() {
             }
             setNewMarkerOnMap(latitude, longitude);
             map.setCenter({lat: latitude, lng: longitude});
+            setNewStreetAndTownInForm(lat, lng, false);
           }
         });
         oldStreetValInput = streetValInput;
@@ -104,12 +105,12 @@ function addListenerToNewMarkerOnPositionChange() {
       var lat = newMarker.getPosition().lat();
       var lng = newMarker.getPosition().lng();
       setLatitudeAndLongitudeInForm(lat, lng);
-      setNewStreetAndTownInForm(lat, lng);
+      setNewStreetAndTownInForm(lat, lng, true);
     }, 1000);
   });
 }
 
-function setNewStreetAndTownInForm(lat, lng) {
+function setNewStreetAndTownInForm(lat, lng, setAlsoStreetAndTown) {
   var latLng = new google.maps.LatLng(lat, lng);
   geocoder.geocode({'latLng': latLng}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
@@ -119,11 +120,14 @@ function setNewStreetAndTownInForm(lat, lng) {
       var street_number = "";
       var town = "";
 
+      var communityName = "";
+
       for(var i=0, len=result.address_components.length; i<len; i++) {
       	var ac = result.address_components[i];
       	if(ac.types.indexOf("route") >= 0) street = ac.long_name;
         if(ac.types.indexOf('street_number') >= 0) street_number = ac.long_name;
       	if(ac.types.indexOf("locality") >= 0) town = ac.long_name;
+        if(ac.types.indexOf("administrative_area_level_2") >= 0) communityName = ac.long_name;
       }
 
       if(town !== '' && street !== '') {
@@ -133,12 +137,18 @@ function setNewStreetAndTownInForm(lat, lng) {
         } else {
           address = street;
         }
-        $('.js_street_input').val(address);
-        $('.js_town_input').val(town);
+
+        if (setAlsoStreetAndTown) {
+          $('.js_street_input').val(address);
+          $('.js_town_input').val(town);
+        }
       }
+
+      setCommunityIdToReport(communityName);
     }
   });
 }
+
 
 function setNewMarkerOnMapClicked() {
   if($('.new-marker').length === 0) {
@@ -148,9 +158,17 @@ function setNewMarkerOnMapClicked() {
         var lat = e.latLng.lat();
         var lng = e.latLng.lng();
         setNewMarkerOnMap(lat, lng);
-        setNewStreetAndTownInForm(lat, lng);
+        setNewStreetAndTownInForm(lat, lng, true);
       }
     });
+  }
+}
+
+function setCommunityIdToReport(communityName) {
+  if(communityName !== '') {
+    if(communityName !== $('.js_community_name').val()) {
+      $('.js_community_name').val(communityName);
+    }
   }
 }
 
@@ -163,7 +181,6 @@ function setNewMarkerOnMapClicked() {
 function goToReportLocation(data) {
   var position = {lat: data.latitude, lng: data.longitude};
   map.setCenter(position);
-  //map.setZoom(15);
 }
 
 function communityReports(){
