@@ -1,3 +1,9 @@
+<div class='loading'>
+  <div class='spinner'>
+    <%= image_tag('spinner.GIF') %>
+  </div>
+</div>
+
 <%= form_for report, html: { multipart: true, type: :html }, remote: true do |f| %>
 
   <% report.errors.full_messages.each do |msg| %>
@@ -48,6 +54,6 @@
   <%= f.hidden_field :community_check_name, class: 'js_community_name' %>
 
   <div class='row'>
-    <%= f.submit 'Aanmaken', class: 'button-primary trigger_loading u-full-width' %>
+    <%= f.submit 'Aanmaken', data: { disable_with: 'Even geduld AUB...' }, class: 'button-primary js_trigger_loading u-full-width' %>
   </div>
 <% end %>

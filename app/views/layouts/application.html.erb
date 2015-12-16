@@ -13,10 +13,7 @@
     <% end %>
   </head>
   <body>
-    <div class='loading'>
-      <%= image_tag('spinner.GIF') %>
-    </div>
-
+  
     <div class='<%= "index-" if controller_name == "reports" && action_name == "index" %>outer-wrapper'>
       <%= render 'layouts/menu' %>
       <%= render 'layouts/side_menu' %>

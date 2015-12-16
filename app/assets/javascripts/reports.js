@@ -10,6 +10,7 @@ function bindReportFormResponse() {
   // Binds the functions to the form
   geocoder = new google.maps.Geocoder();
 
+  triggerLoading();
   triggerAutocomplete();
   setNewMarkerOnStreetAndTownGeoLocation();
   setNewMarkerOnMapClicked();
@@ -22,8 +23,11 @@ function bindReportFormResponse() {
     }  else {
       $('.report-modal form').html(data);
 
+      google.maps.event.removeListener(clickListenerForNewMarkerHandle);
+
       triggerAutocomplete();
-      bindReportFormResponse();
+      triggerLoading();
+      setNewMarkerOnMapClicked();
       setNewMarkerOnStreetAndTownGeoLocation();
     }
   });

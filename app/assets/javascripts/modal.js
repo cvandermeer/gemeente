@@ -12,12 +12,6 @@ ready = function() {
   });
 };
 
-function triggerLoading(){
-  $('.trigger_loading').on('click', function(){
-    $('.loading').show();
-  });
-}
-
 /**
   * @desc appends the modalbackground and binds the onclick function
   * @return adds an active class to the modal and modal-background
