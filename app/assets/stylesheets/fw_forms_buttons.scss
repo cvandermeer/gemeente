@@ -86,6 +86,9 @@ form {
   margin-bottom: 0;
   .row {
     margin-bottom: $spacing;
+    .columns {
+      margin-bottom: 0;
+    }
     &:last-child {
       margin-bottom: 0;
     }
