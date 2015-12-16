@@ -1,3 +1,197 @@
+var streetValInput = '';
+var townValInput = '';
+var oldStreetValInput = '';
+var oldTownValInput = '';
+var newMarker;
+var clickListenerForNewMarkerHandle;
+var geocoder;
+
+function bindReportFormResponse() {
+  // Binds the functions to the form
+  geocoder = new google.maps.Geocoder();
+
+  triggerAutocomplete();
+  setNewMarkerOnStreetAndTownGeoLocation();
+  setNewMarkerOnMapClicked();
+
+  $('.report-modal form').bind("ajax:success", function(e, data){
+    if(data !== null && typeof data === 'object') {
+      goToReportLocation(data);
+      removeHeaderModal($('.header-modal'));
+      removeOldNewMarker();
+    }  else {
+      $('.report-modal form').html(data);
+
+      triggerAutocomplete();
+      bindReportFormResponse();
+      setNewMarkerOnStreetAndTownGeoLocation();
+    }
+  });
+}
+
+function setNewMarkerOnStreetAndTownGeoLocation() {
+  $('.js_street_input').on('change, focusout', function(){
+    streetValInput = $('.js_street_input').val();
+  });
+
+  $('.js_town_input').on('change, focusout', function() {
+    townValInput = $('.js_town_input').val();
+  });
+
+  $('.js_street_input, .js_town_input').on('focusout', function(){
+    if (streetValInput != oldStreetValInput || townValInput != oldTownValInput) {
+      if (streetValInput.length >= 3 && townValInput.length >= 3) {
+        geocoder.geocode( { 'address': streetValInput + townValInput}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            var latitude = results[0].geometry.location.lat();
+            var longitude = results[0].geometry.location.lng();
+            if ($('.new-marker').length !== 0) {
+              removeOldNewMarker();
+            }
+            setNewMarkerOnMap(latitude, longitude);
+            map.setCenter({lat: latitude, lng: longitude});
+          }
+        });
+        oldStreetValInput = streetValInput;
+        oldTownValInput = townValInput;
+      }
+    }
+  });
+}
+
+function setNewMarkerOnMap(latitude, longitude) {
+  //newMarker = '';
+  var markerContent =
+                    '<div class="marker new-marker">' +
+                        '<div class="marker-icon">' +
+                        '</div>' +
+                    '</div>';
+
+    var markerOptions = {
+      position: new google.maps.LatLng( latitude, longitude ),
+      map: map,
+      draggable: true,
+      content: markerContent,
+      flat: true,
+      zIndex: 999
+    };
+
+    newMarker = new RichMarker(markerOptions);
+    map.setOptions({draggableCursor:''});
+
+    setLatitudeAndLongitudeInForm(latitude, longitude);
+    addListenerToNewMarkerOnPositionChange();
+}
+
+function removeOldNewMarker() {
+  newMarker.onRemove();
+  map.setOptions({draggableCursor:''});
+  google.maps.event.removeListener(clickListenerForNewMarkerHandle);
+}
+
+function setLatitudeAndLongitudeInForm(lat, lng) {
+  $('.js_latitude_input').val(lat);
+  $('.js_longitude_input').val(lng);
+}
+
+var timer;
+
+function addListenerToNewMarkerOnPositionChange() {
+  google.maps.event.addListener(newMarker, 'position_changed', function() {
+    clearInterval(timer);
+    timer = setTimeout(function(){
+
+      var lat = newMarker.getPosition().lat();
+      var lng = newMarker.getPosition().lng();
+      setLatitudeAndLongitudeInForm(lat, lng);
+      setNewStreetAndTownInForm(lat, lng);
+    }, 1000);
+  });
+}
+
+function setNewStreetAndTownInForm(lat, lng) {
+  var latLng = new google.maps.LatLng(lat, lng);
+  geocoder.geocode({'latLng': latLng}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      var result = results[0];
+
+      var street = "";
+      var street_number = "";
+      var town = "";
+
+      for(var i=0, len=result.address_components.length; i<len; i++) {
+      	var ac = result.address_components[i];
+      	if(ac.types.indexOf("route") >= 0) street = ac.long_name;
+        if(ac.types.indexOf('street_number') >= 0) street_number = ac.long_name;
+      	if(ac.types.indexOf("locality") >= 0) town = ac.long_name;
+      }
+
+      if(town !== '' && street !== '') {
+        var address = '';
+        if(street_number !== '') {
+          address = street  + " " + street_number;
+        } else {
+          address = street;
+        }
+        $('.js_street_input').val(address);
+        $('.js_town_input').val(town);
+      }
+    }
+  });
+}
+
+function setNewMarkerOnMapClicked() {
+  if($('.new-marker').length === 0) {
+    map.setOptions({draggableCursor:'copy'});
+    clickListenerForNewMarkerHandle = map.addListener('click', function(e) {
+      if($('.new-marker').length === 0) {
+        var lat = e.latLng.lat();
+        var lng = e.latLng.lng();
+        setNewMarkerOnMap(lat, lng);
+        setNewStreetAndTownInForm(lat, lng);
+      }
+    });
+  }
+}
+
+/**
+  * @desc when new report is added go to the location
+  * @param element el - stants for this
+  * @return a new location in de goolge maps api
+*/
+
+function goToReportLocation(data) {
+  var position = {lat: data.latitude, lng: data.longitude};
+  map.setCenter(position);
+  //map.setZoom(15);
+}
+
+function communityReports(){
+  $('.community-reports').on('ajax:success', function(e, data, status){
+    var clat = $(this).parent().attr('data-lat');
+    var clon = $(this).parent().attr('data-lon');
+    map.setCenter({lat: parseFloat(clat), lng: parseFloat(clon)});
+    map.setZoom(13);
+    $('.wrapper .content').html(data);
+    removeModal();
+    if ($('.show-side-menu').length) {
+      $('.outer-wrapper, .side-menu').removeClass('show-side-menu');
+      $('.hamburger').removeClass('active');
+    }
+  });
+}
+
+var ready;
+
+ready = function() {
+  $('select#report_status').change(function(){
+    $(this).parent().submit();
+  });
+};
+
+// Old Functions
+
+/*
 function getReportIndex(data) {
   $('ul.reports').html(' ');
   for (var i = 0; i < data.length; i++)  {
@@ -34,67 +228,7 @@ function bindHoverToReport() {
   }, function() {
     $('.marker[data-marker-id="'+$(this).attr('data-reports-id')+'"]').removeClass('active');
   });
-}
+}*/
 
-/**
-  * @desc setting the new report to the left side
-  * @return the new/edit report in the document
-*/
-
-function newReportForm() {
-  $('.modal form.new_report, .modal form.edit_report').on('ajax:success', function(e, data, status){
-    if(data.indexOf('form') == -1) {
-      data = data.replace(/\\n/g, '').replace(/\\/g, '').substring(1);
-      data = data.substring(0, data.length - 2);
-      $('.reports').append(data);
-      var el = $('.reports li:last-child');
-      goToReportLocation(el);
-      if ($('.reports').find("[data-report-id='" + el.attr('data-report-id') + "']").length > 1) {
-        $('.reports li:last-child').remove();
-        $('.reports').find("[data-report-id='" + el.attr('data-report-id') + "']").before(data).remove();
-      }
-      removeModal();
-      //bindReportHandlers();
-      $('.loading').hide();
-    } else {
-      $('.modal-content').html(data);
-      $('.loading').hide();
-      triggerLoading();
-      newReportForm();
-    }
-  });
-}
-
-/**
-  * @desc when new report is added go to the location
-  * @param element el - stants for this
-  * @return a new location in de goolge maps api
-*/
-
-function goToReportLocation(el) {
-  var position = {lat: parseFloat($(el).attr('data-lat')), lng: parseFloat($(el).attr('data-lon'))};
-  map.setCenter(position);
-  map.setZoom(15);
-  // setPanorama(clicked_position)
-}
-
-function communityReports(){
-  $('.community-reports').on('ajax:success', function(e, data, status){
-    var clat = $(this).parent().attr('data-lat');
-    var clon = $(this).parent().attr('data-lon');
-    map.setCenter({lat: parseFloat(clat), lng: parseFloat(clon)});
-    map.setZoom(13);
-    $('.wrapper .content').html(data);
-    removeModal();
-    if ($('.show-side-menu').length) {
-      $('.outer-wrapper, .side-menu').removeClass('show-side-menu');
-      $('.hamburger').removeClass('active');
-    }
-  });
-}
-
-$(function() {
-  $('select#report_status').change(function(){
-    $(this).parent().submit();
-  });
-});
+$(document).ready(ready);
+$(document).on('page:load', ready);

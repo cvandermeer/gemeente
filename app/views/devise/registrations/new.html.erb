@@ -1,31 +1,35 @@
-<h5>Aanmelden</h5>
+<div>
+  <div class='arrow-up arrow-register'></div>
+  <div class='header-modal register-modal'>
+    <div class='close-modal js_close_modal'></div>
+    <h5>Registreren</h5>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
 
-  <%= f.label :email, 'Email*' %>
-  <%= f.email_field :email, autofocus: true, class: 'u-full-width' %>
+      <%= f.email_field :email, autofocus: true, placeholder: 'Email adres', class: 'u-full-width' %>
 
-  <%= f.label :password, 'Wachtwoord*' %>
-  <% if @minimum_password_length %>
-    <em>(minimaal <%= @minimum_password_length %> karakters)</em>
-  <% end %>
-  <%= f.password_field :password, autocomplete: 'off', class: 'u-full-width' %>
+      <% if @minimum_password_length %>
+        <em>(minimaal <%= @minimum_password_length %> karakters)</em>
+      <% end %>
+      <%= f.password_field :password, autocomplete: 'off', placeholder: 'Wachtwoord', class: 'u-full-width' %>
 
-  <%= f.label :password_confirmation, 'Wachtwoord bevestiging*' %>
-  <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'u-full-width' %>
+      <%= f.password_field :password_confirmation, autocomplete: 'off', placeholder: 'Wachtwoord bevestiging', class: 'u-full-width' %>
 
-  <%= f.label :name, 'Naam' %>
-  <%= f.text_field :name %>
+      <%= f.text_field :name, placeholder: 'Voornaam & achternaam', class: 'u-full-width' %>
+      <em>Staat en woonplaats zijn optineel</em>
+      <div class='columns eight'>
+        <%= f.text_field :street, placeholder: 'Straat', class: 'u-full-width' %>
+      </div>
+      <div class='columns four'>
+        <%= f.text_field :housenumber, placeholder: 'Huisnummer', class: 'u-full-width' %>
+      </div>
+      <%= f.text_field :town, placeholder: 'Woonplaats', class: 'u-full-width' %>
 
-  <%= f.label :address, 'Straat + Huisnummer' %>
-  <%= f.text_field :address %>
+      <%= f.submit 'Registreren', class: 'button button-primary u-full-width' %>
 
-  <%= f.label :town, 'Woonplaats' %>
-  <%= f.text_field :town %></br>
+    <% end %>
 
-  <%= f.submit 'Aanmelden', class: 'button button-primary' %>
-
-<% end %>
-
-<%= render 'devise/shared/links' %>
+    <%= render 'devise/shared/links' %>
+  </div>
+</div>

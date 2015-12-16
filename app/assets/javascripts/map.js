@@ -1,102 +1,17 @@
-var mapStyles = [ {
-  featureType:'road',
-  elementType:'labels',
-  stylers:[
-    {visibility:'simplified'},
-    {lightness:20}
-  ]}, {
-  featureType:'administrative.land_parcel',
-  elementType:'all',
-  stylers:[
-    {visibility:'off'}
-  ]},{
-  featureType:'landscape.man_made',
-  elementType:'all',
-  stylers:[
-    {visibility:'on'}
-  ]},{
-  featureType:'transit',
-  elementType:'all',
-  stylers:[
-    {saturation:-100},
-    {visibility:'on'},
-    {lightness:10}
-  ]},{
-  featureType:'road.local',
-  elementType:'all',
-  stylers:[
-    {visibility:'on'}
-  ]},{
-  featureType:'road.local',
-  elementType:'all',
-  stylers:[
-    {visibility:'on'}
-  ]},{
-  featureType:'road.highway',
-  elementType:'labels',
-  stylers:[
-    {visibility:'simplified'}
-  ]},{
-  featureType:'poi',
-  elementType:'labels',
-  stylers:[
-    {visibility:'off'}
-  ]},{
-  featureType:'road.arterial',
-  elementType:'labels',
-  stylers:[
-    {visibility:'on'},
-    {lightness:50}
-  ]},{
-  featureType:'water',
-  elementType:'all',
-  stylers:[
-    {hue:'#a1cdfc'},
-    {saturation:30},
-    {lightness:49}
-  ]},{
-  featureType:'road.highway',
-  elementType:'geometry',
-  stylers:[
-    {hue:'#f49935'}
-  ]},{
-  featureType:'road.arterial',
-  elementType:'geometry',
-  stylers:[
-    {hue:'#fad959'}
-  ]}, {
-  featureType:'road.highway',
-  elementType:'all',
-  stylers:[
-    {hue:'#dddbd7'},
-    {saturation:-92},
-    {lightness:60},
-    {visibility:'on'}
-  ]}, {
-  featureType:'landscape.natural',
-  elementType:'all',
-  stylers:[
-    {hue:'#c8c6c3'},
-    {saturation:-51},
-    {lightness:-5},
-    {visibility:'on'}
-  ]}, {
-  featureType:'poi',
-  elementType:'all',
-  stylers:[
-    {hue:'#d9d5cd'},
-    {saturation:-70},
-    {lightness:20},
-    {visibility:'on'}
-  ]}
+var mapStyle = [
+   {
+     featureType: "poi",
+     stylers: [
+      { visibility: "off" }
+     ]
+    }
 ];
+
 var ready;
 var map;
 
 var pos;
 var zoom;
-
-//var google;
 
 ready = function() {
   resetMap();
@@ -110,8 +25,8 @@ var report_show_position;
 
 function initMap() {
   if ($('#map').length) {
-    pos = {lat: 52.397, lng: 5.544};
-    zoom = 8;
+    pos = {lat: lastKownLatitudePosition(), lng: lastKownLongitudePosition()};
+    zoom = lastKownZoomLevel();
 
     if($('.community-data').length){
       pos = {lat: parseFloat($('.community-data').attr('data-lat')), lng: parseFloat($('.community-data').attr('data-lon'))};
@@ -121,25 +36,27 @@ function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: zoom,
       center: pos,
-      styles: mapStyles,
+      styles: mapStyle,
       disableDefaultUI: true,
       streetViewControl: true,
       streetViewControlOptions: {
-        position: google.maps.ControlPosition.LEFT_TOP
+        position: google.maps.ControlPosition.RIGHT_BOTTOM
       },
-      scrollwheel: false,
+      minZoom: 9,
       zoomControl: true,
       zoomControlOptions: {
-         position: google.maps.ControlPosition.LEFT_TOP
+         position: google.maps.ControlPosition.RIGHT_BOTTOM
       },
       mapTypeControl: true,
       mapTypeControlOptions: {
-        position: google.maps.ControlPosition.TOP_RIGHT
+        position: google.maps.ControlPosition.LEFT_BOTTOM
       },
       draggable: true
     });
 
-    if ($('#pac-input').length) {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+
       navigator.geolocation.getCurrentPosition(function(geo) {
         pos = {lat: geo.coords.latitude, lng: geo.coords.longitude};
         zoom = 12;
@@ -148,14 +65,12 @@ function initMap() {
         var infowindow = new google.maps.InfoWindow({
           map: map,
           position: pos,
-          content: 'U staat hier!'
+          content: '<div class="ik-sta-hier">Ik sta hier!</div>'
         });
         setTimeout(function() {
           infowindow.close();
         }, 15000);
       });
-
-      setSearchBar(map);
     }
 
     if ($('.map-show').length){
@@ -169,12 +84,15 @@ function initMap() {
       sv.getPanorama({location: report_show_position, radius: 50}, processSVData);
     }
 
+    setSearchBar(map);
     // Needed to require the richmarker and infobox file after loading the maps
     initRichMarker();
     initInfoBox();
 
     // markers.js
     getJsonDataForReports(map);
+
+    changeLastKownPositionAndZoomListener(map);
   }
 
 }
@@ -203,6 +121,57 @@ function processSVData(data, status) {
   }
 }
 
+//Get latitude and longitude;
+function successFunction(position) {
+    var lat = position.coords.latitude;
+    var long = position.coords.longitude;
+
+    localStorage.authorizedGeoLocation = 1;
+}
+
+function errorFunction(){
+    localStorage.authorizedGeoLocation = 0;
+}
+
+function checkauthorizedGeoLocation(){ // you can use this function to know if geoLocation was previously allowed
+  if ( typeof localStorage.authorizedGeoLocation == "undefined" || localStorage.authorizedGeoLocation == "0" ) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+function lastKownLatitudePosition() {
+  if (typeof localStorage.lastLatitudePositionOnMap == 'undefined') {
+    localStorage.lastLatitudePositionOnMap = 52.397;
+  }
+  return parseFloat(localStorage.lastLatitudePositionOnMap);
+}
+
+function lastKownLongitudePosition() {
+  if (typeof localStorage.lastLongitudePositionOnMap == 'undefined') {
+    localStorage.lastLongitudePositionOnMap = 5.544;
+  }
+  return parseFloat(localStorage.lastLongitudePositionOnMap);
+}
+
+function lastKownZoomLevel() {
+  if (typeof localStorage.lastZoomLevel == 'undefined') {
+    localStorage.lastZoomLevel = 9;
+  }
+  return parseFloat(localStorage.lastZoomLevel);
+}
+
+function changeLastKownPositionAndZoomListener(map) {
+  if( $('.map-show').length === 0 ) {
+    map.addListener('idle', function() {
+      localStorage.lastLatitudePositionOnMap = map.getCenter().lat();
+      localStorage.lastLongitudePositionOnMap = map.getCenter().lng();
+      localStorage.lastZoomLevel = map.getZoom();
+    });
+  }
+}
+
 /**
   * @desc resets the map
   * @return on a specific location to show the Netherlands
@@ -210,8 +179,8 @@ function processSVData(data, status) {
 
 function resetMap() {
   $('.reset-map').on('click', function(){
-    map.setCenter(pos);
-    map.setZoom(zoom);
+    map.setCenter({lat: 52.397, lng: 5.544});
+    map.setZoom(9);
   });
 }
 
@@ -224,53 +193,29 @@ function resetMap() {
 function setSearchBar(map) {
   // Search bar with autocomplete
   var input = document.getElementById('pac-input');
-  var searchBox = new google.maps.places.SearchBox(input);
-  map.addListener('bounds_changed', function() {
-    searchBox.setBounds(map.getBounds());
-  });
+  var options = {
+    //types: ['(regions)'],
+    componentRestrictions: {country: 'nl'}
+  };
+  var autocomplete = new google.maps.places.Autocomplete(input, options);
+  autocomplete.bindTo('bounds', map);
 
-  var markers = [];
-  searchBox.addListener('places_changed', function() {
-    var places = searchBox.getPlaces();
-    if ( places.length === 0 ) {
+  autocomplete.addListener('place_changed', function() {
+    var place = autocomplete.getPlace();
+    if (!place.geometry) {
       return;
     }
 
-    // Clear out the old markers.
-    markers.forEach(function(marker) {
-      marker.setMap(null);
-    });
-    markers = [];
-
-    // For each place, get the icon, name and location.
-    var bounds = new google.maps.LatLngBounds();
-    places.forEach(function(place) {
-      var icon = {
-        url: place.icon,
-        size: new google.maps.Size(71, 71),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(17, 34),
-        scaledSize: new google.maps.Size(25, 25)
-      };
-
-      // Create a marker for each place.
-      markers.push(new google.maps.Marker({
-        map: map,
-        icon: icon,
-        title: place.name,
-        position: place.geometry.location
-      }));
-
-      if (place.geometry.viewport) {
-        // Only geocodes have viewport.
-        bounds.union(place.geometry.viewport);
-      } else {
-        bounds.extend(place.geometry.location);
-      }
-    });
-    map.fitBounds(bounds);
+    // If the place has a geometry, then present it on a map.
+    if (place.geometry.viewport) {
+      map.fitBounds(place.geometry.viewport);
+    } else {
+      map.setCenter(place.geometry.location);
+      map.setZoom(10);
+    }
   });
 }
+
 
 $(document).ready(ready);
 $(document).on('page:load', ready);

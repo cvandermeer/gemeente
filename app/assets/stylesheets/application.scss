@@ -7,8 +7,15 @@ $dark-gray: #474747;
 $background-color: #f4f4f2;
 $background-color-dark: #424242;
 
+$green: #90EE90;
+$red: #F45D4E;
+
+$spacing: 12px;
+
+$shadow: 1px 2px 3px rgba(0,0,0,0.2);
+
 /* Basic styling */
-@import 'jquery.ui.all';
+@import 'jquery-ui/autocomplete';
 @import 'autocomplete';
 
 @import 'bourbon';
@@ -21,6 +28,8 @@ $background-color-dark: #424242;
 @import 'classic.date';
 
 @import 'select2.min';
+
+@import 'newsletters';
 
 /* Map styling */
 @import 'map_info_windows';
@@ -47,6 +56,8 @@ $background-color-dark: #424242;
 @import 'featured';
 @import 'contact';
 @import 'footer';
+
+@import 'header_modal';
 
 // Icons
 @import 'font-awesome';
@@ -90,9 +101,8 @@ body, html {
 }
 
 .index-wrapper {
-  padding-top: 62px;
-  height: calc(100% - 62px);
-  min-height: calc(100% - 62px);
+  height: 100%;
+  min-height: 100%;
   background: $background-color;
   position: relative;
 }
@@ -157,13 +167,19 @@ body, html {
   z-index: 20000;
   display: none;
 }
-/*header*/
-header{
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
 
 .hidden{
   display: none;
+}
+
+.select2{
+  width: 100%!important;
+  .select2-selection--multiple{
+    height: 37px;
+  }
+}
+
+.no_link_style{
+  text-decoration: none;
+  color: #000;
 }

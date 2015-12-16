@@ -17,7 +17,7 @@ class Report < ActiveRecord::Base
 
   ### GEOCODER ###
   geocoded_by :location
-  after_validation :geocode
+  # after_validation :geocode
 
   ### ASSOCIATIONS ###
   belongs_to :community
@@ -62,7 +62,8 @@ class Report < ActiveRecord::Base
   end
 
   def create_notification
-    CreateNotificationJob.perform_later(user) if user
+    user = self.user
+    CreateNotificationJob.perform_later(user.id, id) if user
   end
 
   ### INSTANCE METHODS ###

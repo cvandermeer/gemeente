@@ -6,7 +6,7 @@ class NewslettersController < ApplicationController
 
   def index
     @communities = Community.all
-    @newsletters = Newsletter.all.reverse
+    @newsletters = Newsletter.all.paginate(page: params[:page], per_page: 5).order('created_at DESC')
   end
 
   def show
@@ -21,7 +21,11 @@ class NewslettersController < ApplicationController
     @newsletter = Newsletter.new(newsletter_params)
     @newsletter.community = current_user.community
     @newsletter.user = current_user
-    redirect_to newsletters_path if @newsletter.save
+    if @newsletter.save
+      redirect_to newsletter_path(@newsletter), notice: 'Nieuwsbrief aangemaakt'
+    else
+      redirect_to newsletters_path, alert: 'Er is iets misgegaan'
+    end
   end
 
   private
@@ -35,6 +39,6 @@ class NewslettersController < ApplicationController
   end
 
   def newsletter_params
-    params.require(:newsletter).permit(:title, :body, :valid_from, :valid_until)
+    params.require(:newsletter).permit(:title, :body, :valid_from, :valid_until, :pdf)
   end
 end

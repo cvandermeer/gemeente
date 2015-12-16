@@ -15,3 +15,6 @@ namespace :deploy do
   after :publishing, 'deploy:restart'
   after :finishing, 'deploy:cleanup'
 end
+
+after :deploy, 'deploy:migrate'
+after :deploy, 'sidekiq:restart'

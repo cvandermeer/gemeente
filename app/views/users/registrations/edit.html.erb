@@ -13,7 +13,7 @@
             <h5>Account verwijderen</h5>
           </div>
           <div class='panel-body'>
-            <p>Uw acount perminet verwijderen? <%= link_to "Verwijder mijn account",
+            <p>Uw acount permanent verwijderen? <%= link_to "Verwijder mijn account",
                                                registration_path(resource_name),
                                                data: { confirm: "Weet je het zeker?" },
                                                method: :delete %></p>
@@ -57,8 +57,11 @@
                 <div class='columns three'>
                   <%= f.label :address, 'Straat + huisnummer' %>
                 </div>
-                <div class='columns nine'>
-                  <%= f.text_field :address, placeholder: 'Straat + huisnummer', class: 'u-full-width' %>
+                <div class='columns three'>
+                  <%= f.text_field :street, placeholder: 'Straat', class: 'u-full-width' %>
+                </div>
+                <div class='columns three'>
+                  <%= f.text_field :housenumber, placeholder: 'Huisnummer', class: 'u-full-width' %>
                 </div>
               </div>
               <div class='row'>
@@ -67,6 +70,14 @@
                 </div>
                 <div class='columns nine'>
                   <%= f.text_field :town, placeholder: 'Plaatsnaam', class: 'u-full-width' %>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='columns three'>
+                  <%= f.label :get_mail, 'Email ontvangen' %>
+                </div>
+                <div class='columns nine'>
+                  <%= f.check_box :get_mail %>
                 </div>
               </div>
               <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
