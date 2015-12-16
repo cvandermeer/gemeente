@@ -1,7 +1,6 @@
-Community.create(name: 'Heerenveen')
 User.create(email: 'bart@ikbeninwoner.nl', password: '123qweasd', role_id: 0)
 User.create(email: 'chris@ikbeninwoner.nl', password: '123qweasd', role_id: 0)
-User.create(email: 'rutger@ikbeninwoner.nl', password: '123qweasd', role_id: 1, community: Community.first)
+User.create(email: 'rutger@ikbeninwoner.nl', password: '123qweasd', role_id: 1, community_id: 145)
 User.create(email: 'admin@ikbeninwoner.nl', password: '123qweasd', role_id: 2)
 
 categories = [
