@@ -20,6 +20,7 @@ function bindReportFormResponse() {
       goToReportLocation(data);
       removeHeaderModal($('.header-modal'));
       removeOldNewMarker();
+      setNotice('Uw melding is ontvangen: ' + data.title);
     }  else {
       $('.report-modal form').html(data);
 
