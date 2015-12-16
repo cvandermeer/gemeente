@@ -1,0 +1,7 @@
+<p>Welkom <%= @email %>!</p>
+
+<p>Je kunt je account bevestigen door op de volgende link te klikken:</p>
+
+<p><%= link_to 'Account bevestigen', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>Groeten info@ikbeninwoner.nl</p>

@@ -132,7 +132,6 @@ ActiveRecord::Schema.define(version: 20151216114953) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "confirmation_token",     limit: 255
-    t.string   "unconfirmed_email",      limit: 255
   end
 
   add_index "users", ["community_id"], name: "index_users_on_community_id", using: :btree
