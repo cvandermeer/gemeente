@@ -47,14 +47,23 @@ function setNewMarkerOnStreetAndTownGeoLocation() {
       if (streetValInput.length >= 3 && townValInput.length >= 3) {
         geocoder.geocode( { 'address': streetValInput + townValInput}, function(results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
+
             var latitude = results[0].geometry.location.lat();
             var longitude = results[0].geometry.location.lng();
+            console.log(latitude, longitude);
             if ($('.new-marker').length !== 0) {
               removeOldNewMarker();
             }
             setNewMarkerOnMap(latitude, longitude);
             map.setCenter({lat: latitude, lng: longitude});
-            setNewStreetAndTownInForm(lat, lng, false);
+            setNewStreetAndTownInForm(latitude, longitude, false);
+            //console.log($('.location-not-found').length !== 0);
+
+          } else {
+            if($('.location-not-found').length === 0) {
+              $('.js_street_input').before('<div class="location-not-found">Locatie klopt niet! ' +
+              'Klik op de map voor het vinden van de juiste locatie</div>');
+            }
           }
         });
         oldStreetValInput = streetValInput;
@@ -151,6 +160,9 @@ function setNewStreetAndTownInForm(lat, lng, setAlsoStreetAndTown) {
       setCommunityIdToReport(communityName);
     }
   });
+  if($('.location-not-found').length !== 0) {
+    $('.location-not-found').remove();
+  }
 }
 
 
