@@ -141,9 +141,20 @@ form {
     }
     &.email:before {
       content: '\f1fa';
+      font-weight: 600;
     }
     &.password:before {
       content: '\f13e';
+      right: 8px;
+    }
+    &.person:before {
+      content: '\f007';
+    }
+    &.house:before {
+      content: '\f015';
+    }
+    &.city:before {
+      content: '\f041';
     }
   }
 }
