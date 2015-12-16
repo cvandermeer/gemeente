@@ -44,7 +44,6 @@ class ReportsController < ApplicationController
   end
 
   def create
-    sleep 3
     @report = Report.new(report_params)
     @report.user ||= current_user
     if @report.save
