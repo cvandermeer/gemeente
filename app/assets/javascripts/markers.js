@@ -27,7 +27,7 @@ function getJsonDataForReports(map) {
             setMarkers(data);
 
             // report.js
-            // getReportIndex(data);
+            getReportsForIndex(data);
           }
         });
       }, 100);

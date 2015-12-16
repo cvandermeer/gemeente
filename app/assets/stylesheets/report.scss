@@ -1,25 +1,28 @@
-ul.reports{
-  padding: 0;
-  li{
-    list-style: none;
-    background-color : #fff;
-    border-radius: 2px;
-  }
+.all-reports {
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: $shadow;
+  width: 304px;
+  height: 0;
+  max-height: calc(100% - 300px);
+  overflow: auto;
+  position: fixed;
+  top: 82px;
+  left: $spacing;
+  @include transition(0.3s);
 }
 
 .report-image {
   float: left;
-  max-width: 150px;
-  max-height: 150px;
+  max-width: 87px;
+  max-height: 87px;
   padding: 0 12px 0 0;
-  border-radius: 2px;
 }
 
 .report-info {
   position: relative;
   padding: 12px 12px 0;
-  min-height: 100%;
-  height: 100%;
+  height: 75px;
   span {
     display: block;
   }
@@ -28,7 +31,9 @@ ul.reports{
     margin-bottom: 0;
   }
   p {
-    margin-bottom: 12px;
+    @include transition(0.3s);
+    color: #222;
+    margin-bottom: 0;
   }
   .button {
     position: absolute;
@@ -47,13 +52,36 @@ ul.reports{
 }
 
 .date {
+  position: absolute;
+  top: 12px;
+  right: 12px;
   font-size: 12px;
-  opacity: 0.5;
+  @include transition(0.3s); 
+  color: #999;
   font-style: italic;
 }
 
 .report-show {
   position: relative;
+  height: 87px;
+  background: #fff;
+  @include transition(0.3s);
+  border-bottom: 1px solid #f4f4f2;
+  &:last-child {
+    border-bottom: none;
+  }
+  .address {
+    @include transition(0.3s);
+    color: #222;
+    text-indent: 16px;
+    &:before {
+      position: absolute;
+      left: 12px;
+      text-indent: 0;
+      content: '\f041';
+      font-family: FontAwesome;
+    }
+  }
   .goto-report {
     position: absolute;
     z-index: 1;
@@ -63,8 +91,9 @@ ul.reports{
   }
   &.active,
   &:hover {
-    h3 a {
-      color: $basic-color;
+    background: $basic-color;
+    h3 a, p, .address, .date {
+      color: #fff;
     }
   }
 }
