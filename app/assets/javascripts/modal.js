@@ -10,6 +10,12 @@ ready = function() {
   $('.modal-close').on('click', function() {
     removeModal();
   });
+
+  $('.modal-background, .tutorial').on('click', function() {
+    removeModal();
+    $('.tutorial').removeClass('active');
+    localStorage.tutorial = false;
+  });
 };
 
 /**
@@ -17,13 +23,20 @@ ready = function() {
   * @return adds an active class to the modal and modal-background
 */
 
-function initModal() {
+function initModal(tutorial) {
   var modalBackground = '<div class="modal-background"></div>';
   if($('.modal-background').length === 0) {
      $('body').append(modalBackground);
   }
   setTimeout(function() {
-    $('.modal').addClass('active');
+    if(tutorial !== true){
+      $('.modal').addClass('active');
+    }
+
+    if(tutorial === true){
+      $('.tutorial').addClass('active');
+    }
+
     $('.modal-background').addClass('active');
   }, 100);
 }
