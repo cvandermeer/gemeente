@@ -50,7 +50,6 @@ class Report < ActiveRecord::Base
     self.community = Community.find_by(name: community_check_name)
   end
 
-
   def set_status
     self.status = STATUS_TODO
   end
