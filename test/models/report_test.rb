@@ -40,23 +40,10 @@ class ReportTest < ActiveSupport::TestCase
   end
 
   ### METHODS ###
-  test 'should parse street out of address' do
-    report = @report
-    assert_equal report.set_street, 'Schoolpad'
-  end
 
   test 'should return location' do
     report = @report
     assert_equal report.location, 'Schoolpad 7, Middenmeer'
-  end
-
-  unless ENV['SKIP_REDIS_TESTS']
-    test 'should set and create community' do
-      assert_difference('Community.count') do
-        @report.set_community
-      end
-      assert_equal @report.community.name, 'Hollands Kroon'
-    end
   end
 
   test 'should set community if it already exists' do

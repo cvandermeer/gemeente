@@ -150,7 +150,4 @@ ActiveRecord::Schema.define(version: 20151216114953) do
     t.string  "longitude",          limit: 255
   end
 
-  add_index "zipcodes", ["street"], name: "index_zipcodes_on_street", using: :btree
-  add_index "zipcodes", ["town"], name: "index_zipcodes_on_town", using: :btree
-
 end
