@@ -51,14 +51,12 @@ function setNewMarkerOnStreetAndTownGeoLocation() {
 
             var latitude = results[0].geometry.location.lat();
             var longitude = results[0].geometry.location.lng();
-            console.log(latitude, longitude);
             if ($('.new-marker').length !== 0) {
               removeOldNewMarker();
             }
             setNewMarkerOnMap(latitude, longitude);
             map.setCenter({lat: latitude, lng: longitude});
             setNewStreetAndTownInForm(latitude, longitude, false);
-            //console.log($('.location-not-found').length !== 0);
 
           } else {
             if($('.location-not-found').length === 0) {
