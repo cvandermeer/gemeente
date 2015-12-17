@@ -56,7 +56,9 @@ Rails.application.routes.draw do
   end
 
   ### USERS ###
-  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
+  devise_for :users, controllers: { sessions: 'users/sessions',
+                                    registrations: 'users/registrations',
+                                    confirmations: 'users/confirmations' }
 
   resources :users, only: [:index] do
     get :notifications, on: :collection
