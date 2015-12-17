@@ -1,14 +1,12 @@
-$("form").on("ajax:success", function() {
-    $.ajax({
-      type: 'GET',
-      dataType: 'json',
-      url: "/reports/markers",
-      data: { 'id': <%= @report.id %> },
-      success: function(data){
-        setMarkerShow(data);
-      }
-    });
-
-
-
+$('.new_report').on('ajax:success', function() {
+  $.ajax({
+    type: 'GET',
+    dataType: 'json',
+    url: '/reports/markers',
+    data: { 'id': <%= @report.id %> },
+    success: function(data){
+      goToReportLocation(data);
+      removeHeaderModal($('.header-modal'));
+    }
+  });
 });

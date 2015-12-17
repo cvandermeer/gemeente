@@ -21,7 +21,7 @@ function bindReportFormResponse() {
       removeHeaderModal($('.header-modal'));
       removeOldNewMarker();
       setNotice('Uw melding is ontvangen: ' + data.title);
-    }  else {
+    }  else if(data.indexOf('form') > 0) {
       $('.report-modal form').html(data);
 
       google.maps.event.removeListener(clickListenerForNewMarkerHandle);

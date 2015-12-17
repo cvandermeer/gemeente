@@ -49,7 +49,7 @@ class ReportsController < ApplicationController
     if @report.save
       #render json: {report: @report, report_image: @report.image(:thumb)}
       respond_to do |format|
-        format.js #{render json: @report, action: 'create'}
+        format.js
       end
     else
       @report_category = ReportCategory.new
