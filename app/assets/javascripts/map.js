@@ -42,7 +42,7 @@ function initMap() {
       streetViewControlOptions: {
         position: google.maps.ControlPosition.RIGHT_BOTTOM
       },
-      minZoom: 9,
+      minZoom: 8,
       zoomControl: true,
       zoomControlOptions: {
          position: google.maps.ControlPosition.RIGHT_BOTTOM
@@ -180,7 +180,7 @@ function changeLastKownPositionAndZoomListener(map) {
 function resetMap() {
   $('.reset-map').on('click', function(){
     map.setCenter({lat: 52.397, lng: 5.544});
-    map.setZoom(9);
+    map.setZoom(8);
   });
 }
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215121346) do
+ActiveRecord::Schema.define(version: 20151216114953) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title", limit: 255
@@ -128,6 +128,9 @@ ActiveRecord::Schema.define(version: 20151215121346) do
     t.string   "street",                 limit: 255
     t.string   "housenumber",            limit: 255
     t.boolean  "get_mail"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "confirmation_token",     limit: 255
   end
 
   add_index "users", ["community_id"], name: "index_users_on_community_id", using: :btree
