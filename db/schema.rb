@@ -128,7 +128,6 @@ ActiveRecord::Schema.define(version: 20151215121346) do
     t.string   "street",                 limit: 255
     t.string   "housenumber",            limit: 255
     t.boolean  "get_mail"
-    t.boolean  "nerd"
   end
 
   add_index "users", ["community_id"], name: "index_users_on_community_id", using: :btree
