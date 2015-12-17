@@ -128,7 +128,6 @@ ActiveRecord::Schema.define(version: 20151216114953) do
     t.string   "street",                 limit: 255
     t.string   "housenumber",            limit: 255
     t.boolean  "get_mail"
-    t.boolean  "nerd"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "confirmation_token",     limit: 255
@@ -150,5 +149,8 @@ ActiveRecord::Schema.define(version: 20151216114953) do
     t.string  "latitude",           limit: 255
     t.string  "longitude",          limit: 255
   end
+
+  add_index "zipcodes", ["street"], name: "index_zipcodes_on_street", using: :btree
+  add_index "zipcodes", ["town"], name: "index_zipcodes_on_town", using: :btree
 
 end
