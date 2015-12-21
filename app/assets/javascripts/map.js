@@ -157,7 +157,7 @@ function lastKownLongitudePosition() {
 
 function lastKownZoomLevel() {
   if (typeof localStorage.lastZoomLevel == 'undefined') {
-    localStorage.lastZoomLevel = 9;
+    localStorage.lastZoomLevel = 8;
   }
   return parseFloat(localStorage.lastZoomLevel);
 }
