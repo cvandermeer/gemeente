@@ -1,7 +1,7 @@
 var ready;
 
 ready = function() {
-  $('.js_header_modal').bind('ajax:success', function(e, data, status) {
+  $('.js_header_modal').on('ajax:success', function(e, data, status) {
     var el = e.currentTarget;
     setHeaderModalData(el, data);
   });
@@ -20,6 +20,11 @@ function setHeaderModalData(el, data) {
 
     closeHeaderModal();
     bindHeaderModal();
+
+    $('.contact-modal form').on('ajax:success', function(e, data){
+      removeHeaderModal($('.header-modal'));
+      setNotice('Uw contactbericht is ontvangen');
+    });
 
     if ($(el).attr('data-modal-type') == 'report') {
       // reports.js
@@ -49,7 +54,7 @@ function closeHeaderModal() {
 }
 
 function bindHeaderModal() {
-  $('.js_header_modal_link').bind('ajax:success', function(e, data, status) {
+  $('.js_header_modal_link').on('ajax:success', function(e, data, status) {
     setHeaderModalData(e, data);
   });
 }
