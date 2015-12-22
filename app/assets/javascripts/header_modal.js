@@ -26,7 +26,11 @@ function setHeaderModalData(el, data) {
       setNotice('Uw contactbericht is ontvangen');
     });
 
-    if ($(el).attr('data-modal-type') == 'report') {
+    if($(el).attr('data-modal-type') == 'register') {
+      setRegisterValidation();
+    }
+
+    if($(el).attr('data-modal-type') == 'report') {
       // new_reports.js
       bindReportFormResponse();
     }
@@ -57,6 +61,18 @@ function bindHeaderModal() {
   $('.js_header_modal_link').on('ajax:success', function(e, data, status) {
     setHeaderModalData(e, data);
   });
+}
+
+function setRegisterValidation() {
+  var validateOptions = {
+    form: $('.new_user'),
+    msg_compare: 'Zorg ervoor dat de waardes gelijk zijn',
+    msg_email: 'Gebruik een juist email adres',
+    msg_min_length: 'Minimaal aantal tekens: ',
+    msg_required: 'Dit veld is verplicht'
+  };
+
+  validate = new Validate(validateOptions);
 }
 
 $(document).ready(ready);
