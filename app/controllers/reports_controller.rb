@@ -21,7 +21,7 @@ class ReportsController < ApplicationController
   end
 
   def show_marker
-    render json: Report.find(params[:id]).as_json(only: [:latitude, :longitude, :id], include: :category)
+    render json: Report.find(params[:id]).as_json(include: :category)
   end
 
   def near_markers
@@ -47,7 +47,9 @@ class ReportsController < ApplicationController
     @report = Report.new(report_params)
     @report.user ||= current_user
     if @report.save
-      render json: @report
+      respond_to do |format|
+        format.js
+      end
     else
       @report_category = ReportCategory.new
       render partial: 'form', locals: { report: @report, report_category: @report_category }

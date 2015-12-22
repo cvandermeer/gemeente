@@ -27,7 +27,7 @@ function setHeaderModalData(el, data) {
     });
 
     if ($(el).attr('data-modal-type') == 'report') {
-      // reports.js
+      // new_reports.js
       bindReportFormResponse();
     }
   }

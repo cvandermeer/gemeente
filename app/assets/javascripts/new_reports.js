@@ -5,15 +5,17 @@ var oldTownValInput = '';
 var newMarker;
 var clickListenerForNewMarkerHandle;
 var geocoder;
+var validate;
 
 function bindReportFormResponse() {
   // Binds the functions to the form
   geocoder = new google.maps.Geocoder();
 
-  triggerLoading();
   triggerAutocomplete();
   setNewMarkerOnStreetAndTownGeoLocation();
   setNewMarkerOnMapClicked();
+  setupValidation();
+  //triggerLoading();
 
   $('.contact-modal form').on('ajax:success', function(e, data){
     removeHeaderModal($('.header-modal'));
@@ -26,7 +28,7 @@ function bindReportFormResponse() {
       removeHeaderModal($('.header-modal'));
       removeOldNewMarker();
       setNotice('Uw melding is ontvangen: ' + data.title);
-    }  else {
+    }  else if(data.indexOf('form') > 0) {
       $('.report-modal form').html(data);
 
       google.maps.event.removeListener(clickListenerForNewMarkerHandle);
@@ -56,14 +58,12 @@ function setNewMarkerOnStreetAndTownGeoLocation() {
 
             var latitude = results[0].geometry.location.lat();
             var longitude = results[0].geometry.location.lng();
-            console.log(latitude, longitude);
             if ($('.new-marker').length !== 0) {
               removeOldNewMarker();
             }
             setNewMarkerOnMap(latitude, longitude);
             map.setCenter({lat: latitude, lng: longitude});
             setNewStreetAndTownInForm(latitude, longitude, false);
-            //console.log($('.location-not-found').length !== 0);
 
           } else {
             if($('.location-not-found').length === 0) {
@@ -159,7 +159,11 @@ function setNewStreetAndTownInForm(lat, lng, setAlsoStreetAndTown) {
 
         if (setAlsoStreetAndTown) {
           $('.js_street_input').val(address);
+          validate.checkValidRequired(0);
+          validate.setClass(0);
           $('.js_town_input').val(town);
+          validate.checkValidRequired(1);
+          validate.setClass(1);
         }
       }
 
@@ -192,6 +196,18 @@ function setCommunityIdToReport(communityName) {
       $('.js_community_name').val(communityName);
     }
   }
+}
+
+function setupValidation() {
+  var validateOptions = {
+    form: $('.validate'),
+    msg_compare: 'Zorg ervoor dat de waardes gelijk zijn',
+    msg_email: 'Gebruik een juist email adres',
+    msg_min_length: 'Minimaal aantal tekens: ',
+    msg_required: 'Dit veld is verplicht'
+  };
+
+  validate = new Validate(validateOptions);
 }
 
 /**
