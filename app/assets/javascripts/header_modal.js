@@ -22,7 +22,7 @@ function setHeaderModalData(el, data) {
     bindHeaderModal();
 
     if ($(el).attr('data-modal-type') == 'report') {
-      // reports.js
+      // new_reports.js
       bindReportFormResponse();
     }
   }

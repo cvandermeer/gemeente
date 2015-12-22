@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<%= form_for report, html: { multipart: true, type: :html }, remote: true do |f| %>
+<%= form_for report, html: { multipart: true, type: :html, class: 'new_report validate' }, remote: true do |f| %>
 
   <% report.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
@@ -12,20 +12,20 @@
 
   <div class='icon house'>
     <%= f.text_field :address, placeholder: 'Straat + huisnummer *', class: 'u-full-width js_street_input',
-        autocomplete: "off" %>
+        autocomplete: "off", validate: '' %>
   </div>
   <div class='icon city'>
     <%= f.text_field :town, placeholder: 'Plaatsnaam *', class: 'u-full-width js_town_input',
-        autocomplete: "off" %>
+        autocomplete: "off", validate: '' %>
   </div>
 
   <%= f.fields_for :report_category, report_category do |rcf| %>
     <%= rcf.label :category_id, 'Categorie *' %>
-    <%= rcf.collection_select :category_id, Category.all, :id, :title, {include_blank: 'Kies een Categorie'} %>
+    <%= rcf.collection_select :category_id, Category.all, :id, :title, {include_blank: 'Kies een Categorie'}, validate: '' %>
   <% end %>
 
-  <%= f.text_field :title, placeholder: 'Titel van melding *', class: 'u-full-width' %>
-  <%= f.text_area :description, placeholder: 'Beschrijving melding *',  class: 'text-field u-full-width' %>
+  <%= f.text_field :title, placeholder: 'Titel van melding *', class: 'u-full-width', validate: '' %>
+  <%= f.text_area :description, placeholder: 'Beschrijving melding *',  class: 'text-field u-full-width', validate: '' %>
 
   <% if action_name == 'edit' %>
     <%= f.label :resolved_at, 'Opgelost op' %>
@@ -34,7 +34,7 @@
 
   <% if !user_signed_in? %>
     <div class='icon email'>
-      <%= f.email_field :email, placeholder: 'Email adres',class: 'u-full-width' %>
+      <%= f.email_field :email, placeholder: 'Email adres', class: 'u-full-width' %>
     </div>
   <% end %>
 

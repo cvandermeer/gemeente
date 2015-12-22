@@ -5,15 +5,17 @@ var oldTownValInput = '';
 var newMarker;
 var clickListenerForNewMarkerHandle;
 var geocoder;
+var validate;
 
 function bindReportFormResponse() {
   // Binds the functions to the form
   geocoder = new google.maps.Geocoder();
 
-  triggerLoading();
   triggerAutocomplete();
   setNewMarkerOnStreetAndTownGeoLocation();
   setNewMarkerOnMapClicked();
+  setupValidation();
+  //triggerLoading();
 
   $('.report-modal form').bind("ajax:success", function(e, data){
     if(data !== null && typeof data === 'object') {
@@ -152,7 +154,11 @@ function setNewStreetAndTownInForm(lat, lng, setAlsoStreetAndTown) {
 
         if (setAlsoStreetAndTown) {
           $('.js_street_input').val(address);
+          validate.checkValidRequired(0);
+          validate.setClass(0);
           $('.js_town_input').val(town);
+          validate.checkValidRequired(1);
+          validate.setClass(1);
         }
       }
 
@@ -185,6 +191,18 @@ function setCommunityIdToReport(communityName) {
       $('.js_community_name').val(communityName);
     }
   }
+}
+
+function setupValidation() {
+  var validateOptions = {
+    form: $('.validate'),
+    msg_compare: 'Zorg ervoor dat de waardes gelijk zijn',
+    msg_email: 'Gebruik een juist email adres',
+    msg_min_length: 'Minimaal aantal tekens: ',
+    msg_required: 'Dit veld is verplicht'
+  };
+
+  validate = new Validate(validateOptions);
 }
 
 /**

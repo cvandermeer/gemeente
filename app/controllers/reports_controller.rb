@@ -47,7 +47,6 @@ class ReportsController < ApplicationController
     @report = Report.new(report_params)
     @report.user ||= current_user
     if @report.save
-      #render json: {report: @report, report_image: @report.image(:thumb)}
       respond_to do |format|
         format.js
       end
