@@ -15,7 +15,12 @@ function bindReportFormResponse() {
   setNewMarkerOnStreetAndTownGeoLocation();
   setNewMarkerOnMapClicked();
 
-  $('.report-modal form').bind("ajax:success", function(e, data){
+  $('.contact-modal form').on('ajax:success', function(e, data){
+    removeHeaderModal($('.header-modal'));
+    setNotice('Uw melding is ontvangen')
+  });
+
+  $('.report-modal form').on("ajax:success", function(e, data){
     if(data !== null && typeof data === 'object') {
       goToReportLocation(data);
       removeHeaderModal($('.header-modal'));

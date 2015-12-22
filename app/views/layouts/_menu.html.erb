@@ -55,6 +55,9 @@
       <li class='hide-on-mobile'>
         <%= link_to "Registreren", new_user_registration_path, remote: true, class: 'js_header_modal' %>
       </li>
+      <li>
+        <%= link_to 'Contact', new_message_path, remote: true, class: 'js_header_modal' %>
+      </li>
       <% end %>
 
       <% if controller_name == 'reports' && action_name == 'index'  %>

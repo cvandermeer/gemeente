@@ -1,5 +1,6 @@
 .report-modal,
 .register-modal,
+.contact-modal,
 .login-modal {
   position: absolute;
   z-index: 1;
@@ -53,6 +54,10 @@
   max-width: 346px;
 }
 
+.contact-modal{
+  max-width: 300px;
+}
+
 .arrow-up {
   position: absolute;
   width: 20px;
@@ -65,7 +70,10 @@
   background: #fff;
   top: 76px;
   &.arrow-report {
-    right: 295px;
+    right: 357px;
+  }
+  &.arrow-contact{
+    right: 264px;
   }
   &.arrow-register {
     right: 160px;

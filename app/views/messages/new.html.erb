@@ -1,29 +1,18 @@
-<h5>Contact Opnemen</h5>
-<div class='content-container'>
-	<div>
+<div>
+  <div class='arrow-up arrow-contact'></div>
+  <div class='header-modal contact-modal'>
+    <div class='close-modal js_close_modal'></div>
+    <h5>Contact opnemen</h5>
     <%= form_for @message, remote: true do |f| %>
-      <div class='row'>
-        <div class='four columns'>
-          <%= f.label :name, 'Naam' %>
-          <%= f.text_field :name, class: 'u-full-width' %>
-        </div>
+      <div class='icon person'>
+        <%= f.text_field :name, placeholder: 'naam', class: 'u-full-width' %>
       </div>
-      <div class='row'>
-        <div class='four columns'>
-          <%= f.label :email, 'Email' %>
-          <%= f.email_field :email, class: 'u-full-width' %>
-        </div>
+      <div class='icon email'>
+        <%= f.email_field :email, placeholder: 'email', class: 'u-full-width' %>
       </div>
-      <div class='row'>
-        <div class='columns'>
-          <%= f.label :body, 'Bericht' %>
-          <%= f.text_area :body, class: 'u-full-width' %>
-        </div>
-      </div>
+      <%= f.text_area :body, placeholder: 'bericht', class: 'u-full-width' %>
       <%= recaptcha_tags %>
-      <div class='row'>
-        <%= f.submit 'Versturen', class: 'button-primary' %>
-      </div>
+      <%= f.submit 'Versturen', data: { disable_with: 'Even geduld AUB...' }, class: 'button-primary js_trigger_loading u-full-width' %>
     <% end %>
   </div>
 </div>
