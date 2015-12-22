@@ -7,17 +7,19 @@
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
       <div class='icon email'>
-        <%= f.email_field :email, autofocus: true, placeholder: 'Email adres', class: 'u-full-width' %>
+        <%= f.email_field :email, autofocus: true, placeholder: 'Email adres', class: 'u-full-width', validate: '' %>
       </div>
 
       <% if @minimum_password_length %>
         <em>(minimaal <%= @minimum_password_length %> karakters)</em>
       <% end %>
       <div class='icon password'>
-        <%= f.password_field :password, autocomplete: 'off', placeholder: 'Wachtwoord', class: 'u-full-width' %>
+        <%= f.password_field :password, autocomplete: 'off', placeholder: 'Wachtwoord', class: 'u-full-width',
+              validate: '', validate_compare: '', validate_min_length: '8' %>
       </div>
       <div class='icon password'>
-        <%= f.password_field :password_confirmation, autocomplete: 'off', placeholder: 'Wachtwoord bevestiging', class: 'u-full-width' %>
+        <%= f.password_field :password_confirmation, autocomplete: 'off', placeholder: 'Wachtwoord bevestiging',
+              class: 'u-full-width', validate: '', validate_compare: '', validate_min_length: '8' %>
       </div>
       <div class='icon person'>
         <%= f.text_field :name, placeholder: 'Voornaam & achternaam', class: 'u-full-width' %>

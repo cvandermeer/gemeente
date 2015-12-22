@@ -19,7 +19,7 @@ function bindReportFormResponse() {
 
   $('.contact-modal form').on('ajax:success', function(e, data){
     removeHeaderModal($('.header-modal'));
-    setNotice('Uw melding is ontvangen')
+    setNotice('Uw melding is ontvangen');
   });
 
   $('.report-modal form').on("ajax:success", function(e, data){
