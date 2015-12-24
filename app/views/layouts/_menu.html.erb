@@ -1,4 +1,9 @@
-<header>
+<% if controller_name == 'report' && action_name == 'index' %>
+  <header>
+<% else %>
+  <header class='dashboard-header'>
+    <%= link_to 'ikbeninwoner.nl', root_path, class: 'logo' %>
+<% end %>
   <nav>
     <ul>
       <li>

@@ -9,6 +9,11 @@
   opacity: 0.6;
 }
 
+.logo {
+  width: 115px;
+  padding: 20px $spacing;
+  float: left;
+}
 
 // Header menu
 
@@ -18,6 +23,13 @@ header {
   top: $spacing;
   right: $spacing;
   box-shadow: $shadow;
+  &.dashboard-header {
+    top: 0;
+    right: 0;
+    box-shadow: none;
+    width: 100%;
+    background: #fff;
+  }
   ul {
     float: right;
     background: #fff;
@@ -33,6 +45,9 @@ header {
       &:hover,
       &.active {
         background: $background-color;
+        a {
+          color: $dark-gray;
+        }
       }
     }
   }
@@ -97,6 +112,7 @@ header {
     &:hover {
       background-color: $background-color;
       a {
+        color: $dark-gray;
         text-indent: 12px;
       }
     }
