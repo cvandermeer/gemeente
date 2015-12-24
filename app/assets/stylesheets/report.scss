@@ -117,3 +117,10 @@
     }
   }
 }
+
+.user-reports {
+  overflow: hidden;
+  .report-btn {
+    box-shadow: none;
+  }
+}

@@ -14,9 +14,9 @@
           </div>
           <div class='panel-body'>
             <% if current_user.reports.any? %>
-            <ul class='reports'>
+            <div class='user-reports'>
           	   <%= render current_user.reports %>
-          	</ul>
+          	</div>
             <% else %>
               Er zijn door u geen meldingen gedaan, <%= link_to 'Melding doen!', new_report_path, class: 'js_modal', remote: true %> van zwerf afval, kappot straatmeubilair, etc.
             <% end %>
