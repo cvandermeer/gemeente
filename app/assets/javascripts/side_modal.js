@@ -1,18 +1,27 @@
+var removedMarker = '';
+
 function initSideModal() {
   $('.js_side_modal').bind('ajax:success', function(e, data, status) {
-    setDataToSideModal(data);
+    setDataToSideModal(this, data);
   });
 }
 
-function setDataToSideModal(data) {
+function setDataToSideModal(el, data) {
   if($('.side-modal').length !== 0) {
     removeSideModal($('.side-modal'));
   }
   $('body').append(data);
   setTimeout(function(){
     $('.side-modal').addClass('active');
+    if($(el).attr('data-modal-type') === 'edit-report') {
+      bindReportFormResponse('edit');
+      removedMarker = $('.marker[data-marker-id="'+$(el).attr('data-report-id')+'"]');
+      removedMarker.css('opacity', '0');
+      setNewMarkerOnMap($('.js_latitude_input').val(), $('.js_longitude_input').val());
+    }
   }, 300);
   bindSideModalHandlers();
+
 }
 
 function removeSideModal(modal) {
@@ -20,6 +29,9 @@ function removeSideModal(modal) {
   setTimeout(function() {
     modal.remove();
   }, 300);
+  if(removedMarker !== '') {
+    removedMarker.css('opacity', '1');
+  }
 }
 
 function bindSideModalHandlers() {

@@ -32,7 +32,7 @@ function setHeaderModalData(el, data) {
 
     if($(el).attr('data-modal-type') == 'report') {
       // new_reports.js
-      bindReportFormResponse();
+      bindReportFormResponse('new');
     }
   }
 }
