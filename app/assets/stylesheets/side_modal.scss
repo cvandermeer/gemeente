@@ -1,0 +1,30 @@
+.side-modal {
+  width: 280px;
+  height: auto;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: $shadow;
+  position: fixed;
+  top: 82px;
+  left: -304px;
+  z-index: 100;
+  padding: $spacing;
+  @include transition(0.3s);
+  &.active {
+    left: 12px;
+  }
+  .report-info {
+    padding: 0;
+    border-bottom: 1px solid #f4f4f2;
+  }
+  .date {
+    top: 0;
+    right: 0;
+  }
+  .delete-msg {
+    text-align: center;
+    text-transform: uppercase;
+    padding: $spacing/2 0;
+    margin-bottom: 0;
+  }
+}

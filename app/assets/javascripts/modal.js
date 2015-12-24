@@ -99,6 +99,7 @@ function removeModal() {
 */
 
 function initDestroy(e, data) {
+  console.log(e,data)
   $('.modal-content').html('');
   $('.modal-content').append(data);
   $('.modal-confirm').on('click', function() {

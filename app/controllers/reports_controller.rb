@@ -58,7 +58,6 @@ class ReportsController < ApplicationController
 
   def edit
     @report_category = @report.report_category
-    render 'edit'
   end
 
   def update
@@ -73,8 +72,8 @@ class ReportsController < ApplicationController
 
   def delete
     title = 'Melding verwijderen'
-    text = "Weet uw zeker dat u de melding: <strong>#{@report.title}</strong> wilt verwijderen"
-    render partial: 'shared/delete', locals: { title: title, text: text.html_safe,
+    text = "Deze melding verwijderen?"
+    render partial: 'delete', locals: { title: title, text: text, report: @report,
                                                el: @report, controller_route: 'reports' }
   end
 
