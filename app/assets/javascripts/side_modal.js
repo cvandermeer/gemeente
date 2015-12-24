@@ -13,6 +13,9 @@ function setDataToSideModal(el, data) {
   if($('.header-modal').length !== 0) {
     removeHeaderModal($('.header-modal'));
   }
+  if($('.new-marker').length !== 0) {
+    $('.new-marker').remove();
+  }
   $('body').append(data);
   setTimeout(function(){
     $('.side-modal').addClass('active');

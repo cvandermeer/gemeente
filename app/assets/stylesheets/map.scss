@@ -30,15 +30,15 @@ img {
   border-radius: 2px;
   font-weight: bold;
   font-weight: 400;
-  font-size: 11px;
-  padding: 6px 8px;
+  font-size: 12px;
+  padding: $spacing/2 $spacing;
   text-decoration: none;
   box-shadow: $shadow;
   @include transition(0.3s);
   &:focus,
   &:hover {
-    background: #ebebeb;
-    color: #333;
+    background: #f4f4f2;
+    color: $dark-gray;
   }
 }
 

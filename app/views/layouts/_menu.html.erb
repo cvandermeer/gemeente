@@ -27,9 +27,6 @@
           <li class='<%= current_page_class(edit_user_registration_path) %>'>
             <%= link_to 'Profiel bewerken', edit_user_registration_path %>
           </li>
-          <li class='<%= current_page_class(profile_users_path) %>'>
-            <%= link_to 'Accountinstellingen', profile_users_path %>
-          </li>
           <% if current_user.admin? %>
             <li class='<%= current_page_class(admin_dashboard_path) %>'>
               <%= link_to 'Admin Dashboard', admin_dashboard_path %>
@@ -59,9 +56,6 @@
       </li>
       <li class='hide-on-mobile'>
         <%= link_to "Registreren", new_user_registration_path, class: 'js_header_modal', data: {modal_type: 'register'}, remote: true %>
-      </li>
-      <li>
-        <%= link_to 'Contact', new_message_path, remote: true, class: 'js_header_modal' %>
       </li>
       <% end %>
 

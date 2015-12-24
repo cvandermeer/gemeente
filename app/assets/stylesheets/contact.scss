@@ -10,6 +10,25 @@
   }
 }
 
+.contact-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 166px;
+  background: #fff;
+  padding: $spacing/2 $spacing;
+  box-shadow: $shadow;
+  color: $dark-gray !important;
+  border-radius: 2px;
+  font-size: 12px;
+  text-decoration: none;
+  &.active,
+  &:hover {
+    background: $background-color;
+    color: $dark-gray !important;
+
+  }
+}
+
 
 .contact {
   a {
