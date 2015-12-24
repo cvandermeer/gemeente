@@ -64,7 +64,9 @@ class ReportsController < ApplicationController
     if params[:report][:status] && @report.update(report_params)
       redirect_to community_admin_reports_path, notice: "Status van #{@report.title} aangepast naar #{@report.status}"
     elsif @report.update(report_params)
-      render json: @report
+      respond_to do |format|
+        format.js
+      end
     else
       render 'edit'
     end
