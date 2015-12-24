@@ -7,10 +7,12 @@
   position: fixed;
   top: 82px;
   left: 12px;
+  opacity: 0;
   z-index: 1;
   padding: $spacing;
   @include transition(0.3s);
   &.active {
+    opacity: 1;
     left: 316px;
     box-shadow: $shadow;
   }

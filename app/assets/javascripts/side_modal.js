@@ -1,7 +1,6 @@
 function initSideModal() {
   $('.js_side_modal').bind('ajax:success', function(e, data, status) {
     setDataToSideModal(data);
-    //console.log(data);
   });
 }
 
@@ -24,7 +23,16 @@ function removeSideModal(modal) {
 }
 
 function bindSideModalHandlers() {
-  $('.js_close_modal').on('click', function() {
+  $('.js_close_modal, .modal-confirm').on('click', function() {
     removeSideModal($('.side-modal'));
   });
+  $('.modal-confirm.yes').bind('ajax:success', function(e, data, status) {
+    //console.log(data)
+    removeReportAndMarker(data);
+  });
+}
+
+function removeReportAndMarker(data) {
+  $('.report-show[data-report-id="'+data.id+'"]').remove();
+  $('.marker[data-marker-id="'+data.id+'"]').parent().remove();
 }
