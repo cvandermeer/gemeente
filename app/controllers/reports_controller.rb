@@ -74,9 +74,9 @@ class ReportsController < ApplicationController
 
   def delete
     title = 'Melding verwijderen'
-    text = "Deze melding verwijderen?"
+    text = 'Deze melding verwijderen?'
     render partial: 'delete', locals: { title: title, text: text, report: @report,
-                                               el: @report, controller_route: 'reports' }
+                                        el: @report, controller_route: 'reports' }
   end
 
   def destroy
