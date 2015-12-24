@@ -6,6 +6,7 @@
   height: 0;
   max-height: calc(100% - 300px);
   overflow: auto;
+  z-index: 2;
   position: fixed;
   top: 82px;
   left: $spacing;
