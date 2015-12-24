@@ -122,11 +122,11 @@ body, html {
 }
 
 .content-wrapper {
-  padding: 12px 24px;
+  padding: $spacing $spacing*2;
 }
 
 .inner {
-  padding: 24px;
+  padding: $spacing;
 }
 
 /* Clear Floated Elements */
