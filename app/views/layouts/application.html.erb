@@ -13,23 +13,24 @@
     <% end %>
   </head>
   <body>
-    <div class='loading'>
-      <%= image_tag('spinner.GIF') %>
-    </div>
 
     <div class='<%= "index-" if controller_name == "reports" && action_name == "index" %>outer-wrapper'>
       <%= render 'layouts/menu' %>
       <%= render 'layouts/side_menu' %>
-      <%= render 'layouts/notice' %>
-
+      <div class='notice-wrapper'>
+        <%= render 'layouts/notice' %>
+      </div>
       <div class='<%= "index-" if controller_name == "reports" && action_name == "index" %>wrapper'>
         <%= yield %>
       </div>
 
       <%= render 'shared/modal' %>
+      <%= render 'shared/tutorial' %>
 
     <% if controller_name != 'reports' && action_name != 'index' %>
       <%= render 'layouts/footer' %>
+    <% else %>
+      <%= link_to 'Contact', new_message_path, remote: true, class: 'js_header_modal contact-btn' %>
     <% end %>
     </div>
 

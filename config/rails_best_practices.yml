@@ -7,6 +7,8 @@ ReplaceComplexCreationWithFactoryMethodCheck: { attribute_assignment_count: 2 }
 RemoveUnusedMethodsInControllersCheck: { except_methods: [
   'RegistrationsController#account_update_params',
   'RegistrationsController#sign_up_params',
-  'RegistrationsController#update_resource'
+  'RegistrationsController#update_resource',
+  'RegistrationsController#after_update_path_for',
+  'ConfirmationsController#after_confirmation_path_for'
   ]
 }

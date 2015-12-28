@@ -8,6 +8,12 @@ ready = function() {
   removeNotice();
 };
 
+function setNotice(notice) {
+  var html = '<div class="notice">' + notice + '<div class="close"></div></div>';
+  $('.notice-wrapper').append(html);
+  removeNotice();
+}
+
 function removeNotice(){
   if( $('.notice').length ) {
     $('.notice').addClass('active');

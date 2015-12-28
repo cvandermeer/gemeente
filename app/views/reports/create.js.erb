@@ -1,4 +1,4 @@
-$('#edit_report_' + <%= @report.id %>).on('ajax:success', function() {
+$('#new_report').on('ajax:success', function() {
   $.ajax({
     type: 'GET',
     dataType: 'json',
@@ -6,8 +6,7 @@ $('#edit_report_' + <%= @report.id %>).on('ajax:success', function() {
     data: { 'id': <%= @report.id %> },
     success: function(data){
       goToReportLocation(data);
-      removeSideModal($('.side-modal'));
-      $('.new-marker').remove();
+      removeHeaderModal($('.header-modal'));
     }
   });
 });

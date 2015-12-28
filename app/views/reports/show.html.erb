@@ -43,27 +43,17 @@
           </ul>
         </div>
       </div>
-      <div class='columns five'>
+      <div class='columns nine'>
         <% if @report.image(:image_big) != nil %>
           <%= image_tag @report.image(:image_big), class: 'u-max-full-width' %>
         <% end %>
           <h3>Beschrijving</h3>
           <p><%= @report.description %></p>
       </div>
-      <%= render 'shared/side_bar' %>
     </div>
 
     <div class='row pano'>
       <div id='pano'>
-      </div>
-    </div>
-
-    <div class='row'>
-      <div class='columns six'>
-
-      </div>
-      <div class='columns five'>
-
       </div>
     </div>
   </div>

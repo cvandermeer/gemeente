@@ -9,6 +9,29 @@
   opacity: 0.6;
 }
 
+.logo {
+  width: 115px;
+  padding: 20px $spacing;
+  float: left;
+  position: relative;
+  &:before {
+    content: '\f015';
+    font-family: FontAwesome;
+    position: absolute;
+    opacity: 0;
+    font-size: 20px;
+    top: 15px;
+    right: 0;
+    @include transition(0.3s);
+  }
+  &:hover {
+    &:before {
+      opacity: 1;
+      color: $basic-color;
+      right: -$spacing;
+    }
+  }
+}
 
 // Header menu
 
@@ -18,6 +41,13 @@ header {
   top: $spacing;
   right: $spacing;
   box-shadow: $shadow;
+  &.dashboard-header {
+    top: 0;
+    right: 0;
+    box-shadow: none;
+    width: 100%;
+    background: #fff;
+  }
   ul {
     float: right;
     background: #fff;
@@ -33,6 +63,9 @@ header {
       &:hover,
       &.active {
         background: $background-color;
+        a {
+          color: $dark-gray;
+        }
       }
     }
   }
@@ -80,10 +113,12 @@ header {
   height: auto;
   background: #fff;
   position: absolute;
-  top: 60px;
+  top: 58px;
   right: 0;
   display: none;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: $shadow;
   li {
     float: left;
     width: 100%;
@@ -95,6 +130,7 @@ header {
     &:hover {
       background-color: $background-color;
       a {
+        color: $dark-gray;
         text-indent: 12px;
       }
     }

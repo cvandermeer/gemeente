@@ -10,27 +10,29 @@ var km;
 function getJsonDataForReports(map) {
   if( $('.map-show').length === 0 ) {
     map.addListener('idle', function() {
-      clearInterval(timer);
-      timer = setTimeout(function() {
-        var minlat = map.getBounds().getSouthWest().lat();
-        var maxlat = map.getBounds().getNorthEast().lat();
-        var minlng = map.getBounds().getSouthWest().lng();
-        var maxlng = map.getBounds().getNorthEast().lng();
-        km = getDistanceFromLatLonInKm(minlat, minlng, maxlat, maxlng);
+      if($('.side-modal').length === 0) {
+        clearInterval(timer);
+        timer = setTimeout(function() {
+          var minlat = map.getBounds().getSouthWest().lat();
+          var maxlat = map.getBounds().getNorthEast().lat();
+          var minlng = map.getBounds().getSouthWest().lng();
+          var maxlng = map.getBounds().getNorthEast().lng();
+          km = getDistanceFromLatLonInKm(minlat, minlng, maxlat, maxlng);
 
-        $.ajax({
-          type: 'GET',
-          dataType: 'json',
-          url: "/reports/markers",
-          data: {'lat': map.getCenter().lat(), 'lng': map.getCenter().lng(), 'km': km},
-          success: function(data){
-            setMarkers(data);
+          $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: "/reports/markers",
+            data: {'lat': map.getCenter().lat(), 'lng': map.getCenter().lng(), 'km': km},
+            success: function(data){
+              setMarkers(data);
 
-            // report.js
-            // getReportIndex(data);
-          }
-        });
-      }, 100);
+              // report.js
+              getReportsForIndex(data);
+            }
+          });
+        }, 100);
+      }
     });
   } else {
     // Gives back one marker for show

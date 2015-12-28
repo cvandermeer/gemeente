@@ -34,9 +34,6 @@ Rails.application.routes.draw do
     get :deliver, on: :member
   end
 
-  ### MESSAGES ###
-  resources :messages, except: [:edit, :update, :destroy]
-
   ### NEWSLETTERS ###
   resources :newsletters, except: [:edit, :update, :destroy]
 
@@ -56,7 +53,9 @@ Rails.application.routes.draw do
   end
 
   ### USERS ###
-  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
+  devise_for :users, controllers: { sessions: 'users/sessions',
+                                    registrations: 'users/registrations',
+                                    confirmations: 'users/confirmations' }
 
   resources :users, only: [:index] do
     get :notifications, on: :collection

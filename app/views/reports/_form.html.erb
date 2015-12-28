@@ -1,37 +1,40 @@
-<%= form_for report, html: { multipart: true, type: :html }, remote: true do |f| %>
+<div class='loading'>
+  <div class='spinner'>
+    <%= image_tag('spinner.GIF') %>
+  </div>
+</div>
+
+<%= form_for report, html: { multipart: true, type: :html, class: 'validate' }, remote: true do |f| %>
 
   <% report.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
   <% end %>
-  <div class='row'>
+
+  <div class='icon house'>
     <%= f.text_field :address, placeholder: 'Straat + huisnummer *', class: 'u-full-width js_street_input',
-          autocomplete: "off" %>
+        autocomplete: "off", validate: '' %>
+  </div>
+  <div class='icon city'>
     <%= f.text_field :town, placeholder: 'Plaatsnaam *', class: 'u-full-width js_town_input',
-          autocomplete: "off" %>
+        autocomplete: "off", validate: '' %>
   </div>
 
-  <div class='row'>
-    <%= f.fields_for :report_category, report_category do |rcf| %>
-      <%= rcf.label :category_id, 'Categorie *' %>
-      <%= rcf.collection_select :category_id, Category.all, :id, :title, {include_blank: 'Kies een Categorie'} %>
-    <% end %>
-  </div>
+  <%= f.fields_for :report_category, report_category do |rcf| %>
+    <%= rcf.label :category_id, 'Categorie *' %>
+    <%= rcf.collection_select :category_id, Category.all, :id, :title, {include_blank: 'Kies een Categorie'}, validate: '' %>
+  <% end %>
 
-  <div class='row'>
-    <%= f.text_field :title, placeholder: 'Titel van melding *', class: 'u-full-width' %>
-    <%= f.text_area :description, placeholder: 'Beschrijving melding *',  class: 'text-field u-full-width' %>
-  </div>
+  <%= f.text_field :title, placeholder: 'Titel van melding *', class: 'u-full-width', validate: '' %>
+  <%= f.text_area :description, placeholder: 'Beschrijving melding *',  class: 'text-field u-full-width', validate: '' %>
 
   <% if action_name == 'edit' %>
-    <div class='row'>
-      <%= f.label :resolved_at, 'Opgelost op' %>
-      <%= f.text_field :resolved_at, class: 'u-full-width', class: 'datepicker' %>
-    </div>
+    <%= f.label :resolved_at, 'Opgelost op' %>
+    <%= f.text_field :resolved_at, class: 'u-full-width', class: 'datepicker' %>
   <% end %>
 
   <% if !user_signed_in? %>
-    <div class='row'>
-        <%= f.email_field :email, placeholder: 'Email adres',class: 'u-full-width' %>
+    <div class='icon email'>
+      <%= f.email_field :email, placeholder: 'Email adres', class: 'u-full-width' %>
     </div>
   <% end %>
 
@@ -40,13 +43,12 @@
     <%= f.file_field :image_one %>
     <%= f.file_field :image_two %>
     <%= f.file_field :image_three %>
-    <br><br>
   </div>
 
   <%= f.hidden_field :latitude, class: 'js_latitude_input' %>
   <%= f.hidden_field :longitude, class: 'js_longitude_input' %>
+  <%= f.hidden_field :community_check_name, class: 'js_community_name' %>
 
-  <div class='row'>
-    <%= f.submit 'Aanmaken', class: 'button-primary trigger_loading u-full-width' %>
-  </div>
+  <%= f.submit 'Aanmaken', data: { disable_with: 'Even geduld AUB...' }, class: 'button-primary js_trigger_loading u-full-width' %>
+
 <% end %>

@@ -10,13 +10,6 @@ class GeneralMailer < ApplicationMailer
     mail(subject: @subject, recipient: @recipient)
   end
 
-  def send_message(message)
-    @name = message.name
-    @email = message.email
-    @body = message.body
-    mail(subject: "#{@name} wilt contact met je opnemen.")
-  end
-
   def generated_user(email, password)
     @email = email
     @password = password

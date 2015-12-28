@@ -1,5 +1,7 @@
-<li class='clearfix report-show' data-reports-id='<%= report.id %>' data-lat='<%= report.latitude %>' data-lon='<%= report.longitude %>'>
+<div class='clearfix report-show' data-report-id='<%= report.id %>'>
+
   <%= link_to '', report, data: { no_turbolink: true }, class: 'goto-report', target: '_blank'  %>
+
   <% if report.image(:thumb) != nil %>
     <div class='report-image'>
       <%= image_tag report.image(:thumb), class: 'u-max-full-width' %>
@@ -12,7 +14,6 @@
                                               class: 'report', target: '_blank' %>
     </h3>
     <span class='date'><%= report.created_at %></span>
-    <span class='address'><%= report.location %></span>
     <p>
       <% if report.image(:thumb) != nil %>
         <%= report.description.truncate(30, separator: ' ') %>
@@ -20,13 +21,15 @@
         <%= report.description.truncate(96, separator: ' ') %>
       <% end %>
     </p>
+    <div class='address'><%= report.location %></div>
     <% if user_signed_in? %>
-      <% if report.editable_by?(current_user) %>
-        <%= link_to 'Aanpassen', edit_report_path(report), class: 'fa fa-pencil-square-o js_modal', remote: true %>
+      <% if report.editable_by?(current_user) && controller_name !=  'users' %>
+        <%= link_to 'Aanpassen', edit_report_path(report), data: {modal_type: 'edit-report', report_id: report.id , remote: true},
+            class: 'report-btn fa fa-pencil-square-o js_side_modal' %>
         <%= link_to 'Verwijderen', delete_report_path(report), data: { remote: true,
                                                                 modal_type: 'destroy',
                                                                 modal_element: 'reports' },
-                                                                class: 'fa fa-trash-o js_modal' %>
+                                                                class: 'report-btn fa fa-trash-o js_side_modal' %>
       <% end %>
     <% end %>
 
@@ -35,4 +38,4 @@
     <% end %>
 
   </div>
-</li>
+</div>
