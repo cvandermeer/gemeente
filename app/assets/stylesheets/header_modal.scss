@@ -56,6 +56,11 @@
 
 .contact-modal{
   max-width: 300px;
+  bottom: 70px;
+  top: auto;
+  input[type='submit'] {
+    margin-top: $spacing;
+  }
 }
 
 .arrow-up {
@@ -70,10 +75,13 @@
   background: #fff;
   top: 76px;
   &.arrow-report {
-    right: 357px;
+    right: 294px;
   }
   &.arrow-contact{
-    right: 264px;
+    right: 189px;
+    bottom: 64px;
+    z-index: 2;
+    top: auto;
   }
   &.arrow-register {
     right: 160px;

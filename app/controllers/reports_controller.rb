@@ -58,14 +58,15 @@ class ReportsController < ApplicationController
 
   def edit
     @report_category = @report.report_category
-    render 'edit'
   end
 
   def update
     if params[:report][:status] && @report.update(report_params)
       redirect_to community_admin_reports_path, notice: "Status van #{@report.title} aangepast naar #{@report.status}"
     elsif @report.update(report_params)
-      render json: @report
+      respond_to do |format|
+        format.js
+      end
     else
       render 'edit'
     end
@@ -73,9 +74,9 @@ class ReportsController < ApplicationController
 
   def delete
     title = 'Melding verwijderen'
-    text = "Weet uw zeker dat u de melding: <strong>#{@report.title}</strong> wilt verwijderen"
-    render partial: 'shared/delete', locals: { title: title, text: text.html_safe,
-                                               el: @report, controller_route: 'reports' }
+    text = 'Deze melding verwijderen?'
+    render partial: 'delete', locals: { title: title, text: text, report: @report,
+                                        el: @report, controller_route: 'reports' }
   end
 
   def destroy

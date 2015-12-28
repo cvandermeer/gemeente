@@ -30,7 +30,7 @@ header {
       font-family: FontAwesome;
       font-size: 16px;
       right: 12px;
-      top: 20px;
+      top: 17px;
       position: absolute;
       font-weight: normal;
       content: '\f1ea';
@@ -41,14 +41,14 @@ header {
     &:before {
       content: '\f041';
       font-size: 18px;
-      top: 18px;
+      top: 15px;
     }
   }
   .message {
     &:before {
       content: '\f003';
       font-size: 17px;
-      top: 18px;
+      top: 15px;
 
     }
   }

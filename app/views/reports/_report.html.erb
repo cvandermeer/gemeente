@@ -23,12 +23,13 @@
     </p>
     <div class='address'><%= report.location %></div>
     <% if user_signed_in? %>
-      <% if report.editable_by?(current_user) %>
-        <%= link_to 'Aanpassen', edit_report_path(report), class: 'fa fa-pencil-square-o js_modal', remote: true %>
+      <% if report.editable_by?(current_user) && controller_name !=  'users' %>
+        <%= link_to 'Aanpassen', edit_report_path(report), data: {modal_type: 'edit-report', report_id: report.id , remote: true},
+            class: 'report-btn fa fa-pencil-square-o js_side_modal' %>
         <%= link_to 'Verwijderen', delete_report_path(report), data: { remote: true,
                                                                 modal_type: 'destroy',
                                                                 modal_element: 'reports' },
-                                                                class: 'fa fa-trash-o js_modal' %>
+                                                                class: 'report-btn fa fa-trash-o js_side_modal' %>
       <% end %>
     <% end %>
 

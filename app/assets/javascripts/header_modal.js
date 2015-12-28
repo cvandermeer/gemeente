@@ -12,6 +12,9 @@ function setHeaderModalData(el, data) {
     if ($('.header-modal').length !== 0) {
       removeHeaderModal($('.header-modal'));
     }
+    if($('.side-modal').length !== 0) {
+      removeSideModal($('.side-modal'));
+    }
     $('header').after(data);
     setTimeout(function() {
       $('.header-modal, .arrow-up').addClass('active');
@@ -32,7 +35,7 @@ function setHeaderModalData(el, data) {
 
     if($(el).attr('data-modal-type') == 'report') {
       // new_reports.js
-      bindReportFormResponse();
+      bindReportFormResponse('new');
     }
   }
 }

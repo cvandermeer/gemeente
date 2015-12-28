@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<%= form_for report, html: { multipart: true, type: :html, class: 'new_report validate' }, remote: true do |f| %>
+<%= form_for report, html: { multipart: true, type: :html, class: 'validate' }, remote: true do |f| %>
 
   <% report.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>

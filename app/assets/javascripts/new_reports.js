@@ -7,13 +7,13 @@ var clickListenerForNewMarkerHandle;
 var geocoder;
 var validate;
 
-function bindReportFormResponse() {
+function bindReportFormResponse(type) {
   // Binds the functions to the form
   geocoder = new google.maps.Geocoder();
 
   triggerAutocomplete();
   setNewMarkerOnStreetAndTownGeoLocation();
-  setNewMarkerOnMapClicked();
+  if(type === 'new') setNewMarkerOnMapClicked();
   setupValidation();
   //triggerLoading();
 

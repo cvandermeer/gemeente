@@ -51,14 +51,13 @@ $shadow: 1px 2px 3px rgba(0,0,0,0.2);
 @import 'fw_forms_buttons';
 
 /* Specific styling */
-@import 'recent';
 @import 'report';
 @import 'notice';
 
-@import 'featured';
 @import 'contact';
 @import 'footer';
 
+@import 'side_modal';
 @import 'header_modal';
 
 // Icons
@@ -121,11 +120,11 @@ body, html {
 }
 
 .content-wrapper {
-  padding: 12px 24px;
+  padding: $spacing $spacing*2;
 }
 
 .inner {
-  padding: 24px;
+  padding: $spacing;
 }
 
 /* Clear Floated Elements */

@@ -6,6 +6,7 @@
   height: 0;
   max-height: calc(100% - 300px);
   overflow: auto;
+  z-index: 2;
   position: fixed;
   top: 82px;
   left: $spacing;
@@ -40,13 +41,29 @@
     bottom: 0px;
     right: 12px;
   }
-  .fa {
+  .report-btn {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 0;
+    width: 120px;
+    height: 20px;
+    right: -144px;
     z-index: 2;
-    &.fa-pencil-square-o {
-      right: 52px;
+    //text-align: center;
+    text-indent: 24px;
+    border-radius: 0px !important;
+    padding: $spacing;
+    text-decoration: none;
+    &.fa-trash-o {
+      top: auto;
+      bottom: 0;
+    }
+    &:before {
+      top: $spacing;
+      left: $spacing;
+    }
+    &:hover {
+      background: $basic-color;
+      color: #fff;
     }
   }
 }
@@ -56,7 +73,7 @@
   top: 12px;
   right: 12px;
   font-size: 12px;
-  @include transition(0.3s); 
+  @include transition(0.3s);
   color: #999;
   font-style: italic;
 }
@@ -95,5 +112,15 @@
     h3 a, p, .address, .date {
       color: #fff;
     }
+    .report-btn {
+      right: 0;
+    }
+  }
+}
+
+.user-reports {
+  overflow: hidden;
+  .report-btn {
+    box-shadow: none;
   }
 }

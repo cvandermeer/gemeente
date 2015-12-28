@@ -26,12 +26,7 @@ function setReportIndex(data) {
   //bindReportHandlers();
   bindHoverOnReportShowActiveMarker();
   bindHoverOnMarkerShowActiveReport();
-}
-
-function bindReportHandlers() {
-  $('.js_modal').bind('ajax:success', function(e, data, status) {
-    setDataInModal(this ,data);
-  });
+  initSideModal();
 }
 
 function bindHoverOnReportShowActiveMarker() {
