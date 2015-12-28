@@ -34,9 +34,6 @@ Rails.application.routes.draw do
     get :deliver, on: :member
   end
 
-  ### MESSAGES ###
-  resources :messages, except: [:edit, :update, :destroy]
-
   ### NEWSLETTERS ###
   resources :newsletters, except: [:edit, :update, :destroy]
 

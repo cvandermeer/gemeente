@@ -58,7 +58,6 @@
         <%= link_to "Registreren", new_user_registration_path, class: 'js_header_modal', data: {modal_type: 'register'}, remote: true %>
       </li>
       <% end %>
-
       <% if controller_name == 'reports' && action_name == 'index'  %>
         <li class='hide-on-mobile has-dropdown'>
           <%= link_to 'Melding doen', new_report_path, class: 'js_header_modal reports-link icon', data: {modal_type: 'report'}, remote: true %>

@@ -15,7 +15,11 @@
         <% @deliveries.each do |delivery| %>
           <tr>
             <td>
-              <%= delivery.newsletter.title %>
+              <% if delivery.newsletter.present? %>
+                <%= delivery.newsletter.title %>
+              <% else %>
+                <i>Nieuwsbrief verwijderd</i>
+              <% end %>
             </td>
             <td>
               <%= delivery.streets %>

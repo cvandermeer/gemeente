@@ -6,6 +6,13 @@ GIT
       capistrano (~> 3.1)
       sshkit (~> 1.3)
 
+GIT
+  remote: git@github.com:cvandermeer/contact_form.git
+  revision: 4941cc89eef1a6a6fad5bc0e2b695f5477ef66b8
+  specs:
+    contact_form (0.0.1)
+      rails (~> 4.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -172,7 +179,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.0.1)
-    nokogiri (1.6.7)
+    nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
     notiffany (0.0.8)
       nenv (~> 0.1)
@@ -276,10 +283,10 @@ GEM
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (2.3.3)
-      actionpack (>= 3.0)
-      activesupport (>= 3.0)
-      sprockets (>= 2.8, < 4.0)
+    sprockets-rails (3.0.0)
+      actionpack (>= 4.0)
+      activesupport (>= 4.0)
+      sprockets (>= 3.0.0)
     sqlite3 (1.3.11)
     sshkit (1.8.1)
       net-scp (>= 1.1.2)
@@ -320,6 +327,7 @@ DEPENDENCIES
   capybara
   carrierwave
   ckeditor
+  contact_form!
   devise
   font-awesome-rails
   geocoder
