@@ -58,6 +58,9 @@
   max-width: 300px;
   bottom: 70px;
   top: auto;
+  input[type='submit'] {
+    margin-top: $spacing;
+  }
 }
 
 .arrow-up {

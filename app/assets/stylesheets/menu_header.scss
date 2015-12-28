@@ -13,6 +13,24 @@
   width: 115px;
   padding: 20px $spacing;
   float: left;
+  position: relative;
+  &:before {
+    content: '\f015';
+    font-family: FontAwesome;
+    position: absolute;
+    opacity: 0;
+    font-size: 20px;
+    top: 15px;
+    right: 0;
+    @include transition(0.3s);
+  }
+  &:hover {
+    &:before {
+      opacity: 1;
+      color: $basic-color;
+      right: -$spacing;
+    }
+  }
 }
 
 // Header menu
