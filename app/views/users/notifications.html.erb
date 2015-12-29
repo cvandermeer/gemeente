@@ -10,10 +10,10 @@
       <div class='columns nine'>
         <div class='panel'>
           <div class='panel-header'>
-            <h5>Notificaties</h5>
+            <h5>Berichten</h5>
           </div>
           <div class='panel-body'>
-            <% if @notifications %>
+            <% if @notifications.any? %>
             <ul>
               <% @notifications.each do |notification| %>
                 <% if notification.report? %>
