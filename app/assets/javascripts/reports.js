@@ -1,5 +1,3 @@
-reportDataId = '';
-
 function getReportsForIndex(data) {
   $('.js_all_reports').html(' ');
   if(data.length > 6) {
@@ -15,7 +13,6 @@ function getReportsForIndex(data) {
 }
 
 function fetchReport(data) {
-  reportDataId = data.id;
   $.ajax({
     type: "GET",
     dataType: "html",

@@ -16,6 +16,11 @@
     left: 316px;
     box-shadow: $shadow;
   }
+  &.in-show {
+    &.active {
+      left: 12px;
+    }
+  }
   .report-info {
     padding: 0;
     border-bottom: 1px solid #f4f4f2;

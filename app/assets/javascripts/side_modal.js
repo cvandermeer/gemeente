@@ -1,4 +1,13 @@
+var ready;
 var removedMarker = '';
+
+ready = function() {
+  if($('.map-show').length) {
+    $('.js_side_modal').on('ajax:success', function(e, data, status) {
+      setDataToSideModal(this, data);
+    });
+  }
+};
 
 function initSideModal() {
   $('.report-show:last-child .js_side_modal').on('ajax:success', function(e, data, status) {
@@ -17,15 +26,18 @@ function setDataToSideModal(el, data) {
     $('.new-marker').remove();
   }
   $('body').append(data);
-  //setTimeout(function(){
+  setTimeout(function(){
     $('.side-modal').addClass('active');
+    if($('.map-show').length) {
+      $('.side-modal').addClass('in-show');
+    }
     if($(el).attr('data-modal-type') === 'edit-report') {
       bindReportFormResponse('edit');
       removedMarker = $('.marker[data-marker-id="'+$(el).attr('data-report-id')+'"]');
       removedMarker.css('opacity', '0');
       setNewMarkerOnMap($('.js_latitude_input').val(), $('.js_longitude_input').val());
     }
-  //}, 300);
+  }, 300);
   bindSideModalHandlers();
 
 }
@@ -66,3 +78,6 @@ function resetHeightOfAllReports() {
     $('.js_all_reports').height(85 * report_count - 1);
   }
 }
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
