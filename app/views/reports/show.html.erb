@@ -5,13 +5,11 @@
     <%= link_to 'Aanpassen', edit_report_path(@report), data: {modal_type: 'edit-report',
                                                         report_id: @report.id,
                                                         remote: true},
-                                                        class: 'report-btn fa
-                                                                fa-pencil-square-o js_side_modal' %>
+                                                        class: 'report-show-btn js_side_modal' %>
     <%= link_to 'Verwijderen', delete_report_path(@report), data: { remote: true,
                                                             modal_type: 'destroy',
                                                             modal_element: 'reports' },
-                                                            class: 'report-btn fa
-                                                                    fa-trash-o js_side_modal' %>
+                                                            class: 'report-show-btn delete js_side_modal' %>
   <% end %>
 <% end %>
 
