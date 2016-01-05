@@ -3,6 +3,9 @@
     <%= image_tag('spinner.GIF') %>
   </div>
 </div>
+
+<%= form_for report, html: { multipart: true, type: :html, class: 'validate' }, remote: true do |f| %>
+
   <% report.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
   <% end %>
@@ -31,6 +34,7 @@
 
   <% if !user_signed_in? %>
     <div class='icon email'>
+      <%= f.label :email, 'Email (blijf op de hoogte)' %>
       <%= f.email_field :email, placeholder: 'Email adres', class: 'u-full-width' %>
     </div>
   <% end %>
@@ -45,3 +49,7 @@
   <%= f.hidden_field :latitude, class: 'js_latitude_input' %>
   <%= f.hidden_field :longitude, class: 'js_longitude_input' %>
   <%= f.hidden_field :community_check_name, class: 'js_community_name' %>
+
+  <%= f.submit 'Aanmaken', data: { disable_with: 'Even geduld AUB...' }, class: 'button-primary js_trigger_loading u-full-width' %>
+
+<% end %>
