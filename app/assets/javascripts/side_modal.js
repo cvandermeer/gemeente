@@ -61,8 +61,8 @@ function removeReportAndMarker(data) {
 function resetHeightOfAllReports() {
   var report_count = $('.js_all_reports').find('.report-show').length;
   if(report_count > 6) {
-    $('.js_all_reports').height(88 * 6 + 44);
+    $('.js_all_reports').height(85 * 6 + 44);
   } else {
-    $('.js_all_reports').height(88 * report_count - 1);
+    $('.js_all_reports').height(85 * report_count - 1);
   }
 }
