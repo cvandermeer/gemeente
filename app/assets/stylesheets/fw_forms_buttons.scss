@@ -30,7 +30,7 @@ input[type="url"],
 input[type="password"] {
   border-radius: 0;
   &:focus {
-    border-color: $basic-color;
+    border-color: $dark-gray;
   }
   &:last-child {
     margin-bottom: 0;
@@ -67,6 +67,10 @@ html {
     margin-bottom: $spacing;
     font-size: 14px;
   }
+}
+
+.housenumber {
+  max-width: 100px;
 }
 
 /* Form errors */
@@ -171,7 +175,7 @@ label {
 }
 
 .checkbox + label {
-	padding: 0 0 0 24px;
+	padding: 0 0 0 24px !important;
 	display: inline-block;
 	position: relative;
   &:before {
