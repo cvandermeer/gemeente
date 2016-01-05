@@ -26,11 +26,15 @@ function setHeaderModalData(el, data) {
 
     $('.contact-modal form').on('ajax:success', function(e, data){
       removeHeaderModal($('.header-modal'));
-      setNotice('Uw contactbericht is ontvangen');
+      setNotice('Uw vraag, bericht of feedback is ontvangen');
     });
 
+    if($(el).attr('data-modal-type') == 'contact') {
+      setHeaderModalValidation('.new_message');
+    }
+
     if($(el).attr('data-modal-type') == 'register') {
-      setRegisterValidation();
+      setHeaderModalValidation('.new_user');
     }
 
     if($(el).attr('data-modal-type') == 'report') {
@@ -66,9 +70,9 @@ function bindHeaderModal() {
   });
 }
 
-function setRegisterValidation() {
+function setHeaderModalValidation(el) {
   var validateOptions = {
-    form: $('.new_user'),
+    form: $(el),
     msg_compare: 'Zorg ervoor dat de waardes gelijk zijn',
     msg_email: 'Gebruik een juist email adres',
     msg_min_length: 'Minimaal aantal tekens: ',
@@ -77,6 +81,8 @@ function setRegisterValidation() {
 
   validate = new Validate(validateOptions);
 }
+
+
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
