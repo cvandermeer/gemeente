@@ -1,7 +1,7 @@
 var removedMarker = '';
 
 function initSideModal() {
-  $('.js_side_modal').bind('ajax:success', function(e, data, status) {
+  $('.report-show:last-child .js_side_modal').on('ajax:success', function(e, data, status) {
     setDataToSideModal(this, data);
   });
 }
@@ -17,7 +17,7 @@ function setDataToSideModal(el, data) {
     $('.new-marker').remove();
   }
   $('body').append(data);
-  setTimeout(function(){
+  //setTimeout(function(){
     $('.side-modal').addClass('active');
     if($(el).attr('data-modal-type') === 'edit-report') {
       bindReportFormResponse('edit');
@@ -25,7 +25,7 @@ function setDataToSideModal(el, data) {
       removedMarker.css('opacity', '0');
       setNewMarkerOnMap($('.js_latitude_input').val(), $('.js_longitude_input').val());
     }
-  }, 300);
+  //}, 300);
   bindSideModalHandlers();
 
 }
@@ -43,6 +43,9 @@ function removeSideModal(modal) {
 function bindSideModalHandlers() {
   $('.js_close_modal, .modal-confirm').on('click', function() {
     removeSideModal($('.side-modal'));
+    if($('.new-marker').length !== 0) {
+      $('.new-marker').parent().remove();
+    }
   });
   $('.modal-confirm.yes').bind('ajax:success', function(e, data, status) {
     removeReportAndMarker(data);

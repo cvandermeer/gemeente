@@ -1,3 +1,5 @@
+reportDataId = '';
+
 function getReportsForIndex(data) {
   $('.js_all_reports').html(' ');
   if(data.length > 6) {
@@ -13,6 +15,7 @@ function getReportsForIndex(data) {
 }
 
 function fetchReport(data) {
+  reportDataId = data.id;
   $.ajax({
     type: "GET",
     dataType: "html",
@@ -25,13 +28,12 @@ function fetchReport(data) {
 
 function setReportIndex(data) {
   $('.js_all_reports').append(data);
-  //bindReportHandlers();
   bindHoverOnReportShowActiveMarker();
   initSideModal();
 }
 
 function bindHoverOnReportShowActiveMarker() {
-  $('.report-show').hover(function() {
+  $('.report-show:last-child').hover(function() {
     $('.marker[data-marker-id="'+$(this).attr('data-report-id')+'"]').addClass('active');
   }, function() {
     $('.marker[data-marker-id="'+$(this).attr('data-report-id')+'"]').removeClass('active');
