@@ -1,9 +1,11 @@
 function getReportsForIndex(data) {
   $('.js_all_reports').html(' ');
   if(data.length > 6) {
-    $('.js_all_reports').height(88 * 6 + 44);
+    $('.js_all_reports').height(85 * 6 + 42);
+  } else if(data.length !== 0) {
+    $('.js_all_reports').height(85 * data.length + 2);
   } else {
-    $('.js_all_reports').height(88 * data.length - 1);
+    $('.js_all_reports').height(0);
   }
   for (var i = 0; i < data.length; i++)  {
     fetchReport(data[i]);

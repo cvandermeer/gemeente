@@ -1,4 +1,4 @@
-<div class='clearfix report-show' data-report-id='<%= report.id %>'>
+<div class='clearfix report-show<% if user_signed_in? && report.editable_by?(current_user) && controller_name !=  'users' %> my-report<% end %>' data-report-id='<%= report.id %>'>
 
   <%= link_to '', report, data: { no_turbolink: true }, class: 'goto-report', target: '_blank'  %>
 
@@ -14,14 +14,18 @@
                                               class: 'report', target: '_blank' %>
     </h3>
     <span class='date'><%= report.created_at %></span>
-    <p>
       <% if report.image(:thumb) != nil %>
-        <%= report.description.truncate(30, separator: ' ') %>
+      <p>
+        <%= report.description.truncate(28) %>
+      </p>
+      <div class='address image'><%= report.location.truncate(32) %></div>
       <% else %>
-        <%= report.description.truncate(96, separator: ' ') %>
+      <p>
+        <%= report.description.truncate(40) %>
+      </p>
+      <div class='address'><%= report.location.truncate(44) %></div>
       <% end %>
-    </p>
-    <div class='address'><%= report.location %></div>
+
     <% if user_signed_in? %>
       <% if report.editable_by?(current_user) && controller_name !=  'users' %>
         <%= link_to 'Aanpassen', edit_report_path(report), data: {modal_type: 'edit-report', report_id: report.id , remote: true},

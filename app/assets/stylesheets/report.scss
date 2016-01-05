@@ -4,9 +4,8 @@
   box-shadow: $shadow;
   width: 304px;
   height: 0;
-  max-height: calc(100% - 300px);
-  overflow: auto;
-  z-index: 2;
+  max-height: calc(100% - 160px);
+  overflow-x: hidden;
   position: fixed;
   top: 82px;
   left: $spacing;
@@ -15,8 +14,8 @@
 
 .report-image {
   float: left;
-  max-width: 87px;
-  max-height: 87px;
+  max-width: 84px;
+  max-height: 84px;
   padding: 0 12px 0 0;
 }
 
@@ -45,17 +44,16 @@
     position: absolute;
     top: 0;
     width: 120px;
-    height: 20px;
-    right: -144px;
+    height: 18px;
+    right: -105px;
     z-index: 2;
-    //text-align: center;
-    text-indent: 24px;
+    text-indent: 30px;
     border-radius: 0px !important;
     padding: $spacing;
     text-decoration: none;
     &.fa-trash-o {
       top: auto;
-      bottom: 0;
+      bottom: 3px;
     }
     &:before {
       top: $spacing;
@@ -65,6 +63,12 @@
       background: $basic-color;
       color: #fff;
     }
+  }
+}
+
+.my-report {
+  .date {
+    right: 50px;
   }
 }
 
@@ -80,7 +84,7 @@
 
 .report-show {
   position: relative;
-  height: 87px;
+  height: 84px;
   background: #fff;
   @include transition(0.3s);
   border-bottom: 1px solid #f4f4f2;
@@ -90,13 +94,18 @@
   .address {
     @include transition(0.3s);
     color: #222;
+    font-size: 12px;
     text-indent: 16px;
     &:before {
       position: absolute;
       left: 12px;
+      font-style: normal;
       text-indent: 0;
       content: '\f041';
       font-family: FontAwesome;
+    }
+    &.image:before {
+      left: 100px;
     }
   }
   .goto-report {
