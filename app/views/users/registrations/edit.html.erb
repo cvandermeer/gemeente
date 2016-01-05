@@ -6,14 +6,14 @@
       <div class='columns three'>
 
         <%= render 'users/panels/user_image_panel', user: current_user %>
-        <%= render 'users/panels/fast_links_panel', user: current_user %>
+        <%# render 'users/panels/fast_links_panel', user: current_user %>
 
         <div class='panel'>
           <div class='panel-header'>
             <h5>Account verwijderen</h5>
           </div>
           <div class='panel-body'>
-            <p>Uw acount permanent verwijderen? <%= link_to "Verwijder mijn account",
+            <p>Uw account permanent verwijderen? <%= link_to "Verwijder mijn account",
                                                registration_path(resource_name),
                                                data: { confirm: "Weet je het zeker?" },
                                                method: :delete %></p>
@@ -33,7 +33,7 @@
                 <div class='columns three'>
                   <%= f.label :name, 'Voor en achternaam' %>
                 </div>
-                <div class='columns nine'>
+                <div class='columns seven icon person'>
                   <%= f.text_field :name, autofocus: true, placeholder: 'Voor en achternaam', class: 'u-full-width' %>
                 </div>
               </div>
@@ -41,8 +41,8 @@
                 <div class='columns three'>
                   <%= f.label :email, 'Email adres' %>
                 </div>
-                <div class='columns nine'>
-                  <%= f.email_field :email, placeholder: 'Email adres', class: 'u-full-width' %>`
+                <div class='columns seven email icon'>
+                  <%= f.email_field :email, placeholder: 'Email adres', class: 'u-full-width', validate: '' %>
                 </div>
               </div>
               <div class='row'>
@@ -57,27 +57,28 @@
                 <div class='columns three'>
                   <%= f.label :address, 'Straat + huisnummer' %>
                 </div>
-                <div class='columns three'>
+                <div class='columns five icon house'>
                   <%= f.text_field :street, placeholder: 'Straat', class: 'u-full-width' %>
                 </div>
-                <div class='columns three'>
-                  <%= f.text_field :housenumber, placeholder: 'Huisnummer', class: 'u-full-width' %>
+                <div class='columns two'>
+                  <%= f.text_field :housenumber, placeholder: 'Huisnummer', class: 'housenumber' %>
                 </div>
               </div>
               <div class='row'>
                 <div class='columns three'>
                   <%= f.label :town, 'Plaats' %>
                 </div>
-                <div class='columns nine'>
+                <div class='columns seven icon city'>
                   <%= f.text_field :town, placeholder: 'Plaatsnaam', class: 'u-full-width' %>
                 </div>
               </div>
               <div class='row'>
                 <div class='columns three'>
-                  <%= f.label :get_mail, 'Email ontvangen' %>
+                  <p></p>
                 </div>
                 <div class='columns nine'>
-                  <%= f.check_box :get_mail %>
+                  <%= f.check_box :get_mail, class: 'checkbox' %>
+                  <%= f.label :get_mail, 'Ontvang nieuwbrieven van de gemeente waar u woond' %>
                 </div>
               </div>
               <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

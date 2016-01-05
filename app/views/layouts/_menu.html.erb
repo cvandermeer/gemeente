@@ -44,11 +44,6 @@
       </li>
       <li class='hide-on-mobile has-dropdown <%= current_page_class(notifications_users_path) %>'>
         <%= link_to 'Berichten', notifications_users_path, class: 'message icon' %>
-        <ul class='dropdown'>
-          <li class='<%= current_page_class(notifications_users_path) %>'>
-            <%= link_to "Bekijk inbox ( #{ current_user.notifications.count } )", notifications_users_path %>
-          </li>
-        </ul>
       </li>
       <% else %>
       <li  class='hide-on-mobile'>
@@ -65,7 +60,7 @@
         <li class='hide-on-mobile has-dropdown <%= current_page_class(root_path) %>'>
           <%= link_to 'Melding doen', root_path, class: 'reports-link icon', data: { no_turbolink: true } %>
       <% end %>
-        <% if user_signed_in? %>
+        <% if user_signed_in? && current_user.reports.any? %>
           <ul class='dropdown'>
             <li class='<%= current_page_class(reports_users_path) %>'>
               <%= link_to 'Mijn meldingen', reports_users_path %>

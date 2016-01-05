@@ -5,21 +5,24 @@
   <div class='panel-body'>
     <% if community_list.any? %>
       <%= form_for community_subscription do |f| %>
-        <div class='row select'>
-          <%= f.collection_select :community_id, community_list, :id, :name, {include_blank: 'Kies een Gemeente'}, {class: 'js_init_select'} %>
-          <%= f.submit 'Gemeente toevoegen' %>
+        <div class='row'>
+          <div class='columns four'>
+            <%= f.collection_select :community_id, community_list, :id, :name, {include_blank: 'Kies een Gemeente'}, {class: 'js_init_select'} %>
+            <%= f.submit 'Gemeente toevoegen', class: 'button-primary u-full-width' %>
+          </div>
+          <div class='columns u-pull-right six'>
+            <% current_user.community_subscriptions.each do |subscription, id| %>
+              <div class='subscription'>
+                <%= subscription.community.name %>
+                <%= link_to 'Niet volgen', delete_community_subscription_path(subscription.id), data: { remote: true },
+                                                                                                class: 'remove-subscription js_modal u-pull-right ' %>
+              </div>
+            <% end %>
+          </div>
         </div>
       <% end %>
     <% end %>
 
-    <ul>
-      <% current_user.community_subscriptions.each do |subscription, id| %>
-        <li>
-          <%= subscription.community.name %>
-          <%= link_to 'Verwijderen', delete_community_subscription_path(subscription.id), data: { remote: true },
-                                                                                          class: 'fa fa-trash-o js_modal' %>
-        </li>
-      <% end %>
-    </ul>
+
   </div>
 </div>

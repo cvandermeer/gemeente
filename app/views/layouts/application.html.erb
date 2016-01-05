@@ -30,7 +30,7 @@
     <% if controller_name != 'reports' && action_name != 'index' %>
       <%= render 'layouts/footer' %>
     <% else %>
-      <%= link_to 'Contact', new_message_path, remote: true, class: 'js_header_modal contact-btn' %>
+      <%= link_to 'Contact', new_message_path, remote: true, class: 'js_header_modal contact-btn', data: {modal_type: 'contact'} %>
     <% end %>
     </div>
 
