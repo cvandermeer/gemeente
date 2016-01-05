@@ -18,7 +18,7 @@
       <% if report.image(:thumb) != nil %>
         <%= report.description.truncate(30, separator: ' ') %>
       <% else %>
-        <%= report.description.truncate(96, separator: ' ') %>
+        <%= report.description.truncate(40, separator: ' ') %>
       <% end %>
     </p>
     <div class='address'><%= report.location %></div>
