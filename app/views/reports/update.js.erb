@@ -1,14 +1,19 @@
 $('#edit_report_' + <%= @report.id %>).on('ajax:success', function() {
-  $.ajax({
-    type: 'GET',
-    dataType: 'json',
-    url: '/reports/markers',
-    data: { 'id': <%= @report.id %> },
-    success: function(data){
-      goToReportLocation(data);
-      setNotice('Uw melding is aangepast: ' + data.title);
-      removeSideModal($('.side-modal'));
-      $('.new-marker').remove();
-    }
-  });
+  if($('.map-show').length) {
+    location.reload();
+    setAfterReloadNotice('Deze melding is aangepast');
+  } else {
+    $.ajax({
+      type: 'GET',
+      dataType: 'json',
+      url: '/reports/markers',
+      data: { 'id': <%= @report.id %> },
+      success: function(data){
+        goToReportLocation(data);
+        setNotice('Uw melding is aangepast: ' + data.title);
+        removeSideModal($('.side-modal'));
+        $('.new-marker').remove();
+      }
+    });
+  }
 });

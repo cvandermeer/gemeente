@@ -34,6 +34,9 @@ function setDataToSideModal(el, data) {
     if($(el).attr('data-modal-type') === 'edit-report') {
       bindReportFormResponse('edit');
       removedMarker = $('.marker[data-marker-id="'+$(el).attr('data-report-id')+'"]');
+      if($('.map-show').length) {
+        removedMarker = $('.marker');
+      }
       removedMarker.css('opacity', '0');
       setNewMarkerOnMap($('.js_latitude_input').val(), $('.js_longitude_input').val());
     }

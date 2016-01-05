@@ -10,6 +10,11 @@ ready = function() {
     removeNoticeAfterTime();
     onClickCloseNotice();
   }
+
+  if(localStorage.afterReloadNotice !== '0') {
+    setNotice(localStorage.afterReloadNotice);
+    localStorage.afterReloadNotice = 0;
+  }
 };
 
 function setNotice(notice) {
@@ -37,6 +42,10 @@ function onClickCloseNotice() {
   $('.notice .close').on('click', function() {
     removeNotice();
   });
+}
+
+function setAfterReloadNotice(notice) {
+  localStorage.afterReloadNotice = notice;
 }
 
 $(document).ready(ready);
