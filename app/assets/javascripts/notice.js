@@ -11,9 +11,9 @@ ready = function() {
     onClickCloseNotice();
   }
 
-  if(localStorage.afterReloadNotice !== '0') {
+  if(typeof localStorage.afterReloadNotice !== "undefined") {
     setNotice(localStorage.afterReloadNotice);
-    localStorage.afterReloadNotice = 0;
+    delete localStorage.afterReloadNotice;
   }
 };
 
