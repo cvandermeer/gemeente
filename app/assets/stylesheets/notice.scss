@@ -11,13 +11,14 @@ $green: #3c763d;
   height: 24px;
   padding: 12px 52px 12px 12px;
   margin: 0 auto;
-  color: $dark-gray;
+  color: #fff;
   text-align: center;
   z-index: 1;
-  background: #fff;
+  background: $green;
   opacity: 0;
+  visibility: hidden;
   box-shadow: $shadow;
-  border: 1px solid $green;
+  //border: 1px solid $green;
   border-radius: 2px;
   overflow: hidden;
   @include transition(0.3s);
@@ -29,16 +30,21 @@ $green: #3c763d;
     position: absolute;
     cursor: pointer;
     &:before {
-      font-size: 21px;
+      font-size: 18px;
       content: '\f00d';
       font-family: FontAwesome;
+      position: absolute;
+      top: 2px;
+      left: 7px;
     }
   }
   &.active {
+    visibility: visible;
     opacity: 1;
   }
 }
 
 .alert, .fail{
-  border: 1px solid $red;
+  background: $red;
+  //border: 1px solid $red;
 }

@@ -1,11 +1,12 @@
 <div class='inner'>
   <div class='container'>
-    <h2>Nieuws van gemeentes</h2>
+    <h2>Gemeente nieuws</h2>
     <% if current_user && current_user.community? %>
       <p><%= link_to 'Nieuws aanmaken', new_newsletter_path, class: 'js_modal', remote: true %></p>
     <% end %>
     <%= select_tag 'gemeente', options_from_collection_for_select(@communities, :id, :name),
-                               include_blank: 'Kies een gemeente' %>
+                               include_blank: 'Kies een gemeente',
+                               class: 'js_init_select' %>
 
     <% @newsletters.each do |newsletter| %>
       <%= link_to newsletter_path(newsletter), class: 'no_link_style' do %>

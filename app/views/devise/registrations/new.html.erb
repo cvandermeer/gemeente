@@ -24,7 +24,7 @@
       <div class='icon person'>
         <%= f.text_field :name, placeholder: 'Voornaam & achternaam', class: 'u-full-width' %>
       </div>
-      <em>Staat en woonplaats zijn optineel</em>
+      <%= f.label :street, 'Straat en huisnummer (optioneel)' %>
       <div class='row'>
         <div class='columns eight icon house'>
           <%= f.text_field :street, placeholder: 'Straat', class: 'u-full-width' %>

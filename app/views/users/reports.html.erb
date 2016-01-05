@@ -18,7 +18,7 @@
           	   <%= render current_user.reports %>
           	</div>
             <% else %>
-              Er zijn door u geen meldingen gedaan, <%= link_to 'Melding doen!', new_report_path, class: 'js_modal', remote: true %> van zwerf afval, kappot straatmeubilair, etc.
+              Er zijn door u geen meldingen gedaan, <%= link_to 'Melding doen!', root_path, data: { no_turbolink: true } %> van zwerf afval, kappot straatmeubilair, etc.
             <% end %>
           </div>
         </div>

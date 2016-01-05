@@ -34,12 +34,13 @@
 
   <% if !user_signed_in? %>
     <div class='icon email'>
+      <%= f.label :email, 'Email (blijf op de hoogte)' %>
       <%= f.email_field :email, placeholder: 'Email adres', class: 'u-full-width' %>
     </div>
   <% end %>
 
   <div class='row'>
-    <%= f.label :image_one, 'Afbeeldingen toevoegen' %>
+    <%= f.label :image_one, 'Afbeeldingen toevoegen (optioneel)' %>
     <%= f.file_field :image_one %>
     <%= f.file_field :image_two %>
     <%= f.file_field :image_three %>

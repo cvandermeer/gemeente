@@ -21,11 +21,11 @@ User.create(email: 'admin@ikbeninwoner.nl',
 
 
 categories = [
-  'groen',
-  'afval',
-  'straatverlichting',
-  'wegdek',
-  'overig'
+  'Groen',
+  'Afval',
+  'Straatverlichting',
+  'Wegdek',
+  'Overig'
 ]
 
 categories.each do |category_name|

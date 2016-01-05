@@ -4,13 +4,22 @@
     <div class='close-modal js_close_modal'></div>
     <h5>Contact opnemen</h5>
     <%= form_for @message, remote: true do |f| %>
+    <% if user_signed_in? %>
+      <% if current_user.name? %>
+        <%= f.hidden_field :name, value: current_user.name %>
+      <% else %>
+        <%= f.text_field :name, placeholder: 'Naam *', class: 'u-full-width', validate: '' %>
+      <% end %>
+      <%= f.hidden_field :email, value: current_user.email %>
+    <% else %>
       <div class='icon person'>
-        <%= f.text_field :name, placeholder: 'naam', class: 'u-full-width' %>
+        <%= f.text_field :name, placeholder: 'Naam *', class: 'u-full-width', validate: '' %>
       </div>
       <div class='icon email'>
-        <%= f.email_field :email, placeholder: 'email', class: 'u-full-width' %>
+        <%= f.email_field :email, placeholder: 'Email *', class: 'u-full-width', validate: ''  %>
       </div>
-      <%= f.text_area :body, placeholder: 'bericht', class: 'u-full-width' %>
+    <% end %>
+      <%= f.text_area :body, placeholder: 'Vraag, bericht of feedback voor ikbeninwoner.nl *', class: 'u-full-width contact-textarea', validate: ''  %>
       <%= recaptcha_tags %>
       <%= f.submit 'Versturen', data: { disable_with: 'Even geduld AUB...' }, class: 'button-primary js_trigger_loading u-full-width' %>
     <% end %>

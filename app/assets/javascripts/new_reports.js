@@ -17,11 +17,6 @@ function bindReportFormResponse(type) {
   setupValidation();
   //triggerLoading();
 
-  $('.contact-modal form').on('ajax:success', function(e, data){
-    removeHeaderModal($('.header-modal'));
-    setNotice('Uw melding is ontvangen');
-  });
-
   $('.report-modal form').on("ajax:success", function(e, data){
     if(data !== null && typeof data === 'object') {
       goToReportLocation(data);
@@ -34,8 +29,8 @@ function bindReportFormResponse(type) {
       google.maps.event.removeListener(clickListenerForNewMarkerHandle);
 
       triggerAutocomplete();
-      triggerLoading();
-      setNewMarkerOnMapClicked();
+      //triggerLoading();
+      if(type === 'new') setNewMarkerOnMapClicked();
       setNewMarkerOnStreetAndTownGeoLocation();
     }
   });

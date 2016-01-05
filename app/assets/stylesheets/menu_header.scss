@@ -47,6 +47,13 @@ header {
     box-shadow: none;
     width: 100%;
     background: #fff;
+    a {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    .dropdown {
+      top: 62px;
+    }
   }
   ul {
     float: right;
@@ -60,6 +67,7 @@ header {
       list-style: none;
       display: inline-block;
       float: right;
+      @include transition(0.3s);
       &:hover,
       &.active {
         background: $background-color;
