@@ -8,18 +8,19 @@
     </div>
   <% end %>
   <div class='report-info clearfix'>
-
-    <h3>
-      <%= link_to report.title, report, data: { id: report.id, no_turbolink: true },
-                                              class: 'report', target: '_blank' %>
-    </h3>
     <span class='date'><%= report.created_at %></span>
       <% if report.image(:thumb) != nil %>
+        <h3>
+          <%= link_to report.title.truncate(16) %>
+        </h3>
         <p>
           <%= report.description.truncate(28) %>
         </p>
         <div class='address image'><%= report.location.truncate(32) %></div>
         <% else %>
+        <h3>
+          <%= link_to report.title.truncate(26) %>
+        </h3>
         <p>
           <%= report.description.truncate(39) %>
         </p>
