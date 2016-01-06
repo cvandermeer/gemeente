@@ -2,6 +2,7 @@ var ready;
 
 ready = function() {
   validateUserEdit();
+  triggerAutocomplete();
 };
 
 function validateUserEdit() {

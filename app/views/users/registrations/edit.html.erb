@@ -6,7 +6,6 @@
       <div class='columns three'>
 
         <%= render 'users/panels/user_image_panel', user: current_user %>
-        <%# render 'users/panels/fast_links_panel', user: current_user %>
 
         <div class='panel'>
           <div class='panel-header'>
@@ -58,7 +57,8 @@
                   <%= f.label :address, 'Straat + huisnummer' %>
                 </div>
                 <div class='columns five icon house'>
-                  <%= f.text_field :street, placeholder: 'Straat', class: 'u-full-width' %>
+                  <%= f.text_field :street, placeholder: 'Straat', class: 'js_street_input u-full-width',
+                                   autocomplete: 'off' %>
                 </div>
                 <div class='columns two'>
                   <%= f.text_field :housenumber, placeholder: 'Huisnummer', class: 'housenumber' %>
@@ -69,7 +69,8 @@
                   <%= f.label :town, 'Plaats' %>
                 </div>
                 <div class='columns seven icon city'>
-                  <%= f.text_field :town, placeholder: 'Plaatsnaam', class: 'u-full-width' %>
+                  <%= f.text_field :town, placeholder: 'Plaatsnaam', class: 'u-full-width js_town_input',
+                      autocomplete: 'off' %>
                 </div>
               </div>
               <div class='row'>
