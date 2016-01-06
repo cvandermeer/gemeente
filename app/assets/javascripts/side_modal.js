@@ -33,6 +33,7 @@ function setDataToSideModal(el, data) {
     }
     if($(el).attr('data-modal-type') === 'edit-report') {
       bindReportFormResponse('edit');
+      findAndCloseInfoBox();
       removedMarker = $('.marker[data-marker-id="'+$(el).attr('data-report-id')+'"]');
       if($('.map-show').length) {
         removedMarker = $('.marker');
