@@ -63,8 +63,14 @@ function bindSideModalHandlers() {
     }
   });
   $('.modal-confirm.yes').bind('ajax:success', function(e, data, status) {
-    removeReportAndMarker(data);
-    setNotice('De melding <strong>' + data.title + '</strong> is verwijdert');
+    if($('.map-show').length) {
+      setAfterReloadNotice('Uw melding is verwijdert: ' + data.title);
+      location.href = location.origin;
+    } else {
+      removeReportAndMarker(data);
+      setNotice('Uw melding is verwijdert: ' + data.title);
+    }
+
   });
 }
 

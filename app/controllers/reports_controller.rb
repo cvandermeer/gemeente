@@ -77,7 +77,11 @@ class ReportsController < ApplicationController
   end
 
   def destroy
-    render json: @report if @report.destroy
+    # if params[:on_show]
+    #   redirect_to root_path, notice: "De melding #{@report.title} is verwijdert"
+    # else
+      render json: @report if @report.destroy
+    # end
   end
 
   private

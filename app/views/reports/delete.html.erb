@@ -28,10 +28,10 @@
     <div class='delete-wrap'>
       <p class='delete-msg'>Weet u het zeker?</p>
       <%= link_to 'Ja', report_path(@report.id), data: { method: 'delete',
-                                                        remote: true,
-                                                        id: @report.id,
-                                                        controller_name: 'reports' },
-                                                        class: 'modal-confirm yes' %>
+                                                         remote: true,
+                                                         id: @report.id,
+                                                         controller_name: 'reports' },
+                                                         class: 'modal-confirm yes' %>
       <%= link_to 'Nee', '#', class: 'modal-confirm no' %>
     </div>
   </div>
