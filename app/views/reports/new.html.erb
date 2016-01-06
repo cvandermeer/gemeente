@@ -4,7 +4,6 @@
     <div class='close-modal js_close_modal'></div>
     <h5>Melding doen</h5>
     <%= form_for @report, html: { multipart: true, type: :html, class: 'validate' }, remote: true do |f| %>
-
       <%= render 'form', f: f, report: @report, report_category: @report_category %>
       <%= f.submit 'Melding aanmaken', data: { disable_with: 'Even geduld AUB...' },
                                        class: 'button-primary js_trigger_loading u-full-width' %>
