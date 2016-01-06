@@ -135,8 +135,19 @@
   }
 }
 
-.side-modal .address:before {
-  left: 2px;
+.side-modal {
+  .address {
+    &:before {
+      left: 2px;
+    }
+    &.image:before {
+      left: 89px;
+    }
+  }
+  .report-image {
+    max-width: 75px;
+    max-height: 75px;
+  }
 }
 
 .report-show-btn {
