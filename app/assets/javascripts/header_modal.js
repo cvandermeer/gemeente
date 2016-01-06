@@ -40,6 +40,7 @@ function setHeaderModalData(el, data) {
     if($(el).attr('data-modal-type') == 'new-report') {
       // new_reports.js
       bindReportFormResponse('new');
+      findAndCloseInfoBox();
     }
   }
 }
