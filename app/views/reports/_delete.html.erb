@@ -12,14 +12,17 @@
 
         <h3><%= report.title %></h3>
         <span class='date'><%= report.created_at %></span>
-        <p>
-          <% if report.image(:thumb) != nil %>
-            <%= report.description.truncate(30, separator: ' ') %>
+        <% if report.image(:thumb) != nil %>
+          <p>
+            <%= report.description.truncate(28) %>
+          </p>
+          <div class='address image'><%= report.location.truncate(32) %></div>
           <% else %>
-            <%= report.description.truncate(96, separator: ' ') %>
-          <% end %>
-        </p>
-        <div class='address'><%= report.location %></div>
+          <p>
+            <%= report.description.truncate(39) %>
+          </p>
+          <div class='address'><%= report.location.truncate(44) %></div>
+        <% end %>
       </div>
     </div>
     <div class='delete-wrap'>

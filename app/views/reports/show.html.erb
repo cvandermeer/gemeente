@@ -16,48 +16,20 @@
 <div class='inner details'>
   <div class='container'>
     <div class='row'>
-      <h1>
-        <%= @report.title %>
-      </h1>
-    </div>
-
-    <div class='row'>
-      <div class='side-bar-left columns three'>
-        <div class='side-contact'>
-          <h3>Contact</h3>
-          <ul>
-            <li>Gemeente: <%= @report.community_name %></li>
-            <li>Straat: <%= @report.address %></li>
-            <li>Plaats: <%= @report.town %></li>
-          </ul>
-
-          <ul class='contact'>
-            <% if @report.community_email != nil %>
-              <li>
-                <i class="fa fa-envelope"></i>
-                <%= mail_to @report.community_email %>
-              </li>
-            <% end %>
-            <% if @report.community_phonenumber != nil %>
-              <li>
-                <i class="fa fa-mobile"></i>
-                <%= @report.community_phonenumber %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-      <div class='columns nine'>
+      <div class='columns four'>
+        <h1>
+          <%= @report.title %>
+        </h1>
         <% if @report.image(:image_big) != nil %>
           <%= image_tag @report.image(:image_big), class: 'u-max-full-width' %>
         <% end %>
-          <h3>Beschrijving</h3>
           <p><%= @report.description %></p>
       </div>
-    </div>
-
-    <div class='row pano'>
-      <div id='pano'>
+      <div class='columns eight'>
+        <div class='pano'>
+          <div id='pano'>
+          </div>
+        </div>
       </div>
     </div>
   </div>

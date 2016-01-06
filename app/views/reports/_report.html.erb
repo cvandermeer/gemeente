@@ -15,15 +15,15 @@
     </h3>
     <span class='date'><%= report.created_at %></span>
       <% if report.image(:thumb) != nil %>
-      <p>
-        <%= report.description.truncate(28) %>
-      </p>
-      <div class='address image'><%= report.location.truncate(32) %></div>
-      <% else %>
-      <p>
-        <%= report.description.truncate(39) %>
-      </p>
-      <div class='address'><%= report.location.truncate(44) %></div>
+        <p>
+          <%= report.description.truncate(28) %>
+        </p>
+        <div class='address image'><%= report.location.truncate(32) %></div>
+        <% else %>
+        <p>
+          <%= report.description.truncate(39) %>
+        </p>
+        <div class='address'><%= report.location.truncate(44) %></div>
       <% end %>
 
     <% if user_signed_in? %>

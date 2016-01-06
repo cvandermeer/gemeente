@@ -91,23 +91,6 @@
   &:last-child {
     border-bottom: none;
   }
-  .address {
-    @include transition(0.3s);
-    color: #222;
-    font-size: 12px;
-    text-indent: 16px;
-    &:before {
-      position: absolute;
-      left: 12px;
-      font-style: normal;
-      text-indent: 0;
-      content: '\f041';
-      font-family: FontAwesome;
-    }
-    &.image:before {
-      left: 100px;
-    }
-  }
   .goto-report {
     position: absolute;
     z-index: 1;
@@ -132,6 +115,28 @@
   .report-btn {
     box-shadow: none;
   }
+}
+
+.address {
+  @include transition(0.3s);
+  color: #222;
+  font-size: 12px;
+  text-indent: 16px;
+  &:before {
+    position: absolute;
+    left: 12px;
+    font-style: normal;
+    text-indent: 0;
+    content: '\f041';
+    font-family: FontAwesome;
+  }
+  &.image:before {
+    left: 100px;
+  }
+}
+
+.side-modal .address:before {
+  left: 2px;
 }
 
 .report-show-btn {
