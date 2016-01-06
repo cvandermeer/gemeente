@@ -9,19 +9,20 @@
         </div>
       <% end %>
       <div class='report-info clearfix'>
-
-        <h3><%= @report.title %></h3>
         <span class='date'><%= @report.created_at %></span>
+
         <% if @report.image(:thumb) != nil %>
-          <p>
-            <%= @report.description.truncate(28) %>
-          </p>
-          <div class='address image'><%= @report.location.truncate(32) %></div>
+            <h3><%= @report.title.truncate(18) %></h3>
+            <p><%= @report.description.truncate(28) %></p>
+            <div class='address image'>
+              <%= @report.location.truncate(32) %>
+            </div>
           <% else %>
-          <p>
-            <%= @report.description.truncate(39) %>
-          </p>
-          <div class='address'><%= @report.location.truncate(44) %></div>
+            <h3><%= @report.title.truncate(26) %></h3>
+            <p><%= @report.description.truncate(39) %></p>
+            <div class='address'>
+              <%= @report.location.truncate(44) %>
+            </div>
         <% end %>
       </div>
     </div>
