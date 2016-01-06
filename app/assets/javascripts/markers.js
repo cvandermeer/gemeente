@@ -153,10 +153,10 @@ function addClickEventToMarker(marker, i) {
 
 function addMouseOverAndOutToMarker(marker) {
   google.maps.event.addListener(marker, 'mouseover', function(e) {
-    $('.reports').find('li[data-reports-id="'+marker.id+'"]').addClass('active');
+    $('.js_all_reports').find('.report-show[data-report-id="'+marker.id+'"]').addClass('active');
   });
   google.maps.event.addListener(marker, 'mouseout', function(e) {
-    $('.reports').find('li[data-reports-id="'+marker.id+'"]').removeClass('active');
+    $('.js_all_reports').find('.report-show[data-report-id="'+marker.id+'"]').removeClass('active');
   });
 }
 

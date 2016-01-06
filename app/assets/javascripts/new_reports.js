@@ -10,30 +10,11 @@ var validate;
 function bindReportFormResponse(type) {
   // Binds the functions to the form
   geocoder = new google.maps.Geocoder();
-
   triggerAutocomplete();
   setNewMarkerOnStreetAndTownGeoLocation();
   if(type === 'new') setNewMarkerOnMapClicked();
   setupValidation();
   //triggerLoading();
-
-  $('.report-modal form').on("ajax:success", function(e, data){
-    if(data !== null && typeof data === 'object') {
-      goToReportLocation(data);
-      removeHeaderModal($('.header-modal'));
-      removeOldNewMarker();
-      setNotice('Uw melding is ontvangen: ' + data.title);
-    }  else if(data.indexOf('form') > 0) {
-      $('.report-modal form').html(data);
-
-      google.maps.event.removeListener(clickListenerForNewMarkerHandle);
-
-      triggerAutocomplete();
-      //triggerLoading();
-      if(type === 'new') setNewMarkerOnMapClicked();
-      setNewMarkerOnStreetAndTownGeoLocation();
-    }
-  });
 }
 
 function setNewMarkerOnStreetAndTownGeoLocation() {

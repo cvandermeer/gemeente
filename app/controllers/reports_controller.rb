@@ -73,10 +73,7 @@ class ReportsController < ApplicationController
   end
 
   def delete
-    title = 'Melding verwijderen'
-    text = 'Deze melding verwijderen?'
-    render partial: 'delete', locals: { title: title, text: text, report: @report,
-                                        el: @report, controller_route: 'reports' }
+    render 'delete'
   end
 
   def destroy

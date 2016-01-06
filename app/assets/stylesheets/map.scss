@@ -3,8 +3,9 @@
   min-height: 100%;
   width: 100%;
   &.map-show {
-    height: 150px;
-    min-height: 150px;
+    margin-bottom: $spacing;
+    height: 400px;
+    min-height: 400px;
   }
 }
 
@@ -42,12 +43,13 @@ img {
   }
 }
 
-.row.pano {
-  height: 500px;
+.pano {
+  height: 400px;
+  margin-bottom: 12px;
 }
 
 #pano{
-  height:500px;
+  height:400px;
 }
 
 .google-maps-search {

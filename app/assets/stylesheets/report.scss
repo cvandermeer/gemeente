@@ -91,23 +91,6 @@
   &:last-child {
     border-bottom: none;
   }
-  .address {
-    @include transition(0.3s);
-    color: #222;
-    font-size: 12px;
-    text-indent: 16px;
-    &:before {
-      position: absolute;
-      left: 12px;
-      font-style: normal;
-      text-indent: 0;
-      content: '\f041';
-      font-family: FontAwesome;
-    }
-    &.image:before {
-      left: 100px;
-    }
-  }
   .goto-report {
     position: absolute;
     z-index: 1;
@@ -131,5 +114,62 @@
   overflow: hidden;
   .report-btn {
     box-shadow: none;
+  }
+}
+
+.address {
+  @include transition(0.3s);
+  color: #222;
+  font-size: 12px;
+  text-indent: 16px;
+  &:before {
+    position: absolute;
+    left: 12px;
+    font-style: normal;
+    text-indent: 0;
+    content: '\f041';
+    font-family: FontAwesome;
+  }
+  &.image:before {
+    left: 100px;
+  }
+}
+
+.side-modal .address:before {
+  left: 2px;
+}
+
+.report-show-btn {
+  width: 112px;
+  padding: $spacing;
+  text-indent: 24px;
+  color: $dark-gray;
+  background: #fff;
+  position: absolute;
+  top: 78px;
+  border-radius: 2px;
+  box-shadow: $shadow;
+  left: 12px;
+  text-decoration: none;
+  @include transition(0.3s);
+  &:before {
+    content: '\f044';
+    position: absolute;
+    top: 12px;
+    font-size: 16px;
+    left: -8px;
+    font-family: FontAwesome;
+  }
+  &.delete {
+    left: 160px;
+    &:before {
+      top: 10px;
+      font-size: 18px;
+      content: '\f014';
+    }
+  }
+  &:hover {
+    background: $basic-color;
+    color: #fff;
   }
 }

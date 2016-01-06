@@ -25,24 +25,14 @@ function fetchReport(data) {
 
 function setReportIndex(data) {
   $('.js_all_reports').append(data);
-  //bindReportHandlers();
   bindHoverOnReportShowActiveMarker();
-  bindHoverOnMarkerShowActiveReport();
   initSideModal();
 }
 
 function bindHoverOnReportShowActiveMarker() {
-  $('.report-show').hover(function() {
+  $('.report-show:last-child').hover(function() {
     $('.marker[data-marker-id="'+$(this).attr('data-report-id')+'"]').addClass('active');
   }, function() {
     $('.marker[data-marker-id="'+$(this).attr('data-report-id')+'"]').removeClass('active');
-  });
-}
-
-function bindHoverOnMarkerShowActiveReport() {
-  $('.marker').hover(function() {
-    $('.report-show[data-report-id="'+$(this).attr('data-marker-id')+'"]').addClass('active');
-  }, function() {
-    $('.report-show[data-report-id="'+$(this).attr('data-marker-id')+'"]').removeClass('active');
   });
 }
