@@ -77,4 +77,14 @@ class Report < ActiveRecord::Base
       image_three_url(size)
     end
   end
+
+  def setting_name_status
+    if status == 'open'
+      'Open'
+    elsif status == 'in_behandeling'
+      'In behandeling'
+    else
+      'Opgelost'
+    end
+  end
 end

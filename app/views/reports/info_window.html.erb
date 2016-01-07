@@ -7,8 +7,8 @@
     </p>
     <div class='address'><%= @report.location %></div>
   </div>
-  <div class='info-footer'>
-    <div class="marker">
+  <div class='info-footer <%= @report.status %>'>
+    <div class="marker <%= @report.status %>">
         <div class="marker-icon <%= @report.category.title %>">
         </div>
     </div>
