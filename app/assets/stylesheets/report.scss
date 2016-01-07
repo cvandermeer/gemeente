@@ -103,9 +103,9 @@
   }
   &.active,
   &:hover {
-    background: $basic-color;
-    h3 a, p, .address, .date {
-      color: #fff;
+    background: $background-color;
+    .date {
+      color: $dark-gray;
     }
     .report-btn {
       right: 0;
