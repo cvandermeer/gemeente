@@ -70,6 +70,9 @@
   .date {
     right: 50px;
   }
+  .status {
+    right: $spacing*4;
+  }
 }
 
 .date {
@@ -100,12 +103,21 @@
   }
   &.active,
   &:hover {
-    background: $basic-color;
-    h3 a, p, .address, .date {
-      color: #fff;
+    background: $background-color;
+    .date {
+      color: $dark-gray;
     }
     .report-btn {
       right: 0;
+    }
+    .open {
+      background: $red-dark;
+    }
+    .in_behandeling {
+      background: $yellow-dark;
+    }
+    .opgelost {
+      background: $green-dark;
     }
   }
 }
@@ -166,7 +178,7 @@
   &:before {
     content: '\f044';
     position: absolute;
-    top: 12px;
+    top: $spacing;
     font-size: 16px;
     left: -8px;
     font-family: FontAwesome;
@@ -182,5 +194,67 @@
   &:hover {
     background: $basic-color;
     color: #fff;
+  }
+}
+
+.status {
+  width: 16px;
+  height: 16px;
+  border-radius: 10px;
+  position: absolute;
+  right: $spacing;
+  bottom: $spacing;
+  box-shadow: $shadow;
+  z-index: 1;
+  cursor: pointer;
+  @include transition(0.3s);
+  &.open {
+    background: $red;
+    &:hover {
+      background: $red-dark;
+    }
+  }
+  &.in_behandeling {
+    background: $yellow;
+    &:hover {
+      background: $yellow-dark;
+    }
+  }
+  &.opgelost {
+    background: $green;
+    &:hover {
+      background: $green-dark;
+    }
+  }
+  .status-name {
+    background: #fff;
+    border-radius: 2px;
+    padding: 4px $spacing;
+    position: absolute;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    font-size: 12px;
+    top: -30px;
+    white-space: nowrap;
+    box-shadow: $shadow;
+    @include transition(0.3s);
+    &:after {
+      content: '';
+      background: #fff;
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      right: 2px;
+      bottom: -4px;
+      border-radius: 2px;
+      @include transform(rotate(45deg));
+    }
+  }
+  &:hover {
+    .status-name {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 }

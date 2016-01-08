@@ -9,7 +9,6 @@
   <% end %>
   <div class='report-info clearfix'>
     <span class='date'><%= report.created_at %></span>
-
     <% if report.image(:thumb) != nil %>
       <h3><%= link_to report.title.truncate(16) %></h3>
       <p><%= report.description.truncate(28) %></p>
@@ -34,10 +33,8 @@
                                                                 class: 'report-btn fa fa-trash-o js_side_modal' %>
       <% end %>
     <% end %>
-
-    <% if report.resolved_at %>
-      (OPGELOST)
-    <% end %>
-
+    <div class='status <%= report.status %>'>
+      <div class='status-name'><%= report.setting_name_status %></div>
+    </div>
   </div>
 </div>

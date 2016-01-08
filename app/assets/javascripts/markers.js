@@ -52,7 +52,7 @@ function getJsonDataForReports(map) {
 
 function setMarkerShow(data) {
   var markerContent =
-                  '<div class="marker">' +
+                  '<div class="marker '+data.status+'">' +
                       '<div class="marker-icon '+data.category.title+'">' +
                       '</div>' +
                   '</div>';
@@ -82,7 +82,7 @@ function setMarkers(data) {
     for (var i = 0; i < data.length; i++) {
       //var markerContent = document.createElement('DIV');
       var markerContent =
-                      '<div class="marker" data-marker-id="'+data[i].id+'">' +
+                      '<div class="marker '+data[i].status+'" data-marker-id="'+data[i].id+'">' +
                           '<div class="marker-icon '+data[i].category.title+'">' +
                           '</div>' +
                       '</div>';

@@ -26,7 +26,7 @@ class ReportsController < ApplicationController
 
   def near_markers
     render json: Report.near([params[:lat], params[:lng]],
-                             params[:km], units: :km).as_json(only: [:latitude, :longitude, :id],
+                             params[:km], units: :km).as_json(only: [:latitude, :longitude, :id, :status],
                                                               include: :category)
   end
 
