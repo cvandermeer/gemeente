@@ -1,30 +1,57 @@
 <div class='side-menu show-on-mobile'>
-  <h4>Navigatie</h4>
   <ul>
-    <li class='<%= current_page_class(newsletters_path) %>'>
-      <%= link_to 'Nieuws', newsletters_path, class: 'news icon' %>
-    </li>
-    <li>
-      <%= link_to 'Melding doen', new_report_path, class: 'reports-link icon js_modal', remote: true %>
-    </li>
     <% if user_signed_in? %>
-      <li  class='<%= current_page_class(notifications_users_path) %>'>
-        <%= link_to "Berichten ( #{ current_user.notifications.count } )",
-            notifications_users_path, class: 'message icon' %>
+      <li  class='profile-link <%= current_page_class(profile_users_path) %>'>
+        <%= link_to 'Profiel', profile_users_path %>
+        <div class='profile-picture'>
+          <% if current_user.avatar? %>
+            <%= image_tag current_user.avatar_url(:profile_thumb) %>
+          <% else %>
+            <%= current_user.user_initials %>
+          <% end %>
+        </div>
       </li>
+      <% if current_user.admin? %>
+        <li class='<%= current_page_class(admin_dashboard_path) %>'>
+          <%= link_to 'Admin Dashboard', admin_dashboard_path %>
+        </li>
+      <% end %>
+      <% if current_user.community? %>
+        <li class='<%= current_page_class(community_admin_dashboard_path) %>'>
+          <%= link_to 'Gemeente Dashboard', community_admin_dashboard_path %>
+        </li>
+      <% end %>
+
       <li>
-        <%= link_to 'Profiel', profile_users_path, data: { no_turbolink: true } %>
+        <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete' %>
       </li>
-      <li>
-        <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete', class: 'pull-right' %>
+      <li class='<%= current_page_class(notifications_users_path) %>'>
+        <%= link_to 'Berichten', notifications_users_path, class: 'message icon' %>
       </li>
+
     <% else %>
       <li>
-        <%= link_to 'Inloggen', new_user_session_path, remote: true, class: 'js_modal' %>
+        <%= link_to 'Inloggen', new_user_session_path, remote: true, class: 'js_header_modal' %>
       </li>
       <li>
-        <%= link_to "Aanmelden", new_user_registration_path, remote: true, class: 'js_modal' %>
+        <%= link_to "Registreren", new_user_registration_path, class: 'js_header_modal', data: {modal_type: 'register'}, remote: true %>
       </li>
     <% end %>
+
+    <% if controller_name == 'reports' && action_name == 'index'  %>
+      <li>
+        <%= link_to 'Melding doen', new_report_path, class: 'js_header_modal reports-link icon', data: {modal_type: 'new-report'}, remote: true %>
+    <% else %>
+      <li class='<%= current_page_class(root_path) %>'>
+        <%= link_to 'Melding doen', root_path, class: 'reports-link icon', data: { no_turbolink: true } %>
+    <% end %>
+    <% if user_signed_in? && current_user.reports.any? %>
+      <li class='<%= current_page_class(reports_users_path) %>'>
+        <%= link_to 'Mijn meldingen', reports_users_path %>
+      </li>
+    <% end %>
+    <li class='<%= current_page_class(newsletters_path) %>'>
+      <%= link_to 'Gemeente nieuws', newsletters_path, class: 'news icon' %>
+    </li>
   </ul>
 </div>
