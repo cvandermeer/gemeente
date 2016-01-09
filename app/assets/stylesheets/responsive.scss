@@ -43,7 +43,17 @@
       }
     }
   }
-
+  .arrow-up {
+    display: none;
+  }
+  .header-modal {
+    right: 0;
+    top: 72px;
+    &.register-modal,
+    &.report-modal {
+      width: 260px;
+    }
+  }
 }
 
 @media only screen and (max-width: 660px) {

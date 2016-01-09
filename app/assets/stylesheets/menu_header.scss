@@ -115,7 +115,8 @@ header {
   position: absolute;
   top: 58px;
   right: 0;
-  display: none;
+  opacity: 0;
+  visibility: hidden;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   box-shadow: $shadow;
@@ -141,7 +142,8 @@ header {
   position: relative;
   &:hover {
     .dropdown {
-      display: block;
+      opacity: 1;
+      visibility: visible;
     }
   }
 }
