@@ -53,7 +53,8 @@
   right: -200px;
   top: 0;
   z-index: 2;
-  background: $background-color-dark;
+  background: #fff;
+  box-shadow: -1px 2px 3px rgba(0,0,0,0.2);
   @include transition(0.3s);
   &.show-side-menu {
     right: 0;
@@ -65,23 +66,19 @@
       width: 100%;
       height: 40px;
       &:hover {
-        background: #333;
+        background: $background-color;
       }
     }
     a {
-      font-size: 12px;
+      font-size: 14px;
+      color: $dark-gray;
       display: block;
       width: 100%;
       height: calc(100% - 10px);
       padding-top: 10px;
       text-indent: 20px;
-      color: #fff;
-      font-weight: 600;
       text-decoration: none;
       letter-spacing: .1rem;
-      &:hover {
-        color: $basic-color;
-      }
     }
   }
   h4 {
