@@ -84,18 +84,15 @@
       letter-spacing: .1rem;
     }
   }
+  .message,
   .news,
   .reports-link {
-    text-indent: 40px;
     &:before {
-      left: -20px;
+      right: 52px !important;
       top: 10px !important;
     }
   }
-  .news {
-    text-indent: 46px;
-    &:before {
-      left: -26px;
-    }
+  .profile-link .profile-picture {
+    top: 16px;
   }
 }

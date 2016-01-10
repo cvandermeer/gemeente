@@ -21,9 +21,21 @@
     &.show-side-menu {
       right: 200px;
     }
+    &.dashboard-header {
+      height: 46px;
+      .logo {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        &:before {
+          top: 5px;
+        }
+      }
+    }
+  }
+  body .wrapper {
+    padding-top: 46px;
   }
   .google-maps-search {
-    width: 292px;
     height: 46px;
     .search {
       height: 46px;
@@ -41,6 +53,9 @@
         padding: 5px 0 3px;
         font-size: 22px;
       }
+    }
+    .search {
+      width: 258px;
     }
   }
   .arrow-up {

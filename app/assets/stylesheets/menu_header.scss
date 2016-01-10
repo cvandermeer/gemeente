@@ -86,22 +86,23 @@ header {
     height: 100%;
     float: left;
   }
-  .profile-link {
-    padding-right: 46px;
-    .profile-picture {
-      position: absolute;
-      right: 12px;
-      top: 12px;
-      width: 40px;
-      height: 40px;
-      border-radius: 100%;
-      background: #f7f7f7;
-      text-align: center;
-      line-height: 40px;
-      overflow: hidden;
-      img {
-        max-width: 40px;
-      }
+}
+
+.profile-link {
+  padding-right: 46px;
+  .profile-picture {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background: #f7f7f7;
+    text-align: center;
+    line-height: 40px;
+    overflow: hidden;
+    img {
+      max-width: 40px;
     }
   }
 }
