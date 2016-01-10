@@ -63,9 +63,6 @@ header {
       &:hover,
       &.active {
         background: $background-color;
-        a {
-          color: $dark-gray;
-        }
       }
     }
   }

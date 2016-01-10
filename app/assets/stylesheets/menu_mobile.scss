@@ -68,6 +68,7 @@
       width: 100%;
       height: 46px;
       @include transition(0.3s);
+      &.active,
       &:hover {
         background: $background-color;
       }
