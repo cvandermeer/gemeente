@@ -37,3 +37,9 @@ function bindInfoBoxHandlers(map, el, i) {
     });
   }, 300);
 }
+
+function findAndCloseInfoBox() {
+  if($('.info-box').length) {
+    $('.info-box .close').trigger('click');
+  }
+}

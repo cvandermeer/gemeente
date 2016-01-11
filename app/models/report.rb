@@ -55,8 +55,7 @@ class Report < ActiveRecord::Base
   end
 
   def create_notification
-    user = self.user
-    CreateNotificationJob.perform_later(user, self) if user
+    CreateNotificationJob.perform_later(self) if user.present?
   end
 
   ### INSTANCE METHODS ###
@@ -75,6 +74,16 @@ class Report < ActiveRecord::Base
       image_two_url(size)
     elsif image_three?
       image_three_url(size)
+    end
+  end
+
+  def setting_name_status
+    if status == 'open'
+      'Open'
+    elsif status == 'in_behandeling'
+      'In behandeling'
+    else
+      'Opgelost'
     end
   end
 end

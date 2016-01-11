@@ -37,9 +37,10 @@ function setHeaderModalData(el, data) {
       setHeaderModalValidation('.new_user');
     }
 
-    if($(el).attr('data-modal-type') == 'report') {
+    if($(el).attr('data-modal-type') == 'new-report') {
       // new_reports.js
       bindReportFormResponse('new');
+      findAndCloseInfoBox();
     }
   }
 }

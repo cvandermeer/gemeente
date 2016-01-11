@@ -4,43 +4,31 @@
   margin-left: -1px;
   margin-bottom: -22px;
   border-radius: 2px;
+  box-shadow: $shadow;
   border-bottom-left-radius: 0;
   .info {
     padding: 12px;
-    h4 {
-      font-size: 16px;
-      font-weight: 400;
-      margin-bottom: 12px;
-      letter-spacing: 0;
+    h3 {
+      text-transform: none;
     }
     p {
       font-size: 14px;
       margin-bottom: 12px;
-    }
-    ul {
-      margin-bottom: 0;
-    }
-    li {
-      font-size: 14px;
-      margin-bottom: 0px;
     }
   }
   .close {
     width: 30px;
     height: 30px;
     position: absolute;
-    right: 0;
-    top: 0;
-    background: $dark-gray;
-    border-top-right-radius: 2px;
+    right: 6px;
+    top: 6px;
     &:before {
       font-family: FontAwesome;
-      color: #fff;
+      color: $dark-gray;
       cursor: pointer;
       font-size: 18px;
       width: 100%;
       display: block;
-      margin-top: 1px;
       text-align: center;
       content: "\f00d";
     }
@@ -49,10 +37,27 @@
 
 .info-footer {
   width: 100%;
-  height: 60px;
-  background: $basic-color;
+  height: 50px;
   border-bottom-right-radius: 2px;
   position: relative;
+  &.open {
+    background: $red;
+    &:hover .info-arrow {
+      background: $red;
+    }
+  }
+  &.in_behandeling {
+    background: $yellow;
+    &:hover .info-arrow {
+      background: $yellow;
+    }
+  }
+  &.opgelost {
+    background: $green;
+    &:hover .info-arrow {
+      background: $green;
+    }
+  }
   .info-link {
     width: calc(100% - 38px);
     float: right;
@@ -60,7 +65,7 @@
     a.link {
       display: block;
       width: calc(100% - 38px);
-      padding: 19px 0;
+      padding: 15px 0;
       color: #fff;
       font-size: 14px;
       text-indent: 24px;
@@ -78,33 +83,45 @@
       @include transition(0.3s);
       &:before {
         font-family: FontAwesome;
-        color: $basic-color;
+        color: $dark-gray;
         cursor: pointer;
         font-size: 24px;
         width: 100%;
         display: block;
-        margin-top: 10px;
+        margin-top: 7px;
         text-align: center;
         content: "\f105";
         @include transition(0.3s);
       }
     }
-    &:hover {
-      .info-arrow {
-        background: $basic-color;
-        &:before {
-          color: #fff;
-        }
-      }
+    &:hover .info-arrow:before {
+      color: #fff;
     }
   }
   .marker {
     position: absolute;
-    top: 46px;
+    top: 37px;
     box-shadow: none;
-    background: $basic-color;
+    &.open {
+      background: $red;
+      &:after {
+        border-top-color: $red;
+      }
+    }
+    &.in_behandeling {
+      background: $yellow;
+      &:after {
+        border-top-color: $yellow;
+      }
+    }
+    &.opgelost {
+      background: $green;
+      &:after {
+        border-top-color: $green;
+      }
+    }
     &:after {
-      border-top: 10px solid $basic-color;
+      border-top: 10px solid;
     }
     &:hover {
       margin-top: -10px;

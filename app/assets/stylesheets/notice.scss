@@ -1,7 +1,5 @@
 /* Variables
 ------------------------------------------------------*/
-$red: #a94442;
-$green: #3c763d;
 
 .notice, .alert {
   width: auto;
@@ -14,11 +12,10 @@ $green: #3c763d;
   color: #fff;
   text-align: center;
   z-index: 1;
-  background: $green;
+  background: $green-dark;
   opacity: 0;
   visibility: hidden;
   box-shadow: $shadow;
-  //border: 1px solid $green;
   border-radius: 2px;
   overflow: hidden;
   @include transition(0.3s);
@@ -45,6 +42,5 @@ $green: #3c763d;
 }
 
 .alert, .fail{
-  background: $red;
-  //border: 1px solid $red;
+  background: $red-dark !important;
 }

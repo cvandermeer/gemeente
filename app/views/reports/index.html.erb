@@ -5,7 +5,9 @@
     <div class='js_current_location current-location'></div>
   </div>
   <div class='js_all_reports all-reports'>
-    
+
   </div>
   <a href='#' class='reset-map'>Opnieuw laden</a>
+  <%= link_to 'Contact', new_message_path, remote: true, class: 'js_header_modal contact-btn',
+                                           data: {modal_type: 'contact'} %>
 </div>

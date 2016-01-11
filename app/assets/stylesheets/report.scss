@@ -70,6 +70,9 @@
   .date {
     right: 50px;
   }
+  .status {
+    right: $spacing*4;
+  }
 }
 
 .date {
@@ -91,23 +94,6 @@
   &:last-child {
     border-bottom: none;
   }
-  .address {
-    @include transition(0.3s);
-    color: #222;
-    font-size: 12px;
-    text-indent: 16px;
-    &:before {
-      position: absolute;
-      left: 12px;
-      font-style: normal;
-      text-indent: 0;
-      content: '\f041';
-      font-family: FontAwesome;
-    }
-    &.image:before {
-      left: 100px;
-    }
-  }
   .goto-report {
     position: absolute;
     z-index: 1;
@@ -117,12 +103,21 @@
   }
   &.active,
   &:hover {
-    background: $basic-color;
-    h3 a, p, .address, .date {
-      color: #fff;
+    background: $background-color;
+    .date {
+      color: $dark-gray;
     }
     .report-btn {
       right: 0;
+    }
+    .open {
+      background: $red-dark;
+    }
+    .in_behandeling {
+      background: $yellow-dark;
+    }
+    .opgelost {
+      background: $green-dark;
     }
   }
 }
@@ -131,5 +126,135 @@
   overflow: hidden;
   .report-btn {
     box-shadow: none;
+  }
+}
+
+.address {
+  @include transition(0.3s);
+  color: #222;
+  font-size: 12px;
+  text-indent: 16px;
+  &:before {
+    position: absolute;
+    left: 12px;
+    font-style: normal;
+    text-indent: 0;
+    content: '\f041';
+    font-family: FontAwesome;
+  }
+  &.image:before {
+    left: 100px;
+  }
+}
+
+.side-modal {
+  .address {
+    &:before {
+      left: 2px;
+    }
+    &.image:before {
+      left: 89px;
+    }
+  }
+  .report-image {
+    max-width: 75px;
+    max-height: 75px;
+  }
+}
+
+.report-show-btn {
+  width: 112px;
+  padding: $spacing;
+  text-indent: 24px;
+  color: $dark-gray;
+  background: #fff;
+  position: absolute;
+  top: 78px;
+  border-radius: 2px;
+  box-shadow: $shadow;
+  left: 12px;
+  text-decoration: none;
+  @include transition(0.3s);
+  &:before {
+    content: '\f044';
+    position: absolute;
+    top: $spacing;
+    font-size: 16px;
+    left: -8px;
+    font-family: FontAwesome;
+  }
+  &.delete {
+    left: 160px;
+    &:before {
+      top: 10px;
+      font-size: 18px;
+      content: '\f014';
+    }
+  }
+  &:hover {
+    background: $basic-color;
+    color: #fff;
+  }
+}
+
+.status {
+  width: 16px;
+  height: 16px;
+  border-radius: 10px;
+  position: absolute;
+  right: $spacing;
+  bottom: $spacing;
+  box-shadow: $shadow;
+  z-index: 1;
+  cursor: pointer;
+  @include transition(0.3s);
+  &.open {
+    background: $red;
+    &:hover {
+      background: $red-dark;
+    }
+  }
+  &.in_behandeling {
+    background: $yellow;
+    &:hover {
+      background: $yellow-dark;
+    }
+  }
+  &.opgelost {
+    background: $green;
+    &:hover {
+      background: $green-dark;
+    }
+  }
+  .status-name {
+    background: #fff;
+    border-radius: 2px;
+    padding: 4px $spacing;
+    position: absolute;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    font-size: 12px;
+    top: -30px;
+    white-space: nowrap;
+    box-shadow: $shadow;
+    @include transition(0.3s);
+    &:after {
+      content: '';
+      background: #fff;
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      right: 2px;
+      bottom: -4px;
+      border-radius: 2px;
+      @include transform(rotate(45deg));
+    }
+  }
+  &:hover {
+    .status-name {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 }

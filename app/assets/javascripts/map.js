@@ -54,7 +54,7 @@ function initMap() {
       draggable: true
     });
 
-    if (navigator.geolocation) {
+    if (navigator.geolocation && $('.map-show').length === 0) {
       navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
 
       navigator.geolocation.getCurrentPosition(function(geo) {
@@ -78,13 +78,14 @@ function initMap() {
       var lng = parseFloat($('.map-show').attr('data-lon'));
       report_show_position = {lat: lat, lng: lng};
       map.setCenter(report_show_position);
-      map.setZoom(18);
+      map.setZoom(16);
 
       var sv = new google.maps.StreetViewService();
       sv.getPanorama({location: report_show_position, radius: 50}, processSVData);
     }
 
-    setSearchBar(map);
+    if ($('.map-show').length === 0)  setSearchBar(map);
+
     // Needed to require the richmarker and infobox file after loading the maps
     initRichMarker();
     initInfoBox();

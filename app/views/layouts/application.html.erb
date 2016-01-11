@@ -26,11 +26,9 @@
 
       <%= render 'shared/modal' %>
       <%= render 'shared/tutorial' %>
-
-    <% if controller_name != 'reports' && action_name != 'index' %>
+      
+    <% if !(action_name == 'index' && controller_name == 'reports') %>
       <%= render 'layouts/footer' %>
-    <% else %>
-      <%= link_to 'Contact', new_message_path, remote: true, class: 'js_header_modal contact-btn', data: {modal_type: 'contact'} %>
     <% end %>
     </div>
 

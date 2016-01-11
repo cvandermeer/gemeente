@@ -12,6 +12,45 @@
     }
   }
 }
+.marker,
+.marker {
+  &.open {
+    &.active,
+    &:hover {
+      background: $red;
+      &:after {
+        border-top-color: $red;
+      }
+    }
+    .marker-icon {
+      border-color: $red;
+    }
+  }
+  &.in_behandeling {
+    &.active,
+    &:hover {
+      background: $yellow;
+      &:after {
+        border-top-color: $yellow;
+      }
+    }
+    .marker-icon {
+      border-color: $yellow;
+    }
+  }
+  &.opgelost {
+    &.active,
+    &:hover {
+      background: $green;
+      &:after {
+        border-top-color: $green;
+      }
+    }
+    .marker-icon {
+      border-color: $green;
+    }
+  }
+}
 
 .marker {
   z-index: 200;
@@ -37,11 +76,7 @@
   }
   &.active,
   &:hover {
-    background: $basic-color;
     margin-top: -12px;
-    &:after {
-      border-top: 10px solid $basic-color;
-    }
   }
 }
 
@@ -89,6 +124,8 @@
     content: '\f12a'
   }
 }
+
+
 
 .cluster {
   color: #fff !important;
