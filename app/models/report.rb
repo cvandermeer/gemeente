@@ -55,8 +55,7 @@ class Report < ActiveRecord::Base
   end
 
   def create_notification
-    user = self.user
-    CreateNotificationJob.perform_later(user, self) if user
+    CreateNotificationJob.perform_later(self) if user.present?
   end
 
   ### INSTANCE METHODS ###
