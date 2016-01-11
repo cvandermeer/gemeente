@@ -17,6 +17,7 @@
 
   header {
     overflow: hidden;
+    z-index: 10;
     @include transition(0.3s);
     &.show-side-menu {
       right: 200px;
