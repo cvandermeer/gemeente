@@ -2,8 +2,15 @@ var ready;
 
 ready = function() {
   checkSelect2();
+
+  // checks if the tutorail has to be shown on landingspage
   checkTutorial();
 };
+
+/**
+ * Sets the localStorage tutorial to true our false
+ * @return {boolean} for localStorage.tutorial
+ */
 
 function checkTutorial(){
   if($('.map-container').length){
