@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get 'dashboard',    to: 'static_pages#dashboard'
     get 'users',        to: 'static_pages#users'
     get 'communities',  to: 'static_pages#communities'
+    get 'wrong_words',   to: 'wrong_words#index'
   end
 
   ### COMMUNITY_ADMIN ###

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151224140806) do
+ActiveRecord::Schema.define(version: 20160115162107) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title", limit: 255
@@ -136,6 +136,10 @@ ActiveRecord::Schema.define(version: 20151224140806) do
   add_index "users", ["community_id"], name: "index_users_on_community_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "wrong_words", force: :cascade do |t|
+    t.string "word", limit: 255
+  end
 
   create_table "zipcodes", force: :cascade do |t|
     t.string  "zipcode",            limit: 255
