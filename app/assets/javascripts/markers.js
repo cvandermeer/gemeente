@@ -199,13 +199,13 @@ function addMouseOverAndOutToMarker(marker) {
 }
 
 /**
-  * @desc calculates the distances to kilometers
-  * @param {float} lat1 Is the latitude of the south west corner
-  * @param {float} lon1 Is the longitude of the south west corner
-  * @param {float} lat2 Is the latitude of the north east corner
-  * @param {float} lon2 Is the longitude of the north east corner
-  * @return {float} kilometers of the map bounds
-*/
+ * @desc calculates the distances to kilometers
+ * @param {float} lat1 Is the latitude of the south west corner
+ * @param {float} lon1 Is the longitude of the south west corner
+ * @param {float} lat2 Is the latitude of the north east corner
+ * @param {float} lon2 Is the longitude of the north east corner
+ * @return {float} kilometers of the map bounds
+ */
 
 function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
   var R = 6371; // Radius of the earth in km
