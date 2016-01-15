@@ -5,6 +5,10 @@ ready = function() {
   triggerAutocomplete();
 };
 
+/**
+ * @desc Sets the validation for the user profile
+ */
+
 function validateUserEdit() {
   var validateOptions = {
     form: $('.edit_user'),
@@ -14,6 +18,10 @@ function validateUserEdit() {
 
   if($('.edit_user').length !== 0) validate = new Validate(validateOptions);
 }
+
+/**
+ * @desc Sets the event listener for a change on the user role
+ */
 
 function roleIdChange(){
   $('select#user_role_id').change(function(){
