@@ -23,6 +23,13 @@
         <% if @report.image(:image_big) != nil %>
           <%= image_tag @report.image(:image_big), class: 'u-max-full-width' %>
         <% end %>
+          <div class='address'>
+            <% if user_signed_in? && @report.editable_by?(current_user) %>
+              <%= @report.location_detail %>
+            <% else %>
+              <%= @report.location %>
+            <% end %>
+          </div>
           <p><%= @report.description %></p>
       </div>
       <div class='columns eight'>

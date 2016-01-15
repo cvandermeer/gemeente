@@ -5,7 +5,14 @@
     <p>
       <%= @report.description.truncate(100, separator: ' ') %>
     </p>
-    <div class='address'><%= @report.location %></div>
+    <div class='address'>
+      <% if user_signed_in? && @report.editable_by?(current_user) %>
+        <%= @report.location_detail.truncate(120) %>
+      <% else %>
+        <%= @report.location.truncate(120) %>
+      <% end %>
+
+    </div>
   </div>
   <div class='info-footer <%= @report.status %>'>
     <div class="marker <%= @report.status %>">

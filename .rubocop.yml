@@ -1,11 +1,13 @@
 AllCops:
-  RunRailsCops: true
+  Rails: true
   Exclude:
     - 'vendor/**/*'
     - 'bin/**/*'
     - 'db/**/*'
     - 'test/test_helper.rb'
     - 'Guardfile'
+    - 'app/models/zipcode.rb'
+    - 'config/initializers/*'
     - 'config/deploy.rb'
 Documentation:
   Enabled: false

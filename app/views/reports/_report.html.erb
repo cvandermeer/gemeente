@@ -13,13 +13,21 @@
       <h3><%= link_to report.title.truncate(16) %></h3>
       <p><%= report.description.truncate(28) %></p>
       <div class='address image'>
-        <%= report.location.truncate(32) %>
+        <% if user_signed_in? && report.editable_by?(current_user) %>
+          <%= report.location_detail.truncate(32) %>
+        <% else %>
+          <%= report.location.truncate(32) %>
+        <% end %>
       </div>
       <% else %>
       <h3><%= link_to report.title.truncate(26) %></h3>
       <p><%= report.description.truncate(39) %></p>
       <div class='address'>
-        <%= report.location.truncate(44) %>
+        <% if user_signed_in? && report.editable_by?(current_user) %>
+          <%= report.location_detail.truncate(44) %>
+        <% else %>
+          <%= report.location.truncate(44) %>
+        <% end %>
       </div>
     <% end %>
 
