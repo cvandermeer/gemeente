@@ -34,7 +34,7 @@ function getJsonDataForReports(map) {
               setMarkers(data);
 
               // Sets the reports to the document in: report.js
-              getReportsForIndex(data);
+              setHeightForReportsIndex(data);
             }
           });
         }, 100);
