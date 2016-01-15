@@ -1,5 +1,5 @@
 /**
- * Trigger the autocomplete on the input fields street and town,
+ * @desc Trigger the autocomplete on the input fields street and town,
  * @return {data.json} street and town names from search function
  */
 

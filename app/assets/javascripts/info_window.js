@@ -1,5 +1,5 @@
 /**
- * Gets the data for the info window on the map
+ * @desc Gets the data for the info window on the map
  * @param {element} el Is the current marker
  * @param {number} i The index number of the for loop in markers.js
  * @return {data} initializes the handleInfoWindowData function
@@ -18,7 +18,7 @@ function fetchInfoWindow(el, i) {
 }
 
 /**
- * Sets the data to the map and opens a info window
+ * @desc Sets the data to the map and opens a info window
  * @param {html} data The html for the info window
  * @param {element} el Is the current marker
  * @param {number} i The index number of the for loop in markers.js
@@ -46,7 +46,7 @@ function handleInfoWindowData(data, el, i) {
 }
 
 /**
- * Binds the click functions of the info window
+ * @desc Binds the click functions of the info window
  * @param {element} map Is google maps
  * @param {element} el Is the current marker
  * @param {number} i The index number of the for loop in markers.js
@@ -63,7 +63,7 @@ function bindInfoBoxHandlers(map, el, i) {
 }
 
 /**
- * Finds and closes the info window, if info-box present
+ * @desc Finds and closes the info window, if info-box present
  */
 
 function findAndCloseInfoBox() {

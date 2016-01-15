@@ -9,7 +9,7 @@ ready = function() {
 };
 
 /**
- * Sets the localStorage tutorial to true our false
+ * @desc Sets the localStorage tutorial to true our false
  * @return {boolean} for localStorage.tutorial
  */
 
@@ -25,7 +25,7 @@ function checkTutorial(){
 }
 
 /**
- * Sets Select2 if js_init_select is present in document
+ * @desc Sets Select2 if js_init_select is present in document
  */
 
 function checkSelect2() {

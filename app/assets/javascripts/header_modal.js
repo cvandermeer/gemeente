@@ -9,7 +9,7 @@ ready = function() {
 };
 
 /**
- * Sets the data to the header modal
+ * @desc Sets the data to the header modal
  * @param {element} el is the link click to init the header modal.
  * @param {html} data from the ajax request
  */
@@ -64,7 +64,8 @@ function setHeaderModalData(el, data) {
 }
 
 /**
- * Removes the active class from header modal, after 300 miliseconds removes the header modal
+ * @desc Removes the active class from header modal,
+ * after 300 miliseconds removes the header modal
  * Removes also key bindings of the map and the new marker if active
  * @param {number} currentHeaderModal is the active header modal
  */
@@ -84,7 +85,7 @@ function removeHeaderModal(currentHeaderModal) {
 }
 
 /**
- * Onclick close modal, removes the header modal
+ * @desc Onclick close modal, removes the header modal
  */
 
 function closeHeaderModal() {
@@ -94,7 +95,7 @@ function closeHeaderModal() {
 }
 
 /**
- * Binds the on ajax success function to the links in the header modal
+ * @desc Binds the on ajax success function to the links in the header modal
  */
 
 function bindHeaderModal() {
@@ -104,7 +105,7 @@ function bindHeaderModal() {
 }
 
 /**
- * Sets the validation to the form
+ * @desc Sets the validation to the form
  * @param {element} el is the specific form to validate
  */
 
