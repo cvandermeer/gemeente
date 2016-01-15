@@ -1,11 +1,12 @@
-/**
-  * @desc gets back the map bounds
-  * @return json data of reports, with the map bounds
-*/
-
 var newMarkers = [];
 var timer;
 var km;
+
+/**
+ * @desc Gets back the map bounds, and then gets the markers by ajax bases on a search query.
+ * And sets marker and reports with the json data to the document, but if the user is on the
+ * show page of the report it only gets back the data for that specific marker
+*/
 
 function getJsonDataForReports(map) {
   if( $('.map-show').length === 0 ) {
@@ -13,21 +14,26 @@ function getJsonDataForReports(map) {
       if($('.side-modal').length === 0) {
         clearInterval(timer);
         timer = setTimeout(function() {
+          // Setting the latitude and longitude corners of the map
           var minlat = map.getBounds().getSouthWest().lat();
           var maxlat = map.getBounds().getNorthEast().lat();
           var minlng = map.getBounds().getSouthWest().lng();
           var maxlng = map.getBounds().getNorthEast().lng();
+
+          // Calculates the kilometers between the latitude and longitude
           km = getDistanceFromLatLonInKm(minlat, minlng, maxlat, maxlng);
 
+          // Gets back the markers with ajax bases up on the latitude, longitude and kilometers within the map
           $.ajax({
             type: 'GET',
             dataType: 'json',
             url: "/reports/markers",
             data: {'lat': map.getCenter().lat(), 'lng': map.getCenter().lng(), 'km': km},
             success: function(data){
+              // Sets the markers on the map
               setMarkers(data);
 
-              // report.js
+              // Sets the reports to the document in: report.js
               getReportsForIndex(data);
             }
           });
@@ -49,6 +55,11 @@ function getJsonDataForReports(map) {
     });
   }
 }
+
+/**
+ * @desc Sets the marker on the show page
+ * @param {json} data The data of the current report
+ */
 
 function setMarkerShow(data) {
   var markerContent =
@@ -73,14 +84,22 @@ var activeMarker = false;
 var lastClicked = false;
 var markerCluster;
 
+/**
+ * @desc Sets all the markers on the map within the map bounds
+ * @param {json} data All the reports found within the map bounds
+ */
+
 function setMarkers(data) {
+  // Checks if the markers have the same latitude and longitude
   newPositionForOverlapOnMarkers(data);
 
+  // If there is an open info window do nothing
   if ( $('.info-box').length === 0 ) {
     newMarkers = [];
 
     for (var i = 0; i < data.length; i++) {
-      //var markerContent = document.createElement('DIV');
+
+      // Sets the html for the marker
       var markerContent =
                       '<div class="marker '+data[i].status+'" data-marker-id="'+data[i].id+'">' +
                           '<div class="marker-icon '+data[i].category.title+'">' +
@@ -112,6 +131,12 @@ function setMarkers(data) {
   }
 }
 
+/**
+ * @desc Sets the new position of the markers of they have the same latitude and longitude
+ * @param {json} data All the reports found within the map bounds
+ * @return {json} data Still the same data, but some of them have a new longitude position
+ */
+
 function newPositionForOverlapOnMarkers(data) {
   var dataClone = JSON.parse(JSON.stringify(data));
   for (var a = 0; a < data.length; a++) {
@@ -130,6 +155,12 @@ function newPositionForOverlapOnMarkers(data) {
   return data;
 }
 
+/**
+ * @desc Adds the click event to the marker
+ * @param {element} marker Is the current marker on the map
+ * @param {number} i Is the index of the current for loop
+ */
+
 function addClickEventToMarker(marker, i) {
   google.maps.event.addListener(marker, 'click', (function(marker, i) {
     return function() {
@@ -141,15 +172,22 @@ function addClickEventToMarker(marker, i) {
         for (var h = 0; h < newMarkers.length; h++) {
           newMarkers[h].content.className = ' ';
         }
+        // Addes the active class on marker if click
         newMarkers[i].content.className = 'marker-active';
 
-        // info_window.js
+        // Gets the data for the info window in: info_window.js
         fetchInfoWindow(marker, i);
         markerClicked = 1;
       }
     };
   })(marker, i));
 }
+
+/**
+ * @desc Binds the hover function to the marker, and on hover adds and removes
+ * The active class from the report in the index
+ * @param {element} marker Is the current marker
+ */
 
 function addMouseOverAndOutToMarker(marker) {
   google.maps.event.addListener(marker, 'mouseover', function(e) {
@@ -161,9 +199,12 @@ function addMouseOverAndOutToMarker(marker) {
 }
 
 /**
-  * @desc calculates the distances
-  * @param floats, latitude and longitude
-  * @return the distances of the map bounds
+  * @desc calculates the distances to kilometers
+  * @param {float} lat1 Is the latitude of the south west corner
+  * @param {float} lon1 Is the longitude of the south west corner
+  * @param {float} lat2 Is the latitude of the north east corner
+  * @param {float} lon2 Is the longitude of the north east corner
+  * @return {float} kilometers of the map bounds
 */
 
 function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
