@@ -23,7 +23,7 @@
           </div>
           <div class='panel-body'>
             <% @wrong_words.each do |letter, words| %>
-              <div class='letter'>
+              <div class='letter' data-letter='<%= letter.downcase %>'>
                 <h3><%= letter %></h3>
                 <ul>
                   <% words.each do |word| %>
