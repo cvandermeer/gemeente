@@ -43,7 +43,7 @@ class ReportTest < ActiveSupport::TestCase
 
   test 'should return location' do
     report = @report
-    assert_equal report.location, 'Schoolpad 7, Middenmeer'
+    assert_equal report.location, 'Schoolpad, Middenmeer'
   end
 
   test 'should set community if it already exists' do

@@ -1,3 +1,8 @@
+/**
+ * @desc Trigger the autocomplete on the input fields street and town,
+ * @return {data.json} street and town names from search function
+ */
+
 function triggerAutocomplete() {
   var cache = {};
   $('.js_street_input').autocomplete({

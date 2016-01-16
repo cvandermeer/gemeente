@@ -1,3 +1,12 @@
+var ready;
+
+ready = function() {
+  // On change status of report submit status form
+  $('select#report_status').change(function(){
+    $(this).parent().submit();
+  });
+};
+
 var streetValInput = '';
 var townValInput = '';
 var oldStreetValInput = '';
@@ -7,15 +16,33 @@ var clickListenerForNewMarkerHandle;
 var geocoder;
 var validate;
 
+/**
+ * @desc Binds the form response to new report
+ * @param {string} type Checks if it is a new form
+ */
+
 function bindReportFormResponse(type) {
-  // Binds the functions to the form
   geocoder = new google.maps.Geocoder();
+
+  // Triggers the autocomplete for the street and town input in: autocomplete.js
   triggerAutocomplete();
+
+  // Sets the new marker bases on the street and town input values
   setNewMarkerOnStreetAndTownGeoLocation();
+
+  // If the form is for a new report it binds the on click map, to add a marker
   if(type === 'new') setNewMarkerOnMapClicked();
+
+  // Sets the validation for the reports form
   setupValidation();
+
   //triggerLoading();
 }
+
+/**
+ * @desc Sets a new marker in the map based on the town and street input value,
+ * uses geocoder to get the right latitude and longitude position
+ */
 
 function setNewMarkerOnStreetAndTownGeoLocation() {
   $('.js_street_input').on('change, focusout', function(){
@@ -55,6 +82,12 @@ function setNewMarkerOnStreetAndTownGeoLocation() {
   });
 }
 
+/**
+ * @desc Sets a new draggable marker on the map
+ * @param {float} latitude Is the latitude position of the marker
+ * @param {float} longitude Is the longitude position of the marker
+ */
+
 function setNewMarkerOnMap(latitude, longitude) {
   //newMarker = '';
   var markerContent =
@@ -75,15 +108,28 @@ function setNewMarkerOnMap(latitude, longitude) {
     newMarker = new RichMarker(markerOptions);
     map.setOptions({draggableCursor:''});
 
+    // Adds the latitude and longitude values to the form
     setLatitudeAndLongitudeInForm(latitude, longitude);
+
+    // Adds listener to marker if position changes by dragging
     addListenerToNewMarkerOnPositionChange();
 }
+
+/**
+ * @desc Removes the new marker from the map
+ */
 
 function removeOldNewMarker() {
   newMarker.onRemove();
   map.setOptions({draggableCursor:''});
   google.maps.event.removeListener(clickListenerForNewMarkerHandle);
 }
+
+/**
+ * @desc Sets the latitude and longitude values to the report form
+ * @param {float} lat Is the latitude position
+ * @param {float} long Is the longitude position
+ */
 
 function setLatitudeAndLongitudeInForm(lat, lng) {
   $('.js_latitude_input').val(lat);
@@ -92,6 +138,10 @@ function setLatitudeAndLongitudeInForm(lat, lng) {
 
 var timer;
 
+/**
+ * @desc Adds listener to marker if position changes by dragging
+ */
+
 function addListenerToNewMarkerOnPositionChange() {
   google.maps.event.addListener(newMarker, 'position_changed', function() {
     clearInterval(timer);
@@ -99,11 +149,23 @@ function addListenerToNewMarkerOnPositionChange() {
 
       var lat = newMarker.getPosition().lat();
       var lng = newMarker.getPosition().lng();
+
+      // Sets the latitude and longitude value in the form
       setLatitudeAndLongitudeInForm(lat, lng);
+
+      // Sets the street and town value in the form
       setNewStreetAndTownInForm(lat, lng, true);
-    }, 1000);
+    }, 300);
   });
 }
+
+/**
+ * @desc Sets the new street and town value in the form based on geocoder
+ * And sets the community name based on geocoder
+ * @param {float} lat Is the latitude position
+ * @param {float} long Is the longitude position
+ * @param {boolean} setAlsoStreetAndTown If true it sets the value of the street and town
+ */
 
 function setNewStreetAndTownInForm(lat, lng, setAlsoStreetAndTown) {
   var latLng = new google.maps.LatLng(lat, lng);
@@ -151,6 +213,9 @@ function setNewStreetAndTownInForm(lat, lng, setAlsoStreetAndTown) {
   }
 }
 
+/**
+ * @desc Sets a marker if the map is click and there is no new marker present
+ */
 
 function setNewMarkerOnMapClicked() {
   if($('.new-marker').length === 0) {
@@ -166,6 +231,11 @@ function setNewMarkerOnMapClicked() {
   }
 }
 
+/**
+ * @desc Sets the value of the community name
+ * @param {string} communityName Is the name of the current community
+ */
+
 function setCommunityIdToReport(communityName) {
   if(communityName !== '') {
     if(communityName !== $('.js_community_name').val()) {
@@ -173,6 +243,10 @@ function setCommunityIdToReport(communityName) {
     }
   }
 }
+
+/**
+ * @desc Sets the validations for the reports form
+ */
 
 function setupValidation() {
   var validateOptions = {
@@ -187,15 +261,19 @@ function setupValidation() {
 }
 
 /**
-  * @desc when new report is added go to the location
-  * @param element el - stants for this
-  * @return a new location in de goolge maps api
-*/
+ * @desc when new report is added go to its location,
+ * this function is called from /views/reports/create.js
+ * @param {json} data Is the reports json data of the new report
+ */
 
 function goToReportLocation(data) {
   var position = {lat: data.latitude, lng: data.longitude};
   map.setCenter(position);
 }
+
+/**
+ * @desc Sets the map center of the community based on the latitude and longitude
+ */
 
 function communityReports(){
   $('.community-reports').on('ajax:success', function(e, data, status){
@@ -211,14 +289,6 @@ function communityReports(){
     }
   });
 }
-
-var ready;
-
-ready = function() {
-  $('select#report_status').change(function(){
-    $(this).parent().submit();
-  });
-};
 
 $(document).ready(ready);
 $(document).on('page:load', ready);

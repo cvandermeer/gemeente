@@ -60,6 +60,19 @@ class Report < ActiveRecord::Base
 
   ### INSTANCE METHODS ###
   def location
+    address_array = address.split(' ')
+    address_array.each do |part|
+      address_array.delete(part) if part =~ /\d/
+    end
+    if address_array.length != 0
+      address = address_array.join(' ')
+      [address, town].compact.join(', ')
+    else
+      town
+    end
+  end
+
+  def location_detail
     [address, town].compact.join(', ')
   end
 
