@@ -57,10 +57,22 @@ function setWrongWordData(data) {
 /**
  * @desc Gets back the position to append the word
  * @param {string} data Is the wrong word string
+ * @return Returns the element to append the wrong word
  */
 
 function setWrongWordPosition(data) {
-  return $('.letter[data-letter="'+data.split('')[0]+'"]');
+  var letter = data.split('')[0];
+  var element =  $('.letter[data-letter="'+letter+'"]');
+  if (element.length === 0) {
+    var html = '<div class="letter" data-letter="'+letter+'">' +
+                  '<h3>'+letter+'</h3>' +
+                  '<ul></ul>' +
+               '</div>';
+    $('.letter-panel').append(html);
+    return $('.letter[data-letter="'+letter+'"]');
+  } else {
+    return element;
+  }
 }
 
 
