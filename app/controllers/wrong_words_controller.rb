@@ -10,9 +10,9 @@ class WrongWordsController < ApplicationController
   def create
     @wrong_word = WrongWord.new(wrong_word_params)
     if @wrong_word.save
-      render json: @wrong_word
+      render json: { wrong_word: @wrong_word, status: 200 }
     else
-      render json: @wrong_word.errors, status: 208
+      render json: { errors: @wrong_word.errors.full_messages, status: 422 }
     end
   end
 
