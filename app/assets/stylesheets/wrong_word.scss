@@ -20,11 +20,17 @@
     li {
       border-bottom: 0px solid $background-color;
       text-indent: 60px;
+      background: #fff;
+      color: $dark-gray;
       padding: 0;
       overflow: hidden;
       height: 0;
       margin-bottom: 0;
       @include transition(0.3s);
+      &.new-wrong-word {
+        color: #fff;
+        background: $green-dark;
+      }
     }
   }
   &.active {

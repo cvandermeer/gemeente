@@ -1,4 +1,4 @@
 <%= form_for wrong_word, remote: true do |f| %>
-  <%= f.text_field :word, placeholder: 'Vul een fout woord in!', class: 'u-full-width js_word', validate: ''  %>
-  <%= f.submit 'Fout woord toevoegen' %>
+  <%= f.text_field :word, placeholder: 'Vul een fout woord in!', autocomplete: 'off', class: 'u-full-width js_word', validate: ''  %>
+  <%= f.submit 'Fout woord toevoegen', data: { disable_with: 'Even geduld AUB...' } %>
 <% end %>

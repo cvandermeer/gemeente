@@ -49,16 +49,26 @@ function setValidationForWrongWordIfInDataBase() {
   validate.setValid(0, false);
   validate.setClass(0);
   validate.setValid(0, true);
+  validate.setFocus(0);
 }
 
 /**
- * @desc Appends the data to the document
+ * @desc Appends the data to the document, and gives back a notice to the user
  * @param {json} data Is the data of the wrong word without the status
  */
 
 function setWrongWordData(data) {
+  $('.js_word').val('').focus();
+
+  // Gives the user a notice that the word is added, in: notice.js
+  setNotice('Het foute woord: '+data.word+' is toegevoegd');
+
   var wrong_word_position = setWrongWordPosition(data.word);
-  wrong_word_position.find('ul').append('<li>' + data.word + '</li>');
+
+  // Adds an active class to the parent of the new wrong word
+  addActiveClassToWrongWordPosition(wrong_word_position);
+  $('li').removeClass('new-wrong-word');
+  wrong_word_position.find('ul').append('<li class="new-wrong-word">' + data.word + '</li>');
 }
 
 /**
@@ -98,6 +108,17 @@ function onClickLetterToggleClassActive(element) {
   });
 }
 
+/**
+ * @desc Adds an active class to the parent of the wrong word
+ * @param {element} element Is the letter/parent of the wrong word thats added
+ */
+
+function addActiveClassToWrongWordPosition(element) {
+  if(!(element.hasClass('active'))) {
+    element.addClass('active');
+    element.find('h3').addClass('active');
+  }
+}
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
