@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     get 'dashboard',    to: 'static_pages#dashboard'
     get 'users',        to: 'static_pages#users'
     get 'communities',  to: 'static_pages#communities'
-    get 'wrong_words',   to: 'wrong_words#index'
   end
 
   ### COMMUNITY_ADMIN ###
@@ -75,4 +74,7 @@ Rails.application.routes.draw do
   ### ZIPCODES ###
   get 'search_streets', to: 'zipcodes#search_streets', as: 'search_streets'
   get 'search_towns', to: 'zipcodes#search_towns', as: 'search_towns'
+
+  ### WRONG WORDS ###
+  resources :wrong_words, only: [:index, :create, :destroy]
 end

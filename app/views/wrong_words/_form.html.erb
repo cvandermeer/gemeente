@@ -1,0 +1,4 @@
+<%= form_for wrong_word, remote: true do |f| %>
+  <%= f.text_field :word, placeholder: 'Vul een fout woord in!', class: 'u-full-width', validate: ''  %>
+  <%= f.submit 'Fout woord toevoegen' %>
+<% end %>
