@@ -1,0 +1,37 @@
+.letter {
+  h3 {
+    background: #fff;
+    color: $dark-gray;
+    border-bottom: 1px solid $background-color;
+    padding: $spacing 0;
+    margin-bottom: 0;
+    cursor: pointer;
+    text-indent: $spacing;
+    @include transition(0.3s);
+    &.active,
+    &:hover {
+      color: #fff;
+      background: $basic-color;
+    }
+  }
+  ul {
+    padding: 0;
+    list-style: none;
+    li {
+      border-bottom: 0px solid $background-color;
+      text-indent: 60px;
+      padding: 0;
+      overflow: hidden;
+      height: 0;
+      margin-bottom: 0;
+      @include transition(0.3s);
+    }
+  }
+  &.active {
+    ul li {
+      height: 24px;
+      padding: $spacing/2 0;
+      border-bottom: 1px solid $background-color;
+    }
+  }
+}

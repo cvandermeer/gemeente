@@ -3,9 +3,16 @@ var ready;
 var validate;
 
 ready = function() {
-  setValidationForWrongWord();
+  if($('.wrong-words').length) {
+    // Sets the validation for the new wrong word form
+    setValidationForWrongWord();
 
-  newWrongWordRepsonse();
+    // Sets the form responce for a new wrong word
+    newWrongWordRepsonse();
+
+    // Onclick letter, show our hide al the wrong words
+    onClickLetterToggleClassActive('.letter h3');
+  }
 };
 
 function setValidationForWrongWord() {
@@ -69,10 +76,26 @@ function setWrongWordPosition(data) {
                   '<ul></ul>' +
                '</div>';
     $('.letter-panel').append(html);
+
+    // binds the click function to show our hide the wrong word of the letter
+    onClickLetterToggleClassActive('.letter[data-letter="'+letter+'"] h3');
+
     return $('.letter[data-letter="'+letter+'"]');
   } else {
     return element;
   }
+}
+
+/**
+ * @desc Toggles class active when letter is clicked
+ * @param {element} element Is the element that get the click
+ */
+
+function onClickLetterToggleClassActive(element) {
+  $(element).on('click', function() {
+    $(this).toggleClass('active');
+    $(this).parent().toggleClass('active');
+  });
 }
 
 
