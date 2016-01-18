@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  before_action :authenticate_admin!
   before_action :set_category, only: [:edit, :update, :destroy]
 
   def index
@@ -7,11 +8,11 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = WrongWord.new(category_params)
+    @category = Category.new(category_params)
     if @category.save
-      render json: { category: @category, status: 200 }
+      redirect_to categories_path, notice: "De categorie #{@category.title} is aangemaakt"
     else
-      render json: { errors: @category.errors.full_messages, status: 422 }
+      redirect_to categories_path, alert: 'De categorie kon niet worden opgeslagen'
     end
   end
 
@@ -20,14 +21,14 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      render json: { category: @category, status: 200 }
+      redirect_to categories_path, notice: "De categorie #{@category.title} is aangepast"
     else
-      render json: { errors: @category.errors.full_messages, status: 422 }
+      render 'edit', alert: 'De categorie kon niet worden opgeslagen'
     end
   end
 
   def destroy
-    render json: @category if @category.destroy
+    redirect_to categories_path, notice: "De categorie #{@category.title} is verwijdert" if @category.destroy
   end
 
   private

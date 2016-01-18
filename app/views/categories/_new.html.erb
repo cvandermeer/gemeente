@@ -1,0 +1,10 @@
+<div class='panel-header'>
+  <h5>Categorie toevoegen</h5>
+  <i><small>Hier kunt u nieuwe categorieën toevoegen aan de applicatie</small></i>
+</div>
+<div class='panel-body'>
+  <%= form_for category do |f| %>
+    <%= render 'form', f: f %>
+    <%= f.submit 'Categorie toevoegen' %>
+  <% end %>
+</div>

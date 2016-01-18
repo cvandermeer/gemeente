@@ -18,6 +18,10 @@ ready = function() {
   }
 };
 
+/**
+ * @desc Sets the validation for a new wrong word
+ */
+
 function setValidationForWrongWord() {
   var validateOptions = {
     form: $('.new_wrong_word'),
