@@ -1,0 +1,47 @@
+<%= render 'shared/dashboard_menu' %>
+
+<div class='inner'>
+  <div class='container'>
+    <div class='row'>
+      <div class='columns three'>
+        <%= render 'users/panels/user_image_panel', user: current_user %>
+        <%= render 'users/panels/user_info_panel', user: current_user %>
+      </div>
+      <div class='columns nine wrong-words'>
+        <div class='panel'>
+          <div class='panel-header'>
+            <h5>Woord toevoegen</h5>
+            <i><small>In dit panel kun je woorden toevoegen die niet zijn toegestaan binnen een melding!</small></i>
+          </div>
+          <div class='panel-body'>
+            <%= render 'form', wrong_word: @wrong_word %>
+          </div>
+        </div>
+        <div class='panel'>
+          <div class='panel-header'>
+            <h5>Foute woorden</h5>
+          </div>
+          <div class='panel-body letter-panel'>
+            <% @wrong_words.each do |letter, words| %>
+              <div class='letter' data-letter='<%= letter.downcase %>'>
+                <h3><%= letter %></h3>
+                <ul>
+                  <% words.each do |word| %>
+                    <li data-wrong-word-id='<%= word.id %>'>
+                      <%= word.word %>
+                      <div class='delete-word'>
+                        <div class='delete'></div>
+                        <%= link_to 'Verwijderen?',  word,  method: :delete,
+                                                            data: { remote: true }, class: 'js_delete_word' %>
+                      </div>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

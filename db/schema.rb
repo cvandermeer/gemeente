@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151224140806) do
+ActiveRecord::Schema.define(version: 20160118100837) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title", limit: 255
@@ -82,21 +82,22 @@ ActiveRecord::Schema.define(version: 20151224140806) do
   end
 
   create_table "reports", force: :cascade do |t|
-    t.string   "title",        limit: 255
-    t.text     "description",  limit: 65535
-    t.string   "address",      limit: 255
-    t.string   "town",         limit: 255
-    t.float    "latitude",     limit: 24
-    t.float    "longitude",    limit: 24
+    t.string   "title",          limit: 255
+    t.text     "description",    limit: 65535
+    t.string   "address",        limit: 255
+    t.string   "town",           limit: 255
+    t.float    "latitude",       limit: 24
+    t.float    "longitude",      limit: 24
     t.datetime "created_at"
     t.datetime "resolved_at"
-    t.string   "email",        limit: 255
-    t.integer  "community_id", limit: 4
-    t.integer  "user_id",      limit: 4
-    t.string   "image_one",    limit: 255
-    t.string   "image_two",    limit: 255
-    t.string   "image_three",  limit: 255
-    t.integer  "status",       limit: 4
+    t.string   "email",          limit: 255
+    t.integer  "community_id",   limit: 4
+    t.integer  "user_id",        limit: 4
+    t.string   "image_one",      limit: 255
+    t.string   "image_two",      limit: 255
+    t.string   "image_three",    limit: 255
+    t.integer  "status",         limit: 4
+    t.boolean  "has_wrong_word",               default: false
   end
 
   add_index "reports", ["community_id"], name: "index_reports_on_community_id", using: :btree
@@ -136,6 +137,10 @@ ActiveRecord::Schema.define(version: 20151224140806) do
   add_index "users", ["community_id"], name: "index_users_on_community_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "wrong_words", force: :cascade do |t|
+    t.string "word", limit: 255
+  end
 
   create_table "zipcodes", force: :cascade do |t|
     t.string  "zipcode",            limit: 255
