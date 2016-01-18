@@ -11,20 +11,19 @@
           <% end %>
         </div>
       </li>
+      
       <% if current_user.admin? %>
         <li class='<%= current_page_class(admin_dashboard_path) %>'>
           <%= link_to 'Admin Dashboard', admin_dashboard_path %>
         </li>
       <% end %>
+
       <% if current_user.community? %>
         <li class='<%= current_page_class(community_admin_dashboard_path) %>'>
           <%= link_to 'Gemeente Dashboard', community_admin_dashboard_path %>
         </li>
       <% end %>
 
-      <li>
-        <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete' %>
-      </li>
       <li class='<%= current_page_class(notifications_users_path) %>'>
         <%= link_to 'Berichten', notifications_users_path, class: 'message icon' %>
       </li>
@@ -45,13 +44,21 @@
       <li class='<%= current_page_class(root_path) %>'>
         <%= link_to 'Melding doen', root_path, class: 'reports-link icon', data: { no_turbolink: true } %>
     <% end %>
+
     <% if user_signed_in? && current_user.reports.any? %>
       <li class='<%= current_page_class(reports_users_path) %>'>
         <%= link_to 'Mijn meldingen', reports_users_path %>
       </li>
     <% end %>
+
     <li class='<%= current_page_class(newsletters_path) %>'>
       <%= link_to 'Gemeente nieuws', newsletters_path, class: 'news icon' %>
     </li>
+
+    <% if user_signed_in? %>
+      <li>
+        <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete' %>
+      </li>
+    <% end %>
   </ul>
 </div>
