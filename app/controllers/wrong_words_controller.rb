@@ -3,7 +3,7 @@ class WrongWordsController < ApplicationController
   before_action :set_wrong_word, only: [:update, :destroy]
 
   def index
-    @wrong_words = WrongWord.order("word ASC").group_by{|u| u.word[0]}
+    @wrong_words = WrongWord.order('word ASC').group_by { |u| u.word[0] }
     @wrong_word = WrongWord.new
   end
 

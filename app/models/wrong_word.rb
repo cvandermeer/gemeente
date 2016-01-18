@@ -7,7 +7,6 @@ class WrongWord < ActiveRecord::Base
   before_validation :to_lower
 
   def to_lower
-    self.word = self.word.downcase
+    self.word = word.downcase
   end
-
 end
