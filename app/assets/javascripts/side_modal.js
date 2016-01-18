@@ -95,14 +95,14 @@ function bindSideModalHandlers() {
   $('.modal-confirm.yes').bind('ajax:success', function(e, data, status) {
     if($('.map-show').length) {
       // Sets the notice that shown after the page is reloaded
-      setAfterReloadNotice('Uw melding is verwijdert: ' + data.title);
+      setAfterReloadNotice('Uw melding is verwijdert!');
       // Refreshes the current page
       location.href = location.origin;
     } else {
       // Removes the report and marker from the document
       removeReportAndMarker(data);
       // Shows a notice to the user
-      setNotice('Uw melding is verwijdert: ' + data.title);
+      setNotice('Uw melding is verwijdert!');
     }
 
   });

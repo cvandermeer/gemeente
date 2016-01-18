@@ -44,6 +44,7 @@ class Report < ActiveRecord::Base
   ### CALLBACKS ###
   before_create :set_community, :set_status
   after_create :create_notification
+  before_destroy :remove_notifications
   after_save :check_for_wrong_words
 
   def set_community
@@ -56,6 +57,12 @@ class Report < ActiveRecord::Base
 
   def create_notification
     CreateNotificationJob.perform_later(self) if user.present?
+  end
+
+  def remove_notifications
+    Notification.where(record_id: self.id, category_id: 0).each do |d|
+      d.destroy
+    end
   end
 
   def check_for_wrong_words
