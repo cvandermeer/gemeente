@@ -18,7 +18,7 @@
     <div class='row'>
       <div class='columns four'>
         <h1>
-          <%= @report.title %>
+          <%= @report.category.title %>
         </h1>
         <% if @report.image(:image_big) != nil %>
           <%= image_tag @report.image(:image_big), class: 'u-max-full-width' %>
