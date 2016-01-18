@@ -27,8 +27,13 @@
                 <h3><%= letter %></h3>
                 <ul>
                   <% words.each do |word| %>
-                    <li>
+                    <li data-wrong-word-id='<%= word.id %>'>
                       <%= word.word %>
+                      <div class='delete-word'>
+                        <div class='delete'></div>
+                        <%= link_to 'Verwijderen?',  word,  method: :delete,
+                                                            data: { remote: true }, class: 'js_delete_word' %>
+                      </div>
                     </li>
                   <% end %>
                 </ul>

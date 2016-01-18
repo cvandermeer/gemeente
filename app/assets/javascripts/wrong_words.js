@@ -12,6 +12,9 @@ ready = function() {
 
     // Onclick letter, show our hide al the wrong words
     onClickLetterToggleClassActive('.letter h3');
+
+    // Onclick delete wrong word
+    onClickDeleteWrongWord($('.js_delete_word'));
   }
 };
 
@@ -68,7 +71,19 @@ function setWrongWordData(data) {
   // Adds an active class to the parent of the new wrong word
   addActiveClassToWrongWordPosition(wrong_word_position);
   $('li').removeClass('new-wrong-word');
-  wrong_word_position.find('ul').append('<li class="new-wrong-word">' + data.word + '</li>');
+  var html = '<li data-wrong-word-id="'+data.id+'" class="new-wrong-word">' +
+                data.word +
+                '<div class="delete-word">' +
+                  '<div class="delete">' +
+                  '</div>' +
+                  '<a data-remote="true" class="js_delete_word"' +
+                      'rel="nofollow" data-method="delete" href="/wrong_words/'+data.id+'">' +
+                    'Verwijderen?' +
+                  '</a>' +
+                '</div>' +
+              '</li>';
+  wrong_word_position.find('ul').append(html);
+  onClickDeleteWrongWord($('li[data-wrong-word-id="'+data.id+'"] .js_delete_word'));
 }
 
 /**
@@ -118,6 +133,18 @@ function addActiveClassToWrongWordPosition(element) {
     element.addClass('active');
     element.find('h3').addClass('active');
   }
+}
+
+function onClickDeleteWrongWord(element) {
+  element.bind('ajax:success', function(e, data, status) {
+    $('li[data-wrong-word-id="'+data.id+'"]').remove();
+    // Gives back a notice to the user when word is removed in: notice.js
+    setNotice(data.word + ' is met succes verwijdert');
+    var letter = data.word.split('')[0];
+    if($('.letter[data-letter="'+letter+'"] li').length === 0) {
+      $('.letter[data-letter="'+letter+'"]').remove();
+    }
+  });
 }
 
 $(document).ready(ready);
