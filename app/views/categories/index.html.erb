@@ -21,7 +21,7 @@
                 <strong>Categorie beschrijving:</strong>
               </div>
               <div class='columns three'>
-                <strong>Icon naam</strong>
+                <strong>Icon naam:</strong>
               </div>
             </div>
             <% @categories.each do |category| %>
@@ -33,7 +33,7 @@
                   <%= category.icon_name %>
                 </div>
                 <div class='columns four'>
-                  <%= link_to 'Aanpassen', edit_category_path(category) %>
+                  <%= link_to 'Aanpassen', edit_category_path(category) %> |
                   <%= link_to 'Verwijderen?',  category, method: :delete,
                                                          data: {confirm: 'Weet je het zeker'} %>
                 </div>
