@@ -45,6 +45,7 @@ class Report < ActiveRecord::Base
   ### CALLBACKS ###
   before_create :set_community, :set_status
   after_create :create_notification
+  after_save :check_for_wrong_words
 
   def set_community
     self.community = Community.find_by(name: community_check_name)
@@ -56,6 +57,10 @@ class Report < ActiveRecord::Base
 
   def create_notification
     CreateNotificationJob.perform_later(self) if user.present?
+  end
+
+  def check_for_wrong_words
+    CheckForWrongWordsJob.perform_later(self)
   end
 
   ### INSTANCE METHODS ###

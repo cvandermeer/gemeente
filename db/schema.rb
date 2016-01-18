@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160115162107) do
+ActiveRecord::Schema.define(version: 20160118100837) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title", limit: 255
@@ -82,21 +82,22 @@ ActiveRecord::Schema.define(version: 20160115162107) do
   end
 
   create_table "reports", force: :cascade do |t|
-    t.string   "title",        limit: 255
-    t.text     "description",  limit: 65535
-    t.string   "address",      limit: 255
-    t.string   "town",         limit: 255
-    t.float    "latitude",     limit: 24
-    t.float    "longitude",    limit: 24
+    t.string   "title",          limit: 255
+    t.text     "description",    limit: 65535
+    t.string   "address",        limit: 255
+    t.string   "town",           limit: 255
+    t.float    "latitude",       limit: 24
+    t.float    "longitude",      limit: 24
     t.datetime "created_at"
     t.datetime "resolved_at"
-    t.string   "email",        limit: 255
-    t.integer  "community_id", limit: 4
-    t.integer  "user_id",      limit: 4
-    t.string   "image_one",    limit: 255
-    t.string   "image_two",    limit: 255
-    t.string   "image_three",  limit: 255
-    t.integer  "status",       limit: 4
+    t.string   "email",          limit: 255
+    t.integer  "community_id",   limit: 4
+    t.integer  "user_id",        limit: 4
+    t.string   "image_one",      limit: 255
+    t.string   "image_two",      limit: 255
+    t.string   "image_three",    limit: 255
+    t.integer  "status",         limit: 4
+    t.boolean  "has_wrong_word",               default: false
   end
 
   add_index "reports", ["community_id"], name: "index_reports_on_community_id", using: :btree
