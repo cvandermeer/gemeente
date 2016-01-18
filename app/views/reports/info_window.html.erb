@@ -3,7 +3,7 @@
   <div class='info'>
     <h3><%= @report.category.title.truncate(32) %></h3>
     <p>
-      <% if !(@report.has_wrong_word) %>
+      <% if user_signed_in? && @report.editable_by?(current_user) ||!(@report.has_wrong_word) %>
         <%= @report.description.truncate(100, separator: ' ') %>
       <% else %>
          De beschrijving kan niet worden getoond, vanwege ongepast taal gebruik!

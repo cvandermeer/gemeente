@@ -12,7 +12,7 @@
     <% if report.image(:thumb) != nil %>
       <h3><%= link_to report.category.title.truncate(16) %></h3>
       <p>
-        <% if !(@report.has_wrong_word) %>
+        <% if user_signed_in? && report.editable_by?(current_user) || !(@report.has_wrong_word) %>
           <%= @report.description.truncate(28) %>
         <% else %>
            Wordt niet getoond...
@@ -28,7 +28,7 @@
       <% else %>
       <h3><%= link_to report.category.title.truncate(26) %></h3>
       <p>
-        <% if !(@report.has_wrong_word) %>
+        <% if user_signed_in? && report.editable_by?(current_user) || !(@report.has_wrong_word) %>
           <%= @report.description.truncate(39) %>
         <% else %>
            Wordt niet getoond...
