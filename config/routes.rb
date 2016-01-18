@@ -77,4 +77,7 @@ Rails.application.routes.draw do
 
   ### WRONG WORDS ###
   resources :wrong_words, only: [:index, :create, :destroy]
+
+  ### CATEGORIES ###
+  resources :categories, except: [:show]
 end
