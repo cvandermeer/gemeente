@@ -4,6 +4,7 @@ class Category < ActiveRecord::Base
   has_many :report_categories
   has_many :reports, through: :report_categories
 
+  ### VALIDATIONS ###
   validates :title, presence: true
   validates :icon_name, presence: true
 end
