@@ -44,8 +44,13 @@ class Report < ActiveRecord::Base
   ### CALLBACKS ###
   before_create :set_community, :set_status
   after_create :create_notification
+  before_update :check_status_changed
   before_destroy :remove_notifications
   after_save :check_for_wrong_words
+
+  def check_status_changed
+   CreateNotificationStatusChangedJob.perform_later(self) if self.status_changed?
+  end
 
   def set_community
     self.community = Community.find_by(name: community_check_name)
