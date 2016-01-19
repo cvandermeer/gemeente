@@ -31,7 +31,9 @@
                 <div class='row notification' data-notification-id='<%= notification.id %>'>
                   <div class='columns nine'>
                     <% if !notification.record_destroyed? %>
-                      <%= link_to notification.title, record_path, target: '_blank' %>
+                      <%= link_to notification.title, record_path, target: '_blank',
+                                                                   data: {notification_id: notification.id},
+                                                                   class: 'js_notification_read' %>
                     <% else %>
                       <%= notification.title %>
                     <% end %>

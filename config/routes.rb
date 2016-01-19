@@ -63,13 +63,14 @@ Rails.application.routes.draw do
     get :profile, on: :collection
   end
 
-  ### NOTIFICATIONS ###
-  resources :notifications, only: [:destroy]
-
   post 'users/generate_user', to: 'users#generate_user'
   get 'users/new_admin_user', to: 'users#new_admin_user'
   post 'users/generate_community_admin_user', to: 'users#generate_community_admin_user'
   get 'users/new_community_admin_user', to: 'users#new_community_admin_user'
+
+  ### NOTIFICATIONS ###
+  resources :notifications, only: [:destroy]
+  post 'notifications/read', to: 'notifications#read'
 
   ### USER_CATEGORIES ###
   resources :user_categories, only: :create
