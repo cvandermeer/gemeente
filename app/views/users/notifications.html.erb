@@ -23,14 +23,18 @@
                 </div>
               </div>
               <% @notifications.each do |notification| %>
-                <% if notification.category_id == 'report' %>
+                <% if notification.report? %>
                   <% record_path = report_path(Report.find(notification.record_id)) %>
                 <% elsif notification.news? %>
                   <% record_path = newsletter_path(Newsletter.find(notification.record_id)) %>
                 <% end %>
                 <div class='row'>
                   <div class='columns eight'>
-                    <%= link_to notification.title, record_path, target: '_blank' %>
+                    <% if !notification.record_destroyed? %>
+                      <%= link_to notification.title, record_path, target: '_blank' %>
+                    <% else %>
+                      <%= notification.title %>
+                    <% end %>
                   </div>
                   <div class='columns four'>
                     <%= notification.created_at %>

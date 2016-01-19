@@ -44,13 +44,9 @@ class Report < ActiveRecord::Base
   ### CALLBACKS ###
   before_create :set_community, :set_status
   after_create :create_notification
-  before_update :check_status_changed
-  before_destroy :remove_notifications
+  before_destroy :remove_notifications, :create_destroy_notification
+  after_update :check_status_changed_notification
   after_save :check_for_wrong_words
-
-  def check_status_changed
-   CreateNotificationStatusChangedJob.perform_later(self) if self.status_changed?
-  end
 
   def set_community
     self.community = Community.find_by(name: community_check_name)
@@ -64,9 +60,18 @@ class Report < ActiveRecord::Base
     CreateNotificationJob.perform_later(self) if user.present?
   end
 
+  def check_status_changed_notification
+    CreateNotificationStatusChangedJob.perform_later(self, self.status) if self.status_changed?
+  end
+
+  def create_destroy_notification
+    CreateDestroyedNotificationJob.perform_later(self)
+  end
+
   def remove_notifications
-    Notification.where(record_id: self.id, category_id: 0).each do |d|
-      d.destroy
+    Notification.where(record_id: self.id, category_id: 0).each do |notice|
+      notice.category_id = Notification::CATEGORY_RECORD_DESTROYED
+      notice.save
     end
   end
 
