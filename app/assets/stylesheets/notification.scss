@@ -29,4 +29,10 @@
   .three {
     padding: $spacing/2 0;
   }
+  .delete {
+    padding: $spacing/2;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }

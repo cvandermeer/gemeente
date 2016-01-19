@@ -28,7 +28,7 @@
                 <% elsif notification.news? %>
                   <% record_path = newsletter_path(Newsletter.find(notification.record_id)) %>
                 <% end %>
-                <div class='row notification'>
+                <div class='row notification' data-notification-id='<%= notification.id %>'>
                   <div class='columns nine'>
                     <% if !notification.record_destroyed? %>
                       <%= link_to notification.title, record_path, target: '_blank' %>
@@ -39,6 +39,9 @@
                   <div class='columns three'>
                     <%= notification.created_at %>
                   </div>
+                  <%= link_to 'Verwijderen?', notification, method: :delete,
+                                                            data: {remote: true},
+                                                            class: 'js_delete_notification delete' %>
                 </div>
               <% end %>
 
