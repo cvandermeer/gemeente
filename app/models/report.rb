@@ -61,15 +61,15 @@ class Report < ActiveRecord::Base
   end
 
   def check_status_changed_notification
-    CreateNotificationStatusChangedJob.perform_later(self, self.status) if self.status_changed?
+    CreateNotificationStatusChangedJob.perform_later(self, status) if status_changed? && user.present?
   end
 
   def create_destroy_notification
-    CreateDestroyedNotificationJob.perform_later(self)
+    CreateDestroyedNotificationJob.perform_later(self) if user.present?
   end
 
   def remove_notifications
-    Notification.where(record_id: self.id, category_id: 0).each do |notice|
+    Notification.where(record_id: id, category_id: 0).each do |notice|
       notice.category_id = Notification::CATEGORY_RECORD_DESTROYED
       notice.save
     end

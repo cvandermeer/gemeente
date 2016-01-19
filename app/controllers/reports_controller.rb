@@ -62,7 +62,7 @@ class ReportsController < ApplicationController
 
   def update
     if params[:report][:status] && @report.update(report_params)
-      redirect_to community_admin_reports_path, notice: "Status van #{@report.category.title} aangepast naar #{@report.status}"
+      redirect_to community_admin_reports_path, notice: "Status van #{@report.category.title} is aangepast!"
     elsif @report.update(report_params)
       respond_to do |format|
         format.js
