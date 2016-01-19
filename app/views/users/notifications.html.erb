@@ -15,10 +15,10 @@
           <div class='panel-body'>
             <% if @notifications.any? %>
               <div class='row'>
-                <div class='columns eight'>
+                <div class='columns nine'>
                   <strong>Berichten:</strong>
                 </div>
-                <div class='columns four'>
+                <div class='columns three'>
                   <strong>Datum:</strong>
                 </div>
               </div>
@@ -28,15 +28,15 @@
                 <% elsif notification.news? %>
                   <% record_path = newsletter_path(Newsletter.find(notification.record_id)) %>
                 <% end %>
-                <div class='row'>
-                  <div class='columns eight'>
+                <div class='row notification'>
+                  <div class='columns nine'>
                     <% if !notification.record_destroyed? %>
                       <%= link_to notification.title, record_path, target: '_blank' %>
                     <% else %>
                       <%= notification.title %>
                     <% end %>
                   </div>
-                  <div class='columns four'>
+                  <div class='columns three'>
                     <%= notification.created_at %>
                   </div>
                 </div>

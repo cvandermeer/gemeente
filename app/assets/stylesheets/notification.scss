@@ -1,0 +1,32 @@
+.notification {
+  height: $spacing*3;
+  overflow-x: auto;
+  position: relative;
+  .nine {
+    height: 36px;
+    padding: $spacing/2 0;
+    color: $dark-gray;
+    position: relative;
+    text-indent: $spacing;
+    a {
+      background: #fff;
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 24px;
+      top: 0;
+      padding: 6px 0;
+    }
+    @include transition(0.3s);
+    &:hover {
+      a {
+        background: $basic-color;
+        text-decoration: none;
+        color: #fff;
+      }
+    }
+  }
+  .three {
+    padding: $spacing/2 0;
+  }
+}
