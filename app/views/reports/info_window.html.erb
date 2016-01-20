@@ -1,9 +1,13 @@
 <div class='info-box'>
   <div class='close'></div>
   <div class='info'>
-    <h3><%= @report.title.truncate(32) %></h3>
+    <h3><%= @report.category.title.truncate(32) %></h3>
     <p>
-      <%= @report.description.truncate(100, separator: ' ') %>
+      <% if user_signed_in? && @report.editable_by?(current_user) ||!(@report.has_wrong_word) %>
+        <%= @report.description.truncate(100, separator: ' ') %>
+      <% else %>
+         De beschrijving kan niet worden getoond, vanwege ongepast taal gebruik!
+      <% end %>
     </p>
     <div class='address'>
       <% if user_signed_in? && @report.editable_by?(current_user) %>
@@ -11,12 +15,11 @@
       <% else %>
         <%= @report.location.truncate(120) %>
       <% end %>
-
     </div>
   </div>
   <div class='info-footer <%= @report.status %>'>
     <div class="marker <%= @report.status %>">
-        <div class="marker-icon <%= @report.category.title %>">
+        <div class="marker-icon <%= @report.category.icon_name %>">
         </div>
     </div>
     <div class='info-link'>

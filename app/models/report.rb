@@ -32,7 +32,6 @@ class Report < ActiveRecord::Base
   has_one :category, through: :report_category
 
   ### VALIDATIONS ###
-  validates :title, presence: true
   validates :description, presence: true
   validates :address, presence: true
   validates :town, presence: true

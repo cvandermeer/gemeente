@@ -10,8 +10,14 @@
   <div class='report-info clearfix'>
     <span class='date'><%= report.created_at %></span>
     <% if report.image(:thumb) != nil %>
-      <h3><%= link_to report.title.truncate(16) %></h3>
-      <p><%= report.description.truncate(28) %></p>
+      <h3><%= link_to report.category.title.truncate(16) %></h3>
+      <p>
+        <% if user_signed_in? && report.editable_by?(current_user) || !(report.has_wrong_word) %>
+          <%= report.description.truncate(28) %>
+        <% else %>
+           Wordt niet getoond...
+        <% end %>
+      </p>
       <div class='address image'>
         <% if user_signed_in? && report.editable_by?(current_user) %>
           <%= report.location_detail.truncate(32) %>
@@ -20,8 +26,14 @@
         <% end %>
       </div>
       <% else %>
-      <h3><%= link_to report.title.truncate(26) %></h3>
-      <p><%= report.description.truncate(39) %></p>
+      <h3><%= link_to report.category.title.truncate(26) %></h3>
+      <p>
+        <% if user_signed_in? && report.editable_by?(current_user) || !(report.has_wrong_word) %>
+          <%= report.description.truncate(39) %>
+        <% else %>
+           Wordt niet getoond...
+        <% end %>
+      </p>
       <div class='address'>
         <% if user_signed_in? && report.editable_by?(current_user) %>
           <%= report.location_detail.truncate(44) %>

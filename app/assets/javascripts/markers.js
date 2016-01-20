@@ -64,7 +64,7 @@ function getJsonDataForReports(map) {
 function setMarkerShow(data) {
   var markerContent =
                   '<div class="marker '+data.status+'">' +
-                      '<div class="marker-icon '+data.category.title+'">' +
+                      '<div class="marker-icon '+data.category.icon_name+'">' +
                       '</div>' +
                   '</div>';
 
@@ -102,7 +102,7 @@ function setMarkers(data) {
       // Sets the html for the marker
       var markerContent =
                       '<div class="marker '+data[i].status+'" data-marker-id="'+data[i].id+'">' +
-                          '<div class="marker-icon '+data[i].category.title+'">' +
+                          '<div class="marker-icon '+data[i].category.icon_name+'">' +
                           '</div>' +
                       '</div>';
 

@@ -6,7 +6,7 @@ $('#new_report').on('ajax:success', function() {
     data: { 'id': <%= @report.id %> },
     success: function(data){
       goToReportLocation(data);
-      setNotice('Uw melding is ontvangen: ' + data.title);
+      setNotice('Uw melding is ontvangen!');
       removeOldNewMarker();
       removeHeaderModal($('.header-modal'));
     }

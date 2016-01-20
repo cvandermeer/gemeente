@@ -1,0 +1,47 @@
+<%= render 'shared/dashboard_menu' %>
+
+<div class='inner'>
+  <div class='container'>
+    <div class='row'>
+      <div class='columns three'>
+        <%= render 'users/panels/user_image_panel', user: current_user %>
+        <%= render 'users/panels/user_info_panel', user: current_user %>
+      </div>
+      <div class='columns nine'>
+        <div class='panel'>
+          <%= render 'new', category: @category %>
+        </div>
+        <div class='panel'>
+          <div class='panel-header'>
+            <h5>Alle categorieën</h5>
+          </div>
+          <div class='panel-body'>
+            <div class='row'>
+              <div class='columns five'>
+                <strong>Categorie beschrijving:</strong>
+              </div>
+              <div class='columns three'>
+                <strong>Icon naam:</strong>
+              </div>
+            </div>
+            <% @categories.each do |category| %>
+              <div class='row'>
+                <div class='columns five'>
+                  <%= category.title %>
+                </div>
+                <div class='columns three'>
+                  <%= category.icon_name %>
+                </div>
+                <div class='columns four'>
+                  <%= link_to 'Aanpassen', edit_category_path(category) %> |
+                  <%= link_to 'Verwijderen?',  category, method: :delete,
+                                                         data: {confirm: 'Weet je het zeker'} %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

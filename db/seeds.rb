@@ -21,13 +21,22 @@ User.create(email: 'admin@ikbeninwoner.nl',
 
 
 categories = [
-  'Groen',
-  'Afval',
-  'Straatverlichting',
-  'Wegdek',
-  'Overig'
+  ['Afvalcontainer', 'fa-trash-o'],
+  ['Graffiti en beplakking', 'fa-paint-brush'],
+  ['Hondenpoep', 'fa-exclamation'],
+  ['Kapotte straatverlichting', 'fa-lightbulb-o'],
+  ['Losse stoeptegel / kapotte putdeksel', 'fa-road'],
+  ['Ongedierte', 'fa-bug'],
+  ['Onkruid', 'fa-pagelines'],
+  ['Overlast', 'fa-volume-up'],
+  ['Parkeren', 'fa-car'],
+  ['Slecht wegdek', 'fa-road'],
+  ['Speeltoestellen', 'fa-futbol-o'],
+  ['Wateroverlast', 'fa-tint'],
+  ['Zwerfvuil op straat', 'fa-trash'],
+  ['Idee, wens of overig', 'fa-question']
 ]
 
-categories.each do |category_name|
-  Category.create(title: category_name)
+categories.each do |title, icon_name|
+  Category.create(title: title, icon_name: icon_name)
 end
