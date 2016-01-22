@@ -18,13 +18,12 @@
   </div>
 
   <%= f.fields_for :report_category, report_category do |rcf| %>
-    <%= rcf.label :category_id, 'Categorie *' %>
     <%= rcf.collection_select :category_id, Category.all, :id, :title, {include_blank: 'Kies een Categorie'}, validate: '' %>
   <% end %>
 
   <%= f.text_area :description, placeholder: 'Beschrijving melding *',  class: 'text-field u-full-width', validate: '' %>
 
-  <% if action_name == 'edit' %>
+  <% if action_name == 'edit' && !(current_user.user?) %>
     <%= f.label :resolved_at, 'Opgelost op' %>
     <%= f.text_field :resolved_at, class: 'u-full-width', class: 'datepicker' %>
   <% end %>

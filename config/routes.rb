@@ -68,6 +68,10 @@ Rails.application.routes.draw do
   post 'users/generate_community_admin_user', to: 'users#generate_community_admin_user'
   get 'users/new_community_admin_user', to: 'users#new_community_admin_user'
 
+  ### NOTIFICATIONS ###
+  resources :notifications, only: [:destroy]
+  post 'notifications/read', to: 'notifications#read'
+
   ### USER_CATEGORIES ###
   resources :user_categories, only: :create
 

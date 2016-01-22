@@ -132,6 +132,18 @@ form {
   }
 }
 
+.side-modal {
+  select {
+    max-width: 278px;
+  }
+}
+
+.header-modal {
+  select {
+    width: 344px;
+  }
+}
+
 form {
   .icon {
     position: relative;
