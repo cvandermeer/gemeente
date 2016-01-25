@@ -1,10 +1,19 @@
 var ready;
 
 ready = function() {
+  // Onclick go to current location by geolocation
   $('.js_current_location').on('click', function() {
     goToCurrentLocation();
   });
 };
+
+/**
+ * @desc Go to current location if localStorage.authorizedGeoLocation == 1
+ * Uses geolocation to get back the current location and sets the map center
+ * Places a infowindow on the map with the current location
+ * And removes is ather 15 seconds
+ * @return {boolean} for localStorage.tutorial
+ */
 
 function goToCurrentLocation() {
   if (localStorage.authorizedGeoLocation == 1) {

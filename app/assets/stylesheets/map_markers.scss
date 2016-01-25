@@ -102,26 +102,19 @@
   &:before {
     font-family: FontAwesome;
     color: $dark-gray;
-    font-size: 18px;
+    font-size: 16px;
     width: 100%;
     display: block;
     margin-top: -1px;
     text-align: center;
   }
-  &.Afval:before {
-    content: '\f1f8'
+  &.fa-lint:before,
+  &.fa-exclamation:before {
+    font-size: 18px;
   }
-  &.Straatverlichting:before {
-    content: '\f0eb'
-  }
-  &.Wegdek:before {
-    content: '\f018'
-  }
-  &.Groen:before {
-    content: '\f06c'
-  }
-  &.Overig:before {
-    content: '\f12a'
+  &.fa-question:before {
+    font-size: 18px;
+    margin-top: -2px;
   }
 }
 

@@ -15,11 +15,6 @@ class ReportTest < ActiveSupport::TestCase
     assert_not report.save, 'Saved an report without any input!'
   end
 
-  test 'should not create report without title' do
-    @new_report.title = nil
-    assert_not @new_report.save, 'Saved an report without title!'
-  end
-
   test 'should not create report without description' do
     @new_report.description = nil
     assert_not @new_report.save, 'Saved an report without description!'
@@ -43,7 +38,7 @@ class ReportTest < ActiveSupport::TestCase
 
   test 'should return location' do
     report = @report
-    assert_equal report.location, 'Schoolpad 7, Middenmeer'
+    assert_equal report.location, 'Schoolpad, Middenmeer'
   end
 
   test 'should set community if it already exists' do
@@ -66,8 +61,7 @@ class ReportTest < ActiveSupport::TestCase
     @report = reports(:report1)
     @report2 = reports(:report2)
     @community = communities(:community1)
-    @new_report = Report.new(title: @report.title,
-                             description: @report.description,
+    @new_report = Report.new(description: @report.description,
                              address: @report.address,
                              town: @report.town)
   end

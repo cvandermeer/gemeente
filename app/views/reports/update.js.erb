@@ -10,7 +10,7 @@ $('#edit_report_' + <%= @report.id %>).on('ajax:success', function() {
       data: { 'id': <%= @report.id %> },
       success: function(data){
         goToReportLocation(data);
-        setNotice('Uw melding is aangepast: ' + data.title);
+        setNotice('Uw melding is aangepast!');
         removeSideModal($('.side-modal'));
         $('.new-marker').remove();
       }

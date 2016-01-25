@@ -1,3 +1,4 @@
+// Sets the map styling for google maps
 var mapStyle = [
    {
      featureType: "poi",
@@ -14,14 +15,17 @@ var pos;
 var zoom;
 
 ready = function() {
+  // Resets the map to show the Netherlands
   resetMap();
 };
 
-/**
-  * @desc initializes the google maps javascript api
-  * @return if geolocation is active go to users current position else center of the map
-*/
 var report_show_position;
+
+/**
+  * @desc Initializes the google maps javascript api
+  * If geolocation is active go to users current position else center of the map,
+  * our the last kown position in the localStorage
+*/
 
 function initMap() {
   if ($('#map').length) {
@@ -90,13 +94,20 @@ function initMap() {
     initRichMarker();
     initInfoBox();
 
-    // markers.js
+    // Get the json data for the marker in: markers.js
     getJsonDataForReports(map);
 
+    // Adds event listener to the map on position and zoom change
     changeLastKownPositionAndZoomListener(map);
   }
 
 }
+
+/**
+ * @desc Gets back the closes street view position
+ * @param {data} data Is the position of the marker and the search radius
+ * @param {OK} status Checks if the street view is set
+ */
 
 var radius = 50;
 function processSVData(data, status) {
@@ -122,25 +133,39 @@ function processSVData(data, status) {
   }
 }
 
-//Get latitude and longitude;
-function successFunction(position) {
-    var lat = position.coords.latitude;
-    var long = position.coords.longitude;
+/**
+ * @desc Sets the authorizedGeoLocation to 1, if geolocation is allowed
+ */
 
+function successFunction() {
     localStorage.authorizedGeoLocation = 1;
 }
+
+/**
+ * @desc Sets the authorizedGeoLocation to 0, if geolocation is not allowed
+ */
 
 function errorFunction(){
     localStorage.authorizedGeoLocation = 0;
 }
 
-function checkauthorizedGeoLocation(){ // you can use this function to know if geoLocation was previously allowed
+/**
+ * @desc Checks if geolocation is authorized
+ * @return {boolean} Return true our false for using geolocation
+ */
+
+function checkauthorizedGeoLocation(){
   if ( typeof localStorage.authorizedGeoLocation == "undefined" || localStorage.authorizedGeoLocation == "0" ) {
     return false;
   } else {
     return true;
   }
 }
+
+/**
+ * @desc Checks if there is a last kown latitude position
+ * @return {float} Return the last kown latitude position
+ */
 
 function lastKownLatitudePosition() {
   if (typeof localStorage.lastLatitudePositionOnMap == 'undefined') {
@@ -149,6 +174,11 @@ function lastKownLatitudePosition() {
   return parseFloat(localStorage.lastLatitudePositionOnMap);
 }
 
+/**
+ * @desc Checks if there is a last kown longitude position
+ * @return {float} Return the last kown longitude position
+ */
+
 function lastKownLongitudePosition() {
   if (typeof localStorage.lastLongitudePositionOnMap == 'undefined') {
     localStorage.lastLongitudePositionOnMap = 5.544;
@@ -156,12 +186,22 @@ function lastKownLongitudePosition() {
   return parseFloat(localStorage.lastLongitudePositionOnMap);
 }
 
+/**
+ * @desc Checks if there is a last kown zoom level
+ * @return {float} Return the last kown zoom level
+ */
+
 function lastKownZoomLevel() {
   if (typeof localStorage.lastZoomLevel == 'undefined') {
     localStorage.lastZoomLevel = 8;
   }
   return parseFloat(localStorage.lastZoomLevel);
 }
+
+/**
+ * @desc Changes the last kown position and zoom level in the localStorage
+ * @param {element} map The Google maps javascript api
+ */
 
 function changeLastKownPositionAndZoomListener(map) {
   if( $('.map-show').length === 0 ) {
@@ -174,8 +214,7 @@ function changeLastKownPositionAndZoomListener(map) {
 }
 
 /**
-  * @desc resets the map
-  * @return on a specific location to show the Netherlands
+  * @desc Resets the map to show the Netherlands
 */
 
 function resetMap() {
@@ -187,8 +226,8 @@ function resetMap() {
 
 /**
   * @desc initializes the google maps search bar
-  * @param function map - google maps javascript api
-  * @return the new position of the location searched
+  * and sets the new position of the map
+  * @param {element} map The Google maps javascript api
 */
 
 function setSearchBar(map) {

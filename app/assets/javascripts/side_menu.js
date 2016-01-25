@@ -5,23 +5,29 @@ ready = function() {
 
   // toggles class to show the side menu
   onClickSetSideMenu();
-  // removes class to hide side menu if active
+
+  // Onclick outside of the side menu remove the active class
   $('.index-wrapper, .wrapper').on('click', function(e) {
     if ($('.hamburger.active').length) {
       e.preventDefault();
-      removeSideMenu();
+      closeSideMenu();
     }
   });
 
+  // Onresize if side menu active close side menu
   window.onresize = function(event) {
     clearInterval(timer);
     timer = setTimeout(function(){
       if(document.body.clientWidth >= 940 && $('.hamburger.active').length) {
-        removeSideMenu();
+        closeSideMenu();
       }
     }, 200);
   };
 };
+
+/**
+ * @desc Onclick hamburger menu open our close the side menu
+ */
 
 function onClickSetSideMenu() {
   $('.hamburger').on('click', function() {
@@ -30,7 +36,11 @@ function onClickSetSideMenu() {
   });
 }
 
-function removeSideMenu() {
+/**
+ * @desc Close the side menu
+ */
+
+function closeSideMenu() {
   $('.hamburger').removeClass('active');
   $('header, .index-outer-wrapper, .outer-wrapper, .side-menu').removeClass('show-side-menu');
 }

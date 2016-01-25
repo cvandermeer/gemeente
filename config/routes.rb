@@ -68,10 +68,20 @@ Rails.application.routes.draw do
   post 'users/generate_community_admin_user', to: 'users#generate_community_admin_user'
   get 'users/new_community_admin_user', to: 'users#new_community_admin_user'
 
+  ### NOTIFICATIONS ###
+  resources :notifications, only: [:destroy]
+  post 'notifications/read', to: 'notifications#read'
+
   ### USER_CATEGORIES ###
   resources :user_categories, only: :create
 
   ### ZIPCODES ###
   get 'search_streets', to: 'zipcodes#search_streets', as: 'search_streets'
   get 'search_towns', to: 'zipcodes#search_towns', as: 'search_towns'
+
+  ### WRONG WORDS ###
+  resources :wrong_words, only: [:index, :create, :destroy]
+
+  ### CATEGORIES ###
+  resources :categories, except: [:show]
 end
