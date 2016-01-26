@@ -147,6 +147,12 @@
   }
 }
 
+.inner.details {
+  .address:before {
+    left: 0;
+  }
+}
+
 .side-modal {
   .address {
     &:before {

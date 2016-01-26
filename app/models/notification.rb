@@ -5,10 +5,12 @@ class Notification < ActiveRecord::Base
   ### CONSTANTS ###
   CATEGORY_REPORT = 0
   CATEGORY_NEWS = 1
+  CATEGORY_RECORD_DESTROYED = 2
 
   enum category_id: {
     report: CATEGORY_REPORT,
-    news: CATEGORY_NEWS
+    news: CATEGORY_NEWS,
+    record_destroyed: CATEGORY_RECORD_DESTROYED
   }
 
   ### CALLBACKS ###

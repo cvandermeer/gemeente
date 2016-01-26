@@ -1,0 +1,25 @@
+<%= render 'shared/dashboard_menu' %>
+
+<div class='inner'>
+  <div class='container'>
+    <div class='row'>
+      <div class='columns three'>
+        <%= render 'users/panels/user_image_panel', user: current_user %>
+        <%= render 'users/panels/user_info_panel', user: current_user %>
+      </div>
+      <div class='columns nine'>
+        <div class='panel'>
+          <div class='panel-header'>
+            <h5>Categorie aanpassen</h5>
+          </div>
+          <div class='panel-body'>
+            <%= form_for @category do |f| %>
+              <%= render 'form', f: f %>
+              <%= f.submit 'Categorie aanpasen' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

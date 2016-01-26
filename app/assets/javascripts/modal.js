@@ -19,9 +19,9 @@ ready = function() {
 };
 
 /**
-  * @desc appends the modalbackground and binds the onclick function
-  * @return adds an active class to the modal and modal-background
-*/
+ * @desc Appends the modalbackground and binds the onclick function
+ * And adds an active class to the modal and modal-background
+ */
 
 function initModal(tutorial) {
   var modalBackground = '<div class="modal-background"></div>';
@@ -42,10 +42,10 @@ function initModal(tutorial) {
 }
 
 /**
-  * @desc sets the data in modal and initializes the modal
-  * @param element e - stants for this
-  * @param string data - is the data returned by ajax
-*/
+ * @desc Sets the data in modal and initializes the modal
+ * @param {element} e Is the this element
+ * @param {html} data Is the data returned by ajax
+ */
 
 function setDataInModal(e, data) {
   initModal();
@@ -81,22 +81,21 @@ function setDataInModal(e, data) {
 }
 
 /**
-  * @desc removes the modal and its content
-*/
+ * @desc removes the modal and its content
+ */
 
 function removeModal() {
   $('.modal-background, .modal').removeClass('active');
   $('.modal-content').html('');
   $('.modal-header h4').remove();
-
 }
 
 /**
-  * @desc sets the data in modal for the destroy function
-  * @param element e - stants for this
-  * @param json data - is the data returned by ajax
-  * @return if modal confirm is delete, remove report from document
-*/
+ * @desc sets the data in modal for the destroy function,
+ * if modal confirm is delete, remove report from document
+ * @param {element} e Is the this element
+ * @param {json} data Is the data returned by ajax
+ */
 
 function initDestroy(e, data) {
   $('.modal-content').html('');
@@ -110,8 +109,8 @@ function initDestroy(e, data) {
 }
 
 /**
-  * @desc binds the ajax success function
-*/
+ * @desc Binds the close function to the modal
+ */
 
 function bindHandlers() {
   $('.modal-background, .modal-confirm').on('click', function() {

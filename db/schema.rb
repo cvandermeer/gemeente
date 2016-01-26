@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151224140806) do
+ActiveRecord::Schema.define(version: 20160119113907) do
 
   create_table "categories", force: :cascade do |t|
-    t.string "title", limit: 255
+    t.string "title",     limit: 255
+    t.string "icon_name", limit: 255
   end
 
   create_table "communities", force: :cascade do |t|
@@ -72,6 +73,7 @@ ActiveRecord::Schema.define(version: 20151224140806) do
     t.integer  "category_id", limit: 4
     t.datetime "created_at"
     t.integer  "record_id",   limit: 4
+    t.boolean  "read",                    default: false
   end
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
@@ -82,21 +84,21 @@ ActiveRecord::Schema.define(version: 20151224140806) do
   end
 
   create_table "reports", force: :cascade do |t|
-    t.string   "title",        limit: 255
-    t.text     "description",  limit: 65535
-    t.string   "address",      limit: 255
-    t.string   "town",         limit: 255
-    t.float    "latitude",     limit: 24
-    t.float    "longitude",    limit: 24
+    t.text     "description",    limit: 65535
+    t.string   "address",        limit: 255
+    t.string   "town",           limit: 255
+    t.float    "latitude",       limit: 24
+    t.float    "longitude",      limit: 24
     t.datetime "created_at"
     t.datetime "resolved_at"
-    t.string   "email",        limit: 255
-    t.integer  "community_id", limit: 4
-    t.integer  "user_id",      limit: 4
-    t.string   "image_one",    limit: 255
-    t.string   "image_two",    limit: 255
-    t.string   "image_three",  limit: 255
-    t.integer  "status",       limit: 4
+    t.string   "email",          limit: 255
+    t.integer  "community_id",   limit: 4
+    t.integer  "user_id",        limit: 4
+    t.string   "image_one",      limit: 255
+    t.string   "image_two",      limit: 255
+    t.string   "image_three",    limit: 255
+    t.integer  "status",         limit: 4
+    t.boolean  "has_wrong_word",               default: false
   end
 
   add_index "reports", ["community_id"], name: "index_reports_on_community_id", using: :btree
@@ -137,6 +139,10 @@ ActiveRecord::Schema.define(version: 20151224140806) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "wrong_words", force: :cascade do |t|
+    t.string "word", limit: 255
+  end
+
   create_table "zipcodes", force: :cascade do |t|
     t.string  "zipcode",            limit: 255
     t.integer "zipcode_ascii",      limit: 4
@@ -149,5 +155,8 @@ ActiveRecord::Schema.define(version: 20151224140806) do
     t.string  "latitude",           limit: 255
     t.string  "longitude",          limit: 255
   end
+
+  add_index "zipcodes", ["street"], name: "index_zipcodes_on_street", using: :btree
+  add_index "zipcodes", ["town"], name: "index_zipcodes_on_town", using: :btree
 
 end

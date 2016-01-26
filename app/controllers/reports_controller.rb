@@ -62,7 +62,7 @@ class ReportsController < ApplicationController
 
   def update
     if params[:report][:status] && @report.update(report_params)
-      redirect_to community_admin_reports_path, notice: "Status van #{@report.title} aangepast naar #{@report.status}"
+      redirect_to community_admin_reports_path, notice: "Status van #{@report.category.title} is aangepast!"
     elsif @report.update(report_params)
       respond_to do |format|
         format.js
@@ -97,8 +97,8 @@ class ReportsController < ApplicationController
   end
 
   def report_params
-    params.require(:report).permit(:title, :description, :address, :email, :town, :latitude, :status,
+    params.require(:report).permit(:description, :address, :email, :town, :latitude, :status,
                                    :longitude, :resolved_at, :image_one, :image_two, :image_three,
-                                   :community_check_name, report_category_attributes: [:category_id])
+                                   :community_check_name, :has_wrong_word, report_category_attributes: [:category_id])
   end
 end

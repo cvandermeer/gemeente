@@ -32,7 +32,6 @@ class Report < ActiveRecord::Base
   has_one :category, through: :report_category
 
   ### VALIDATIONS ###
-  validates :title, presence: true
   validates :description, presence: true
   validates :address, presence: true
   validates :town, presence: true
@@ -45,6 +44,9 @@ class Report < ActiveRecord::Base
   ### CALLBACKS ###
   before_create :set_community, :set_status
   after_create :create_notification
+  before_destroy :remove_notifications, :create_destroy_notification
+  after_update :check_status_changed_notification
+  after_save :check_for_wrong_words
 
   def set_community
     self.community = Community.find_by(name: community_check_name)
@@ -58,8 +60,40 @@ class Report < ActiveRecord::Base
     CreateNotificationJob.perform_later(self) if user.present?
   end
 
+  def check_status_changed_notification
+    CreateNotificationStatusChangedJob.perform_later(self, status) if status_changed? && user.present?
+  end
+
+  def create_destroy_notification
+    CreateDestroyedNotificationJob.perform_later(self) if user.present?
+  end
+
+  def remove_notifications
+    Notification.where(record_id: id, category_id: 0).each do |notice|
+      notice.category_id = Notification::CATEGORY_RECORD_DESTROYED
+      notice.save
+    end
+  end
+
+  def check_for_wrong_words
+    CheckForWrongWordsJob.perform_later(self)
+  end
+
   ### INSTANCE METHODS ###
   def location
+    address_array = address.split(' ')
+    address_array.each do |part|
+      address_array.delete(part) if part =~ /\d/
+    end
+    if address_array.length != 0
+      address = address_array.join(' ')
+      [address, town].compact.join(', ')
+    else
+      town
+    end
+  end
+
+  def location_detail
     [address, town].compact.join(', ')
   end
 
