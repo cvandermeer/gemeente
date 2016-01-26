@@ -1,5 +1,6 @@
-user1:
-  email: admin@gemeente.nl
+user_admin:
+  email: admin@ikbeninwoner.nl
   encrypted_password: $2a$10$uO.M1IKUdpjTkF4dQ26akO06d0gy7NKCSiGHcMXSaLyCyMXRFeeO.
   confirmed_at: 2015-12-17 09:10:57
   confirmation_sent_at: 2015-12-17 09:10:47
+  role_id: 2

@@ -15,6 +15,6 @@ class ReportsControllerTest < ActionController::TestCase
   end
 
   def login_user
-    sign_in users(:user1)
+    sign_in users(:user_admin)
   end
 end

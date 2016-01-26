@@ -21,6 +21,6 @@ class UsersControllerTest < ActionController::TestCase
   private
 
   def initialize_user
-    @user = users(:user1)
+    @user = users(:user_admin)
   end
 end
