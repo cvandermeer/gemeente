@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git@github.com:cvandermeer/contact_form.git
-  revision: 0bcc5c1e704cae658132a7021f16ddd6d6a6631a
+  revision: b66c55d09771f7b8b2aa20ee3d1861ad69a406b5
   specs:
     contact_form (0.0.1)
       rails (~> 4.2.0)
@@ -215,7 +215,7 @@ GEM
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-html-sanitizer (1.0.2)
+    rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     rails_best_practices (1.15.7)
       activesupport
