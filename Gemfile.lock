@@ -7,8 +7,8 @@ GIT
       sshkit (~> 1.3)
 
 GIT
-  remote: git@github.com:cvandermeer/contact_form.git
-  revision: 0bcc5c1e704cae658132a7021f16ddd6d6a6631a
+  remote: https://github.com/cvandermeer/contact_form.git
+  revision: b66c55d09771f7b8b2aa20ee3d1861ad69a406b5
   specs:
     contact_form (0.0.1)
       rails (~> 4.2.0)
@@ -165,7 +165,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.99)
     mini_portile2 (2.0.0)
-    minitest (5.8.3)
+    minitest (5.8.4)
     minitest-rails (2.2.0)
       minitest (~> 5.7)
       railties (~> 4.1)
@@ -180,7 +180,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.0.2)
-    nokogiri (1.6.7.1)
+    nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     notiffany (0.0.8)
       nenv (~> 0.1)
@@ -215,7 +215,7 @@ GEM
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-html-sanitizer (1.0.2)
+    rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     rails_best_practices (1.15.7)
       activesupport

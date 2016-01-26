@@ -30,8 +30,10 @@ class ReportTest < ActiveSupport::TestCase
     assert_not @new_report.save, 'Saved an report without town!'
   end
 
-  test 'should create @report' do
-    assert @report.save
+  unless ENV['SKIP_REDIS_TESTS']
+    test 'should create @report' do
+      assert @report.save
+    end
   end
 
   ### METHODS ###

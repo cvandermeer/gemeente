@@ -3,9 +3,7 @@ class NotificationsController < ApplicationController
   before_action :set_notification
 
   def read
-    if @notification.update(read: true)
-      render json: @notification
-    end
+    render json: @notification if @notification.update(read: true)
   end
 
   def destroy

@@ -20,7 +20,7 @@ gem 'remotipart', '~> 1.2'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'ckeditor'
 gem 'will_paginate', '~> 3.0.6'
-gem 'contact_form', git: 'git@github.com:cvandermeer/contact_form.git'
+gem 'contact_form', git: 'https://github.com/cvandermeer/contact_form.git'
 
 group :development, :test do
   gem 'byebug'
