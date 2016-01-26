@@ -4,10 +4,6 @@ module Admin
   class StaticPagesControllerTest < ActionController::TestCase
     setup :login_user
 
-    def teardown
-      @bill = nil
-    end
-
     test 'should get dashboard' do
       get :dashboard
       assert_response :success

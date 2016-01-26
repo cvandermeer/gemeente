@@ -4,3 +4,16 @@ user_admin:
   confirmed_at: 2015-12-17 09:10:57
   confirmation_sent_at: 2015-12-17 09:10:47
   role_id: 2
+user_community:
+  email: rutger@ikbeninwoner.nl
+  encrypted_password: $2a$10$uO.M1IKUdpjTkF4dQ26akO06d0gy7NKCSiGHcMXSaLyCyMXRFeeO.
+  role_id: 1
+  community: community1
+  confirmed_at: 2015-12-17 09:10:57
+  confirmation_sent_at: 2015-12-17 09:10:47
+user_normal:
+  email: chris@ikbeninwoner.nl
+  encrypted_password: $2a$10$uO.M1IKUdpjTkF4dQ26akO06d0gy7NKCSiGHcMXSaLyCyMXRFeeO.
+  confirmed_at: 2015-12-17 09:10:57
+  confirmation_sent_at: 2015-12-17 09:10:47
+  role_id: 0

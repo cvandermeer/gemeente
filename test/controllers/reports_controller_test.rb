@@ -4,10 +4,6 @@ class ReportsControllerTest < ActionController::TestCase
   setup :initialize_report
   setup :login_user
 
-  def teardown
-    @bill = nil
-  end
-
   private
 
   def initialize_report
